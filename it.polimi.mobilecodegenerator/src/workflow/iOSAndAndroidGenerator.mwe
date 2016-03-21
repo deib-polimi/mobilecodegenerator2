@@ -18,7 +18,7 @@
 <workflow>
 
 	<!--<property file="AndroidGenerator.properties"/>-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/Promemoria.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/test-proto2.xmi" />
 	<property name="src-gen" value="src-gen/android" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
@@ -105,7 +105,7 @@
 		</component>
 		
 		<!--<property file="iOSGenerator.properties"/>-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/Promemoria.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/test-proto2.xmi" />
 	<property name="src-gen" value="src-gen/ios" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >

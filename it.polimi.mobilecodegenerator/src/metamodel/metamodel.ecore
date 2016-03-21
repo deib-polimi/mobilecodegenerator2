@@ -68,6 +68,10 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/buttons"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderRadius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clickColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TextView" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -76,6 +80,9 @@
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/textViews"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="textAlign" lowerBound="1"
         eType="#//TextAlign"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textDecoration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Navigation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="destination" lowerBound="1"
@@ -125,6 +132,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/editTexts"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClickListener">
     <eStructuralFeatures xsi:type="ecore:EReference" name="navigation" eType="#//Navigation"

@@ -50,7 +50,48 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«FOREACH buttons AS b-»
 	<Button
         «EXPAND uiControl FOR b»
-        android:text="«b.title»" />
+        android:text="«b.title»"
+        «IF b.textColor.matches("")==false»
+        android:textColor="«b.textColor»"
+        «ENDIF-»
+        «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
+        android:background="@drawable/button_«b.id.toLowerCase()»_background"
+        «ENDIF-»
+	/>
+	«IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
+    	«FILE this.application.name+"/res/drawable/"+"button_"+b.id.toLowerCase()+"_background.xml"-»
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    «IF b.clickColor.matches("")==false»
+	    <item android:state_pressed="true" >
+	        <shape>
+	            <solid
+	                android:color="«b.clickColor»"
+	            />
+	            <corners
+	                android:radius="«b.borderRadius»dp"
+	            />
+	        </shape>
+	    </item>
+	«ENDIF-»
+    <item>
+        <shape>
+            <solid
+            	«IF b.backgroundColor.matches("")»
+                android:color="#cecece"
+                «ELSE»
+                android:color="«b.backgroundColor»"
+                «ENDIF-»
+            />
+            <corners
+                android:radius="«b.borderRadius»dp"
+            />
+        </shape>
+    </item>
+</selector>
+    	«ENDFILE-»
+    «ENDIF-»
+        
 	«ENDFOREACH-»
 	«IF photocameraController!=null-»
 	<Button
@@ -98,14 +139,24 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	<TextView
 		«EXPAND uiControl FOR tv»
         android:text="«tv.content»"
-        android:gravity="«tv.textAlign.toString()»|center_vertical" />
+        android:gravity="«tv.textAlign.toString()»|center_vertical"
+        android:textColor="«tv.textColor»"
+        android:textSize="«tv.textSize»dp"
+        «IF tv.textDecoration.matches("none")==false»
+        android:textStyle="«tv.textDecoration»"
+        «ENDIF-»
+    />
 	«ENDFOREACH-»
 	«FOREACH editTexts AS et-»
 	<EditText
 		«EXPAND uiControl FOR et»
         android:ems="10"
         android:inputType="textMultiLine"
-        android:hint="«et.placeholder»" >
+        android:text="«et.initialContent»"
+        android:hint="«et.placeholder»" 
+        android:textColor="«et.textColor»"
+        android:textSize="«et.textSize»dp"
+        >
     </EditText>
     «ENDFOREACH-»
     «IF videoView!=null-»
@@ -191,4 +242,5 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    «IF toEndOf != null-»
 	    android:layout_toRightOf="@+id/«toEndOf.id»"
 	    «ENDIF-»
+	
 «ENDDEFINE-»
