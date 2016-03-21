@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApplication" companyIdentifier="it.polimi">
+    <viewControllers name="Main" launcher="true">
+        <buttons id="fhButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
+        <buttons id="deButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='fhButton']" viewController="//@viewControllers[name='Main']" title="BUTTON" textColor="#f2d5d5" backgroundColor="#e61919" borderRadius="10" clickColor="#c71818"/>
+        <textViews id="utLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='deButton']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="left" textColor="" textSize="14" textDecoration="none"/>
+        <textViews id="ikdLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='utLabel']" viewController="//@viewControllers[name='Main']" content="LABEL" textAlign="center" textColor="#4730d1" textSize="18" textDecoration="bold"/>
+        <editTexts id="ufnEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='ikdLabel']" viewController="//@viewControllers[name='Main']" initialContent="Edit" placeholder="EditText" textColor="#333333" textSize="14"/>
+        <editTexts id="kEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@editTexts[id='ufnEditText']" viewController="//@viewControllers[name='Main']" initialContent="EDIT" placeholder="EditText" textColor="#1e9429" textSize="20"/>
+        <listViews id="vbvListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="60" below="//@viewControllers[name='Main']/@editTexts[id='kEditText']" viewController="//@viewControllers[name='Main']" listType="simple">
+            <listViewCells title="item 1"/>
+        </listViews>
+        <listViews id="tvbListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="130" below="//@viewControllers[name='Main']/@listViews[id='vbvListView']" viewController="//@viewControllers[name='Main']" listType="image">
+            <listViewCells title="item A"/>
+            <listViewCells title="item B"/>
+        </listViews>
+        <listViews id="kfListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="200" below="//@viewControllers[name='Main']/@listViews[id='tvbListView']" viewController="//@viewControllers[name='Main']" listType="detailed">
+            <listViewCells title="item X"/>
+            <listViewCells title="item Y"/>
+        </listViews>
+    </viewControllers>
+    <menu>
+        <menuItems title="home" id="home">
+            <navigation destination="null"/>
+        </menuItems>
+        <menuItems title="amici" id="amici">
+            <navigation destination="null"/>
+        </menuItems>
+        <menuItems title="casa" id="casa">
+            <navigation destination="null"/>
+        </menuItems>
+        <menuItems title="logout" id="logout">
+            <navigation destination="null"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

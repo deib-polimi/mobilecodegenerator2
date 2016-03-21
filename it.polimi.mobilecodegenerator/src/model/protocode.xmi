@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="Bergamo" companyIdentifier="it.polimi">
+    <viewControllers name="Home" launcher="true">
+        <imageViews id="fuufImageView" posX="14.35897435897436" posY="4.079393126124103" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="100" viewController="//@viewControllers[name='Home']" sourceType="localFile" fileUri="img_home.jpg"/>
+        <listViews id="cmoListView" posX="49.23076923076923" posY="147.1009602718216" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" below="//@viewControllers[name='Home']/@imageViews[id='fuufImageView']" viewController="//@viewControllers[name='Home']">
+            <clickListener>
+                <navigation destination="ListaPOI"/>
+            </clickListener>
+            <listViewCells title="B&amp;B Da Noi Due"/>
+            <listViewCells title="Must see"/>
+            <listViewCells title="Piazze e Vie"/>
+            <listViewCells title="Musei e Teatri"/>
+            <listViewCells title="Chiese"/>
+            <listViewCells title="Piatti tradizionali"/>
+            <listViewCells title="Shopping"/>
+            <listViewCells title="Trasporti"/>
+            <listViewCells title="Info"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="Mappa" launcher="false">
+        <imageViews id="imgMappa" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Mappa']" sourceType="localFile" fileUri="img_mappa.jpg"/>
+        <buttons id="sskcsButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="0" marginStart="0" marginEnd="10" alignParentTop="true" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" width="125" height="30" viewController="//@viewControllers[name='Mappa']" title="Tipo mappa"/>
+    </viewControllers>
+    <viewControllers name="ListaPOI" launcher="false">
+        <editTexts id="ehlEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="5" marginBottom="5" marginStart="5" marginEnd="5" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" viewController="//@viewControllers[name='ListaPOI']" initialContent="" placeholder="Cerca"/>
+        <listViews id="phqListView" posX="59.48717948717949" posY="106.23766650741908" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" below="//@viewControllers[name='ListaPOI']/@editTexts[id='ehlEditText']" viewController="//@viewControllers[name='ListaPOI']">
+            <clickListener>
+                <navigation destination="DettaglioPOI"/>
+            </clickListener>
+            <listViewCells title="Piazza Vecchia"/>
+            <listViewCells title="Basilica di Santa Maria Maggiore"/>
+            <listViewCells title="Cappella Colleoni"/>
+            <listViewCells title="Le mura e le porte"/>
+            <listViewCells title="Duomo di Bergamo"/>
+            <listViewCells title="Museo Naturalistico"/>
+            <listViewCells title="Sentierone"/>
+            <listViewCells title="San Bartolomeo"/>
+            <listViewCells title="Viale XX Settembre"/>
+            <listViewCells title="Porta Nuova"/>
+            <listViewCells title="Gamec"/>
+            <listViewCells title="Accademia Carrara"/>
+            <listViewCells title="Orio Center Shopping"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="DettaglioPOI" launcher="false">
+        <asyncTasks name="asyncGps"/>
+        <imageViews id="poiImageView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="150" viewController="//@viewControllers[name='DettaglioPOI']" sourceType="localFile" fileUri="img_dettaglio_poi.jpg"/>
+        <textViews id="lblIndirizzo" posX="215.3846153846154" posY="6.12255859375" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="15" marginBottom="0" marginStart="0" marginEnd="5" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="250" height="30" alignTop="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" alignEnd="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" viewController="//@viewControllers[name='DettaglioPOI']" content="Indirizzo" textAlign="right"/>
+        <buttons id="btnFullScreen" posX="1.0256410256410255" posY="82.74126362972123" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="5" marginStart="7" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="40" height="30" alignBottom="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" alignStart="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" viewController="//@viewControllers[name='DettaglioPOI']" title="Full">
+            <clickListener>
+                <navigation destination="FullscreenImage"/>
+            </clickListener>
+        </buttons>
+        <webViews id="webPoi" posX="11.282051282051283" posY="187.96428521245502" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="5" marginBottom="5" marginStart="5" marginEnd="5" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="200" below="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" viewController="//@viewControllers[name='DettaglioPOI']" HTMLFileName="html_dettaglio_poi.html"/>
+        <buttons id="btnMap" posX="130.25641025641025" posY="101.12973725023886" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="5" marginStart="0" marginEnd="7" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="40" height="30" alignBottom="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" alignEnd="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" viewController="//@viewControllers[name='DettaglioPOI']" title="Map">
+            <clickListener>
+                <navigation destination="Mappa"/>
+            </clickListener>
+        </buttons>
+        <buttons id="btnWeb" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="5" marginStart="0" marginEnd="5" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="40" height="30" alignBottom="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" toStartOf="//@viewControllers[name='DettaglioPOI']/@buttons[id='btnMap']" viewController="//@viewControllers[name='DettaglioPOI']" title="Web"/>
+        <textViews id="lblDistanza" posX="90.25641025641026" posY="52.093766027217285" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="5" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="250" height="30" alignEnd="//@viewControllers[name='DettaglioPOI']/@imageViews[id='poiImageView']" above="//@viewControllers[name='DettaglioPOI']/@buttons[id='btnWeb']" viewController="//@viewControllers[name='DettaglioPOI']" content="Distanza" textAlign="right"/>
+    </viewControllers>
+    <viewControllers name="FullscreenImage" launcher="false">
+        <imageViews id="qcbnImageView" posX="8.205128205128204" posY="-0.006953397243144366" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='FullscreenImage']" sourceType="localFile" fileUri="img_fullscreen.jpg"/>
+    </viewControllers>
+    <viewControllers name="Preferiti" launcher="false">
+        <listViews id="moListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" viewController="//@viewControllers[name='Preferiti']">
+            <clickListener>
+                <navigation destination="DettaglioPOI"/>
+            </clickListener>
+            <listViewCells title="Piazza Vecchia"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="Meteo" launcher="false">
+        <asyncTasks name="asyncMeteo"/>
+        <textViews id="lblBergamo" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" viewController="//@viewControllers[name='Meteo']" content="Bergamo" textAlign="center"/>
+        <imageViews id="imgMeteoCorrente" posX="3.076923076923077" posY="40.856355955274836" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="10" marginStart="10" marginEnd="10" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" width="100" height="100" below="//@viewControllers[name='Meteo']/@textViews[id='lblBergamo']" viewController="//@viewControllers[name='Meteo']" sourceType="localFile" fileUri="img_meteo_sole.png"/>
+        <textViews id="lblGradi" posX="135.3846153846154" posY="42.03116986391356" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="0" marginStart="0" marginEnd="10" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="60" height="60" below="//@viewControllers[name='Meteo']/@textViews[id='lblBergamo']" toEndOf="//@viewControllers[name='Meteo']/@imageViews[id='imgMeteoCorrente']" viewController="//@viewControllers[name='Meteo']" content="18°" textAlign="center"/>
+        <textViews id="lblMeteoTempo" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" width="125" height="30" below="//@viewControllers[name='Meteo']/@textViews[id='lblBergamo']" toEndOf="//@viewControllers[name='Meteo']/@textViews[id='lblGradi']" viewController="//@viewControllers[name='Meteo']" content="Soleggiato" textAlign="left"/>
+        <textViews id="lblUmidity" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" width="125" height="30" alignStart="//@viewControllers[name='Meteo']/@textViews[id='lblMeteoTempo']" below="//@viewControllers[name='Meteo']/@textViews[id='lblMeteoTempo']" viewController="//@viewControllers[name='Meteo']" content="Umidità: 56%" textAlign="left"/>
+        <textViews id="lblVento" posX="188.97435897435898" posY="107.25923365311658" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" width="125" height="30" alignStart="//@viewControllers[name='Meteo']/@textViews[id='lblMeteoTempo']" below="//@viewControllers[name='Meteo']/@textViews[id='lblUmidity']" viewController="//@viewControllers[name='Meteo']" content="Vento: SO, 8km/h" textAlign="left"/>
+        <listViews id="listPrevisioni" posX="67.6923076923077" posY="206.3527588329727" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" below="//@viewControllers[name='Meteo']/@imageViews[id='imgMeteoCorrente']" viewController="//@viewControllers[name='Meteo']">
+            <listViewCells title="Sabato"/>
+            <listViewCells title="Domenica"/>
+            <listViewCells title="Lunedì"/>
+            <listViewCells title="Martedì"/>
+            <listViewCells title="Mercoledì"/>
+        </listViews>
+        <buttons id="btnGradiF" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="30" height="30" alignStart="//@viewControllers[name='Meteo']/@textViews[id='lblGradi']" below="//@viewControllers[name='Meteo']/@textViews[id='lblGradi']" viewController="//@viewControllers[name='Meteo']" title="°F"/>
+        <buttons id="btnGradiC" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="10" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="30" height="30" alignEnd="//@viewControllers[name='Meteo']/@textViews[id='lblGradi']" below="//@viewControllers[name='Meteo']/@textViews[id='lblGradi']" viewController="//@viewControllers[name='Meteo']" title="°C"/>
+    </viewControllers>
+    <viewControllers name="Aggiorna" launcher="false">
+        <imageViews id="imageAggiorna" posX="11.282051282051283" posY="6.12255859375" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="150" viewController="//@viewControllers[name='Aggiorna']" sourceType="localFile" fileUri="img_aggiorna.png"/>
+        <textViews id="uuLabel" posX="97.43589743589743" posY="173.66212693907374" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="20" marginEnd="20" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="110" below="//@viewControllers[name='Aggiorna']/@imageViews[id='imageAggiorna']" viewController="//@viewControllers[name='Aggiorna']" content="Potrebbero essere disponibili nuovi contenuti. Vuoi controllare adesso?" textAlign="center"/>
+        <buttons id="gurrButton" posX="91.28205128205128" posY="346.30959336534676" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="40" marginEnd="40" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="45" below="//@viewControllers[name='Aggiorna']/@textViews[id='uuLabel']" viewController="//@viewControllers[name='Aggiorna']" title="Controlla adesso"/>
+    </viewControllers>
+    <menu>
+        <menuItems title="Home" id="Home">
+            <navigation destination="Home"/>
+        </menuItems>
+        <menuItems title="Mappa" id="Mappa">
+            <navigation destination="Mappa"/>
+        </menuItems>
+        <menuItems title="Preferiti" id="Preferiti">
+            <navigation destination="Preferiti"/>
+        </menuItems>
+        <menuItems title="Meteo" id="Meteo">
+            <navigation destination="Meteo"/>
+        </menuItems>
+        <menuItems title="Aggiorna" id="Aggiorna">
+            <navigation destination="Aggiorna"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

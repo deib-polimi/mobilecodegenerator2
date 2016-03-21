@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="ciao" launcher="true">
+        <audioPlayer id="bqnoAudioPlayer" posX="87.17948717948718" posY="35.74844228621009" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="200" height="44" viewController="//@viewControllers[name='ciao']" sourceType="localFile" fileUri="audio.mp3"/>
+        <photocameraController id="coqPhotocameraController" posX="24.200910335070823" posY="107.31000162274213" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="50" viewController="//@viewControllers[name='ciao']" imageViewId="ficImageView"/>
+        <imageViews id="ficImageView" posX="8.205128205128204" posY="56.18011255058454" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" above="//@viewControllers[name='ciao']/@photocameraController" below="//@viewControllers[name='ciao']/@audioPlayer" viewController="//@viewControllers[name='ciao']" sourceType="hardwareFile" fileUri=""/>
+    </viewControllers>
+    <viewControllers name="viewController" launcher="false">
+        <buttons id="eeecButton" posX="89.23076923076923" posY="82.74126362972123" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='viewController']" title="DummyButtonName">
+            <clickListener>
+                <navigation destination="ciao"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <menu>
+        <menuItems title="menu1" id="menu1">
+            <navigation destination="ciao"/>
+        </menuItems>
+        <menuItems title="menu2" id="menu2">
+            <navigation destination="viewController"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

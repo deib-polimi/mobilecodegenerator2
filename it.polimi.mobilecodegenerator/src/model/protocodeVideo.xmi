@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="ciao" launcher="true">
+        <buttons id="kdqivButton" posX="57.43589743589744" posY="19.4031185452029" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" viewController="//@viewControllers[name='ciao']" title="DummyButtonName">
+            <clickListener>
+                <navigation destination="ciao"/>
+            </clickListener>
+        </buttons>
+        <webViews id="djgWebView" posX="8.974358974358974" posY="347.99518305277655" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="10" marginStart="10" marginEnd="10" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="100" viewController="//@viewControllers[name='ciao']" HTMLFileName="webpage.html"/>
+        <videoView id="gpqrVideoView" posX="56.41025641025641" posY="24.88561462841446" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="10" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="100" below="//@viewControllers[name='ciao']/@buttons[id='kdqivButton']" viewController="//@viewControllers[name='ciao']" sourceType="localFile" fileUri="video.mp4"/>
+        <imageViews id="ielImageView" posX="8.205128205128204" posY="65.37434156678563" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="300" height="100" above="//@viewControllers[name='ciao']/@webViews[id='djgWebView']" below="//@viewControllers[name='ciao']/@videoView" viewController="//@viewControllers[name='ciao']" sourceType="remoteFile" fileUri="http://cdni.wired.co.uk/620x413/s_v/shutterstock_65735200.jpg"/>
+    </viewControllers>
+    <viewControllers name="viewController" launcher="false">
+        <buttons id="eeecButton" posX="89.23076923076923" posY="82.74126362972123" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='viewController']" title="DummyButtonName">
+            <clickListener>
+                <navigation destination="ciao"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <menu>
+        <menuItems title="menu1" id="menu1">
+            <navigation destination="ciao"/>
+        </menuItems>
+        <menuItems title="menu2" id="menu2">
+            <navigation destination="viewController"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

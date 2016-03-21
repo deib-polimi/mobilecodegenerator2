@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="ciao" launcher="true">
+        <audioPlayer id="bqnoAudioPlayer" posX="87.17948717948718" posY="35.74844228621009" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="200" height="44" viewController="//@viewControllers[name='ciao']" sourceType="hardwareFile" fileUri=""/>
+        <videoView id="eigjVideoView" posX="18.700703440736543" posY="91.82166972972931" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" above="//@viewControllers[name='ciao']/@videocameraController" viewController="//@viewControllers[name='ciao']" sourceType="hardwareFile" fileUri=""/>
+        <videocameraController id="jekaVideocameraController" posX="-1.0256410256410255" posY="418.00767593932665" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="40" viewController="//@viewControllers[name='ciao']" videoViewId="eigjVideoView"/>
+        <audioRecorder id="boeAudioRecorder" posX="93.33333333333333" posY="42.89952142290075" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="40" below="//@viewControllers[name='ciao']/@audioPlayer" viewController="//@viewControllers[name='ciao']" audioPlayerId="bqnoAudioPlayer"/>
+        <imageViews id="bmvrImageView" posX="5.128205128205129" posY="12.252039408512246" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="10" marginStart="10" marginEnd="10" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="true" width="200" height="200" above="//@viewControllers[name='ciao']/@videoView" below="//@viewControllers[name='ciao']/@audioRecorder" toEndOf="//@viewControllers[name='ciao']/@editTexts[id='sikEditText']" viewController="//@viewControllers[name='ciao']" sourceType="remoteFile" fileUri="http://img.4plebs.org/boards/tg/image/1397/43/1397432392086.png"/>
+        <editTexts id="sikEditText" posX="-1.0256410256410255" posY="85.80599624304463" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="0" marginStart="10" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='ciao']" initialContent="" placeholder="Insert here"/>
+        <buttons id="tsrButton" posX="-1.0256410256410255" posY="132.7988019984403" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="10" marginBottom="10" marginStart="10" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" above="//@viewControllers[name='ciao']/@videoView" below="//@viewControllers[name='ciao']/@editTexts[id='sikEditText']" viewController="//@viewControllers[name='ciao']" title="Next page">
+            <clickListener>
+                <navigation destination="viewController"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="viewController" launcher="false">
+        <buttons id="eeecButton" posX="89.23076923076923" posY="82.74126362972123" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='viewController']" title="DummyButtonName">
+            <clickListener>
+                <navigation destination="ciao"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <menu>
+        <menuItems title="menu1" id="menu1">
+            <navigation destination="ciao"/>
+        </menuItems>
+        <menuItems title="menu2" id="menu2">
+            <navigation destination="viewController"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

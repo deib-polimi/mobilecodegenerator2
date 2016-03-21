@@ -1,0 +1,194 @@
+«REM»
+Copyright 2013 Gregorio Perego, Stefania Pezzetti
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«DEFINE main FOR Application-»
+
+«IF menu!=null-»
+«FILE name+"/res/menu/"+"main.xml"-»
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    «FOREACH menu.menuItems AS i-»
+    <item
+        android:id="@+id/«i.id»"
+        android:title="«i.title»"/>
+    «ENDFOREACH-»
+</menu>
+«ENDFILE-»
+«ENDIF-»
+
+«EXPAND viewController FOREACH viewControllers-»
+«ENDDEFINE-»
+
+«DEFINE viewController FOR ViewController-»
+«FILE this.application.name+"/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    
+	«FOREACH imageViews AS iv-»
+	<ImageView
+	    «EXPAND uiControl FOR iv»
+	    «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
+	    android:src="@drawable/«iv.fileUri.split("\\.").get(0)»"
+	    «ENDIF-»
+	/>
+    «ENDFOREACH-»
+	«FOREACH buttons AS b-»
+	<Button
+        «EXPAND uiControl FOR b»
+        android:text="«b.title»" />
+	«ENDFOREACH-»
+	«IF photocameraController!=null-»
+	<Button
+        «EXPAND uiControl FOR photocameraController»
+        android:text="Fotocamera" />
+	«ENDIF-»
+	«IF videocameraController!=null-»
+	<Button
+		«EXPAND uiControl FOR videocameraController»
+        android:text="Videocamera" />
+	«ENDIF-»
+	«IF audioRecorder!=null-»
+	<Button
+		«EXPAND uiControl FOR audioRecorder»
+        android:text="Rec" />
+	«ENDIF-»
+	«IF audioPlayer!=null-»
+	<RelativeLayout
+		«EXPAND uiControl FOR audioPlayer»
+		>
+		<Button
+	        android:id="@+id/«audioPlayer.id»PlayButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:text="Play" />
+	    <Button
+	        android:id="@+id/«audioPlayer.id»PauseButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_centerHorizontal="true"
+	        android:text="Pause" />
+	    <Button
+	        android:id="@+id/«audioPlayer.id»StopButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:text="Stop" />
+     </RelativeLayout>
+	«ENDIF-»
+	«FOREACH textViews AS tv-»
+	<TextView
+		«EXPAND uiControl FOR tv»
+        android:text="«tv.content»"
+        android:gravity="«tv.textAlign.toString()»|center_vertical" />
+	«ENDFOREACH-»
+	«FOREACH editTexts AS et-»
+	<EditText
+		«EXPAND uiControl FOR et»
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:hint="«et.placeholder»" >
+    </EditText>
+    «ENDFOREACH-»
+    «IF videoView!=null-»
+	<VideoView
+	    «EXPAND uiControl FOR videoView» />
+    «ENDIF-»
+	«FOREACH webViews AS wv-»
+	<WebView
+        «EXPAND uiControl FOR wv» />
+	«ENDFOREACH-» 
+    «FOREACH listViews AS lv-»
+    <ListView
+        «EXPAND uiControl FOR lv»>
+    </ListView>
+    «ENDFOREACH-»   
+    «FOREACH gridViews AS gv-»
+    <GridView
+        «EXPAND uiControl FOR gv»
+        android:numColumns="5">
+    </GridView>
+    «ENDFOREACH-»
+</RelativeLayout>
+«ENDFILE-»
+«ENDDEFINE-»
+
+«DEFINE uiControl FOR UiControl-»
+		android:id="@+id/«id»"
+		android:layout_width="«width»dp"
+		android:layout_height="«height»dp"
+		android:layout_alignParentBottom="«alignParentBottom»"
+		android:layout_alignParentRight="«alignParentEnd»"
+		android:layout_alignParentLeft="«alignParentStart»"
+		android:layout_alignParentTop="«alignParentTop»"
+		«IF alignStart == null &&
+			alignEnd == null &&
+			toStartOf == null &&
+			toEndOf == null &&
+			!alignParentStart &&
+			!alignParentEnd
+			-»
+		android:layout_marginLeft="«posX + marginStart»dp"	
+		«ELSE»
+		android:layout_marginLeft="«marginStart»dp"
+		«ENDIF-»
+		«IF alignTop == null &&
+			alignBottom == null &&
+			below == null &&
+			above == null &&
+			!alignParentTop &&
+			!alignParentBottom
+			-»
+		android:layout_marginTop="«posY + marginTop»dp"	
+		«ELSE»
+		android:layout_marginTop="«marginTop»dp"
+		«ENDIF-»
+		android:layout_marginRight="«marginEnd»dp"
+		android:layout_marginBottom="«marginBottom»dp"
+		android:paddingBottom="«paddingBottom»dp"
+		android:paddingRight="«paddingEnd»dp"
+		android:paddingLeft="«paddingStart»dp"
+		android:paddingTop="«paddingTop»dp"
+		«IF alignTop != null-»
+	    android:layout_alignTop="@+id/«alignTop.id»"
+	    «ENDIF-»
+	    «IF alignBottom != null-»
+	    android:layout_alignBottom="@+id/«alignBottom.id»"
+	    «ENDIF-»
+	    «IF alignStart != null-»
+	    android:layout_alignLeft="@+id/«alignStart.id»"
+	    «ENDIF-»
+	    «IF alignEnd != null-»
+	    android:layout_alignRight="@+id/«alignEnd.id»"
+	    «ENDIF-»
+	    «IF below != null-»
+	    android:layout_below="@+id/«below.id»"
+	    «ENDIF-»
+	    «IF above != null-»
+	    android:layout_above="@+id/«above.id»"
+	    «ENDIF-»
+	    «IF toStartOf != null-»
+	    android:layout_toLeftOf="@+id/«toStartOf.id»"
+	    «ENDIF-»
+	    «IF toEndOf != null-»
+	    android:layout_toRightOf="@+id/«toEndOf.id»"
+	    «ENDIF-»
+«ENDDEFINE-»

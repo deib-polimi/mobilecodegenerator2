@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="metamodel" nsURI="http://metamodel/1.0" nsPrefix="metamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Application">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="companyIdentifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewControllers" ordered="false"
+        upperBound="-1" eType="#//ViewController" containment="true" eOpposite="#//ViewController/application"
+        eKeys="#//ViewController/name"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="menu" eType="#//Menu" containment="true"
+        eOpposite="#//Menu/application"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewController">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="launcher" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" changeable="false" eOpposite="#//Application/viewControllers"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buttons" ordered="false"
+        upperBound="-1" eType="#//Button" containment="true" eOpposite="#//Button/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="textViews" ordered="false"
+        upperBound="-1" eType="#//TextView" containment="true" eOpposite="#//TextView/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="webViews" ordered="false"
+        upperBound="-1" eType="#//WebView" containment="true" eOpposite="#//WebView/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageViews" ordered="false"
+        upperBound="-1" eType="#//ImageView" containment="true" eOpposite="#//ImageView/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listViews" ordered="false"
+        upperBound="-1" eType="#//ListView" containment="true" eOpposite="#//ListView/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gridViews" ordered="false"
+        upperBound="-1" eType="#//GridView" containment="true" eOpposite="#//GridView/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="editTexts" ordered="false"
+        upperBound="-1" eType="#//EditText" containment="true" eOpposite="#//EditText/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="asyncTasks" upperBound="-1"
+        eType="#//AsyncTask" containment="true" eOpposite="#//AsyncTask/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="progressDialogs" upperBound="-1"
+        eType="#//ProgressDialog" containment="true" eOpposite="#//ProgressDialog/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alertDialogs" upperBound="-1"
+        eType="#//AlertDialog" containment="true" eOpposite="#//AlertDialog/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locationManager" eType="#//LocationManager"
+        containment="true" eOpposite="#//LocationManager/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videoView" eType="#//VideoView"
+        containment="true" eOpposite="#//VideoView/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="photocameraController"
+        eType="#//PhotocameraController" containment="true" eOpposite="#//PhotocameraController/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videocameraController"
+        eType="#//VideocameraController" containment="true" eOpposite="#//VideocameraController/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="audioPlayer" eType="#//AudioPlayer"
+        containment="true" eOpposite="#//AudioPlayer/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="audioRecorder" eType="#//AudioRecorder"
+        containment="true" eOpposite="#//AudioRecorder/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="uiControls" ordered="false"
+        upperBound="-1" eType="#//UiControl" containment="true" eKeys="#//UiControl/id"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Button" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clickListener" eType="#//ClickListener"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/buttons"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/textViews"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textAlign" lowerBound="1"
+        eType="#//TextAlign"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Navigation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destination" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WebView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="HTMLFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/webViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/imageViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listViewCells" upperBound="-1"
+        eType="#//ListViewCell" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clickListener" eType="#//ClickListener"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/listViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListViewCell">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GridView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gridViewCells" upperBound="-1"
+        eType="#//GridViewCell" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clickListener" eType="#//ClickListener"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/gridViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GridViewCell">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EditText" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialContent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/editTexts"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClickListener">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigation" eType="#//Navigation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsyncTask">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/asyncTasks"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProgressDialog">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spinner" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/progressDialogs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AlertDialog">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/alertDialogs"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocationManager">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/locationManager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VideoView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videoView"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PhotocameraController" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageViewId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/photocameraController"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VideocameraController" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="videoViewId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videocameraController"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AudioPlayer" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioPlayer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AudioRecorder" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="audioPlayerId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioRecorder"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Menu">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="menuItems" upperBound="-1"
+        eType="#//MenuItem" containment="true" eOpposite="#//MenuItem/menu"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" changeable="false" eOpposite="#//Application/menu"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MenuItem">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigation" lowerBound="1"
+        eType="#//Navigation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="menu" lowerBound="1" eType="#//Menu"
+        changeable="false" eOpposite="#//Menu/menuItems"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UiControl" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="posX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="posY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingStart" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingEnd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginStart" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="marginEnd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignParentTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignParentBottom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignParentStart" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignParentEnd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="below" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="above" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toStartOf" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toEndOf" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alignTop" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alignBottom" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alignStart" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alignEnd" ordered="false"
+        eType="#//UiControl" eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" ordered="false"
+        eType="#//ViewController" eKeys="#//ViewController/name"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SourceType">
+    <eLiterals name="hardwareFile"/>
+    <eLiterals name="localFile" value="1"/>
+    <eLiterals name="remoteFile" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TextAlign">
+    <eLiterals name="Left" literal="left"/>
+    <eLiterals name="Center" value="1" literal="center"/>
+    <eLiterals name="Right" value="2" literal="right"/>
+  </eClassifiers>
+</ecore:EPackage>
