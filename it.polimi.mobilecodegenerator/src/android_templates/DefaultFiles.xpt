@@ -53,4 +53,387 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	}
 «ENDFILE-»
 
+«FILE name+"/src/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
+	package «companyIdentifier».«name.toLowerCase()»;
+	
+	import android.app.Activity;
+	import android.view.LayoutInflater;
+	import android.view.View;
+	import android.view.ViewGroup;
+	import android.widget.ArrayAdapter;
+	import android.widget.ImageView;
+	import android.widget.TextView;
+	
+	public final class MyListAdapter extends ArrayAdapter<String> {
+	
+		private final Activity 	context;
+		private final int		layoutId;
+	    private final String[] 	itemNames;
+	    private final Integer[] imgIds;
+	    private final Integer[] iconsIds;
+	
+		public MyListAdapter(Activity context, String[] itemNames) {
+	        super(context, R.layout.my_list_row_simple, itemNames);
+	        this.context   	 = context;
+	        this.layoutId	 = R.layout.my_list_row_simple;
+	        this.itemNames   = itemNames;
+	        this.imgIds      = null;
+	        this.iconsIds 	 = null;
+	    }
+		
+		public MyListAdapter(Activity context, String[] itemNames, Integer[] imgIds) {
+	        super(context, R.layout.my_list_row_image, itemNames);
+	        this.context   	 = context;
+	        this.layoutId	 = R.layout.my_list_row_image;
+	        this.itemNames   = itemNames;
+	        this.imgIds      = imgIds;
+	        this.iconsIds 	 = null;
+	    }
+		
+	    public MyListAdapter(Activity context, String[] itemNames, Integer[] imgIds, Integer[] iconsIds) {
+	        super(context, R.layout.my_list_row_detailed, itemNames);
+	        this.context   	 = context;
+	        this.layoutId	 = R.layout.my_list_row_detailed;
+	        this.itemNames   = itemNames;
+	        this.imgIds      = imgIds;
+	        this.iconsIds 	 = iconsIds;
+	    }
+	
+	    public View getView(int position, View view, ViewGroup parent) {
+        	LayoutInflater inflater = context.getLayoutInflater();
+	        View rowView            = inflater.inflate(this.layoutId, null, true);
+	
+			if(this.layoutId == R.layout.my_list_row_simple) {
+				TextView tv 	= (TextView) rowView.findViewById(R.id.listview_simple_tv); 
+				tv.setText(itemNames[position]);
+			}
+			else if(this.layoutId == R.layout.my_list_row_image) {
+				ImageView iv 	= (ImageView) rowView.findViewById(R.id.listview_image_img);
+				iv.setImageResource(imgIds[position]);
+				TextView tv 	= (TextView) rowView.findViewById(R.id.listview_image_tv); 
+				tv.setText(itemNames[position]);
+			}
+			else if(this.layoutId == R.layout.my_list_row_detailed) {
+				ImageView iv 	= (ImageView) rowView.findViewById(R.id.listview_detailed_img);
+				iv.setImageResource(imgIds[position]);
+				TextView tv 	= (TextView) rowView.findViewById(R.id.listview_detailed_tv); 
+				tv.setText(itemNames[position]);
+				ImageView ic 	= (ImageView) rowView.findViewById(R.id.listview_detailed_ico);
+				ic.setImageResource(iconsIds[position]);
+			}
+	
+	        return rowView;
+	    }
+	
+	}
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_list_row_simple.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <TextView
+    	android:id="@+id/listview_simple_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"/>
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_list_row_image.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_image_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+        	android:id="@+id/listview_image_tv"
+            android:text="Some Text"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+    </LinearLayout>
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_list_row_detailed.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_detailed_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+        	android:id="@+id/listview_detailed_tv"
+            android:text="Some Text"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_detailed_ico"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_action_next_item"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/src/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
+	package «companyIdentifier».«name.toLowerCase()»;
+	
+	import android.app.Activity;
+	import android.view.LayoutInflater;
+	import android.view.View;
+	import android.view.ViewGroup;
+	import android.widget.BaseAdapter;
+	import android.widget.ImageView;
+	import android.widget.TextView;
+	
+	public final class MyGridAdapter extends BaseAdapter {
+	
+	    private final Activity context;
+	    private final int layoutId;
+	    private final String[] itemNames;
+	    private final Integer[] imgIds;
+	
+	    public MyGridAdapter(Activity context, String[] itemNames) {
+	        this.context = context;
+	        this.layoutId = R.layout.my_grid_cell_simple;
+	        this.itemNames = itemNames;
+	        this.imgIds = null;
+	    }
+	
+	    public MyGridAdapter(Activity context, Integer[] imgIds) {
+	        this.context = context;
+	        this.layoutId = R.layout.my_grid_cell_image;
+	        this.itemNames = null;
+	        this.imgIds = imgIds;
+	    }
+	
+	    public MyGridAdapter(Activity context, String[] itemNames, Integer[] imgIds) {
+	        this.context = context;
+	        this.layoutId = R.layout.my_grid_cell_detailed;
+	        this.itemNames = itemNames;
+	        this.imgIds = imgIds;
+	    }
+	
+	    @Override
+	    public int getCount() {
+	        if(this.layoutId == R.layout.my_grid_cell_image) {
+	            return this.imgIds.length;
+	        }
+	        return this.itemNames.length;
+	    }
+	
+	    @Override
+	    public Object getItem(int position) {
+	        // TODO Auto-generated method stub
+	        return null;
+	    }
+	
+	    @Override
+	    public long getItemId(int position) {
+	        // TODO Auto-generated method stub
+	        return 0;
+	    }
+	
+	    @Override
+	    public View getView(int position, View convertView, ViewGroup parent) {
+	        LayoutInflater inflater = context.getLayoutInflater();
+	        View gridView = inflater.inflate(this.layoutId, null, true);
+	
+	        if (this.layoutId == R.layout.my_grid_cell_simple) {
+	            TextView tv = (TextView) gridView
+	                    .findViewById(R.id.gridview_simple_tv);
+	            tv.setText(itemNames[position]);
+	        } else if (this.layoutId == R.layout.my_grid_cell_image) {
+	            ImageView iv = (ImageView) gridView
+	                    .findViewById(R.id.gridview_image_img);
+	            iv.setImageResource(imgIds[position]);
+	        } else if (this.layoutId == R.layout.my_grid_cell_detailed) {
+	            ImageView iv = (ImageView) gridView
+	                    .findViewById(R.id.gridview_detailed_img);
+	            iv.setImageResource(imgIds[position]);
+	            TextView tv = (TextView) gridView
+	                    .findViewById(R.id.gridview_detailed_tv);
+	            tv.setText(itemNames[position]);
+	        }
+	
+	        return gridView;
+	    }
+	}
+«ENDFILE-»
+
+«FILE name+"/res/drawable/my_grid_background.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="#dedede" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid
+                android:color="#efefef" />
+        </shape>
+    </item>
+</selector>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_simple.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <TextView
+        android:id="@+id/gridview_simple_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:gravity="center" />
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_image.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/gridview_image_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_detailed.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/gridview_detailed_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/gridview_detailed_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginTop="14dp"
+        android:gravity="center" />
+
+</LinearLayout>
+«ENDFILE-»
+
 «ENDDEFINE-»

@@ -66,11 +66,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    <item android:state_pressed="true" >
 	        <shape>
 	            <solid
-	                android:color="«b.clickColor»"
-	            />
+	                android:color="«b.clickColor»" />
 	            <corners
-	                android:radius="«b.borderRadius»dp"
-	            />
+	                android:radius="«b.borderRadius»dp" />
 	        </shape>
 	    </item>
 	«ENDIF-»
@@ -84,8 +82,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                 «ENDIF-»
             />
             <corners
-                android:radius="«b.borderRadius»dp"
-            />
+                android:radius="«b.borderRadius»dp" />
         </shape>
     </item>
 </selector>
@@ -175,7 +172,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «FOREACH gridViews AS gv-»
     <GridView
         «EXPAND uiControl FOR gv»
-        android:numColumns="5">
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="7dp"
+        android:verticalSpacing="7dp" >
     </GridView>
     «ENDFOREACH-»
 </RelativeLayout>

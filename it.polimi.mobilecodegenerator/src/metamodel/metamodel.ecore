@@ -109,6 +109,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/listViews"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="listType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListViewCell">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -121,6 +122,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/gridViews"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gridType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GridViewCell">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

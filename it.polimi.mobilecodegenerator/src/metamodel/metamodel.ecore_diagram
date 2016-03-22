@@ -162,6 +162,10 @@
   <children xmi:type="notation:Shape" xmi:id="_BsHZJO9EEeWOM7fVnmFKmQ" type="2001" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_BsHZJu9EEeWOM7fVnmFKmQ" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_BsHZJ-9EEeWOM7fVnmFKmQ" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_fN4fsO9nEeWOM7fVnmFKmQ" type="3001">
+        <element xmi:type="ecore:EAttribute" href="metamodel.ecore#//ListView/listType"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_fN4fse9nEeWOM7fVnmFKmQ"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_BsHZKO9EEeWOM7fVnmFKmQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_BsHZKe9EEeWOM7fVnmFKmQ"/>
     </children>
@@ -196,6 +200,10 @@
   <children xmi:type="notation:Shape" xmi:id="_BsHZPO9EEeWOM7fVnmFKmQ" type="2001" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_BsHZPu9EEeWOM7fVnmFKmQ" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_BsHZP-9EEeWOM7fVnmFKmQ" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_ZCcHgPAfEeWA9tK6nhgDAw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="metamodel.ecore#//GridView/gridType"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_ZCcHgfAfEeWA9tK6nhgDAw"/>
+      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_BsHZQO9EEeWOM7fVnmFKmQ"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_BsHZQe9EEeWOM7fVnmFKmQ"/>
     </children>

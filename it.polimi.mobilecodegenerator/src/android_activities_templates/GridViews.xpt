@@ -18,19 +18,42 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH gridViews AS gv-»
 private GridView «gv.id»;
-private ArrayAdapter<String> «gv.id»Adapter;
+private MyGridAdapter «gv.id»Adapter;
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+private Integer[] «gv.id»Images;
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
 private String[] «gv.id»Contents;
+«ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH gridViews AS gv-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+//Change this to set a specific image id for each row
+«gv.id»Images = new Integer[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		R.drawable.ic_launcher,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
 «gv.id»Contents = new String[]{
 	«FOREACH gv.gridViewCells AS gvc-»
 		"«gvc.title»",
 	«ENDFOREACH-»
 };
-«gv.id»Adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, «gv.id»Contents);
+«ENDIF-»
+«IF gv.gridType.matches("detailed")»
+«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Contents, «gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("image")»
+«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("simple")»
+«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Contents);
+«ENDIF-»
 «gv.id» = (GridView) findViewById(R.id.«gv.id»);
 «gv.id».setAdapter(«gv.id»Adapter);
 «IF gv.clickListener!=null-»
