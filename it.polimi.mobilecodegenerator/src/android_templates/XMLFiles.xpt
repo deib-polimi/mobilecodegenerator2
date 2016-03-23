@@ -28,7 +28,270 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 
+«REM» If there's a ListView in the application then create the xml layout files «ENDREM»
+«IF viewControllers.listViews.size!=0-»
+«FILE name+"/res/layout/my_list_row_simple.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <TextView
+    	android:id="@+id/listview_simple_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"/>
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_list_row_image.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_image_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+        	android:id="@+id/listview_image_tv"
+            android:text="Some Text"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+    </LinearLayout>
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_list_row_detailed.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_detailed_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+        	android:id="@+id/listview_detailed_tv"
+            android:text="Some Text"
+            android:textColor="#333333"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="7dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+
+        <ImageView
+        	android:id="@+id/listview_detailed_ico"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_action_next_item"
+            android:layout_gravity="right" />
+
+    </LinearLayout>
+
+</LinearLayout>
+«ENDFILE-»
+«ENDIF-»
+
+«REM» If there's a GridView in the application then create the xml layout files «ENDREM»
+«IF viewControllers.gridViews.size!=0-»
+«FILE name+"/res/drawable/my_grid_background.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="#dedede" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid
+                android:color="#efefef" />
+        </shape>
+    </item>
+</selector>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_simple.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <TextView
+        android:id="@+id/gridview_simple_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:gravity="center" />
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_image.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/gridview_image_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>
+«ENDFILE-»
+
+«FILE name+"/res/layout/my_grid_cell_detailed.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/my_grid_background"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/gridview_detailed_img"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/gridview_detailed_tv"
+        android:text="Some Text"
+        android:textColor="#333333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:layout_marginTop="14dp"
+        android:gravity="center" />
+
+</LinearLayout>
+«ENDFILE-»
+«ENDIF-»
+
+«REM» Foreach button that has a custom background color then create the xml drawable file«ENDREM»
+«FOREACH viewControllers.buttons AS b-»
+«IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
+«FILE name+"/res/drawable/"+"button_"+b.id.toLowerCase()+"_background.xml"-»
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    «IF b.clickColor.matches("")==false»
+	    <item android:state_pressed="true" >
+	        <shape>
+	            <solid
+	                android:color="«b.clickColor»" />
+	            <corners
+	                android:radius="«b.borderRadius»dp" />
+	        </shape>
+	    </item>
+	«ENDIF-»
+    <item>
+        <shape>
+            <solid
+            	«IF b.backgroundColor.matches("")»
+                android:color="#cecece"
+                «ELSE»
+                android:color="«b.backgroundColor»"
+                «ENDIF-»
+            />
+            <corners
+                android:radius="«b.borderRadius»dp" />
+        </shape>
+    </item>
+</selector>
+«ENDFILE-»
+«ENDIF-»
+«ENDFOREACH-»
+
 «EXPAND viewController FOREACH viewControllers-»
+
 «ENDDEFINE-»
 
 «DEFINE viewController FOR ViewController-»
@@ -57,38 +320,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
         android:background="@drawable/button_«b.id.toLowerCase()»_background"
         «ENDIF-»
-	/>
-	«IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
-    	«FILE this.application.name+"/res/drawable/"+"button_"+b.id.toLowerCase()+"_background.xml"-»
-<?xml version="1.0" encoding="utf-8" ?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    «IF b.clickColor.matches("")==false»
-	    <item android:state_pressed="true" >
-	        <shape>
-	            <solid
-	                android:color="«b.clickColor»" />
-	            <corners
-	                android:radius="«b.borderRadius»dp" />
-	        </shape>
-	    </item>
-	«ENDIF-»
-    <item>
-        <shape>
-            <solid
-            	«IF b.backgroundColor.matches("")»
-                android:color="#cecece"
-                «ELSE»
-                android:color="«b.backgroundColor»"
-                «ENDIF-»
-            />
-            <corners
-                android:radius="«b.borderRadius»dp" />
-        </shape>
-    </item>
-</selector>
-    	«ENDFILE-»
-    «ENDIF-»
-        
+	/>        
 	«ENDFOREACH-»
 	«IF photocameraController!=null-»
 	<Button
