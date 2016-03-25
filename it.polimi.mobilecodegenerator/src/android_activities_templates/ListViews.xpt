@@ -35,7 +35,7 @@ private String[] «lv.id»Contents;
 //Change this to set a specific image id for each row
 «lv.id»Images = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
-		R.drawable.ic_launcher,
+		R.drawable.ic_stars_black_36dp,
 	«ENDFOREACH-»
 };
 «ENDIF-»
@@ -43,7 +43,7 @@ private String[] «lv.id»Contents;
 //Change this to set a specific icon id for each row
 «lv.id»Icons = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
-		R.drawable.ic_launcher,
+		R.drawable.ic_chevron_right_black_36dp,
 	«ENDFOREACH-»
 };
 «ENDIF-»

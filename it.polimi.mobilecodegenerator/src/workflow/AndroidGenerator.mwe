@@ -18,7 +18,7 @@
 <workflow>
 
 	<!--<property file="AndroidGenerator.properties"/>-->
-	<property name="model" value="it.polimi.mobilecodegenerator/src/model/test-proto2.xmi" />
+	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode.xmi" />
 	<property name="src-gen" value="src-gen/android" />
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >

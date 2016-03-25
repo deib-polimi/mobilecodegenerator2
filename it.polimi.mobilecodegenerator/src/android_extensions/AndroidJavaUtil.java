@@ -58,16 +58,22 @@ public class AndroidJavaUtil {
 	public static void copyDefaultAndroidFiles(){
 		new File(AndroidConstants.destinationFilesFolder+"/libs").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/assets").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/mipmap-hdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/mipmap-mdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/mipmap-xhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/mipmap-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/mipmap-xxxhdpi").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/drawable").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/drawable-hdpi").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/drawable-mdpi").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/drawable-xhdpi").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/drawable-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/drawable-xxxhdpi").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/menu").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/raw").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/res/values").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/res/values-v11").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/res/values-v14").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/values-v21").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/res/values-w820dp").mkdirs();
 		
 		for(int i=0; i<AndroidConstants.sourceFilesPaths.length; i++){
 			File source = new File(AndroidConstants.sourceFilesPaths[i]);

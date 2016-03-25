@@ -16,8 +16,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 «DEFINE main FOR Application-»
 
-«IF menu!=null-»
-«FILE name+"/res/menu/"+"main.xml"-»
+«IF menu.menuItems.size > 0-»
+«FILE name+"/res/menu/"+"main_menu.xml"-»
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     «FOREACH menu.menuItems AS i-»
     <item
@@ -35,17 +35,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="14dp">
+    android:layout_height="56dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal">
 
     <TextView
-    	android:id="@+id/listview_simple_tv"
-        android:text="Some Text"
+        android:id="@+id/listview_simple_tv"
+        android:text="Single-line Item"
         android:textColor="#333333"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14dp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="16dp"
+        />
 
 </LinearLayout>
 «ENDFILE-»
@@ -55,49 +61,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="14dp">
+    android:layout_height="56dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/listview_image_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_stars_black_36dp"
+        />
+
+    <TextView
+        android:id="@+id/listview_image_tv"
+        android:text="Single-line Item"
+        android:textColor="#333333"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="3">
-
-        <ImageView
-        	android:id="@+id/listview_image_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_launcher"
-            android:layout_gravity="center_horizontal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
-
-        <TextView
-        	android:id="@+id/listview_image_tv"
-            android:text="Some Text"
-            android:textColor="#333333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="7dp"/>
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="3">
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="16dp"
+        />
 
 </LinearLayout>
 «ENDFILE-»
@@ -107,57 +95,44 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="14dp">
+    android:layout_height="56dp"
+    android:paddingTop="8dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/listview_detailed_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_stars_black_36dp"
+    />
+
+    <TextView
+        android:id="@+id/listview_detailed_tv"
+        android:text="Single-line Item"
+        android:textColor="#333333"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="3">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="16dp"
+    />
 
-        <ImageView
-        	android:id="@+id/listview_detailed_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_launcher"
-            android:layout_gravity="center_horizontal" />
 
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/listview_detailed_ico"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="-16dp"
+        android:src="@drawable/ic_chevron_right_black_36dp"
+    />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1">
-
-        <TextView
-        	android:id="@+id/listview_detailed_tv"
-            android:text="Some Text"
-            android:textColor="#333333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="7dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="3">
-
-        <ImageView
-        	android:id="@+id/listview_detailed_ico"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_action_next_item"
-            android:layout_gravity="right" />
-
-    </LinearLayout>
 
 </LinearLayout>
 «ENDFILE-»
@@ -171,13 +146,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     <item android:state_pressed="true" >
         <shape>
             <solid
-                android:color="#dedede" />
+                android:color="#cc333333" />
         </shape>
     </item>
     <item>
         <shape>
             <solid
-                android:color="#efefef" />
+                android:color="#99333333" />
         </shape>
     </item>
 </selector>
@@ -188,19 +163,20 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/my_grid_background"
-    android:padding="7dp">
+    android:layout_width="192dp"
+    android:layout_height="192dp">
 
     <TextView
         android:id="@+id/gridview_simple_tv"
-        android:text="Some Text"
-        android:textColor="#333333"
+        android:text="Single Line"
+        android:textColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:gravity="center" />
+        android:layout_height="48dp"
+        android:layout_marginTop="144dp"
+        android:textStyle="bold"
+        android:background="@drawable/my_grid_background"
+        android:padding="14dp"
+        android:textSize="16dp" />
 
 </LinearLayout>
 «ENDFILE-»
@@ -210,17 +186,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/my_grid_background"
-    android:padding="7dp">
+    android:layout_width="192dp"
+    android:layout_height="192dp">
 
     <ImageView
         android:id="@+id/gridview_image_img"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="192dp"
+        android:layout_height="192dp"
+        android:src="@raw/grid_image" />
 
 </LinearLayout>
 «ENDFILE-»
@@ -230,27 +203,26 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/my_grid_background"
-    android:padding="7dp">
+    android:layout_width="192dp"
+    android:layout_height="192dp">
 
     <ImageView
         android:id="@+id/gridview_detailed_img"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher" />
+        android:layout_width="192dp"
+        android:layout_height="192dp"
+        android:src="@raw/grid_image" />
 
     <TextView
         android:id="@+id/gridview_detailed_tv"
-        android:text="Some Text"
-        android:textColor="#333333"
+        android:text="Single Line"
+        android:textColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:layout_marginTop="14dp"
-        android:gravity="center" />
+        android:layout_height="48dp"
+        android:layout_marginTop="-48dp"
+        android:textStyle="bold"
+        android:background="@drawable/my_grid_background"
+        android:padding="14dp"
+        android:textSize="16dp" />
 
 </LinearLayout>
 «ENDFILE-»
@@ -259,7 +231,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «REM» Foreach button that has a custom background color then create the xml drawable file«ENDREM»
 «FOREACH viewControllers.buttons AS b-»
 «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
-«FILE name+"/res/drawable/"+"button_"+b.id.toLowerCase()+"_background.xml"-»
+«FILE name+"/res/drawable/"+b.id.toLowerCase()+"_background.xml"-»
 <?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     «IF b.clickColor.matches("")==false»
@@ -296,11 +268,43 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewController FOR ViewController-»
 «FILE this.application.name+"/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:fitsSystemWindows="true"
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/«name.toLowerCase()»_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_«name.toLowerCase()»" />
+
+</android.support.design.widget.CoordinatorLayout>
+«ENDFILE-»
+«FILE this.application.name+"/res/layout/"+"content_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:showIn="@layout/activity_«name.toLowerCase()»">
     
 	«FOREACH imageViews AS iv-»
 	<ImageView
@@ -313,12 +317,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«FOREACH buttons AS b-»
 	<Button
         «EXPAND uiControl FOR b»
+        android:textAllCaps="false"
         android:text="«b.title»"
         «IF b.textColor.matches("")==false»
         android:textColor="«b.textColor»"
         «ENDIF-»
         «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
-        android:background="@drawable/button_«b.id.toLowerCase()»_background"
+        android:background="@drawable/«b.id.toLowerCase()»_background"
         «ENDIF-»
 	/>        
 	«ENDFOREACH-»
@@ -405,8 +410,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     <GridView
         «EXPAND uiControl FOR gv»
         android:numColumns="auto_fit"
-        android:horizontalSpacing="7dp"
-        android:verticalSpacing="7dp" >
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp" >
     </GridView>
     «ENDFOREACH-»
 </RelativeLayout>

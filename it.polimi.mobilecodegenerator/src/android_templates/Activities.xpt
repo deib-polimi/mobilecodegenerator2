@@ -16,38 +16,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 «DEFINE main FOR Application-»
 
-«IF menu!=null-»
-«FILE name+"/src/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MenuActivity.java"-»
-package «companyIdentifier».«name.toLowerCase()»;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuItem;
-
-public class MenuActivity extends Activity {
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-        	«FOREACH menu.menuItems AS i-»
-            case R.id.«i.id»:
-            	startActivity(new Intent(this, «i.navigation.destination»Activity.class));
-                break;
-            «ENDFOREACH-»
-        }
-        return true;
-    }
-}
-«ENDFILE-»
-«ENDIF-»
-
 «EXPAND viewController FOREACH viewControllers-»
 «ENDDEFINE-»
 
@@ -56,8 +24,8 @@ public class MenuActivity extends Activity {
 	package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
 	
 	«EXPAND android_activities_templates::Imports::imports-»
-	«REM»Activity extends MenuActivity ONLY in case of presence of one or more items in the menu (if exists)«ENDREM»
-	public class «this.name»Activity extends «IF this.application.menu!=null && this.application.menu.menuItems.size>0-»Menu«ENDIF-»Activity «EXPAND android_activities_templates::Implements::implements-» {
+	
+	public class «this.name»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
 		«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»
 		
 		@Override
@@ -65,6 +33,26 @@ public class MenuActivity extends Activity {
 			super.onCreate(savedInstanceState);
 			«EXPAND android_activities_templates::OnCreate::onCreate-»
 		}
+		
+		«IF this.application.menu.menuItems.size > 0 -»
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			getMenuInflater().inflate(R.menu.main_menu, menu);
+			return true;
+		}
+	
+		@Override
+	    public boolean onOptionsItemSelected(MenuItem item) {
+	        switch(item.getItemId()){
+	        	«FOREACH this.application.menu.menuItems AS i-»
+	            case R.id.«i.id»:
+	            	startActivity(new Intent(this, «i.navigation.destination»Activity.class));
+	                break;
+	            «ENDFOREACH-»
+	        }
+	        return true;
+	    }
+	    «ENDIF-»
 		
 		«IF listViews.size!=0 || gridViews.size!=0-»
 		@Override

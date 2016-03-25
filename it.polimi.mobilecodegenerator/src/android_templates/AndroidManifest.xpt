@@ -23,8 +23,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:versionCode="1"
     android:versionName="1.0" >
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="23" />
     
     «IF viewControllers.locationManager.contains(true)-»
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -39,13 +39,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="«this.name.toLowerCase()»"
-        android:theme="@style/AppTheme" >
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         «FOREACH viewControllers AS vc-»
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
-            android:label="«this.name»" >
+            android:label="«this.name»" 
+            android:theme="@style/AppTheme.NoActionBar" >
             «IF vc.launcher-» 
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
