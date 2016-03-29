@@ -1,7 +1,0 @@
-«IMPORT metamodel»
-
-«DEFINE viewDidAppear FOR ViewController-»
-	«EXPAND ios_viewcontrollers_templates::VideoView::viewDidAppear-»
-
-	«EXPAND ios_viewcontrollers_templates::Audio::viewDidAppear-»
-«ENDDEFINE-»

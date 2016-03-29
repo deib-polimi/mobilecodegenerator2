@@ -1,7 +1,0 @@
-«IMPORT metamodel»
-
-«DEFINE propertiesDeclarations FOR ViewController-»
-«FOREACH editTexts AS et-»
-@property (weak, nonatomic) IBOutlet UITextView *«et.id»;
-«ENDFOREACH-»
-«ENDDEFINE-»

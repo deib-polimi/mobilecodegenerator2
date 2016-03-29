@@ -52,7 +52,7 @@ dependencies {
 }
 «ENDFILE-»
 
-«FILE name+"/app/src/main/java/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "Utils.java"-»
+«FILE name+"/app/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "Utils.java"-»
 	package «companyIdentifier».«name.toLowerCase()»;
 	
 	import java.io.*;
@@ -84,7 +84,7 @@ dependencies {
 
 «REM» If there's a ListView in the application then create a MyListAdapter.java «ENDREM»
 «IF viewControllers.listViews.size!=0-»
-«FILE name+"/src/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
+«FILE name+"/app/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
 	package «companyIdentifier».«name.toLowerCase()»;
 	
 	import android.app.Activity;
@@ -162,7 +162,7 @@ dependencies {
 
 «REM» If there's a GridView in the application then create a MyGridAdapter.java «ENDREM»
 «IF viewControllers.gridViews.size!=0-»
-«FILE name+"/src/"+ companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
+«FILE name+"/app/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
 	package «companyIdentifier».«name.toLowerCase()»;
 	
 	import android.app.Activity;
