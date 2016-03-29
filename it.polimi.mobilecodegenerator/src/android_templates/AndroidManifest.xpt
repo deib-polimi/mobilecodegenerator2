@@ -16,7 +16,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 «DEFINE main FOR Application-»
 
-«FILE name+"/AndroidManifest.xml"-»
+«FILE name+"/app/src/main/AndroidManifest.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="«this.companyIdentifier».«this.name.toLowerCase()»"

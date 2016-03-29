@@ -2,57 +2,10 @@
 <metamodel:Application xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="VerProto" companyIdentifier="it.polimi">
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <buttons id="fpdButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="" borderRadius="0" clickColor="">
-            <clickListener>
-                <navigation destination="List"/>
-            </clickListener>
-        </buttons>
-        <buttons id="kqoButton" posX="0" posY="29.990492654654446" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='fpdButton']" viewController="//@viewControllers[name='Main']" title="Button" textColor="#ffffff" backgroundColor="#4348bf" borderRadius="10" clickColor="#181c78">
-            <clickListener>
-                <navigation destination="List"/>
-            </clickListener>
-        </buttons>
-        <textViews id="fpLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='kqoButton']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="left" textColor="#333333" textSize="14" textDecoration="none"/>
-        <textViews id="povbLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='fpLabel']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="center" textColor="#5e33d6" textSize="20" textDecoration="bold"/>
-        <editTexts id="cnblEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='povbLabel']" viewController="//@viewControllers[name='Main']" initialContent="" placeholder="EditText" textColor="#333333" textSize="14"/>
-        <editTexts id="kEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@editTexts[id='cnblEditText']" viewController="//@viewControllers[name='Main']" initialContent="Username" placeholder="EditText" textColor="#44c95a" textSize="20"/>
+        <imageViews id="kImageView" posX="-1.1742857142857144" posY="-1" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="400" height="400" viewController="//@viewControllers[name='Main']" sourceType="hardwareFile" fileUri=""/>
+        <buttons id="dtdaButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="300" height="60" below="//@viewControllers[name='Main']/@imageViews[id='kImageView']" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
     </viewControllers>
-    <viewControllers name="List" launcher="false">
-        <listViews id="bbhListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" viewController="//@viewControllers[name='List']" listType="detailed">
-            <clickListener>
-                <navigation destination="Grid"/>
-            </clickListener>
-            <listViewCells title="Single-line Item"/>
-            <listViewCells title="Single-lineItem"/>
-            <listViewCells title="Single-lineItem"/>
-            <listViewCells title="Single-lineItem"/>
-            <listViewCells title="Single-lineItem"/>
-        </listViews>
-    </viewControllers>
-    <viewControllers name="Grid" launcher="false">
-        <gridViews id="rmmGridView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" viewController="//@viewControllers[name='Grid']" gridType="detailed">
-            <clickListener>
-                <navigation destination="Main"/>
-            </clickListener>
-            <gridViewCells title="Single Line"/>
-            <gridViewCells title="Single Line"/>
-            <gridViewCells title="Single Line"/>
-            <gridViewCells title="Single Line"/>
-            <gridViewCells title="Single Line"/>
-            <gridViewCells title="Single Line"/>
-        </gridViews>
-    </viewControllers>
-    <menu>
-        <menuItems title="Main" id="Main">
-            <navigation destination="Main"/>
-        </menuItems>
-        <menuItems title="List" id="List">
-            <navigation destination="List"/>
-        </menuItems>
-        <menuItems title="Grid" id="Grid">
-            <navigation destination="Grid"/>
-        </menuItems>
-    </menu>
+    <menu/>
 </metamodel:Application>

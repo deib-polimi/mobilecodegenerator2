@@ -17,7 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE main FOR Application-»
 
 «IF menu.menuItems.size > 0-»
-«FILE name+"/res/menu/"+"main_menu.xml"-»
+«FILE name+"/app/src/main/res/menu/"+"main_menu.xml"-»
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     «FOREACH menu.menuItems AS i-»
     <item
@@ -30,7 +30,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «REM» If there's a ListView in the application then create the xml layout files «ENDREM»
 «IF viewControllers.listViews.size!=0-»
-«FILE name+"/res/layout/my_list_row_simple.xml"-»
+«FILE name+"/app/src/main/res/layout/my_list_row_simple.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,7 +56,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/res/layout/my_list_row_image.xml"-»
+«FILE name+"/app/src/main/res/layout/my_list_row_image.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -90,7 +90,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/res/layout/my_list_row_detailed.xml"-»
+«FILE name+"/app/src/main/res/layout/my_list_row_detailed.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -140,7 +140,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «REM» If there's a GridView in the application then create the xml layout files «ENDREM»
 «IF viewControllers.gridViews.size!=0-»
-«FILE name+"/res/drawable/my_grid_background.xml"-»
+«FILE name+"/app/src/main/res/drawable/my_grid_background.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" >
@@ -158,7 +158,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </selector>
 «ENDFILE-»
 
-«FILE name+"/res/layout/my_grid_cell_simple.xml"-»
+«FILE name+"/app/src/main/res/layout/my_grid_cell_simple.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -181,7 +181,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/res/layout/my_grid_cell_image.xml"-»
+«FILE name+"/app/src/main/res/layout/my_grid_cell_image.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -198,7 +198,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/res/layout/my_grid_cell_detailed.xml"-»
+«FILE name+"/app/src/main/res/layout/my_grid_cell_detailed.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -231,7 +231,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «REM» Foreach button that has a custom background color then create the xml drawable file«ENDREM»
 «FOREACH viewControllers.buttons AS b-»
 «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
-«FILE name+"/res/drawable/"+b.id.toLowerCase()+"_background.xml"-»
+«FILE name+"/app/src/main/res/drawable/"+b.id.toLowerCase()+"_background.xml"-»
 <?xml version="1.0" encoding="utf-8" ?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     «IF b.clickColor.matches("")==false»
@@ -267,7 +267,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE viewController FOR ViewController-»
-«FILE this.application.name+"/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
+«FILE this.application.name+"/app/src/main/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -295,7 +295,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 </android.support.design.widget.CoordinatorLayout>
 «ENDFILE-»
-«FILE this.application.name+"/res/layout/"+"content_"+name.toLowerCase()+".xml"-»
+«FILE this.application.name+"/app/src/main/res/layout/"+"content_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
