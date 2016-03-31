@@ -20,7 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IF locationManager!=null-»
 #import <CoreLocation/CoreLocation.h>
 «ENDIF-»
-«IF videoView!=null-»
+«IF videoViews.size!=0-»
 #import <MediaPlayer/MediaPlayer.h>
 «ENDIF-»
 «IF photocameraController!=null || videocameraController!=null-»

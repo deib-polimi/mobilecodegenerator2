@@ -312,6 +312,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
 	    android:src="@drawable/«iv.fileUri.split("\\.").get(0)»"
 	    «ENDIF-»
+	    «IF iv.sourceType.toString().matches("hardwareFile")-»
+	    android:background="#000"
+	    «ENDIF-»
 	/>
     «ENDFOREACH-»
 	«FOREACH buttons AS b-»
@@ -393,10 +396,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         >
     </EditText>
     «ENDFOREACH-»
-    «IF videoView!=null-»
+    «FOREACH videoViews AS vv-»
 	<VideoView
-	    «EXPAND uiControl FOR videoView» />
-    «ENDIF-»
+	    «EXPAND uiControl FOR vv» />
+	«ENDFOREACH-»
 	«FOREACH webViews AS wv-»
 	<WebView
         «EXPAND uiControl FOR wv» />

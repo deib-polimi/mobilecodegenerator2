@@ -38,7 +38,7 @@ List[String] ids(Application this) :
 			.addAll(viewControllers.editTexts.id)
 			.addAll(viewControllers.progressDialogs.id)
 			.addAll(viewControllers.alertDialogs.id)
-			.addAll(viewControllers.videoView.reject(vv|vv==null).id)
+			.addAll(viewControllers.videoViews.reject(vv|vv==null).id)
 			.addAll(viewControllers.audioPlayer.reject(ap|ap==null).id)
 			.addAll(menu.menuItems.id)
 		
@@ -53,7 +53,7 @@ List[String] ids(Application this) :
 			.addAll(viewControllers.editTexts.id)
 			.addAll(viewControllers.progressDialogs.id)
 			.addAll(viewControllers.alertDialogs.id)
-			.addAll(viewControllers.videoView.reject(vv|vv==null).id)
+			.addAll(viewControllers.videoViews.reject(vv|vv==null).id)
 			.addAll(viewControllers.audioPlayer.reject(ap|ap==null).id)
 	}.first();
 	

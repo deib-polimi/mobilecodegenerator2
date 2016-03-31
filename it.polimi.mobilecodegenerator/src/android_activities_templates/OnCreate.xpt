@@ -26,7 +26,7 @@ setSupportActionBar(toolbar);
 
 «EXPAND android_activities_templates::Camera::onCreate-»
 
-«EXPAND android_activities_templates::VideoView::onCreate-»
+«EXPAND android_activities_templates::VideoViews::onCreate-»
 
 «EXPAND android_activities_templates::ListViews::onCreate-»
 

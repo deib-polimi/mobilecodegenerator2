@@ -41,6 +41,7 @@
 		<checkFile value="model_checks::Checks"/>
 		<emfAllChildrenSlot value="model"/>
     </component>
+    
 	
 	<!--  GENERATE CODE -->
 		<!-- clear application code folder and generate DefaultFiles -->

@@ -17,10 +17,10 @@
 		«EXPAND siblingConstraints FOR iv»
         «EXPAND parentContraints FOR iv»
     «ENDFOREACH-»
-    «IF videoView!=null-»
-		«EXPAND siblingConstraints FOR videoView»
-        «EXPAND parentContraints FOR videoView»
-    «ENDIF-»
+    «FOREACH videoViews AS vv-»
+		«EXPAND siblingConstraints FOR vv»
+        «EXPAND parentContraints FOR vv»
+    «ENDFOREACH-»
 	«FOREACH webViews AS wv-»
 		«EXPAND siblingConstraints FOR wv»
         «EXPAND parentContraints FOR wv»

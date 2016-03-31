@@ -16,13 +16,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE propertiesDeclarations FOR ViewController-»
-«IF videocameraController!=null && !videoView.sourceType.toString().matches("hardwareFile")-»
-@property (strong, nonatomic) NSURL *recordedVideoUrl;
+«FOREACH videoViews AS vv-»
+«IF videocameraController!=null && !vv.sourceType.toString().matches("hardwareFile")-»
+@property (strong, nonatomic) NSURL *«vv.id-»_recordedVideoUrl;
 «ENDIF-»
+«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidAppear FOR ViewController-»
-	«IF videoView.sourceType.toString().matches("hardwareFile")-»
+	«FOREACH videoViews AS vv-»
+	«IF vv.sourceType.toString().matches("hardwareFile")-»
 	self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL: self.recordedVideoUrl];
 	«IF videocameraController!=null && !videocameraController.videoViewId.matches("")-»
 	[self.moviePlayer.view setFrame: self.«videocameraController.videoViewId».bounds];
@@ -31,6 +34,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	[self.moviePlayer play];
 	«ENDIF-»
 	«ENDIF-»
+	«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE camera FOR ViewController-»

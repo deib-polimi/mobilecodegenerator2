@@ -31,6 +31,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageViews" ordered="false"
         upperBound="-1" eType="#//ImageView" containment="true" eOpposite="#//ImageView/viewController"
         eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="videoViews" ordered="false"
+        upperBound="-1" eType="#//VideoView" containment="true" eOpposite="#//VideoView/viewController"
+        eKeys="#//UiControl/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="listViews" ordered="false"
         upperBound="-1" eType="#//ListView" containment="true" eOpposite="#//ListView/viewController"
         eKeys="#//UiControl/id"/>
@@ -48,8 +51,6 @@
         eType="#//AlertDialog" containment="true" eOpposite="#//AlertDialog/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="locationManager" eType="#//LocationManager"
         containment="true" eOpposite="#//LocationManager/viewController"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="videoView" eType="#//VideoView"
-        containment="true" eOpposite="#//VideoView/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="photocameraController"
         eType="#//PhotocameraController" containment="true" eOpposite="#//PhotocameraController/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="videocameraController"
@@ -179,7 +180,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
-        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videoView"/>
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videoViews"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PhotocameraController" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageViewId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

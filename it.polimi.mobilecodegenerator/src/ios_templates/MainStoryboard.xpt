@@ -195,11 +195,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
 		                    «ENDFOREACH-»
-		                    «IF vc.videoView!=null-»
-		                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.videoView.id»">
-                                «EXPAND uiControl FOR vc.videoView»
+		                    «FOREACH vc.videoViews AS vv-»
+		                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«vv.id»">
+                                «EXPAND uiControl FOR vv»
                             </view>
-		                    «ENDIF-»
+		                    «ENDFOREACH-»
 		                    «FOREACH vc.webViews AS wv-»
 		                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«wv.id»">
 		                    	«EXPAND uiControl FOR wv»
@@ -294,9 +294,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <outlet property="«iv.id»" destination="«iv.id»" id="«iv.id»OutletID"/>
 	                    «ENDIF-»
 	                    «ENDFOREACH-»
-	                    «IF vc.videoView!=null-»
-	                    <outlet property="«vc.videoView.id»" destination="«vc.videoView.id»" id="«vc.videoView.id»OutletID"/>
-	                    «ENDIF-»
+	                    «FOREACH vc.imageViews AS vv-»
+	                    <outlet property="«vv.id»" destination="«vv.id»" id="«vv.id»OutletID"/>
+	                    «ENDFOREACH-»
 	                    «IF vc.audioRecorder!=null-»
 	                    <outlet property="recordButton" destination="«vc.audioRecorder.id»" id="«vc.audioRecorder.id»OutletID"/>
 	                    «ENDIF-»

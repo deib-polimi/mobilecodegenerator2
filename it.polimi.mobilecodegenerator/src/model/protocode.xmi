@@ -4,46 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <buttons id="kdvButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
-        <buttons id="rqaButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='kdvButton']" viewController="//@viewControllers[name='Main']" title="Button" textColor="#ffcccc" backgroundColor="#de85b5" borderRadius="10" clickColor="#ad3d79"/>
-        <textViews id="tjdtoLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@buttons[id='rqaButton']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="left" textColor="#333333" textSize="14" textDecoration="none"/>
-        <textViews id="lLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='tjdtoLabel']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="right" textColor="#5c5ac4" textSize="17" textDecoration="bold"/>
-        <editTexts id="oannEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@textViews[id='lLabel']" viewController="//@viewControllers[name='Main']" initialContent="" placeholder="EditText" textColor="#333333" textSize="14"/>
-        <editTexts id="hvEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="30" below="//@viewControllers[name='Main']/@editTexts[id='oannEditText']" viewController="//@viewControllers[name='Main']" initialContent="Some text" placeholder="EditText" textColor="#44c759" textSize="19"/>
+        <imageViews id="gjhkoImageView" posX="0" posY="-0.0005979617304490148" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Main']" sourceType="hardwareFile" fileUri=""/>
+        <photocameraController id="clpooPhotocameraController" posX="34.99731878698225" posY="234.97454762895177" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="35" marginBottom="0" marginStart="35" marginEnd="35" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="40" below="//@viewControllers[name='Main']/@imageViews[id='gjhkoImageView']" viewController="//@viewControllers[name='Main']" imageViewId="gjhkoImageView"/>
     </viewControllers>
-    <viewControllers name="List" launcher="false">
-        <listViews id="iaudListView" posX="-1.1742857142857144" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" viewController="//@viewControllers[name='List']" listType="detailed">
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-            <listViewCells title="newMenuItem"/>
-        </listViews>
-    </viewControllers>
-    <viewControllers name="Grid" launcher="false">
-        <gridViews id="nuvcGridView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="130" height="200" viewController="//@viewControllers[name='Grid']" gridType="detailed">
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-            <gridViewCells title="newMenuItem"/>
-        </gridViews>
-    </viewControllers>
-    <menu>
-        <menuItems title="Main" id="Main">
-            <navigation destination="Main"/>
-        </menuItems>
-        <menuItems title="List" id="List">
-            <navigation destination="List"/>
-        </menuItems>
-        <menuItems title="Grid" id="Grid">
-            <navigation destination="Grid"/>
-        </menuItems>
-    </menu>
+    <menu/>
 </metamodel:Application>

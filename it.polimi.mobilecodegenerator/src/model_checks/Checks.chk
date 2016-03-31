@@ -51,8 +51,10 @@ context GridView if(clickListener.navigation!=null && clickListener.navigation.d
 
 context PhotocameraController if(!imageViewId.matches("")) ERROR "ImageViewId of FotocameraController must be the id of an existing ImageView with sourceType = 'hardwareFile' in the same ViewController" :
 	viewController.imageViews.exists(iv| iv.id.matches(imageViewId) && iv.sourceType.toString().matches("hardwareFile"));		
+
 context VideocameraController if(!videoViewId.matches("")) ERROR "VideoViewId of VideocameraController must be the id of an existing VideoView with sourceType = 'hardwareFile' in the same ViewController" :
-	viewController.videoView!=null && viewController.videoView.id.matches(videoViewId) && viewController.videoView.sourceType.toString().matches("hardwareFile");
+	viewController.videoViews.exists(vv| vv.id.matches(videoViewId) && vv.sourceType.toString().matches("hardwareFile"));	
+
 context AudioRecorder if(!audioPlayerId.matches("")) ERROR "AudioPlayerId of AudioRecorder must be the id of an existing AudioPlayer with sourceType = 'hardwareFile' in the same ViewController" :
 	viewController.audioPlayer!=null && viewController.audioPlayer.id.matches(audioPlayerId) && viewController.audioPlayer.sourceType.toString().matches("hardwareFile");
 
