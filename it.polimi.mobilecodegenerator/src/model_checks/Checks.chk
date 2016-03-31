@@ -56,7 +56,7 @@ context VideocameraController if(!videoViewId.matches("")) ERROR "VideoViewId of
 	viewController.videoViews.exists(vv| vv.id.matches(videoViewId) && vv.sourceType.toString().matches("hardwareFile"));	
 
 context AudioRecorder if(!audioPlayerId.matches("")) ERROR "AudioPlayerId of AudioRecorder must be the id of an existing AudioPlayer with sourceType = 'hardwareFile' in the same ViewController" :
-	viewController.audioPlayer!=null && viewController.audioPlayer.id.matches(audioPlayerId) && viewController.audioPlayer.sourceType.toString().matches("hardwareFile");
+	viewController.audioPlayers.exists(ap| ap.id.matches(audioPlayerId) && ap.sourceType.toString().matches("hardwareFile"));
 
 context ImageView if(sourceType.toString().matches("hardwareFile")) ERROR "FileUri of ImageView must be left empty if the sourceType='hardwareFile'" :
 	fileUri.matches("");

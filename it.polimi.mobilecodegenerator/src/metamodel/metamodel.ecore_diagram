@@ -717,10 +717,10 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_BuWNe-9EEeWOM7fVnmFKmQ" x="377" y="-7"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_BuWNfO9EEeWOM7fVnmFKmQ" type="6004">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_BuWNfe9EEeWOM7fVnmFKmQ" x="40" y="-12"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_BuWNfe9EEeWOM7fVnmFKmQ" x="45" y="-12"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_BuWNeO9EEeWOM7fVnmFKmQ" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="metamodel.ecore#//ViewController/audioPlayer"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//ViewController/audioPlayers"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BuWNee9EEeWOM7fVnmFKmQ" points="[0, 0, -1021, -60]$[1021, 60, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Bv_MVu9EEeWOM7fVnmFKmQ" id="(0.7744360902255639,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Bv_MV-9EEeWOM7fVnmFKmQ" id="(0.5,0.0)"/>

@@ -263,7 +263,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFOREACH-»
 
 «REM» If there's an Audio Player in the application then create the xml layout file«ENDREM»
-«IF viewControllers.audioPlayer.size != 0-»
+«IF viewControllers.audioPlayers.size != 0-»
 «FILE name+"/app/src/main/res/drawable/mediaplayer_background.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
@@ -370,13 +370,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«EXPAND uiControl FOR audioRecorder»
         android:text="Rec" />
 	«ENDIF-»
-	«IF audioPlayer!=null-»
+	«FOREACH audioPlayers AS ap-»
 	<LinearLayout
 		android:orientation="horizontal"
-		«EXPAND uiControl FOR audioPlayer»
+		«EXPAND uiControl FOR ap»
 		>
 		<Button
-	        android:id="@+id/«audioPlayer.id»PlayButton"
+	        android:id="@+id/«ap.id»_playButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -387,7 +387,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			android:drawableTop="@drawable/ic_play_arrow_white_36dp" />
 
 	    <Button
-	        android:id="@+id/«audioPlayer.id»PauseButton"
+	        android:id="@+id/«ap.id»_pauseButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -398,7 +398,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			android:drawableTop="@drawable/ic_pause_white_36dp"/>
 
 		<Button
-	        android:id="@+id/«audioPlayer.id»StopButton"
+	        android:id="@+id/«ap.id»_stopButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -408,7 +408,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			android:background="@drawable/mediaplayer_background"
 			android:drawableTop="@drawable/ic_stop_white_36dp" />
      </LinearLayout>
-	«ENDIF-»
+	«ENDFOREACH-»
 	«FOREACH textViews AS tv-»
 	<TextView
 		«EXPAND uiControl FOR tv»

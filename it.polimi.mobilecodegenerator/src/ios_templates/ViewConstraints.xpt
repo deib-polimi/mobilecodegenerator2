@@ -45,10 +45,10 @@
 		«EXPAND siblingConstraints FOR audioRecorder»
         «EXPAND parentContraints FOR audioRecorder»
 	«ENDIF-»
-	«IF audioPlayer!=null-»
-		«EXPAND siblingConstraints FOR audioPlayer»
-        «EXPAND parentContraints FOR audioPlayer»
-	«ENDIF-»
+	«FOREACH audioPlayers AS ap-»
+        «EXPAND siblingConstraints FOR ap»
+        «EXPAND parentContraints FOR ap»
+	«ENDFOREACH-»
 </constraints>
 «ENDDEFINE-»
 «DEFINE innerConstraints FOR UiControl-»

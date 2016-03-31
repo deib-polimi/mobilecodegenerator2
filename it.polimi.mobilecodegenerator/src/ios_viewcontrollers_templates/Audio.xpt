@@ -21,36 +21,38 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 @property (strong, nonatomic) AVAudioRecorder *audioRecorder;
 @property (strong, nonatomic) NSURL *recordedAudioUrl;
 «ENDIF-»
-«IF audioPlayer!=null-»
-@property (strong, nonatomic) AVAudioPlayer *«audioPlayer.id»;
-«ENDIF-»
+«FOREACH audioPlayers AS ap-»
+@property (strong, nonatomic) AVAudioPlayer *«ap.id»;
+«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidAppear FOR ViewController-»
-	«IF audioPlayer!=null && !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-	«IF audioPlayer.sourceType.toString().matches("localFile")-»
-	«IF !audioPlayer.fileUri.matches("")-»
-	NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"«audioPlayer.fileUri.split("\\.").get(0)»" ofType:@"«audioPlayer.fileUri.split("\\.").get(1)»"]];
-	self.«audioPlayer.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+	«FOREACH audioPlayers AS ap-»
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	«IF ap.sourceType.toString().matches("localFile")-»
+	«IF !ap.fileUri.matches("")-»
+	NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"«ap.fileUri.split("\\.").get(0)»" ofType:@"«ap.fileUri.split("\\.").get(1)»"]];
+	self.«ap.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
 	«ELSE-»
 	//TODO decomment the next lines and insert file name and extension
 	//NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"filename..." ofType:@"extension..."]];
-	//self.«audioPlayer.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+	//self.«ap.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
 	«ENDIF-»
-	«ELSEIF audioPlayer.sourceType.toString().matches("remoteFile")-»
-	«IF !audioPlayer.fileUri.matches("")-»
-	[self performSelectorInBackground:@selector(downloadDataFromURL:) withObject:@"«audioPlayer.fileUri»"];
+	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
+	«IF !ap.fileUri.matches("")-»
+	[self performSelectorInBackground:@selector(downloadDataFromURL:) withObject:@"«ap.fileUri»"];
 	«ELSE-»
 	[self performSelectorInBackground:@selector(downloadDataFromURL:) withObject:@"http://..."]; //TODO insert remote file uri
 	«ENDIF-»
 	«ENDIF-»
 	«ENDIF-»
+	«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE audio FOR ViewController-»
-«IF audioPlayer!=null-»
+«FOREACH audioPlayers AS ap-»
 #pragma mark - AudioPlayer Management
-«IF audioPlayer.sourceType.toString().matches("remoteFile")-»
+«IF ap.sourceType.toString().matches("remoteFile")-»
 -(void)downloadDataFromURL:(NSString *)urlString 
 {
     NSURL *url = [NSURL URLWithString:urlString];
@@ -60,15 +62,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 -(void)startMusicFromURL:(NSData*)data
 {
-    self.«audioPlayer.id» = [[AVAudioPlayer alloc] initWithData:data error:nil];
-    [self.«audioPlayer.id» play];
+    self.«ap.id» = [[AVAudioPlayer alloc] initWithData:data error:nil];
+    [self.«ap.id» play];
 }
 «ENDIF-»
 
 - (IBAction)play:(UIButton *)sender
 {
-	«IF !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-    [self.«audioPlayer.id» play];
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
+    [self.«ap.id» play];
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
     if(self.audioRecorder.recording){
         [self.audioRecorder stop];
@@ -86,23 +88,24 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 }
 - (IBAction)pause:(UIButton *)sender
 {
-	«IF !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-    [self.«audioPlayer.id» pause];
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
+    [self.«ap.id» pause];
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
     [self.«audioRecorder.audioPlayerId» pause];
     «ENDIF-»
 }
 - (IBAction)stop:(UIButton *)sender
 {
-	«IF !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-    [self.«audioPlayer.id» pause];
-    [self.«audioPlayer.id» setCurrentTime:0];
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
+    [self.«ap.id» pause];
+    [self.«ap.id» setCurrentTime:0];
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
     [self.«audioRecorder.audioPlayerId» pause];
     [self.«audioRecorder.audioPlayerId» setCurrentTime:0];
     «ENDIF-»
 }
-«ENDIF-»
+«ENDFOREACH-»
+
 «IF audioRecorder!=null-»
 - (IBAction)record:(UIButton *)sender
 {
@@ -161,10 +164,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	}
 	«ENDIF-»
 	«ENDIF-»
-	«IF audioPlayer!=null && !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-	if(self.«audioPlayer.id»!=nil && self.«audioPlayer.id».isPlaying){
-	    [self.«audioPlayer.id» pause];
-	    [self.«audioPlayer.id» setCurrentTime:0];
+	«FOREACH audioPlayers AS ap-»
+	«IF ap!=null && !ap.sourceType.toString().matches("hardwareFile")-»
+	if(self.«ap.id»!=nil && self.«ap.id».isPlaying){
+	    [self.«ap.id» pause];
+	    [self.«ap.id» setCurrentTime:0];
 	}
 	«ENDIF-»
+	«ENDFOREACH-»
 «ENDDEFINE-»

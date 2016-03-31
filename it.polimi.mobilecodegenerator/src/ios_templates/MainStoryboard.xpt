@@ -128,9 +128,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                 </connections>
                             </button>
 							«ENDIF-»
-		                    «IF vc.audioPlayer!=null-»
-		                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.audioPlayer.id»">
-		                    	<rect key="frame" x="«vc.audioPlayer.posX.toInteger()»" y="«vc.audioPlayer.posY.toInteger() + 62»" width="«vc.audioPlayer.width.toInteger()»" height="«vc.audioPlayer.height.toInteger()»"/>
+		                    «FOREACH vc.audioPlayers AS ap-»
+		                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»">
+		                    	<rect key="frame" x="«ap.posX.toInteger()»" y="«ap.posY.toInteger() + 62»" width="«ap.width.toInteger()»" height="«ap.height.toInteger()»"/>
 								<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                 	<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.name»AudioPlayerPlayButton">
@@ -169,7 +169,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		                        </subviews>
 		                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR vc.audioPlayer-»
+                                	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR ap-»
                                     <constraint firstAttribute="centerX" secondItem="«vc.name»AudioPlayerPauseButton" secondAttribute="centerX" id="«vc.name»CentXPauseConst"/>
                                     <constraint firstAttribute="centerY" secondItem="«vc.name»AudioPlayerPauseButton" secondAttribute="centerY" id="«vc.name»CentYPauseConst"/>
                                     <constraint firstAttribute="leading" secondItem="«vc.name»AudioPlayerPlayButton"  secondAttribute="leading" id="«vc.name»LeadPlayConst"/>
@@ -178,7 +178,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                     <constraint firstAttribute="trailing" secondItem="«vc.name»AudioPlayerStopButton" secondAttribute="trailing" id="«vc.name»TrailStopConst"/>
                                 </constraints>
                             </view>
-		                    «ENDIF-»
+		                    «ENDFOREACH-»
 		                    «FOREACH vc.textViews AS tv-»
 		                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="«tv.textAlign.toString()»" text="«tv.content»" id="«tv.id»">
 		                        «EXPAND uiControl FOR tv»

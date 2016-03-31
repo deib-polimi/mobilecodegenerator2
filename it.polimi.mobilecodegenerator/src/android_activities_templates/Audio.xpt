@@ -16,12 +16,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE attributesDeclarations FOR ViewController-»
-«IF audioPlayer!=null-»
-private Button playButton;
-private Button pauseButton;
-private Button stopButton;
-private MediaPlayer «audioPlayer.id»;
-«ENDIF-»
+«FOREACH audioPlayers AS ap-»
+private Button «ap.id»PlayButton;
+private Button «ap.id»PauseButton;
+private Button «ap.id»StopButton;
+private MediaPlayer «ap.id»;
+«ENDFOREACH-»
 «IF audioRecorder!=null-»
 private Button recordButton;
 private MediaRecorder audioRecorder;
@@ -31,52 +31,55 @@ private boolean isRecording = false;
 «ENDDEFINE-»
 
 «DEFINE onResume FOR ViewController-»
-«IF audioPlayer!=null && !audioPlayer.sourceType.toString().matches("hardwareFile")-»
+«FOREACH audioPlayers AS ap-»
+«IF !ap.sourceType.toString().matches("hardwareFile")-»
 try {
-«audioPlayer.id» = new MediaPlayer();
-«audioPlayer.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
-«IF audioPlayer.sourceType.toString().matches("localFile")-»
-«IF !audioPlayer.fileUri.matches("")-»
-«audioPlayer.id».setDataSource(getAssets().openFd("«audioPlayer.fileUri»").getFileDescriptor());
+«ap.id» = new MediaPlayer();
+«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
+«IF ap.sourceType.toString().matches("localFile")-»
+«IF !ap.fileUri.matches("")-»
+«ap.id».setDataSource(getAssets().openFd("«ap.fileUri»").getFileDescriptor());
 «ELSE-»
-«audioPlayer.id».setDataSource(getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
+«ap.id».setDataSource(getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
 «ENDIF-»
-«ELSEIF audioPlayer.sourceType.toString().matches("remoteFile")-»
-«IF !audioPlayer.fileUri.matches("")-»
-«audioPlayer.id».setDataSource("«audioPlayer.fileUri»");
+«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
+«IF !ap.fileUri.matches("")-»
+«ap.id».setDataSource("«ap.fileUri»");
 «ELSE-»
-«audioPlayer.id».setDataSource("http://..."); //TODO insert remote file uri
+«ap.id».setDataSource("http://..."); //TODO insert remote file uri
 «ENDIF-»
 «ENDIF-»
-«audioPlayer.id».prepare();
+«ap.id».prepare();
 }
 catch (Exception e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
 
-this.playButton = (Button) this.findViewById(R.id.«audioPlayer.id»PlayButton);
-this.playButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»PlayButton = (Button) this.findViewById(R.id.«ap.id»_playButton);
+this.«ap.id»PlayButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
-    	«audioPlayer.id».start();
+    	«ap.id».start();
     }
 });
 
-this.pauseButton = (Button) this.findViewById(R.id.«audioPlayer.id»PauseButton);
-this.pauseButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»PauseButton = (Button) this.findViewById(R.id.«ap.id»_pauseButton);
+this.«ap.id»PauseButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
-    	«audioPlayer.id».pause();
+    	«ap.id».pause();
     }
 });
 
-this.stopButton = (Button) this.findViewById(R.id.«audioPlayer.id»StopButton);
-this.stopButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»StopButton = (Button) this.findViewById(R.id.«ap.id»_stopButton);
+this.«ap.id»StopButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
-    	«audioPlayer.id».pause();
-    	«audioPlayer.id».seekTo(0);
+    	«ap.id».pause();
+    	«ap.id».seekTo(0);
     }
 });
 «ENDIF-»
+«ENDFOREACH-»
+
 «IF audioRecorder!=null-»
 recordButton = (Button) this.findViewById(R.id.«audioRecorder.id»);
 recordButton.setText("Rec");
@@ -186,11 +189,13 @@ if(«audioRecorder.audioPlayerId»!=null) {
 }
 «ENDIF-»
 «ENDIF-»
-«IF audioPlayer!=null && !audioPlayer.sourceType.toString().matches("hardwareFile")-»
-if(«audioPlayer.id»!=null) {
-	«audioPlayer.id».release();
-	«audioPlayer.id»=null;
+«FOREACH audioPlayers AS ap-»
+«IF !ap.sourceType.toString().matches("hardwareFile")-»
+if(«ap.id»!=null) {
+	«ap.id».release();
+	«ap.id»=null;
 }
 «ENDIF-»
+«ENDFOREACH-»
 «ENDDEFINE-»
 

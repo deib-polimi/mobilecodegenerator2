@@ -34,6 +34,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="videoViews" ordered="false"
         upperBound="-1" eType="#//VideoView" containment="true" eOpposite="#//VideoView/viewController"
         eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="audioPlayers" ordered="false"
+        upperBound="-1" eType="#//AudioPlayer" containment="true" eOpposite="#//AudioPlayer/viewController"
+        eKeys="#//UiControl/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="listViews" ordered="false"
         upperBound="-1" eType="#//ListView" containment="true" eOpposite="#//ListView/viewController"
         eKeys="#//UiControl/id"/>
@@ -55,8 +58,6 @@
         eType="#//PhotocameraController" containment="true" eOpposite="#//PhotocameraController/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="videocameraController"
         eType="#//VideocameraController" containment="true" eOpposite="#//VideocameraController/viewController"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="audioPlayer" eType="#//AudioPlayer"
-        containment="true" eOpposite="#//AudioPlayer/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="audioRecorder" eType="#//AudioRecorder"
         containment="true" eOpposite="#//AudioRecorder/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="uiControls" ordered="false"
@@ -102,6 +103,22 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/imageViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VideoView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videoViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AudioPlayer" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
+        eType="#//SourceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioPlayers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListView" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="listViewCells" upperBound="-1"
@@ -174,14 +191,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/locationManager"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VideoView" eSuperTypes="#//UiControl">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
-        eType="#//SourceType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
-        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videoViews"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PhotocameraController" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageViewId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
@@ -193,14 +202,6 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/videocameraController"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AudioPlayer" eSuperTypes="#//UiControl">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceType" lowerBound="1"
-        eType="#//SourceType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
-        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioPlayer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AudioRecorder" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="audioPlayerId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

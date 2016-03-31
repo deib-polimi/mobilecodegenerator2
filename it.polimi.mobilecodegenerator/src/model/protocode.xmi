@@ -4,7 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <audioPlayer id="fiAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="44" viewController="//@viewControllers[name='Main']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
+        <audioPlayers id="sgipAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="44" viewController="//@viewControllers[name='Main']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
+        <audioPlayers id="qqphAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="44" below="//@viewControllers[name='Main']/@audioPlayers[id='sgipAudioPlayer']" viewController="//@viewControllers[name='Main']" sourceType="localFile" fileUri="utils_folder_audio.mp3"/>
     </viewControllers>
     <menu>
         <menuItems title="Main" id="Main">
