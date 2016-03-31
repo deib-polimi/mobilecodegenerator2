@@ -262,6 +262,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 «ENDFOREACH-»
 
+«REM» If there's an Audio Player in the application then create the xml layout file«ENDREM»
+«IF viewControllers.audioPlayer.size != 0-»
+«FILE name+"/app/src/main/res/drawable/mediaplayer_background.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="#F2246A" />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid
+                android:color="#FF4081" />
+            <corners
+                android:radius="5dp" />
+        </shape>
+    </item>
+</selector>
+«ENDFILE-»
+«ENDIF-»
+
 «EXPAND viewController FOREACH viewControllers-»
 
 «ENDDEFINE-»
@@ -346,31 +371,43 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:text="Rec" />
 	«ENDIF-»
 	«IF audioPlayer!=null-»
-	<RelativeLayout
+	<LinearLayout
+		android:orientation="horizontal"
 		«EXPAND uiControl FOR audioPlayer»
 		>
 		<Button
 	        android:id="@+id/«audioPlayer.id»PlayButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
-	        android:text="Play" />
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_centerVertical="true"
+			android:layout_centerHorizontal="true"
+			android:layout_margin="4dp"
+			android:background="@drawable/mediaplayer_background"
+			android:drawableTop="@drawable/ic_play_arrow_white_36dp" />
+
 	    <Button
 	        android:id="@+id/«audioPlayer.id»PauseButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+			android:layout_weight="1"
 	        android:layout_centerVertical="true"
 	        android:layout_centerHorizontal="true"
-	        android:text="Pause" />
-	    <Button
+			android:layout_margin="4dp"
+			android:background="@drawable/mediaplayer_background"
+			android:drawableTop="@drawable/ic_pause_white_36dp"/>
+
+		<Button
 	        android:id="@+id/«audioPlayer.id»StopButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:layout_centerVertical="true"
-	        android:text="Stop" />
-     </RelativeLayout>
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_centerVertical="true"
+			android:layout_centerHorizontal="true"
+			android:layout_margin="4dp"
+			android:background="@drawable/mediaplayer_background"
+			android:drawableTop="@drawable/ic_stop_white_36dp" />
+     </LinearLayout>
 	«ENDIF-»
 	«FOREACH textViews AS tv-»
 	<TextView

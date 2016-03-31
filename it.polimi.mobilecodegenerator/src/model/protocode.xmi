@@ -4,8 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <imageViews id="gjhkoImageView" posX="0" posY="-0.0005979617304490148" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Main']" sourceType="hardwareFile" fileUri=""/>
-        <photocameraController id="clpooPhotocameraController" posX="34.99731878698225" posY="234.97454762895177" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="35" marginBottom="0" marginStart="35" marginEnd="35" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="130" height="40" below="//@viewControllers[name='Main']/@imageViews[id='gjhkoImageView']" viewController="//@viewControllers[name='Main']" imageViewId="gjhkoImageView"/>
+        <audioPlayer id="fiAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="44" viewController="//@viewControllers[name='Main']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
     </viewControllers>
-    <menu/>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+    </menu>
 </metamodel:Application>
