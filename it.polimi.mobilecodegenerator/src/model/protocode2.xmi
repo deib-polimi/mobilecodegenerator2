@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="Main" launcher="true">
+        <buttons id="ebolButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="88" height="36" viewController="//@viewControllers[name='Main']" title="BUTTON" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
+        <buttons id="oopButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="88" height="36" below="//@viewControllers[name='Main']/@buttons[id='ebolButton']" viewController="//@viewControllers[name='Main']" title="BUTTON" textColor="#ffffff" backgroundColor="#2196f3" borderRadius="4" clickColor="#1976d2"/>
+        <textViews id="fnrvLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="150" height="36" below="//@viewControllers[name='Main']/@buttons[id='oopButton']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="left" textColor="#000000" textSize="16" textDecoration="none"/>
+        <textViews id="jqksLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="150" height="36" below="//@viewControllers[name='Main']/@textViews[id='fnrvLabel']" viewController="//@viewControllers[name='Main']" content="Label" textAlign="center" textColor="#999999" textSize="14" textDecoration="bold"/>
+        <editTexts id="eEditText" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="150" height="36" below="//@viewControllers[name='Main']/@textViews[id='jqksLabel']" viewController="//@viewControllers[name='Main']" initialContent="" placeholder="EditText" textColor="#000000" textSize="16"/>
+        <editTexts id="erkEditText" posX="0" posY="0" paddingTop="0" paddingBottom="4" paddingStart="4" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="150" height="40" below="//@viewControllers[name='Main']/@editTexts[id='eEditText']" viewController="//@viewControllers[name='Main']" initialContent="EditText" placeholder="EditText" textColor="#000000" textSize="22"/>
+        <webViews id="rdlWebView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="300" height="200" below="//@viewControllers[name='Main']/@editTexts[id='erkEditText']" viewController="//@viewControllers[name='Main']" HTMLFileName="utils_folder_page.html"/>
+    </viewControllers>
+    <viewControllers name="Images" launcher="false">
+        <imageViews id="odImageView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Images']" sourceType="localFile" fileUri="utils_folder_image.jpg"/>
+        <imageViews id="pabImageView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Images']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/pic_mountain.jpg"/>
+    </viewControllers>
+    <viewControllers name="Videos" launcher="false">
+        <videoViews id="jfVideoView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Videos']" sourceType="localFile" fileUri="utils_folder_video.mp4"/>
+        <!--
+        <videoViews id="hataVideoView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="300" height="200" viewController="//@viewControllers[name='Videos']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/mov_bbb.mp4"/>
+        -->
+    </viewControllers>
+    <viewControllers name="Audios" launcher="false">
+        <audioPlayers id="tiAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="200" height="44" viewController="//@viewControllers[name='Audios']" sourceType="localFile" fileUri="utils_folder_audio.mp3"/>
+        <!--
+        <audioPlayers id="dahgoAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="false" width="200" height="44" viewController="//@viewControllers[name='Audios']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
+        -->
+    </viewControllers>
+    <viewControllers name="List" launcher="false">
+        <listViews id="fListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="125" height="200" viewController="//@viewControllers[name='List']" listType="simple"/>
+        <listViews id="einListView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="125" height="200" viewController="//@viewControllers[name='List']" listType="detailed">
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+            <listViewCells title="Single-Line Item"/>
+        </listViews>
+    </viewControllers>
+    <viewControllers name="Grid" launcher="false">
+        <gridViews id="ofbGridView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="125" height="200" viewController="//@viewControllers[name='Grid']" gridType="detailed">
+            <gridViewCells title="Single Item"/>
+            <gridViewCells title="Single Item"/>
+            <gridViewCells title="Single Item"/>
+            <gridViewCells title="Single Item"/>
+            <gridViewCells title="Single Item"/>
+            <gridViewCells title="Single Item"/>
+        </gridViews>
+    </viewControllers>
+    <viewControllers name="Camera" launcher="false">
+        <imageViews id="vhjliImageView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="400" viewController="//@viewControllers[name='Camera']" sourceType="hardwareFile" fileUri=""/>
+        <photocameraController id="ahcPhotocameraController" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" below="//@viewControllers[name='Camera']/@imageViews[id='vhjliImageView']" viewController="//@viewControllers[name='Camera']" imageViewId="vhjliImageView"/>
+    </viewControllers>
+    <viewControllers name="Videocamera" launcher="false">
+        <videoViews id="iskuVideoView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="400" viewController="//@viewControllers[name='Videocamera']" sourceType="hardwareFile" fileUri=""/>
+        <videocameraController id="incqVideocameraController" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" below="//@viewControllers[name='Videocamera']/@videoViews[id='iskuVideoView']" viewController="//@viewControllers[name='Videocamera']" videoViewId="iskuVideoView"/>
+    </viewControllers>
+    <viewControllers name="AudioRecorder" launcher="false">
+        <audioPlayers id="raAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="50" marginBottom="50" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="200" height="44" viewController="//@viewControllers[name='AudioRecorder']" sourceType="hardwareFile" fileUri=""/>
+        <audioRecorder id="cnkdAudioRecorder" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="30" below="//@viewControllers[name='AudioRecorder']/@audioPlayers[id='raAudioPlayer']" viewController="//@viewControllers[name='AudioRecorder']" audioPlayerId="raAudioPlayer"/>
+    </viewControllers>
+    <viewControllers name="Other" launcher="false">
+        <alertDialogs id="hahAlertDialog" title="Dialog Title" message="dialog message"/>
+        <progressDialogs id="uuProgressDialog" title="Dialog Title" message="dialog message" spinner="true"/>
+        <progressDialogs id="nseeProgressDialog" title="Dialog title" message="dialog message" spinner="false"/>
+        <asyncTasks name="MyAsyncTask"/>
+    </viewControllers>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+        <menuItems title="Images" id="Images">
+            <navigation destination="Images"/>
+        </menuItems>
+        <menuItems title="Videos" id="Videos">
+            <navigation destination="Videos"/>
+        </menuItems>
+        <menuItems title="Audios" id="Audios">
+            <navigation destination="Audios"/>
+        </menuItems>
+        <menuItems title="List" id="List">
+            <navigation destination="List"/>
+        </menuItems>
+        <menuItems title="Grid" id="Grid">
+            <navigation destination="Grid"/>
+        </menuItems>
+        <menuItems title="Camera" id="Camera">
+            <navigation destination="Camera"/>
+        </menuItems>
+        <menuItems title="Videocamera" id="Videocamera">
+            <navigation destination="Videocamera"/>
+        </menuItems>
+        <menuItems title="Audio Recorder" id="AudioRecorder">
+            <navigation destination="AudioRecorder"/>
+        </menuItems>
+        <menuItems title="Other" id="Other">
+            <navigation destination="Other"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

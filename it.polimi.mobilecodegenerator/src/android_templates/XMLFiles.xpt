@@ -370,6 +370,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«EXPAND uiControl FOR audioRecorder»
         android:text="Rec" />
 	«ENDIF-»
+	«IF map!=null-»
+	<fragment
+		android:name="com.google.android.gms.maps.SupportMapFragment"
+		«EXPAND uiControl FOR map»
+        />
+    «ENDIF-»
 	«FOREACH audioPlayers AS ap-»
 	<LinearLayout
 		android:orientation="horizontal"

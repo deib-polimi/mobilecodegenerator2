@@ -21,7 +21,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="«this.companyIdentifier».«this.name.toLowerCase()»" >
     
-    «IF viewControllers.locationManager.contains(true)-»
+    «IF viewControllers.locationManager.contains(true) || viewControllers.map.size > 0-»
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     «ENDIF-»
 	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") || viewControllers.imageViews.sourceType.toString().contains("remoteFile") || 
@@ -41,6 +41,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        «IF viewControllers.map.size > 0-» 
+        <!--
+        TODO: Before you run your application, you need a Google Maps API key.
+        https://developers.google.com/maps/documentation/android/start#get-key
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR API KEY HERE" />
+        «ENDIF-» 
         «FOREACH viewControllers AS vc-»
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"

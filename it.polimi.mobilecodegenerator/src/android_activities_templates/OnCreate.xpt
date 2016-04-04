@@ -20,6 +20,10 @@ setContentView(R.layout.activity_«name.toLowerCase()»);
 Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
 setSupportActionBar(toolbar);
 
+«EXPAND android_activities_templates::Audio::onCreate-»
+
+«EXPAND android_activities_templates::Map::onCreate-»
+
 «EXPAND android_activities_templates::Buttons::onCreate-»
 
 «EXPAND android_activities_templates::EditTexts::onCreate-»

@@ -23,9 +23,9 @@ private VideoView «vv.id»;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH videoViews AS vv-»
-«vv.id» = (VideoView)this.findViewById(R.id.«vv.id»);
 
 «IF !vv.sourceType.toString().matches("hardwareFile")-»
+	«vv.id» = (VideoView)this.findViewById(R.id.«vv.id»);
 
 	«IF vv.sourceType.toString().matches("localFile")-»
 	

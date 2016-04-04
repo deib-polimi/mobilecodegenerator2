@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -15,21 +15,28 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE onCreate FOR ViewController-»
-«FOREACH progressDialogs AS pd-»
-ProgressDialog «pd.id» = new ProgressDialog(«name»Activity.this);
-«pd.id».setTitle("«pd.title»");
-«pd.id».setMessage("«pd.message»");
-«IF pd.spinner-»
-«pd.id».setProgressStyle(ProgressDialog.STYLE_SPINNER);
-«pd.id».show();
-//TODO do something before dismissing it.
-«ELSE-»
-«pd.id».setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-«pd.id».show();
-«pd.id».setProgress(0);
-//TODO do something before dismissing it: use "setProgress" method of the Progress Dialog for updating the progress bar status.
+«DEFINE attributesDeclarations FOR ViewController-»
+«IF map!=null-»
+private GoogleMap «map.id»;
 «ENDIF-»
-//«pd.id».dismiss();
-«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«IF map!=null-»
+SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.«map.id»);
+mapFragment.getMapAsync(this);
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE map FOR ViewController-»
+«IF map!=null-»
+@Override
+public void onMapReady(GoogleMap googleMap) {
+    «map.id» = googleMap;
+    LatLng pos = new LatLng(«map.lat», «map.lon»);
+    «map.id».addMarker(new MarkerOptions().position(pos).title("MARKER TITLE HERE"));
+    «map.id».moveCamera(CameraUpdateFactory.newLatLng(pos));
+    «map.id».animateCamera(CameraUpdateFactory.zoomTo(15), 1000, null);
+}
+«ENDIF-»
 «ENDDEFINE-»

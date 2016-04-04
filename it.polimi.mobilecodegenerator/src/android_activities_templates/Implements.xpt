@@ -16,8 +16,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE implements FOR ViewController-»
-«IF (listViews.size!=0 || gridViews.size!=0) && locationManager==null-»implements OnItemClickListener
-«ELSEIF (listViews.size!=0 || gridViews.size!=0) && locationManager!=null-»implements OnItemClickListener, LocationListener
-«ELSEIF (listViews.size==0 && gridViews.size==0) && locationManager!=null-»implements LocationListener
+«IF (listViews.size!=0 || gridViews.size!=0) && locationManager==null && map==null-»implements OnItemClickListener
+«ELSEIF (listViews.size==0 && gridViews.size==0) && locationManager!=null && map==null-»implements LocationListener
+«ELSEIF (listViews.size==0 && gridViews.size==0) && locationManager==null && map!=null-»implements OnMapReadyCallback
+«ELSEIF (listViews.size!=0 || gridViews.size!=0) && locationManager!=null && map==null-»implements OnItemClickListener, LocationListener
+«ELSEIF (listViews.size!=0 || gridViews.size!=0) && locationManager==null && map!=null-»implements OnItemClickListener, OnMapReadyCallback
+«ELSEIF (listViews.size==0 && gridViews.size==0) && locationManager!=null && map!=null-»implements LocationListener, OnMapReadyCallback
+«ELSEIF (listViews.size!=0 || gridViews.size!=0) && locationManager!=null && map!=null-»implements OnItemClickListener, LocationListener, OnMapReadyCallback
 «ENDIF-»
 «ENDDEFINE-»

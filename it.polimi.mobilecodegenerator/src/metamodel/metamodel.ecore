@@ -54,6 +54,8 @@
         eType="#//AlertDialog" containment="true" eOpposite="#//AlertDialog/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="locationManager" eType="#//LocationManager"
         containment="true" eOpposite="#//LocationManager/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="map" eType="#//Map" containment="true"
+        eOpposite="#//Map/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="photocameraController"
         eType="#//PhotocameraController" containment="true" eOpposite="#//PhotocameraController/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="videocameraController"
@@ -190,6 +192,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="LocationManager">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/locationManager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Map" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/map"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PhotocameraController" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageViewId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

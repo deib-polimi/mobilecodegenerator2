@@ -30,6 +30,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«EXPAND android_activities_templates::Imports::imports-»
 	
 	public class «this.name»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
+		
 		«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»
 		
 		@Override
@@ -38,6 +39,24 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			«EXPAND android_activities_templates::OnCreate::onCreate-»
 		}
 		
+		«IF listViews.size!=0 || gridViews.size!=0-»
+		@Override
+		public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+			«EXPAND android_activities_templates::ListViews::onItemClick-»
+			«EXPAND android_activities_templates::GridViews::onItemClick-»
+		}
+		«ENDIF-»
+		
+		«EXPAND android_activities_templates::Map::map-»
+		
+		«EXPAND android_activities_templates::Audio::audio-»
+		
+		«EXPAND android_activities_templates::Camera::camera-»
+		
+		«EXPAND android_activities_templates::LocationManager::locationManager-»
+		
+		«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
+
 		«IF this.application.menu.menuItems.size > 0 -»
 		@Override
 		public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,20 +77,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    }
 	    «ENDIF-»
 		
-		«IF listViews.size!=0 || gridViews.size!=0-»
-		@Override
-		public void onItemClick(AdapterView<?> l, View v, int position, long id) {
-			«EXPAND android_activities_templates::ListViews::onItemClick-»
-			«EXPAND android_activities_templates::GridViews::onItemClick-»
-		}
-		«ENDIF-»
-		
-		«EXPAND android_activities_templates::Camera::camera-»
-		
-		«EXPAND android_activities_templates::LocationManager::locationManager-»
-		
-		«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
-
 		@Override
 		protected void onStart() {
 			//TODO Auto-generated method stub

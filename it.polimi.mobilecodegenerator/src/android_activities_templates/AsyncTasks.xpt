@@ -17,23 +17,29 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH asyncTasks AS at-»
-new «at.name»AsyncTask().execute();
+//Pass here as many params as you want
+new «at.name»AsyncTask().execute(/*param1, param2 ... */);
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE asyncTasks FOR ViewController-»
 «FOREACH asyncTasks AS at-»
-private class «at.name»AsyncTask extends AsyncTask<Void /*Params*/,Void /*Progress*/,Void /*Result*/> {
-	@Override
-	protected Void /*Result*/ doInBackground(Void... params) {
-		// TODO code to executed in the background task
-		return null;
+private class «at.name»AsyncTask extends AsyncTask<Void /*params*/, Void /*progress*/, Void /*result*/> {
+
+	protected Void doInBackground(Void... params) {
+		Void result = null;
+		//TODO execute the task in background
+		return result;
 	}
-	@Override
+
+	protected void onProgressUpdate(Void... progress) {
+		//TODO something on progress
+	}
+
 	protected void onPostExecute(Void result) {
-		// TODO code to be executed on the main thread when background task is finished
-		super.onPostExecute(result);
+		//TODO use the result
 	}
+
 }
 «ENDFOREACH-»
 «ENDDEFINE-»
