@@ -17,9 +17,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH audioPlayers AS ap-»
-private Button «ap.id»PlayButton;
-private Button «ap.id»PauseButton;
-private Button «ap.id»StopButton;
+private FloatingActionButton «ap.id»PlayButton;
+private FloatingActionButton «ap.id»PauseButton;
+private FloatingActionButton «ap.id»StopButton;
 private MediaPlayer «ap.id»;
 «ENDFOREACH-»
 «IF audioRecorder!=null-»
@@ -184,21 +184,21 @@ catch (Exception e) {
 	e.printStackTrace();
 }
 
-this.«ap.id»PlayButton = (Button) this.findViewById(R.id.«ap.id»_playButton);
+this.«ap.id»PlayButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_playButton);
 this.«ap.id»PlayButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
     	«ap.id».start();
     }
 });
 
-this.«ap.id»PauseButton = (Button) this.findViewById(R.id.«ap.id»_pauseButton);
+this.«ap.id»PauseButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_pauseButton);
 this.«ap.id»PauseButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
     	«ap.id».pause();
     }
 });
 
-this.«ap.id»StopButton = (Button) this.findViewById(R.id.«ap.id»_stopButton);
+this.«ap.id»StopButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_stopButton);
 this.«ap.id»StopButton.setOnClickListener(new OnClickListener() {
     public void onClick(View v) {
     	«ap.id».pause();

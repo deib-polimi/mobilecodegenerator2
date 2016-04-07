@@ -3,11 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
-    <viewControllers name="Maps" launcher="true">
-        <map id="ochrMap" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="300" height="200" below="//@viewControllers[name='Maps']/@textViews[id='vqvLabel']" viewController="//@viewControllers[name='Maps']" lat="45.478" lon="9.227"/>
-        <textViews id="vqvLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="150" height="36" viewController="//@viewControllers[name='Maps']" content="Google Map" textAlign="center" textColor="#000000" textSize="16" textDecoration="bold"/>
-        <buttons id="ejmkButton" posX="160.50887573964496" posY="255.4426996672213" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="88" height="36" below="//@viewControllers[name='Maps']/@map" viewController="//@viewControllers[name='Maps']" title="BUTTON" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
-        <map id="oqaeMap" posX="46.20710059171598" posY="297.9944103577371" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="300" height="200" viewController="//@viewControllers[name='Maps']" lat="45.478" lon="9.227"/>
+    <viewControllers name="Main" launcher="true">
+        <gridViews id="msuGridView" posX="0" posY="-0.000604148183469988" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="125" height="200" viewController="//@viewControllers[name='Main']" gridType="detailed">
+            <gridViewCells title="item"/>
+            <gridViewCells title="item"/>
+            <gridViewCells title="item"/>
+            <gridViewCells title="item"/>
+            <gridViewCells title="item"/>
+            <gridViewCells title="item"/>
+        </gridViews>
     </viewControllers>
     <menu/>
 </metamodel:Application>

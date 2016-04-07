@@ -160,71 +160,81 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «FILE name+"/app/src/main/res/layout/my_grid_cell_simple.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="192dp"
-    android:layout_height="192dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <«companyIdentifier».«name.toLowerCase()».GridImageView
+        android:id="@+id/gridview_simple_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/gridview_simple_tv"
-        android:text="Single Line"
-        android:textColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="144dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_gravity="bottom"
+        android:textSize="16dp"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:background="@drawable/my_grid_background"
-        android:padding="14dp"
-        android:textSize="16dp" />
+        />
 
-</LinearLayout>
+</FrameLayout>
 «ENDFILE-»
 
 «FILE name+"/app/src/main/res/layout/my_grid_cell_image.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="192dp"
-    android:layout_height="192dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
+    <«companyIdentifier».«name.toLowerCase()».GridImageView
         android:id="@+id/gridview_image_img"
-        android:layout_width="192dp"
-        android:layout_height="192dp"
-        android:src="@raw/grid_image" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
-</LinearLayout>
+</FrameLayout>
+
 «ENDFILE-»
 
 «FILE name+"/app/src/main/res/layout/my_grid_cell_detailed.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="192dp"
-    android:layout_height="192dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
+    <«companyIdentifier».«name.toLowerCase()».GridImageView
         android:id="@+id/gridview_detailed_img"
-        android:layout_width="192dp"
-        android:layout_height="192dp"
-        android:src="@raw/grid_image" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/gridview_detailed_tv"
-        android:text="Single Line"
-        android:textColor="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="-48dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_gravity="bottom"
+        android:textSize="16dp"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:background="@drawable/my_grid_background"
-        android:padding="14dp"
-        android:textSize="16dp" />
+        />
 
-</LinearLayout>
+</FrameLayout>
 «ENDFILE-»
 «ENDIF-»
 
@@ -261,31 +271,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 «ENDFOREACH-»
-
-«REM» If there's an Audio Player in the application then create the xml layout file«ENDREM»
-«IF viewControllers.audioPlayers.size != 0-»
-«FILE name+"/app/src/main/res/drawable/mediaplayer_background.xml"-»
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_pressed="true" >
-        <shape>
-            <solid
-                android:color="#F2246A" />
-            <corners
-                android:radius="5dp" />
-        </shape>
-    </item>
-    <item>
-        <shape>
-            <solid
-                android:color="#FF4081" />
-            <corners
-                android:radius="5dp" />
-        </shape>
-    </item>
-</selector>
-«ENDFILE-»
-«ENDIF-»
 
 «EXPAND viewController FOREACH viewControllers-»
 
@@ -377,43 +362,35 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         />
     «ENDIF-»
 	«FOREACH audioPlayers AS ap-»
-	<LinearLayout
-		android:orientation="horizontal"
+	<RelativeLayout
+		android:gravity="center"
 		«EXPAND uiControl FOR ap»
 		>
-		<Button
-	        android:id="@+id/«ap.id»_playButton"
+		
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_playButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:layout_centerVertical="true"
-			android:layout_centerHorizontal="true"
 			android:layout_margin="4dp"
-			android:background="@drawable/mediaplayer_background"
-			android:drawableTop="@drawable/ic_play_arrow_white_36dp" />
-
-	    <Button
-	        android:id="@+id/«ap.id»_pauseButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-			android:layout_weight="1"
-	        android:layout_centerVertical="true"
-	        android:layout_centerHorizontal="true"
-			android:layout_margin="4dp"
-			android:background="@drawable/mediaplayer_background"
-			android:drawableTop="@drawable/ic_pause_white_36dp"/>
-
-		<Button
-	        android:id="@+id/«ap.id»_stopButton"
+			android:src="@drawable/ic_play_arrow_white_36dp" />
+		
+	    <android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_pauseButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:layout_centerVertical="true"
-			android:layout_centerHorizontal="true"
 			android:layout_margin="4dp"
-			android:background="@drawable/mediaplayer_background"
-			android:drawableTop="@drawable/ic_stop_white_36dp" />
-     </LinearLayout>
+			android:src="@drawable/ic_pause_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_playButton" />
+			
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_stopButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_stop_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_pauseButton" />		
+
+     </RelativeLayout>
 	«ENDFOREACH-»
 	«FOREACH textViews AS tv-»
 	<TextView
@@ -455,6 +432,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «FOREACH gridViews AS gv-»
     <GridView
         «EXPAND uiControl FOR gv»
+        android:stretchMode="columnWidth"
         android:numColumns="auto_fit"
         android:horizontalSpacing="4dp"
         android:verticalSpacing="4dp" >
