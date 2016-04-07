@@ -2,16 +2,16 @@
 
 Mobilecodegenerator is a Java application that generates Java source code for Android applications and Objective-C source code for iOS applications, starting from a graphical metamodel.
 
-# Installation #
+## Installation ##
 
 You have to import the it.polimi.mobilecodegenerator project in Eclipse:
 
 1. Download an Eclipse distribution containing a stable version of Epsilon and EMF: 
-    http://www.eclipse.org/epsilon/download
+   http://www.eclipse.org/epsilon/download
   
 2. Install the following 2 plugins in Eclipse (Help --> Install new software):
-    > Xpand/Xtend:  http://download.eclipse.org/modeling/m2t/xpand/updates/nightly/
-    > EMFT MWE:     http://download.eclipse.org/modeling/emft/mwe/updates/nightly/
+   * Xpand/Xtend:  http://download.eclipse.org/modeling/m2t/xpand/updates/nightly/
+   * EMFT MWE:     http://download.eclipse.org/modeling/emft/mwe/updates/nightly/
   
 3. Download and unzip the MobileCodeGenerator-master.zip
 
@@ -19,7 +19,7 @@ You have to import the it.polimi.mobilecodegenerator project in Eclipse:
     File --> Import --> General --> Existing Projects into Workspace
 
 
-# How it works #
+## How it works ##
 
 If you just have a metamodel of the application from [Protocode](https://github.com/aldopolimi/protocode), ignore 1-4.
 
@@ -42,8 +42,10 @@ To produce source code of your application you need to:
 6. You will find the generated Android and iOS application source code in src-gen folder
 
 
-# Developers contacts #
+## Developers contacts ##
 
 gregorio.perego@gmail.com
+
 pezzettistefania@gmail.com
+
 aldo.pintus@gmail.com
