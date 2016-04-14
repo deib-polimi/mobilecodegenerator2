@@ -46,21 +46,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
 	«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     «EXPAND ios_viewcontrollers_templates::ViewDidAppear::viewDidAppear-»
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
 }
 

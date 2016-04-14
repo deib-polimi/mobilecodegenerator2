@@ -22,7 +22,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 @property (strong, nonatomic) NSURL *recordedAudioUrl;
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
-@property (strong, nonatomic) AVAudioPlayer *«ap.id»;
+var «ap.id» = AVAudioPlayer()
 «ENDFOREACH-»
 «ENDDEFINE-»
 
@@ -31,77 +31,163 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	«IF ap.sourceType.toString().matches("localFile")-»
 	«IF !ap.fileUri.matches("")-»
-	NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"«ap.fileUri.split("\\.").get(0)»" ofType:@"«ap.fileUri.split("\\.").get(1)»"]];
-	self.«ap.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+	let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("«ap.fileUri»", ofType: "mp3")
+    if let myFilePathString = «ap.id»FilePathString {
+        let myFilePathURL = NSURL(fileURLWithPath: myFilePathString)
+        do {
+            try «ap.id» = AVAudioPlayer(contentsOfURL: myFilePathURL)
+        } catch {
+          print("Audioplayer error.")
+        }
+        
+    } else {
+        print("File not found.")
+    }
 	«ELSE-»
-	//TODO decomment the next lines and insert file name and extension
-	//NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"filename..." ofType:@"extension..."]];
-	//self.«ap.id» = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+	//TODO decomment the next lines and insert file NAME and EXTENSION
+	/*
+	let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("NAME", ofType: "EXTENSION")
+    if let myFilePathString = «ap.id»FilePathString {
+        let myFilePathURL = NSURL(fileURLWithPath: myFilePathString)
+        do {
+            try «ap.id» = AVAudioPlayer(contentsOfURL: myFilePathURL)
+        } catch {
+          print("Audioplayer error.")
+        }
+        
+    } else {
+        print("File not found.")
+    }
+    */
 	«ENDIF-»
 	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 	«IF !ap.fileUri.matches("")-»
-	[self performSelectorInBackground:@selector(downloadDataFromURL:) withObject:@"«ap.fileUri»"];
+	if let url = NSURL(string: "«ap.fileUri»") {
+        getDataFromUrl(url) { (data, response, error)  in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                guard let data = data where error == nil else {
+                    print("Data error.")
+                    return
+                }
+                do {
+                    try self.«ap.id» = AVAudioPlayer(data: data)
+                } catch {
+                    print("Audioplayer error.")
+                }
+            }
+        }
+    } else {
+        print("File not found.")
+    }
 	«ELSE-»
-	[self performSelectorInBackground:@selector(downloadDataFromURL:) withObject:@"http://..."]; //TODO insert remote file uri
+	//TODO decomment the next lines and insert the URI
+	/*
+	if let url = NSURL(string: "URI") {
+        getDataFromUrl(url) { (data, response, error)  in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                guard let data = data where error == nil else {
+                    print("Data error.")
+                    return
+                }
+                do {
+                    try self.«ap.id» = AVAudioPlayer(data: data)
+                } catch {
+                    print("Audioplayer error.")
+                }
+            }
+        }
+    } else {
+        print("File not found.")
+    }
+    */
 	«ENDIF-»
 	«ENDIF-»
 	«ENDIF-»
 	«ENDFOREACH-»
+	
+	«IF audioRecorder!=null-»
+	//Create audios folder
+    let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+    let audiosPath = documentsPath.URLByAppendingPathComponent("audios")
+    do {
+        try NSFileManager.defaultManager().createDirectoryAtPath(audiosPath.path!, withIntermediateDirectories: true, attributes: nil)
+    } catch let error as NSError {
+        NSLog("Unable to create directory \(error.debugDescription)")
+    }
+    //Create audio file url
+    let formatter = NSDateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+    self.recordedAudioString = formatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
+    let url = NSURL(string: self.recordedAudioString)
+    
+    let audioSession = AVAudioSession.sharedInstance()
+    do {
+        try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try self.«audioRecorder.id» = AVAudioRecorder(URL: url!,
+                                                 settings: recordSettings)
+        self.«audioRecorder.id».prepareToRecord()
+        self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+    } catch {
+    }	
+	«ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE audio FOR ViewController-»
+//Function to get the data from a url
+func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+        completion(data: data, response: response, error: error)
+        }.resume()
+}
+
 «FOREACH audioPlayers AS ap-»
-#pragma mark - AudioPlayer Management
-«IF ap.sourceType.toString().matches("remoteFile")-»
--(void)downloadDataFromURL:(NSString *)urlString 
-{
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *dataFromUrl = [NSData dataWithContentsOfURL:url];
-    [self performSelectorOnMainThread:@selector(startMusicFromURL:) withObject:dataFromUrl waitUntilDone:YES];
-}
+@IBAction func «ap.id»Play(sender: UIButton) {
 
--(void)startMusicFromURL:(NSData*)data
-{
-    self.«ap.id» = [[AVAudioPlayer alloc] initWithData:data error:nil];
-    [self.«ap.id» play];
-}
-«ENDIF-»
-
-- (IBAction)play:(UIButton *)sender
-{
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    [self.«ap.id» play];
+    self.«ap.id».play()
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    if(self.audioRecorder.recording){
-        [self.audioRecorder stop];
-        [self.recordButton setTitle:@"Rec" forState:UIControlStateNormal];
-        «IF !audioRecorder.audioPlayerId.matches("")-»
-		NSError *error = nil;
-		self.«audioRecorder.audioPlayerId» = [[AVAudioPlayer alloc] initWithContentsOfURL:self.recordedAudioUrl error:&error];
-		if(error){
-		    //TODO handle the audio player initialization error
-		}
-		«ENDIF-»
+    if self.«audioRecorder.id».recording {
+        self.«audioRecorder.id».stop()
+        self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+        if let url = NSURL(string: self.recordedAudioString) {
+            getDataFromUrl(url) { (data, response, error)  in
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    guard let data = data where error == nil else {
+                        print("Data error.")
+                        return
+                    }
+                    do {
+                        try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(data: data)
+                    } catch {
+                        print("Audioplayer error.")
+                    }
+                }
+            }
+        } else {
+            print("File not found.")
+        }
     }
-    [self.«audioRecorder.audioPlayerId» play];
+    self.«audioRecorder.audioPlayerId».play()
     «ENDIF-»
 }
-- (IBAction)pause:(UIButton *)sender
-{
+
+@IBAction func «ap.id»Pause(sender: UIButton) {
+
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    [self.«ap.id» pause];
+    self.«ap.id».pause()
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    [self.«audioRecorder.audioPlayerId» pause];
+    self.«audioRecorder.audioPlayerId».pause()
     «ENDIF-»
 }
-- (IBAction)stop:(UIButton *)sender
-{
+
+@IBAction func «ap.id»Stop(sender: UIButton) {
+
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    [self.«ap.id» pause];
-    [self.«ap.id» setCurrentTime:0];
+    self.«ap.id».pause()
+    self.«ap.id».currentTime = 0
     «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    [self.«audioRecorder.audioPlayerId» pause];
-    [self.«audioRecorder.audioPlayerId» setCurrentTime:0];
+    self.«audioRecorder.audioPlayerId».pause()
+    self.«audioRecorder.audioPlayerId».currentTime = 0
     «ENDIF-»
 }
 «ENDFOREACH-»
@@ -166,9 +252,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«ENDIF-»
 	«FOREACH audioPlayers AS ap-»
 	«IF ap!=null && !ap.sourceType.toString().matches("hardwareFile")-»
-	if(self.«ap.id»!=nil && self.«ap.id».isPlaying){
-	    [self.«ap.id» pause];
-	    [self.«ap.id» setCurrentTime:0];
+	if self.«ap.id»!=nil && self.«ap.id».playing {
+	    self.«ap.id».pause()
+	    self.«ap.id».currentTime = 0
 	}
 	«ENDIF-»
 	«ENDFOREACH-»

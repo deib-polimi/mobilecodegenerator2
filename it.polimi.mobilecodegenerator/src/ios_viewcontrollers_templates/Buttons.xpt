@@ -18,7 +18,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE buttons FOR ViewController-»
 «FOREACH buttons AS b-»
 «IF b.clickListener!=null && b.clickListener.navigation==null-»
--(IBAction)«b.id»ClickAction:(UIButton *)sender {
+@IBAction func «b.id»ClickAction(sender: UIButton) {
 	//TODO Implement the action
 }
 «ENDIF-»

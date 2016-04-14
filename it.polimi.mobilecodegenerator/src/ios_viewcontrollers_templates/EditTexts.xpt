@@ -17,6 +17,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH editTexts AS et-»
-@property (weak, nonatomic) IBOutlet UITextView *«et.id»;
+@IBOutlet weak var «et.id»: UITextField!
 «ENDFOREACH-»
 «ENDDEFINE-»

@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -15,43 +15,25 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE propertiesDeclarations FOR ViewController-»
+«DEFINE viewDidAppear FOR ViewController-»
 «FOREACH alertDialogs AS ad-»
-@property (strong, nonatomic) UIAlertView *«ad.id»;
-«ENDFOREACH-»
-«ENDDEFINE-»
+//Create the AlertController
+let «ad.id»: UIAlertController = UIAlertController(title: "«ad.title»", message: "«ad.message»", preferredStyle: .Alert)
 
-«DEFINE viewDidLoad FOR ViewController-»
-	«FOREACH alertDialogs AS ad-»
-	[self.«ad.id» show];
-	«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE lazyInstantiations FOR ViewController-»
-«FOREACH alertDialogs AS ad-»
--(UIAlertView *)«ad.id»{
-    if(!_«ad.id»){
-    	_«ad.id» = [[UIAlertView alloc] initWithTitle:@"«ad.title»" message:@"«ad.message»" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
-    }
-    return _«ad.id»;
+//Create and add the Cancel action
+let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+    //Just dismiss the alert
 }
-«ENDFOREACH-»
-«ENDDEFINE-»
 
-«DEFINE alertDialogs FOR ViewController-»
-«IF alertDialogs.size!=0-»
--(void) alertView: (UIAlertView *) alertView
-    clickedButtonAtIndex: (NSInteger) buttonIndex {
-    «FOREACH alertDialogs AS ad-»
-    if (alertView == self.«ad.id») {
-	    if (buttonIndex == 0) { //0 is the index of the cancel button
-	    	//TODO implement the negative action
-	    }   
-	    if (buttonIndex == 1) { //1 is the index of the ok button
-	    	//TODO implement the positive action
-	    }
-    }
-    «ENDFOREACH-»   
+//Create and add the Ok action
+let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+    //Do some stuff here
 }
-«ENDIF-»
+
+«ad.id».addAction(cancelAction)
+«ad.id».addAction(okAction)
+
+//Present the AlertController
+self.presentViewController(«ad.id», animated: true, completion: nil)
+«ENDFOREACH-»
 «ENDDEFINE-»

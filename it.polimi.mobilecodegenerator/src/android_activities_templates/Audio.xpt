@@ -110,7 +110,7 @@ private void setUpRecorder() {
 	    }
 	});
 	«IF !audioRecorder.audioPlayerId.matches("")-»
-	this.«audioRecorder.audioPlayerId»PlayButton = (Button) this.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
+	this.«audioRecorder.audioPlayerId»PlayButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
 	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 	    	if (audioRecorder != null && isRecording){ 
@@ -135,7 +135,7 @@ private void setUpRecorder() {
 	    }
 	});
 
-	this.«audioRecorder.audioPlayerId»PauseButton = (Button) this.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
+	this.«audioRecorder.audioPlayerId»PauseButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
 	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 	    	if(«audioRecorder.audioPlayerId»!=null){
@@ -144,7 +144,7 @@ private void setUpRecorder() {
 	    }
 	});
 
-	this.«audioRecorder.audioPlayerId»StopButton = (Button) this.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
+	this.«audioRecorder.audioPlayerId»StopButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
 	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 	    	if(«audioRecorder.audioPlayerId»!=null){

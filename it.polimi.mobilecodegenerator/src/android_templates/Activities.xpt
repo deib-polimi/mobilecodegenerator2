@@ -57,7 +57,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		
 		«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
 
-		«IF this.application.menu.menuItems.size > 0 -»
+		«IF this.application.menu.menuItems.size > 0 && this.launcher -»
 		@Override
 		public boolean onCreateOptionsMenu(Menu menu) {
 			getMenuInflater().inflate(R.menu.main_menu, menu);

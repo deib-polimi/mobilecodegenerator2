@@ -17,20 +17,30 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH imageViews AS iv-»
-«IF !iv.sourceType.toString().matches("localFile")-»
-@property (weak, nonatomic) IBOutlet UIImageView *«iv.id»;
-«ENDIF-»
+@IBOutlet weak var «iv.id»: UIImageView!
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH imageViews AS iv-»
 	«IF iv.sourceType.toString().matches("remoteFile")-»
-	//download the image and set the ImageView
+	//Download the image and set the ImageView
 	«IF !iv.fileUri.matches("")-»
-	[[[ImageDownloadingTask alloc] init] downloadImageFromUrl:@"«iv.fileUri»" forImageView:self.«iv.id»];
+	if let url = NSURL(string: "«iv.fileUri»") {
+        self.«iv.id».contentMode = .ScaleAspectFit
+        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+    }
 	«ELSE-»
-	[[[ImageDownloadingTask alloc] init] downloadImageFromUrl:@"http://..." forImageView:self.«iv.id»]; //TODO insert the remote file uri
+	/* 	TODO
+		Insert the remote file url
+		Modify «application.name».xcodeproj to whitelist the url
+	*/
+	/*
+	if let url = NSURL(string: "http://") {
+        self.«iv.id».contentMode = .ScaleAspectFit
+        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+    }
+    */
 	«ENDIF-»
 	«ENDIF-»
 	«ENDFOREACH-»

@@ -67,7 +67,11 @@ private String[] «gv.id»Contents;
 «FOREACH gridViews AS gv-»
 «IF gv.clickListener!=null-»
 if(l.getId() == R.id.«gv.id»){
+	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+	String clickedImageId = «gv.id»Images[position].toString();
+	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
 	String clickedItem = «gv.id»Contents[position];
+	«ENDIF-»
 	«IF gv.clickListener.navigation!=null-»
 	Intent intent = new Intent(«this.name»Activity.this, «gv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination»Activity

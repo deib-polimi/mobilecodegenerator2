@@ -54,8 +54,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
             android:label="«this.name»" 
-            android:theme="@style/AppTheme.NoActionBar" >
-            «IF vc.launcher-» 
+            android:theme="@style/AppTheme.NoActionBar">
+            «IF vc.launcher-»
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

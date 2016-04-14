@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -17,15 +17,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH asyncTasks AS at-»
-	[self performSelectorInBackground:@selector(«at.name») withObject:nil];
+	// «at.name» : do this operation on another thread
+    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+        // Do some task in background
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            // Update some UI at the end of the task
+            
+        }
+    }	
 	«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE asyncTasks FOR ViewController-»
-«FOREACH asyncTasks AS at-»
--(void)«at.name»{
-	//TODO code to be executed in the background task
-	//[self performSelectorOnMainThread:@selector(executeOnMainThread) withObject:nil waitUntilDone:NO];
-}
-«ENDFOREACH-»
 «ENDDEFINE-»

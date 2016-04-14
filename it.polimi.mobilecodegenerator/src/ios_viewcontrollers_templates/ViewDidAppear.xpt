@@ -16,6 +16,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE viewDidAppear FOR ViewController-»
+	«EXPAND ios_viewcontrollers_templates::AlertDialogs::viewDidAppear-»
+
 	«EXPAND ios_viewcontrollers_templates::VideoView::viewDidAppear-»
 
 	«EXPAND ios_viewcontrollers_templates::Audio::viewDidAppear-»
