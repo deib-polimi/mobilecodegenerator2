@@ -21,17 +21,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 let «ad.id»: UIAlertController = UIAlertController(title: "«ad.title»", message: "«ad.message»", preferredStyle: .Alert)
 
 //Create and add the Cancel action
-let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+let «ad.id»CancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
     //Just dismiss the alert
 }
 
 //Create and add the Ok action
-let okAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+let «ad.id»OkAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
     //Do some stuff here
 }
 
-«ad.id».addAction(cancelAction)
-«ad.id».addAction(okAction)
+«ad.id».addAction(«ad.id»CancelAction)
+«ad.id».addAction(«ad.id»OkAction)
 
 //Present the AlertController
 self.presentViewController(«ad.id», animated: true, completion: nil)
