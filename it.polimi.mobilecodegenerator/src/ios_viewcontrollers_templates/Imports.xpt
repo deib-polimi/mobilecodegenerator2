@@ -16,37 +16,37 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE publicImports FOR ViewController-»
-#import <UIKit/UIKit.h>
+import UIKit
 «IF locationManager!=null-»
-#import <CoreLocation/CoreLocation.h>
+import CoreLocation
 «ENDIF-»
 «IF videoViews.size!=0-»
-#import <MediaPlayer/MediaPlayer.h>
+//import MediaPlayer
 «ENDIF-»
 «IF photocameraController!=null || videocameraController!=null-»
-#import <MobileCoreServices/MobileCoreServices.h>
+import MobileCoreServices
 «ENDIF-»
 «IF audioPlayers.size > 0 || audioRecorder!=null-»
-#import <AVFoundation/AVFoundation.h>
+import AVFoundation
 «ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE privateImports FOR ViewController-»
-#import "«name»ViewController.h"
+import "«name»ViewController.swift"
 «IF imageViews.sourceType.toString().contains("remoteFile")-»
-#import "ImageDownloadingTask.h"
+import "ImageDownloadingTask.swift"
 «ENDIF-»
 «IF gridViews.size!=0-»
 #import "CustomCollectionViewCell.h"
 «ENDIF-»
 «FOREACH listViews AS lv-»
 «IF lv.clickListener.navigation!=null-»
-#import "«lv.clickListener.navigation.destination»ViewController.h"
+import "«lv.clickListener.navigation.destination»ViewController.swift"
 «ENDIF-»
 «ENDFOREACH-»
 «FOREACH gridViews AS gv-»
 «IF gv.clickListener.navigation!=null-»
-#import "«gv.clickListener.navigation.destination»ViewController.h"
+import "«gv.clickListener.navigation.destination»ViewController.swift"
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»

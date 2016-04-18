@@ -17,9 +17,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
 @IBOutlet weak var «vv.id»: UIWebView!
-«IF vv.sourceType.toString().matches("hardwareFile")-»
-@property (strong, nonatomic) NSURL *recordedVideoUrl;
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
@@ -32,7 +31,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		if let «vv.id»String = NSBundle.mainBundle().pathForResource("«vv.fileUri»", ofType:"mp4") {
             let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
             let «vv.id»Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
-            webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
+            «vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
         }
 		«ELSE-»
 		//Decomment here and replace URI
@@ -40,16 +39,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		if let «vv.id»String = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
             let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
             let «vv.id»Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
-            webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
+            «vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
         }
 		*/
 		«ENDIF-»
 	«ELSEIF vv.sourceType.toString().matches("remoteFile")-»
 		let «vv.id»Url = "«vv.fileUri»"
-        let webView1Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
-        webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
+        let «vv.id»Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
+        «vv.id».loadHTMLString(«vv.id»Iframe, baseURL: nil)
 	«ENDIF-»
 «ENDIF-»
-«EXPAND ios_viewcontrollers_templates::Camera::viewDidAppear-»
 «ENDFOREACH-»
 «ENDDEFINE-»
