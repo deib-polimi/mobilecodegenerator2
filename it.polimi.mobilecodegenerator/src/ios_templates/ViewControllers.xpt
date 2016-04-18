@@ -64,7 +64,6 @@ override func didReceiveMemoryWarning() {
 
 «EXPAND ios_viewcontrollers_templates::Buttons::buttons-»
 
-«EXPAND ios_viewcontrollers_templates::AlertDialogs::alertDialogs-»
 
 «EXPAND ios_viewcontrollers_templates::Audio::audio-»
 
@@ -76,7 +75,6 @@ override func didReceiveMemoryWarning() {
 
 «EXPAND ios_viewcontrollers_templates::LocationManager::locationManager-»
 
-«EXPAND ios_viewcontrollers_templates::AsyncTasks::asyncTasks-»
 
 - (void)viewWillAppear:(BOOL)animated
 {

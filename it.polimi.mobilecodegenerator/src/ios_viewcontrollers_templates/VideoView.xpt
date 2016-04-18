@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -17,8 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH videoViews AS vv-»
-@property (weak, nonatomic) IBOutlet UIView *«vv.id»;
-@property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
+@IBOutlet weak var «vv.id»: UIWebView!
 «IF vv.sourceType.toString().matches("hardwareFile")-»
 @property (strong, nonatomic) NSURL *recordedVideoUrl;
 «ENDIF-»
@@ -26,27 +25,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE viewDidAppear FOR ViewController-»
-	«FOREACH videoViews AS vv-»
-	«IF !vv.sourceType.toString().matches("hardwareFile")-»
+«FOREACH videoViews AS vv-»
+«IF !vv.sourceType.toString().matches("hardwareFile")-»
 	«IF vv.sourceType.toString().matches("localFile")-»
-	«IF !vv.fileUri.matches("")-»
-	NSURL *«vv.id»VideoFileUri = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"«vv.fileUri.split("\\.").get(0)»" ofType:@"«vv.fileUri.split("\\.").get(1)»"]];
-	«ELSE-»
-	NSURL *«vv.id»VideoFileUri = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"filename..." ofType:@"extension..."]]; //TODO insert local file name and extension
-	«ENDIF-»
+		«IF !vv.fileUri.matches("")-»
+		if let «vv.id»String = NSBundle.mainBundle().pathForResource("«vv.fileUri»", ofType:"mp4") {
+            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+            let «vv.id»Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
+            webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
+        }
+		«ELSE-»
+		//Decomment here and replace URI
+		/*
+		if let «vv.id»String = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
+            let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)
+            let «vv.id»Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
+            webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
+        }
+		*/
+		«ENDIF-»
 	«ELSEIF vv.sourceType.toString().matches("remoteFile")-»
-	«IF !vv.fileUri.matches("")-»
-	NSURL *«vv.id»VideoFileUri=[NSURL URLWithString:@"«vv.fileUri»"];
-	«ELSE-»
-	NSURL *«vv.id»VideoFileUri=[NSURL URLWithString:@"http://..."]; //TODO insert the remote file uri
+		let «vv.id»Url = "«vv.fileUri»"
+        let webView1Iframe = "<iframe width=\"\(self.«vv.id».frame.width)\" height=\"\(self.«vv.id».frame.height)\" src=\"\(«vv.id»Url)\" frameborder=\"0\"></iframe>"
+        webView1.loadHTMLString(«vv.id»Iframe, baseURL: nil)
 	«ENDIF-»
-	«ENDIF-»
-	self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:«vv.id»VideoFileUri];
-	[self.moviePlayer prepareToPlay];
-	[self.moviePlayer.view setFrame: self.«vv.id».bounds];
-	[self.«vv.id» addSubview:self.moviePlayer.view];
-	[self.moviePlayer play];
-	«ENDIF-»
-	«EXPAND ios_viewcontrollers_templates::Camera::viewDidAppear-»
-	«ENDFOREACH-»
+«ENDIF-»
+«EXPAND ios_viewcontrollers_templates::Camera::viewDidAppear-»
+«ENDFOREACH-»
 «ENDDEFINE-»
