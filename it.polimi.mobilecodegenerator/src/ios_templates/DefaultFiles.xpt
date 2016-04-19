@@ -62,5 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 «ENDFILE»
 
+«REM» If there's a ListView in the application then create custom table view cells «ENDREM»
+«IF viewControllers.listViews.size!=0 -»
+«FILE this.name +"/"+this.name +"/"+ "DetailedTableViewCell.swift"-»
+import UIKit
+
+class DetailedTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    
+}
+«ENDFILE-»
+«FILE this.name +"/"+this.name +"/"+ "ImageTableViewCell.swift"-»
+import UIKit
+
+class ImageTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var img: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    
+}
+«ENDFILE-»
+«ENDIF-»
 
 «ENDDEFINE-»

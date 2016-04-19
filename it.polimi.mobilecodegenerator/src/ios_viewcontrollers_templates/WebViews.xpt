@@ -17,23 +17,25 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH webViews AS wv-»
-@property (weak, nonatomic) IBOutlet UIWebView *«wv.id»;
+@IBOutlet weak var «wv.id»: UIWebView!
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH webViews AS wv-»
 	«IF !wv.HTMLFileName.matches("")-»
-	NSString *«wv.id»FileName = @"«wv.HTMLFileName.split("\\.").get(0)»";
-	NSString *«wv.id»FilePath = [[NSBundle mainBundle] pathForResource:«wv.id»FileName ofType:@"html"];
-	NSString *«wv.id»DataString = [NSString stringWithContentsOfFile:«wv.id»FilePath encoding:NSUTF8StringEncoding error:nil];
-	[self.«wv.id» loadHTMLString:«wv.id»DataString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+	let «wv.id»FileName = «wv.HTMLFileName.split("\\.").get(0)»
+	if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
+        let request = NSURLRequest(URL: «wv.id»Url)
+        self.«wv.id».loadRequest(request)
+    }
 	«ELSE-»
 	/*
-	NSString *«wv.id»FileName = @"filename..."; //TODO insert local html file name
-	NSString *«wv.id»FilePath = [[NSBundle mainBundle] pathForResource:«wv.id»FileName ofType:@"html"];
-	NSString *«wv.id»DataString = [NSString stringWithContentsOfFile:«wv.id»FilePath encoding:NSUTF8StringEncoding error:nil];
-	[self.«wv.id» loadHTMLString:«wv.id»DataString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+	let «wv.id»FileName = "" //TODO insert local html file name
+	if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
+        let request = NSURLRequest(URL: «wv.id»Url)
+        self.«wv.id».loadRequest(request)
+    }
 	*/
 	«ENDIF-»
 	«ENDFOREACH-»

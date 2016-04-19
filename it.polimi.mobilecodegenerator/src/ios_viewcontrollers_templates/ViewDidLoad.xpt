@@ -20,8 +20,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	«EXPAND ios_viewcontrollers_templates::ImageViews::viewDidLoad-»
 	
-	«EXPAND ios_viewcontrollers_templates::ProgressDialogs::viewDidLoad-»
-	
+	«EXPAND ios_viewcontrollers_templates::ListViews::viewDidLoad-»
 	
 	«EXPAND ios_viewcontrollers_templates::LocationManager::viewDidLoad-»
 	

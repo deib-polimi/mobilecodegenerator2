@@ -20,31 +20,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewController FOR ViewController-»
 
-«FILE application.name +"/"+application.name +"/"+ name+"ViewController.h"-»
+«FILE application.name +"/"+application.name +"/"+ name+"ViewController.swift"-»
+
 «EXPAND ios_viewcontrollers_templates::Imports::publicImports-»
-
-@interface «name»ViewController : UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols»
-@end
-«ENDFILE-»
-
-«FILE application.name +"/"+application.name +"/"+ name+"ViewController.m"-»
 «EXPAND ios_viewcontrollers_templates::Imports::privateImports-»
 
-@interface «name»ViewController ()
+class ViewController: UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
+
 «EXPAND ios_viewcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
-@end
 
-@implementation «name»ViewController
 «EXPAND ios_viewcontrollers_templates::LazyInstantiations::lazyInstantiations-»
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 override func viewDidLoad() {
     super.viewDidLoad()
@@ -64,7 +49,6 @@ override func didReceiveMemoryWarning() {
 
 «EXPAND ios_viewcontrollers_templates::Buttons::buttons-»
 
-
 «EXPAND ios_viewcontrollers_templates::Audio::audio-»
 
 «EXPAND ios_viewcontrollers_templates::ListViews::listViews-»
@@ -76,28 +60,23 @@ override func didReceiveMemoryWarning() {
 «EXPAND ios_viewcontrollers_templates::LocationManager::locationManager-»
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	// Auto-generated method stub
+override func viewWillAppear(animated: Bool) {
+	super.viewWillAppear(animated)
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-	// Auto-generated method stub
+override func viewWillDissppear(animated: Bool) {
+	super.viewWillDisappear(animated)
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-	// Auto-generated method stub
+override func viewDidDisappear(animated: Bool) {
+	super.viewDidDisappear(animated)
 	«EXPAND ios_viewcontrollers_templates::ViewDidDisappear::viewDidDisappear-»
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{}
-
-@end
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+}
 «ENDFILE-»
 
 «ENDDEFINE-»
