@@ -22,6 +22,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	«EXPAND ios_viewcontrollers_templates::ListViews::viewDidLoad-»
 	
+	«EXPAND ios_viewcontrollers_templates::GridViews::viewDidLoad-»
+	
 	«EXPAND ios_viewcontrollers_templates::LocationManager::viewDidLoad-»
 	
 	«EXPAND ios_viewcontrollers_templates::AsyncTasks::viewDidLoad-»

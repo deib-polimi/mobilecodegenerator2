@@ -62,7 +62,6 @@ var «lv.id»Icons: [UIImage] = [
 «DEFINE listViews FOR ViewController-»
 «IF listViews.size!=0-»
 func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    // Return the number of sections
     return 1
 }
 

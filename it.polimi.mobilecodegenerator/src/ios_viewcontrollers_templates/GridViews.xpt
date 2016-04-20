@@ -17,64 +17,100 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH gridViews AS gv-»
-@property (weak, nonatomic) IBOutlet UICollectionView *«gv.id»;
-@property (strong, nonatomic) NSArray *«gv.id»Contents;
+@IBOutlet weak var «gv.id»: UICollectionView!
+
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple") -»
+var «gv.id»Contents: [String] = [
+	«IF gv.gridViewCells.size!=0-»
+	// Change the text for each cell here
+	«FOREACH gv.gridViewCells AS gvc-»
+	"Some text",
+	«ENDFOREACH-»
+	«ENDIF-»
+]
+«ENDIF-»
+
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image") -»
+var «gv.id»Images: [UIImage] = [
+	«IF gv.gridViewCells.size!=0-»
+	// Change the images for each cell here
+	«FOREACH gv.gridViewCells AS gvc-»
+	UIImage(named: "img")!,
+	«ENDFOREACH-»
+	«ENDIF-»
+]
+«ENDIF-»
+
 «ENDFOREACH-»
 «ENDDEFINE-»
 
-«DEFINE lazyInstantiations FOR ViewController-»
+«DEFINE viewDidLoad FOR ViewController-»
 «FOREACH gridViews AS gv-»
--(NSArray *)«gv.id»Contents {
-    if(!_«gv.id»Contents){
-    	_«gv.id»Contents = [[NSArray alloc] init];
-    	«IF gv.gridViewCells.size!=0-»
-		_«gv.id»Contents = @[
-			«FOREACH gv.gridViewCells AS gvc-»
-			@"«gvc.title»",
-			«ENDFOREACH-»
-		];
-    	«ENDIF-»
-    }
-    return _«gv.id»Contents;
-}
-«ENDFOREACH-»
+	self.«gv.id».delegate = self
+	self.«gv.id».detasource = self
+«ENDFOREACH»
 «ENDDEFINE-»
 
 «DEFINE gridViews FOR ViewController-»
 «IF gridViews.size!=0-»
-#pragma mark - Collection view DataSource 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-	// Return the number of sections.
-    return 1;
+func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    return 1
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-	// Return the number of items in the section.
+func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     «FOREACH gridViews AS gv-»
-    if (collectionView == self.«gv.id») {
-        return self.«gv.id»Contents.count;
+    if collectionView == self.«gv.id»CollectionView {
+    	«IF gv.gridType.matches("image")-»
+        return self.«gv.id»Images.count
+        «ELSE-»
+        return self.«gv.id»Contents.count
+        «ENDIF-»
     }
     «ENDFOREACH-»
+    
+    return 0
 }
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	static NSString *CellIdentifier = @"CellIdentifier";
-    CustomCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
-	«FOREACH gridViews AS gv-»
-    if (collectionView == self.«gv.id») {
-        cell.label.text = [self.«gv.id»Contents objectAtIndex:indexPath.item];
+func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	// Configure the cell...
+    «FOREACH gridViews AS gv-»
+    «IF gv.gridType.matches("detailed")-»
+    if collectionView == self.«gv.id»CollectionView {
+        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! DetailedCollectionViewCell
+        «gv.id»CollectionViewCell.label.text = «gv.id»Contents[indexPath.row]
+        «gv.id»CollectionViewCell.img.image = «gv.id»Images[indexPath.row]
+        return «gv.id»CollectionViewCell
     }
+    «ELSEIF gv.gridType.matches("image")-»
+    if collectionView == self.«gv.id»CollectionView {
+        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
+        «gv.id»CollectionViewCell.img.image = «gv.id»Images[indexPath.row]
+        return «gv.id»CollectionViewCell
+    }
+    «ELSEIF gv.gridType.matches("simple")-»
+    if collectionView == self.«gv.id»CollectionView {
+        let «gv.id»CollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("«gv.id»CollectionViewCell", forIndexPath: indexPath) as! SimpleCollectionViewCell
+        «gv.id»CollectionViewCell.label.text = «gv.id»Contents[indexPath.row]
+        return «gv.id»CollectionViewCell
+    }
+    «ENDIF-»
     «ENDFOREACH-»
-	return cell;
+    
+	return UICollectionViewCell;
 }
 
-#pragma mark - Collection view Delegate
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+//Force the dimensions of the cells to half screen width
+func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath: NSIndexPath) -> CGSize {
+    let dim = (collectionView.bounds.width / 2.0) - 2.5 //2.5 is half cell spacing
+    return CGSize(width: dim, height: dim)
+}
+
+//Invalidate layout when rotating device to re-calculate the dimensions of the cells
+override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    self.abcCollectionView.collectionViewLayout.invalidateLayout()
+}
+
+func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
 	«FOREACH gridViews AS gv-»
 	«IF gv.clickListener!=null-»
     if (collectionView == self.«gv.id») {
@@ -89,7 +125,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     }
     «ENDIF-»
     «ENDFOREACH-»
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    collectionView.deselectItemAtIndexPath(indexPath, animated: true)
 }
 «ENDIF-»
 «ENDDEFINE-»

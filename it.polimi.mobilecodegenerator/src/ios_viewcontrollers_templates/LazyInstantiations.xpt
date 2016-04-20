@@ -16,6 +16,4 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE lazyInstantiations FOR ViewController-»
-«EXPAND ios_viewcontrollers_templates::ListViews::lazyInstantiations-»
-«EXPAND ios_viewcontrollers_templates::GridViews::lazyInstantiations-»
 «ENDDEFINE-»

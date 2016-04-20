@@ -87,4 +87,41 @@ class ImageTableViewCell: UITableViewCell {
 «ENDFILE-»
 «ENDIF-»
 
+«REM» If there's a GridView in the application then create custom collection view cells «ENDREM»
+«IF viewControllers.gridViews.size!=0 -»
+
+«FILE this.name +"/"+this.name +"/"+ "DetailedCollectionViewCell.swift"-»
+import UIKit
+
+class DetailedCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var img: UIImageView!   
+    @IBOutlet weak var label: UILabel!
+    
+}
+«ENDFILE-»
+
+«FILE this.name +"/"+this.name +"/"+ "ImageCollectionViewCell.swift"-»
+import UIKit
+
+class DetailedCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var img: UIImageView!
+    
+}
+«ENDFILE-»
+
+«FILE this.name +"/"+this.name +"/"+ "SimpleCollectionViewCell.swift"-»
+import UIKit
+
+class DetailedCollectionViewCell: UICollectionViewCell {
+       
+    @IBOutlet weak var label: UILabel!
+    
+}
+«ENDFILE-»
+
+«ENDIF-»
+
+
 «ENDDEFINE-»
