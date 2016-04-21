@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -17,8 +17,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewDidAppear FOR ViewController-»
 	«EXPAND ios_viewcontrollers_templates::AlertDialogs::viewDidAppear-»
-
 	«EXPAND ios_viewcontrollers_templates::VideoView::viewDidAppear-»
-
 	«EXPAND ios_viewcontrollers_templates::Audio::viewDidAppear-»
 «ENDDEFINE-»

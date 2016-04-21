@@ -17,28 +17,26 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXTENSION ios_extensions::Java»
 «DEFINE main FOR Application-»
 
-«FILE name+"/"+name+"/en.lproj/MainStoryboard.storyboard"-»
+«FILE name+"/"+name+"/Base.lproj/Main.storyboard"-»
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" 
 «REM»initialViewController exists only in case viewController.size>0 and is the TabBarController if menu exists and menu.menuItems>0 (HP: one of the items references the launcher VC), otherwise is the NavigatorController of the launcher VC.«ENDREM»
-«IF viewControllers.size==0-»
-	>
-«ELSEIF menu!=null && menu.menuItems.size>0-»
-	initialViewController="TabBarControllerID">
-«ELSE-» «REM»No menu or menu.menuItems.size==0«ENDREM»
-	«FOREACH viewControllers AS vc-»
-    «IF vc.launcher-»
-	initialViewController="NavigationControllerIDWithRoot«vc.name»ViewControllerID">
-	«ENDIF-»
-	«ENDFOREACH-»
+«IF viewControllers.size == 0-»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+«ELSEIF viewControllers.size > 0 && (menu != null && menu.menuItems.size > 0) -»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TabBarControllerID">
+«ELSEIF viewControllers.size > 0 && (menu == null || menu.menuItems.size <= 0) -»
+«FOREACH viewControllers AS vc-»
+«IF vc.launcher-»
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NavigationControllerIDWithRoot«vc.name»ViewControllerID">
+«ENDIF-»
+«ENDFOREACH-»
 «ENDIF-»
 	<dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
     </dependencies>
 	<scenes>
-	«IF viewControllers.size==0-»
+	«IF viewControllers.size == 0-»
 	«ENDIF-»
 		«FOREACH viewControllers AS vc-»
 		<!--«vc.name»ViewController-->
@@ -314,7 +312,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		</scene>
 		«ENDFOREACH-»
 		
-		«IF menu!=null-» «REM»If Menu exists we generate the TabBarController«ENDREM»
+		«IF menu != null && menu.menuItems.size > 0 -» «REM»If Menu exists we generate the TabBarController«ENDREM»
 		<!--Tab Bar Controller-->
         <scene sceneID="TabBarControllerSceneID">
             <objects>
@@ -388,7 +386,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «ENDIF-»
         «ENDFOREACH-»
         «ENDFOREACH-»
-    </resources>
+	</resources>
 	<classes>
 	 	«FOREACH viewControllers AS vc-»
 	 	<class className="«vc.name»ViewController" superclassName="UIViewController">

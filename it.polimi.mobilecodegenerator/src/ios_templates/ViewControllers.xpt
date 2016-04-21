@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -25,57 +25,56 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXPAND ios_viewcontrollers_templates::Imports::publicImports-»
 «EXPAND ios_viewcontrollers_templates::Imports::privateImports-»
 
-class ViewController: UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
+class «name»ViewController: UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
 
-«EXPAND ios_viewcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
+	«EXPAND ios_viewcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
 
-«EXPAND ios_viewcontrollers_templates::LazyInstantiations::lazyInstantiations-»
-
-override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-	«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
-}
-
-override func viewDidAppear(animated: Bool) {
-    super.viewDidAppear(animated)
-    «EXPAND ios_viewcontrollers_templates::ViewDidAppear::viewDidAppear-»
-}
-
-override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-}
-
-«EXPAND ios_viewcontrollers_templates::Buttons::buttons-»
-
-«EXPAND ios_viewcontrollers_templates::Audio::audio-»
-
-«EXPAND ios_viewcontrollers_templates::ListViews::listViews-»
-
-«EXPAND ios_viewcontrollers_templates::GridViews::gridViews-»
-
-«EXPAND ios_viewcontrollers_templates::Camera::camera-»
-
-«EXPAND ios_viewcontrollers_templates::LocationManager::locationManager-»
-
-
-override func viewWillAppear(animated: Bool) {
-	super.viewWillAppear(animated)
-}
-
-override func viewWillDissppear(animated: Bool) {
-	super.viewWillDisappear(animated)
-}
-
-override func viewDidDisappear(animated: Bool) {
-	super.viewDidDisappear(animated)
-	«EXPAND ios_viewcontrollers_templates::ViewDidDisappear::viewDidDisappear-»
-}
-
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+	override func viewDidLoad() {
+	    super.viewDidLoad()
+	    // Do any additional setup after loading the view, typically from a nib.
+		«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+	    super.viewDidAppear(animated)
+	    «EXPAND ios_viewcontrollers_templates::ViewDidAppear::viewDidAppear-»
+	}
+	
+	override func viewDidDisappear(animated: Bool) {
+		super.viewDidDisappear(animated)
+		«EXPAND ios_viewcontrollers_templates::ViewDidDisappear::viewDidDisappear-»
+	}
+	
+	override func didReceiveMemoryWarning() {
+	    super.didReceiveMemoryWarning()
+	    // Dispose of any resources that can be recreated.
+	}
+	
+	«EXPAND ios_viewcontrollers_templates::Buttons::buttons-»
+	
+	«EXPAND ios_viewcontrollers_templates::Audio::audio-»
+	
+	«EXPAND ios_viewcontrollers_templates::ListViews::listViews-»
+	
+	«EXPAND ios_viewcontrollers_templates::GridViews::gridViews-»
+	
+	«EXPAND ios_viewcontrollers_templates::Camera::camera-»
+	
+	«EXPAND ios_viewcontrollers_templates::LocationManager::locationManager-»
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	    // Get the new view controller using segue.destinationViewController.
+	    // Pass the selected object to the new view controller.
+	}
+	
 }
 «ENDFILE-»
 

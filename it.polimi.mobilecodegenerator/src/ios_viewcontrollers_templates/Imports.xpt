@@ -21,7 +21,7 @@ import UIKit
 import CoreLocation
 «ENDIF-»
 «IF videoViews.size!=0-»
-//import MediaPlayer
+import AVKit
 «ENDIF-»
 «IF photocameraController!=null || videocameraController!=null-»
 import MobileCoreServices
@@ -32,12 +32,8 @@ import AVFoundation
 «ENDDEFINE-»
 
 «DEFINE privateImports FOR ViewController-»
-import "«name»ViewController.swift"
 «IF imageViews.sourceType.toString().contains("remoteFile")-»
 import "ImageDownloadingTask.swift"
-«ENDIF-»
-«IF gridViews.size!=0-»
-#import "CustomCollectionViewCell.h"
 «ENDIF-»
 «FOREACH listViews AS lv-»
 «IF lv.clickListener.navigation!=null-»

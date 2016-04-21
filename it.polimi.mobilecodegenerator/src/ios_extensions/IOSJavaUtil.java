@@ -36,8 +36,8 @@ public class IOSJavaUtil {
 		return hexadecimalIdsMap.get(key)[1];
 	}
 	private static String[] generateNewHexadecimalIds(String key) {
-		String firstId = "7F918D"+(++count)+"EF10055FE15";
-		String secondId = "7F918D"+(++count)+"EF10055FE15";
+		String firstId 	= "36181A"+(++count)+"5260094950D";
+		String secondId = "36181A"+(++count)+"5260094950D";
 		String[] array = {firstId,secondId};
 		hexadecimalIdsMap.put(key,array);
 		return array;
@@ -58,7 +58,9 @@ public class IOSJavaUtil {
 	}
 	
 	public static void copyDefaultIOSFiles(){
-		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/en.lproj").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Base.lproj").mkdirs();
 		
 		for(int i=0; i<IOSConstants.sourceFilesPaths.length; i++){
 			File source = new File(IOSConstants.sourceFilesPaths[i]);

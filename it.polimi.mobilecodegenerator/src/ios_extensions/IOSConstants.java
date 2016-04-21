@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -17,24 +17,12 @@ package ios_extensions;
 import app_extensions.AppJavaUtil;
 
 public class IOSConstants {
-	private static String sourceFilesFolder = "utils/ios_default_files";
+	public static String sourceFilesFolder = "utils/ios_default_files";
 	public static String[] sourceFilesPaths = {
-		sourceFilesFolder+"/InfoPlist.strings",
-		sourceFilesFolder+"/AppDelegate.h",
-		sourceFilesFolder+"/AppDelegate.m",
-		sourceFilesFolder+"/Default.png",
-		sourceFilesFolder+"/Default@2x.png",
-		sourceFilesFolder+"/Default-568h@2x.png",
-		sourceFilesFolder+"/main.m"
+		sourceFilesFolder+"/Contents.json"
 	};
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
 	public static String[] destinationFilesPaths = {
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/en.lproj/InfoPlist.strings",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/AppDelegate.h",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/AppDelegate.m",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Default.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Default@2x.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Default-568h@2x.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/main.m"
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset/Contents.json"
 	};
 }

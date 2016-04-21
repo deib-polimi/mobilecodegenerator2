@@ -123,12 +123,14 @@ var «ap.id»: AVAudioPlayer!
 «ENDDEFINE-»
 
 «DEFINE audio FOR ViewController-»
-//Function to get the data from a url
-func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-        completion(data: data, response: response, error: error)
-        }.resume()
-}
+	«IF audioPlayers.size != 0-»
+	//Function to get the data from a url
+	func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+	    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+	        completion(data: data, response: response, error: error)
+	        }.resume()
+	}
+	«ENDIF-»
 
 «FOREACH audioPlayers AS ap-»
 @IBAction func «ap.id»Play(sender: UIButton) {
