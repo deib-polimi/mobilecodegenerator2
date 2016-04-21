@@ -35,6 +35,7 @@ public class IOSJavaUtil {
 	public static String getSecondHexadecimalId(String key){
 		return hexadecimalIdsMap.get(key)[1];
 	}
+	//36181A and 5260094950D have been chosen randomly
 	private static String[] generateNewHexadecimalIds(String key) {
 		String firstId 	= "36181A"+(++count)+"5260094950D";
 		String secondId = "36181A"+(++count)+"5260094950D";
