@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="Main" launcher="true">
+        <buttons id="ttsButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="false" width="88" height="36" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="" borderRadius="0" clickColor=""/>
+    </viewControllers>
+    <viewControllers name="Other" launcher="false"/>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+        <menuItems title="Other" id="Other">
+            <navigation destination="Other"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

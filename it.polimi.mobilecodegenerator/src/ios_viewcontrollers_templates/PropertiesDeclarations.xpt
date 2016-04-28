@@ -16,6 +16,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE propertiesDeclarations FOR ViewController-»
+«EXPAND ios_viewcontrollers_templates::Buttons::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::EditTexts::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::WebViews::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::ImageViews::propertiesDeclarations-»

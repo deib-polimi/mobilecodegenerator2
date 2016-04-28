@@ -60,8 +60,8 @@ var «ap.id»: AVAudioPlayer!
 	«ENDIF-»
 	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 	«IF !ap.fileUri.matches("")-»
-	let let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
-	getDataFromUrl(let «ap.id»FileRemoteUrl) { (data, response, error)  in
+	let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
+	getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
 		dispatch_async(dispatch_get_main_queue()) { () -> Void in
 			guard let data = data where error == nil else {
 				NSLog("Data error")

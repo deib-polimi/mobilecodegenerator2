@@ -22,6 +22,6 @@ String getSecondHexadecimalId(String key):JAVA ios_extensions.IOSJavaUtil.getSec
 Void deleteApplicationFolder():JAVA ios_extensions.IOSJavaUtil.deleteApplicationFolder();
 Void copyDefaultIOSFiles():JAVA ios_extensions.IOSJavaUtil.copyDefaultIOSFiles();
 Void copyUserFiles():JAVA ios_extensions.IOSJavaUtil.copyUserFiles();
-
-Integer getYOnStoryboard(Integer height):JAVA ios_extensions.IOSJavaUtil.getYOnStoryboard(java.lang.Integer);
-Void resetCurrentY():JAVA ios_extensions.IOSJavaUtil.resetCurrentY();
+float redFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.redFromHex(java.lang.String);
+float greenFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.greenFromHex(java.lang.String);
+float blueFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.blueFromHex(java.lang.String);

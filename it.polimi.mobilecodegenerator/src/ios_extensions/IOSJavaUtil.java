@@ -15,6 +15,7 @@
 
 package ios_extensions;
 
+import java.awt.Color;
 import java.io.File;
 import java.util.HashMap;
 
@@ -70,6 +71,35 @@ public class IOSJavaUtil {
 		}
 	}
 	
+	public static float redFromHex(String hexColor) {
+		try {
+			hexColor = hexColor.replace("#", "0x");
+			Color c = Color.decode(hexColor);
+			return (float) c.getRed()/255;
+		} catch(Exception e) {
+			return 0;
+		}
+	}
+	public static float greenFromHex(String hexColor) {
+		try {
+			hexColor = hexColor.replace("#", "0x");
+			Color c = Color.decode(hexColor);
+			return (float) c.getGreen()/255;
+		} catch(Exception e) {
+			return 0;
+		}
+	}
+	public static float blueFromHex(String hexColor) {
+		try {
+			hexColor = hexColor.replace("#", "0x");
+			Color c = Color.decode(hexColor);
+			return (float) c.getBlue()/255;
+		} catch(Exception e) {
+			return 0;
+		}
+	}
+	
+	/*
 	private static Integer currentY;
 	private static final Integer Y_OFFSET = 10;
 	
@@ -82,4 +112,5 @@ public class IOSJavaUtil {
 		currentY = currentY + height + Y_OFFSET;
 		return y;
 	}
+	*/
 }

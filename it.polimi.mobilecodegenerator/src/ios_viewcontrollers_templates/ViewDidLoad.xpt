@@ -16,6 +16,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE viewDidLoad FOR ViewController-»
+	«EXPAND ios_viewcontrollers_templates::Buttons::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::WebViews::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::ImageViews::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::ListViews::viewDidLoad-»

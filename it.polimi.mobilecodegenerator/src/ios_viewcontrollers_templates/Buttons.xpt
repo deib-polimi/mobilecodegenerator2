@@ -14,13 +14,41 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDREM»
 
 «IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
+
+«DEFINE propertiesDeclarations FOR ViewController-»
+	«FOREACH buttons AS b-»
+	@IBOutlet weak var «b.id»: UIButton!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+	«FOREACH buttons AS b-»
+	«IF b.borderRadius != 0-»
+		«b.id».layer.cornerRadius = «b.borderRadius»
+	«ENDIF-»
+	«ENDFOREACH-»
+«ENDDEFINE-»
 
 «DEFINE buttons FOR ViewController-»
 «FOREACH buttons AS b-»
-«IF b.clickListener!=null && b.clickListener.navigation==null-»
-@IBAction func «b.id»ClickAction(sender: UIButton) {
-	//TODO Implement the action
-}
-«ENDIF-»
+	@IBAction func «b.id»TouchDown(sender: UIButton) {
+        «IF !b.clickColor.matches("")-»
+        // Changes background color of button when clicked
+		sender.backgroundColor = UIColor(red: «redFromHex(b.clickColor)», green: «greenFromHex(b.clickColor)», blue: «blueFromHex(b.clickColor)», alpha: 1)
+		«ENDIF-»
+        //TODO Implement the action
+    }
+    
+	@IBAction func «b.id»TouchUpInside(sender: UIButton) {
+        «IF !b.clickColor.matches("") && !b.backgroundColor.matches("")-»
+        // Restore original background color of button after click
+		sender.backgroundColor = UIColor(red: «redFromHex(b.backgroundColor)», green: «greenFromHex(b.backgroundColor)», blue: «blueFromHex(b.backgroundColor)», alpha: 1)
+		«ELSEIF !b.clickColor.matches("") && b.backgroundColor.matches("")-»
+        // Restore original background color of button after click
+		sender.backgroundColor = UIColor.whiteColor()
+		«ENDIF-»
+        //TODO Implement the action
+    }  
 «ENDFOREACH-»
 «ENDDEFINE-»
