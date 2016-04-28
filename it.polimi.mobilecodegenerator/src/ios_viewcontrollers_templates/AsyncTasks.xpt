@@ -17,15 +17,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH asyncTasks AS at-»
-	// «at.name» : do this operation on another thread
-    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-    dispatch_async(dispatch_get_global_queue(priority, 0)) {
-        // Do some task in background
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            // Update some UI at the end of the task
-            
-        }
-    }	
+		// «at.name» : do this operation on another thread
+	    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+	    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+	        // Do some task in background
+	        
+	        dispatch_async(dispatch_get_main_queue()) {
+	            // Update some UI at the end of the task
+	            
+	        }
+	    }	
 	«ENDFOREACH-»
 «ENDDEFINE-»

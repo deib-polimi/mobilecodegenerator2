@@ -75,7 +75,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    	</state>
 	                    	<connections>
 	                    		«IF b.clickListener!=null && b.clickListener.navigation!=null»
-	                    		<segue destination="«b.clickListener.navigation.destination»ViewControllerID" kind="push" id="SegueIDFrom«b.id»To«b.clickListener.navigation.destination»ViewControllerID"/>
+	                    		<segue destination="«b.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«b.id»To«b.clickListener.navigation.destination»ViewControllerID"/>
 	                    		«ENDIF»
 	                    		<action selector="«b.id»TouchUpInside:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«b.id»TouchUpInsideActionID"/>
 	                    		<action selector="«b.id»TouchDown:" destination="«vc.name»ViewControllerID" eventType="touchDown" id="«b.id»TouchDownActionID"/>
@@ -182,18 +182,24 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    </view>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.textViews AS tv-»
-	                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="«tv.textAlign.toString()»" text="«tv.content»" id="«tv.id»">
+	                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="«tv.textAlign.toString()»" text="«tv.content»" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«tv.id»">
 	                        «EXPAND uiControl FOR tv»
-	                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0" colorSpace="calibratedRGB"/>
-	                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-	                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-	                    </textView>
+	                        «IF tv.textDecoration.matches("bold")-»
+	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="«tv.textSize»"/>
+	                        «ELSEIF tv.textDecoration.matches("italic")-»
+	                        <fontDescription key="fontDescription" type="italicSystem" pointSize="«tv.textSize»"/>
+	                        «ELSE-»
+	                        <fontDescription key="fontDescription" type="system" pointSize="«tv.textSize»"/>
+	                        «ENDIF-»
+	                        <color key="textColor" red="«redFromHex(tv.textColor)»" green="«greenFromHex(tv.textColor)»" blue="«blueFromHex(tv.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        <nil key="highlightedColor"/>
+	                    </label>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.editTexts AS et-»
-	                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="«et.placeholder»" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" text="«et.initialContent»" id="«et.id»">
+	                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="«et.placeholder»" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" text="«et.initialContent»" id="«et.id»">
 	                        «EXPAND uiControl FOR et»
-	                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-	                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+	                        <color key="textColor" red="«redFromHex(et.textColor)»" green="«greenFromHex(et.textColor)»" blue="«blueFromHex(et.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        <fontDescription key="fontDescription" type="system" pointSize="«et.textSize»"/>
 	                        <textInputTraits key="textInputTraits"/>
 	                    </textField>
 	                    «ENDFOREACH-»
