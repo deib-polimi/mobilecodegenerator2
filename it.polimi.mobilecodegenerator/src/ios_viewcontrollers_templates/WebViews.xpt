@@ -17,26 +17,26 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH webViews AS wv-»
-@IBOutlet weak var «wv.id»: UIWebView!
+	@IBOutlet weak var «wv.id»: UIWebView!
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH webViews AS wv-»
 	«IF !wv.HTMLFileName.matches("")-»
-	let «wv.id»FileName = «wv.HTMLFileName.split("\\.").get(0)»
-	if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
-        let request = NSURLRequest(URL: «wv.id»Url)
-        self.«wv.id».loadRequest(request)
-    }
+		let «wv.id»FileName = "«wv.HTMLFileName.split("\\.").get(0)»"
+		if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
+	        let request = NSURLRequest(URL: «wv.id»Url)
+	        self.«wv.id».loadRequest(request)
+	    }
 	«ELSE-»
-	/*
-	let «wv.id»FileName = "" //TODO insert local html file name
-	if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
-        let request = NSURLRequest(URL: «wv.id»Url)
-        self.«wv.id».loadRequest(request)
-    }
-	*/
+		/*
+		let «wv.id»FileName = "" //TODO insert local html file name
+		if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
+	        let request = NSURLRequest(URL: «wv.id»Url)
+	        self.«wv.id».loadRequest(request)
+	    }
+		*/
 	«ENDIF-»
 	«ENDFOREACH-»
 «ENDDEFINE-»

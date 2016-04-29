@@ -32,9 +32,6 @@ import AVFoundation
 «ENDDEFINE-»
 
 «DEFINE privateImports FOR ViewController-»
-«IF imageViews.sourceType.toString().contains("remoteFile")-»
-import "ImageDownloadingTask.swift"
-«ENDIF-»
 «FOREACH listViews AS lv-»
 «IF lv.clickListener.navigation!=null-»
 import "«lv.clickListener.navigation.destination»ViewController.swift"

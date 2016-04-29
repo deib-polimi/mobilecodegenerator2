@@ -17,31 +17,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «FOREACH imageViews AS iv-»
-@IBOutlet weak var «iv.id»: UIImageView!
+	@IBOutlet weak var «iv.id»: UIImageView!
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE viewDidLoad FOR ViewController-»
 	«FOREACH imageViews AS iv-»
-	«IF iv.sourceType.toString().matches("remoteFile")-»
-	//Download the image and set the ImageView
-	«IF !iv.fileUri.matches("")-»
-	if let url = NSURL(string: "«iv.fileUri»") {
-        self.«iv.id».contentMode = .ScaleAspectFit
-        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
-    }
-	«ELSE-»
-	/* 	TODO
-		Insert the remote file url
-		Modify «application.name».xcodeproj to whitelist the url
-	*/
-	/*
-	if let url = NSURL(string: "http://") {
-        self.«iv.id».contentMode = .ScaleAspectFit
-        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
-    }
-    */
-	«ENDIF-»
+		«IF iv.sourceType.toString().matches("remoteFile")-»
+		// Download the image and set the ImageView
+		«IF !iv.fileUri.matches("")-»
+		if let url = NSURL(string: "«iv.fileUri»") {
+	        self.«iv.id».contentMode = .ScaleAspectFit
+	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+	    }
+		«ELSE-»
+		/* 	TODO
+			Insert the remote file url
+			Modify Info.plist file to whitelist the url (App Transport Security)
+		*/
+		/*
+		if let url = NSURL(string: "http://") {
+	        self.«iv.id».contentMode = .ScaleAspectFit
+	        ImageDownloadingTask.downloadImage(url, imageView: self.«iv.id»)
+	    }
+	    */
+		«ENDIF-»
 	«ENDIF-»
 	«ENDFOREACH-»
 «ENDDEFINE-»

@@ -99,6 +99,17 @@ public class IOSJavaUtil {
 		}
 	}
 	
+	public String domainFromUrl(String url) {
+		String parts[] = url.split("//");
+		String cleanUrl = parts[1];
+		String results[] = cleanUrl.split("/");
+		return results[0];
+	}
+	
+	public String removeExtension(String fileName) {
+		return fileName.split(".mp4")[0];
+	}
+	
 	/*
 	private static Integer currentY;
 	private static final Integer Y_OFFSET = 10;

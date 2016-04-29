@@ -204,9 +204,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    </textField>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.videoViews AS vv-»
-	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«vv.id»">
+	                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«vv.id»">
 	                        «EXPAND uiControl FOR vv»
-	                    </view>
+	                    </webView>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.webViews AS wv-»
 	                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«wv.id»">
