@@ -4,11 +4,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <buttons id="pioiButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="88" height="36" viewController="//@viewControllers[name='Main']" title="Button" textColor="" backgroundColor="#e20b0b" borderRadius="0" clickColor=""/>
+        <audioPlayers id="jmdAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="250" height="75" viewController="//@viewControllers[name='Main']" sourceType="localFile" fileUri="utils_folder_audio.mp3"/>
+        <audioPlayers id="choAudioPlayer" posX="80" posY="83" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="250" height="75" viewController="//@viewControllers[name='Main']" sourceType="remoteFile" fileUri="http://www.web-link.it/html5/midi.mp3"/>
     </viewControllers>
-    <menu>
-        <menuItems title="newMenuItem" id="newMenuItem">
-            <navigation destination="Main"/>
-        </menuItems>
-    </menu>
+    <menu/>
 </metamodel:Application>

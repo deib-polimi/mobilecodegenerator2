@@ -19,10 +19,16 @@ import app_extensions.AppJavaUtil;
 public class IOSConstants {
 	public static String sourceFilesFolder = "utils/ios_default_files";
 	public static String[] sourceFilesPaths = {
-		sourceFilesFolder+"/Contents.json"
+		sourceFilesFolder+"/Contents.json",
+		sourceFilesFolder+"/play_icon.png",
+		sourceFilesFolder+"/pause_icon.png",
+		sourceFilesFolder+"/stop_icon.png"
 	};
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
 	public static String[] destinationFilesPaths = {
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset/Contents.json"
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset/Contents.json",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/play_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/pause_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/stop_icon.png"
 	};
 }

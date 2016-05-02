@@ -73,6 +73,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             </dict>
 		«ENDIF-»
 		«ENDFOREACH-»
+		«FOREACH vc.audioPlayers AS ap-»
+		«IF ap.sourceType.toString().matches("remoteFile")-»
+            <key>«domainFromUrl(ap.fileUri)»</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                <string>TLSv1.1</string>
+            </dict>
+		«ENDIF-»
+		«ENDFOREACH-»
 		«ENDFOREACH-»
 		</dict>
 	</dict>

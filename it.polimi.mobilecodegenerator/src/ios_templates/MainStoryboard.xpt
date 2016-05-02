@@ -136,48 +136,54 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 							<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
 	                        <subviews>
 	                        	<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerPlayButton">
-	                                <rect key="frame" x="0.0" y="7" width="31" height="30"/>
-	                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-	                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                                <state key="normal" title="Play">
+	                                <rect key="frame" x="0" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»PlayWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»PlayHeightID"/>
+                                    </constraints>
+									<state key="normal" title="Play" image="play_icon.png">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
-	                                    <action selector="play:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPlayButtonTouchUpInsideActionID"/>
+	                                    <action selector="«ap.id»Play:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPlayButtonTouchUpInsideActionID"/>
 	                                </connections>
 	                            </button>
 	                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerPauseButton">
-	                                <rect key="frame" x="77" y="7" width="44" height="30"/>
-	                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-	                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                                <state key="normal" title="Pause">
+	                                <rect key="frame" x="64" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»PauseWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»PauseHeightID"/>
+                                    </constraints>
+                                    <state key="normal" title="Pause" image="pause_icon.png">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
-	                                    <action selector="pause:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPauseButtonTouchUpInsideActionID"/>
+	                                    <action selector="«ap.id»Pause:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerPauseButtonTouchUpInsideActionID"/>
 	                                </connections>
 	                            </button>
 	                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerStopButton">
-	                                <rect key="frame" x="164" y="7" width="34" height="30"/>
-	                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-	                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                                <state key="normal" title="Stop">
+	                                <rect key="frame" x="128" y="0" width="56" height="56"/>
+	                                <constraints>
+                                        <constraint firstAttribute="width" constant="56" id="«ap.id»StopWidthID"/>
+                                        <constraint firstAttribute="height" constant="56" id="«ap.id»StopHeightID"/>
+                                    </constraints>
+	                                <state key="normal" title="Stop" image="stop_icon.png">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
-	                                    <action selector="stop:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerStopButtonTouchUpInsideActionID"/>
+	                                    <action selector="«ap.id»Stop:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«ap.id»AudioPlayerStopButtonTouchUpInsideActionID"/>
 	                                </connections>
 	                            </button>
 	                        </subviews>
 	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
 	                        <constraints>
 	                        	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR ap-»
-	                            <constraint firstAttribute="centerX" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="centerX" id="«ap.id»CentXPauseConst"/>
+	                        	<constraint firstItem="«ap.id»AudioPlayerStopButton" firstAttribute="leading" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="trailing" constant="8" id="«ap.id»StopConst"/>
+                                <constraint firstItem="«ap.id»AudioPlayerPauseButton" firstAttribute="leading" secondItem="«ap.id»AudioPlayerPlayButton" secondAttribute="trailing" constant="8" id="«ap.id»PlayConst"/>
+	                        	<constraint firstAttribute="centerX" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="centerX" id="«ap.id»CentXPauseConst"/>
 	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="centerY" id="«ap.id»CentYPauseConst"/>
-	                            <constraint firstAttribute="leading" secondItem="«ap.id»AudioPlayerPlayButton"  secondAttribute="leading" id="«ap.id»LeadPlayConst"/>
 	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerStopButton" secondAttribute="centerY" id="«ap.id»CentYStopConst"/>
-	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerPlayButton" secondAttribute="centerY" id="«ap.id»CentYPlayConst"/>
-	                            <constraint firstAttribute="trailing" secondItem="«ap.id»AudioPlayerStopButton" secondAttribute="trailing" id="«ap.id»TrailStopConst"/>
+	                            <constraint firstAttribute="centerY" secondItem="«ap.id»AudioPlayerPlayButton" secondAttribute="centerY" id="«ap.id»CentYPlayConst"/>	
 	                        </constraints>
 	                    </view>
 	                    «ENDFOREACH-»
@@ -400,6 +406,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «ENDIF-»
         «ENDFOREACH-»
         «ENDFOREACH-»
+        <image name="pause_icon.png" width="100" height="100"/>
+        <image name="play_icon.png" width="100" height="100"/>
+        <image name="stop_icon.png" width="100" height="100"/>
 	</resources>
 </document>
 «ENDFILE-»

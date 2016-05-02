@@ -14,6 +14,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDREM»
 
 «IMPORT metamodel»
+«EXTENSION ios_extensions::Java»
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «IF audioRecorder!=null-»
@@ -29,7 +30,7 @@ let recordSettings = [
 ]
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
-var «ap.id»: AVAudioPlayer!
+	var «ap.id»: AVAudioPlayer!
 «ENDFOREACH-»
 «ENDDEFINE-»
 
@@ -38,60 +39,64 @@ var «ap.id»: AVAudioPlayer!
 	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	«IF ap.sourceType.toString().matches("localFile")-»
 	«IF !ap.fileUri.matches("")-»
-	let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("«ap.fileUri»", ofType: "mp3")
-	let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
-	do {
-		try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
-	} catch let error as NSError {
-		NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
-	}  
-		
-	«ELSE-»
-	//TODO decomment the next lines and insert file NAME and EXTENSION
-	/*
-	let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("NAME", ofType: "EXTENSION")
-	let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
-	do {
-		try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
-	} catch let error as NSError {
-		NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
-	}
-    */
-	«ENDIF-»
-	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
-	«IF !ap.fileUri.matches("")-»
-	let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
-	getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
-		dispatch_async(dispatch_get_main_queue()) { () -> Void in
-			guard let data = data where error == nil else {
-				NSLog("Data error")
-				return
-			}
+		if let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("«removeExtension(ap.fileUri)»", ofType: "mp3") {
+			let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
 			do {
-				try self.«ap.id» = AVAudioPlayer(data: data)
+				try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
+			} catch let error as NSError {
+				NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+			}
+		}  
+			
+		«ELSE-»
+		//TODO decomment the next lines and insert file NAME and EXTENSION
+		/*
+		if let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("NAME", ofType: "EXTENSION") {
+			let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
+			do {
+				try «ap.id» = AVAudioPlayer(contentsOfURL: «ap.id»FilePathUrl)
 			} catch let error as NSError {
 				NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
 			}
 		}
-	}
-	«ELSE-»
-	//TODO decomment the next lines and insert the URI
-	/*
-	let let «ap.id»FileRemoteUrl = NSURL(string: "URI") {
-	getDataFromUrl(let «ap.id»FileRemoteUrl) { (data, response, error)  in
-		dispatch_async(dispatch_get_main_queue()) { () -> Void in
-			guard let data = data where error == nil else {
-				NSLog("Data error")
-				return
-			}
-			do {
-				try self.«ap.id» = AVAudioPlayer(data: data)
-			} catch let error as NSError {
-				NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+	    */
+		«ENDIF-»
+		«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
+		«IF !ap.fileUri.matches("")-»
+		if let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
+			getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
+				dispatch_async(dispatch_get_main_queue()) { () -> Void in
+					guard let data = data where error == nil else {
+						NSLog("Data error")
+						return
+					}
+					do {
+						try self.«ap.id» = AVAudioPlayer(data: data)
+					} catch let error as NSError {
+						NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+					}
+				}
 			}
 		}
-	}
-    */
+		«ELSE-»
+		//TODO decomment the next lines and insert the URI
+		/*
+		if let let «ap.id»FileRemoteUrl = NSURL(string: "URI") {
+			getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
+				dispatch_async(dispatch_get_main_queue()) { () -> Void in
+					guard let data = data where error == nil else {
+						NSLog("Data error")
+						return
+					}
+					do {
+						try self.«ap.id» = AVAudioPlayer(data: data)
+					} catch let error as NSError {
+						NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+					}
+				}
+			}
+		}
+	    */
 	«ENDIF-»
 	«ENDIF-»
 	«ENDIF-»
@@ -133,40 +138,40 @@ var «ap.id»: AVAudioPlayer!
 	«ENDIF-»
 
 «FOREACH audioPlayers AS ap-»
-@IBAction func «ap.id»Play(sender: UIButton) {
-
-	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    self.«ap.id».play()
-    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-		self.«audioRecorder.audioPlayerId».play()
+	@IBAction func «ap.id»Play(sender: UIButton) {
+	
+		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	    self.«ap.id».play()
+	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
+	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
+			self.«audioRecorder.audioPlayerId».play()
+		}
+	    «ENDIF-»
 	}
-    «ENDIF-»
-}
-
-@IBAction func «ap.id»Pause(sender: UIButton) {
-
-	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    self.«ap.id».pause()
-    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-		self.«audioRecorder.audioPlayerId».pause()
+	
+	@IBAction func «ap.id»Pause(sender: UIButton) {
+	
+		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	    self.«ap.id».pause()
+	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
+	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
+			self.«audioRecorder.audioPlayerId».pause()
+		}
+	    «ENDIF-»
 	}
-    «ENDIF-»
-}
-
-@IBAction func «ap.id»Stop(sender: UIButton) {
-
-	«IF !ap.sourceType.toString().matches("hardwareFile")-»
-    self.«ap.id».pause()
-    self.«ap.id».currentTime = 0
-    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-		self.«audioRecorder.audioPlayerId».pause()
-		self.«audioRecorder.audioPlayerId».currentTime = 0
+	
+	@IBAction func «ap.id»Stop(sender: UIButton) {
+	
+		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	    self.«ap.id».pause()
+	    self.«ap.id».currentTime = 0
+	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
+	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
+			self.«audioRecorder.audioPlayerId».pause()
+			self.«audioRecorder.audioPlayerId».currentTime = 0
+		}
+	    «ENDIF-»
 	}
-    «ENDIF-»
-}
 «ENDFOREACH-»
 
 «IF audioRecorder!=null-»
@@ -236,24 +241,24 @@ var «ap.id»: AVAudioPlayer!
 «ENDDEFINE-»
 
 «DEFINE viewDidDisappear FOR ViewController-»
-	«IF audioRecorder!=null-»
-	if self.audioRecorder != nil && self.audioRecorder.recording {
-	    self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
-		self.audioRecorder.stop()
-	}
-	«IF !audioRecorder.audioPlayerId.matches("")-»
-	if self.«audioRecorder.audioPlayerId» != nil && self.«audioRecorder.audioPlayerId».playing {
-	    self.«audioRecorder.audioPlayerId».pause()
-	    self.«audioRecorder.audioPlayerId».currentTime = 0
-	}
-	«ENDIF-»
-	«ENDIF-»
-	«FOREACH audioPlayers AS ap-»
-	«IF ap!=null && !ap.sourceType.toString().matches("hardwareFile")-»
-	if self.«ap.id» != nil && self.«ap.id».playing {
-	    self.«ap.id».pause()
-	    self.«ap.id».currentTime = 0
-	}
-	«ENDIF-»
-	«ENDFOREACH-»
+		«IF audioRecorder!=null-»
+		if self.audioRecorder != nil && self.audioRecorder.recording {
+		    self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+			self.audioRecorder.stop()
+		}
+		«IF !audioRecorder.audioPlayerId.matches("")-»
+		if self.«audioRecorder.audioPlayerId» != nil && self.«audioRecorder.audioPlayerId».playing {
+		    self.«audioRecorder.audioPlayerId».pause()
+		    self.«audioRecorder.audioPlayerId».currentTime = 0
+		}
+		«ENDIF-»
+		«ENDIF-»
+		«FOREACH audioPlayers AS ap-»
+		«IF ap!=null && !ap.sourceType.toString().matches("hardwareFile")-»
+		if self.«ap.id» != nil && self.«ap.id».playing {
+		    self.«ap.id».pause()
+		    self.«ap.id».currentTime = 0
+		}
+		«ENDIF-»
+		«ENDFOREACH-»
 «ENDDEFINE-»

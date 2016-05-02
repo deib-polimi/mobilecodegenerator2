@@ -107,7 +107,9 @@ public class IOSJavaUtil {
 	}
 	
 	public String removeExtension(String fileName) {
-		return fileName.split(".mp4")[0];
+		if (fileName.contains(".mp3"))		return fileName.split(".mp3")[0];
+		else if (fileName.contains(".mp4")) return fileName.split(".mp4")[0];
+		else return fileName;
 	}
 	
 	/*
