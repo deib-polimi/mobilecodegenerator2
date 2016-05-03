@@ -1,3 +1,4 @@
 bin/
 src-gen/
 user_files/
+.DS_Store
