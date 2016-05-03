@@ -30,16 +30,3 @@ import MobileCoreServices
 import AVFoundation
 «ENDIF-»
 «ENDDEFINE-»
-
-«DEFINE privateImports FOR ViewController-»
-«FOREACH listViews AS lv-»
-«IF lv.clickListener.navigation!=null-»
-import "«lv.clickListener.navigation.destination»ViewController.swift"
-«ENDIF-»
-«ENDFOREACH-»
-«FOREACH gridViews AS gv-»
-«IF gv.clickListener.navigation!=null-»
-import "«gv.clickListener.navigation.destination»ViewController.swift"
-«ENDIF-»
-«ENDFOREACH-»
-«ENDDEFINE-»

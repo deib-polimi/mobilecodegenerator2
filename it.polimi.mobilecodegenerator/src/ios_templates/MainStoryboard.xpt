@@ -41,7 +41,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«REM»«resetCurrentY()»«ENDREM»
 	<scene sceneID="«vc.name»ViewControllerSceneID">
 		<objects>
-	        <viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController">
+	        <viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
 		        <layoutGuides>
 	                <viewControllerLayoutGuide type="top" id="«vc.name»-guide-top"/>
 	            	<viewControllerLayoutGuide type="bottom" id="«vc.name»-guide-bottom"/>
@@ -221,27 +221,86 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    </webView>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.listViews AS lv-»
-	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»">
+	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»">
 	                        «EXPAND uiControl FOR lv»
 	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                        <prototypes>
-	                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellIdentifier" textLabel="«lv.id»CellTextLabelID" style="IBUITableViewCellStyleDefault" id="«lv.id»CellID">
-	                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-	                                <autoresizingMask key="autoresizingMask"/>
-	                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-	                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-	                                    <autoresizingMask key="autoresizingMask"/>
+	                        	«IF lv.listType.matches("detailed")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="DetailedTableViewCell" customModule="newApp" customModuleProvider="target">
+	                        	«ELSEIF lv.listType.matches("image")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="ImageTableViewCell" customModule="newApp" customModuleProvider="target">
+	                        	«ELSEIF lv.listType.matches("simple")-»
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="SimpleTableViewCell" customModule="newApp" customModuleProvider="target">	                          
+	                        	«ENDIF-»
+	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+	                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="«lv.id»CellID" id="«lv.id»ContentViewID">
+	                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
 	                                    <subviews>
-	                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="«lv.id»CellTextLabelID">
-	                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
-	                                            <autoresizingMask key="autoresizingMask"/>
-	                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-	                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-	                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-	                                        </label>
-	                                    </subviews>
-	                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-	                                </view>
+	                                    	«IF lv.listType.matches("image") || lv.listType.matches("detailed")-»
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellImageID">
+                                                <rect key="frame" x="16" y="8" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="«lv.id»CellImageWidth"/>
+                                                </constraints>
+                                            </imageView>
+                                            «ENDIF-»
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellLabelID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+	                    					«IF lv.listType.matches("detailed")-»
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellIconID">
+                                                <rect key="frame" x="376" y="17" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="«lv.id»CellIconWidth"/>
+                                                </constraints>
+                                            </imageView>
+                                            «ENDIF-»
+                                        </subviews>
+                                        <constraints>
+                                        	«IF lv.listType.matches("detailed")-»
+                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstA"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstB"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstC"/>
+                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstD"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstE"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellIconID" secondAttribute="bottom" constant="17" id="«lv.id»ConstF"/>
+                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellIconID" secondAttribute="trailing" constant="16" id="«lv.id»ConstG"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstH"/>
+                                            <constraint firstItem="«lv.id»CellIconID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="17" id="«lv.id»ConstI"/>
+                                            <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstJ"/>
+                                        	«ELSEIF lv.listType.matches("image")-»
+                                        	<constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstA"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstB"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstC"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstD"/>
+                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="54" id="«lv.id»ConstE"/>
+                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstF"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstG"/>
+                                            «ELSEIF lv.listType.matches("simple")-»
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstA"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstB"/>
+                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstC"/>
+                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstD"/>
+                                            «ENDIF-»
+                                        </constraints>
+                                   	</tableViewCellContentView>
+                                	<connections>
+                                		«IF lv.listType.matches("detailed")-»
+                                        <outlet property="icon" destination="«lv.id»CellIconID" id="«lv.id»IconOutlet"/>
+                                        «ENDIF-»
+                                        «IF lv.listType.matches("image") || lv.listType.matches("detailed")-»
+                                        <outlet property="img" destination="«lv.id»CellImageID" id="«lv.id»ImageOutlet"/>
+                                        «ENDIF-»
+                                        <outlet property="label" destination="«lv.id»CellLabelID" id="«lv.id»LabelOutlet"/>
+                                        «IF lv.clickListener!=null && lv.clickListener.navigation!=null»
+			                    		<segue destination="«lv.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID" identifier="SegueIdentifierFrom«lv.id»To«lv.clickListener.navigation.destination»ViewControllerID"/>
+			                    		«ENDIF»
+                                    </connections>
 	                            </tableViewCell>
 	                        </prototypes>
 	                        <connections>
@@ -402,13 +461,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH viewControllers AS vc-»
 		«FOREACH vc.imageViews AS iv-»
         «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
-        <image name="«iv.fileUri»" width="100" height="100"/> «REM»Seems that we need to set the width and height, even if they'll be automatically setted at compile time.«ENDREM»
+        <image name="«iv.fileUri»" width="100" height="100"/>
         «ENDIF-»
         «ENDFOREACH-»
         «ENDFOREACH-»
         <image name="pause_icon.png" width="100" height="100"/>
         <image name="play_icon.png" width="100" height="100"/>
         <image name="stop_icon.png" width="100" height="100"/>
+        <image name="list_img.png" width="100" height="100"/>
+        <image name="list_icon.png" width="100" height="100"/>
 	</resources>
 </document>
 «ENDFILE-»

@@ -38,9 +38,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 		«getFirstHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */; };
 		«ENDIF-»
-		«IF viewControllers.listViews.size!=0-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
 		«getFirstHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
 		«getFirstHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+		«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */; };
 		«ENDIF-»
 		«IF viewControllers.gridViews.size!=0-»
 		«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */; };
@@ -53,6 +58,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId("play_icon.png")» /* play_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("play_icon.png")» /* play_icon.png */; };
 		«getFirstHexadecimalId("pause_icon.png")» /* pause_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */; };
 		«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */; };
+		«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_img.png")» /* list_img.png */; };
+		«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_icon.png")» /* list_icon.png */; };
 			
 /* End PBXBuildFile section */
 
@@ -69,9 +76,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 		«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadingTask.swift; sourceTree = "<group>"; };
 		«ENDIF-»
-		«IF viewControllers.listViews.size!=0-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
 		«getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
 		«getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+		«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		«ENDIF-»
 		«IF viewControllers.gridViews.size!=0-»
 		«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -84,6 +96,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getSecondHexadecimalId("play_icon.png")» /* play_icon.png */ = {isa = PBXFileReference; lastKnownFileType = play_icon.png; name = play_icon.png; path = play_icon.png; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */ = {isa = PBXFileReference; lastKnownFileType = pause_icon.png; name = pause_icon.png; path = pause_icon.png; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = stop_icon.png; name = stop_icon.png; path = stop_icon.png; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("list_img.png")» /* list_img.png */ = {isa = PBXFileReference; lastKnownFileType = list_img.png; name = list_img.png; path = list_img.png; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */ = {isa = PBXFileReference; lastKnownFileType = list_icon.png; name = list_icon.png; path = list_icon.png; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -128,9 +142,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 				«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */,
 				«ENDIF-»
-				«IF viewControllers.listViews.size!=0-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
 				«getSecondHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
 				«getSecondHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+				«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */,
 				«ENDIF-»
 				«IF viewControllers.gridViews.size!=0-»
 				«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */,
@@ -143,6 +162,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getSecondHexadecimalId("play_icon.png")» /* play_icon.png */,
 				«getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */,
 				«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */,
+				«getSecondHexadecimalId("list_img.png")» /* list_img.png */,
+				«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */,
 			);
 			path = «name»;
 			sourceTree = "<group>";
@@ -214,6 +235,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId("play_icon.png")» /* play_icon.png in Resources */,
 				«getFirstHexadecimalId("pause_icon.png")» /* pause_icon.png in Resources */,
 				«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */,
+				«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */,
+				«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,9 +254,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 				«getFirstHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift in Sources*/,
 				«ENDIF-»
-				«IF viewControllers.listViews.size!=0-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("detailed")-»
 				«getFirstHexadecimalId("DetailedTableViewCell.swift")» /* DetailedTableViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("image")-»
 				«getFirstHexadecimalId("ImageTableViewCell.swift")» /* ImageTableViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
+				«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources*/,
 				«ENDIF-»
 				«IF viewControllers.gridViews.size!=0-»
 				«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources*/,

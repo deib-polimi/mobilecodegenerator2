@@ -22,13 +22,17 @@ public class IOSConstants {
 		sourceFilesFolder+"/Contents.json",
 		sourceFilesFolder+"/play_icon.png",
 		sourceFilesFolder+"/pause_icon.png",
-		sourceFilesFolder+"/stop_icon.png"
+		sourceFilesFolder+"/stop_icon.png",
+		sourceFilesFolder+"/list_img.png",
+		sourceFilesFolder+"/list_icon.png"
 	};
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
 	public static String[] destinationFilesPaths = {
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset/Contents.json",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/play_icon.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/pause_icon.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/stop_icon.png"
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/stop_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/list_img.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/list_icon.png"
 	};
 }

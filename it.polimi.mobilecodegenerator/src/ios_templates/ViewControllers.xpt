@@ -23,7 +23,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FILE application.name +"/"+application.name +"/"+ name+"ViewController.swift"-»
 
 «EXPAND ios_viewcontrollers_templates::Imports::publicImports-»
-«EXPAND ios_viewcontrollers_templates::Imports::privateImports-»
 
 class «name»ViewController: UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
 
@@ -71,8 +70,8 @@ class «name»ViewController: UIViewController «EXPAND ios_viewcontrollers_templat
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	    // Get the new view controller using segue.destinationViewController.
-	    // Pass the selected object to the new view controller.
+	    // Get the new view controller using segue.destinationViewController
+	    // Pass the selected object to the new view controller
 	}
 	
 }

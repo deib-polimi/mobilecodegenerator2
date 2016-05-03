@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 «REM» If there's a ListView in the application then create custom table view cells «ENDREM»
 «IF viewControllers.listViews.size!=0 -»
+«IF viewControllers.listViews.listType.toString().contains("detailed") -»
 «FILE this.name +"/"+this.name +"/"+ "DetailedTableViewCell.swift"-»
 import UIKit
 
@@ -76,6 +77,8 @@ class DetailedTableViewCell: UITableViewCell {
     
 }
 «ENDFILE-»
+«ENDIF-»
+«IF viewControllers.listViews.listType.toString().contains("image") -»
 «FILE this.name +"/"+this.name +"/"+ "ImageTableViewCell.swift"-»
 import UIKit
 
@@ -86,6 +89,18 @@ class ImageTableViewCell: UITableViewCell {
     
 }
 «ENDFILE-»
+«ENDIF-»
+«IF viewControllers.listViews.listType.toString().contains("simple") -»
+«FILE this.name +"/"+this.name +"/"+ "SimpleTableViewCell.swift"-»
+import UIKit
+
+class SimpleTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var label: UILabel!
+    
+}
+«ENDFILE-»
+«ENDIF-»
 «ENDIF-»
 
 «REM» If there's a GridView in the application then create custom collection view cells «ENDREM»
