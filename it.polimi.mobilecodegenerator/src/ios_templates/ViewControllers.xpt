@@ -24,7 +24,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «EXPAND ios_viewcontrollers_templates::Imports::publicImports-»
 
-class «name»ViewController: UIViewController «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
+class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::publicProtocols» {
 
 	«EXPAND ios_viewcontrollers_templates::PropertiesDeclarations::propertiesDeclarations»
 

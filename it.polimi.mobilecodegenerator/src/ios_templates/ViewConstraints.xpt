@@ -45,6 +45,10 @@
 							«EXPAND siblingConstraints FOR audioRecorder»
 					        «EXPAND parentContraints FOR audioRecorder»
 						«ENDIF-»
+						«IF map!=null-»
+							«EXPAND siblingConstraints FOR map»
+					        «EXPAND parentContraints FOR map»
+						«ENDIF-»
 						«FOREACH audioPlayers AS ap-»
 					        «EXPAND siblingConstraints FOR ap»
 					        «EXPAND parentContraints FOR ap»

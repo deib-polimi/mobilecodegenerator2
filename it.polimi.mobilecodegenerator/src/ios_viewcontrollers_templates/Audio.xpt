@@ -18,16 +18,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «IF audioRecorder!=null-»
-@IBOutlet weak var recordButton: UIButton!
-var audioRecorder: AVAudioRecorder!
-var audiosUrl: NSURL!
-var recordedAudioUrl: NSURL!
-let recordSettings = [
-	AVSampleRateKey : NSNumber(float: Float(44100.0)),
-	AVFormatIDKey : NSNumber(int: Int32(kAudioFormatMPEG4AAC)),
-	AVNumberOfChannelsKey : NSNumber(int: 1),
-	AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
-]
+	@IBOutlet weak var recordButton: UIButton!
+	var audioRecorder: AVAudioRecorder!
+	var audiosUrl: NSURL!
+	var recordedAudioUrl: NSURL!
+	let recordSettings = [
+		AVSampleRateKey : NSNumber(float: Float(44100.0)),
+		AVFormatIDKey : NSNumber(int: Int32(kAudioFormatMPEG4AAC)),
+		AVNumberOfChannelsKey : NSNumber(int: 1),
+		AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
+	]
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
 	var «ap.id»: AVAudioPlayer!
@@ -103,27 +103,27 @@ let recordSettings = [
 	«ENDFOREACH-»
 	
 	«IF audioRecorder!=null-»
-	//Create audios folder
-	let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
-	self.audiosUrl = documentsPath.URLByAppendingPathComponent("audios")
-	do {
-		try NSFileManager.defaultManager().createDirectoryAtPath(audiosUrl.path!, withIntermediateDirectories: true, attributes: nil)
-	} catch let error as NSError {
-		NSLog("Unable to create directory: \(error.debugDescription)")
-	}
-	
-	//Create audio file url
-	let dateFormatter = NSDateFormatter()
-	dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-	let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
-	self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
-	
-	//Init audiorecorder
-	do {
-		try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
-	} catch let error as NSError {
-		NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
-	}
+		//Create audios folder
+		let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
+		self.audiosUrl = documentsPath.URLByAppendingPathComponent("audios")
+		do {
+			try NSFileManager.defaultManager().createDirectoryAtPath(audiosUrl.path!, withIntermediateDirectories: true, attributes: nil)
+		} catch let error as NSError {
+			NSLog("Unable to create directory: \(error.debugDescription)")
+		}
+		
+		//Create audio file url
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+		let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
+		self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
+		
+		//Init audiorecorder
+		do {
+			try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
+		} catch let error as NSError {
+			NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
+		}
 	«ENDIF-»
 «ENDDEFINE-»
 
@@ -175,68 +175,68 @@ let recordSettings = [
 «ENDFOREACH-»
 
 «IF audioRecorder!=null-»
-@IBAction func record(sender: UIButton) {
-	
-	if !self.audioRecorder.recording {
+	@IBAction func record(sender: UIButton) {
 		
-		//Create a new audio file url
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-		let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
-		self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
-		
-		//Re-Init audiorecorder
-		do {
-			try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
-		} catch let error as NSError {
-			NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
-		}
-		
-		//Record button -> Stop
-		self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
-		
-		//Start recording
-		let audioSession = AVAudioSession.sharedInstance()
-		do {
-			try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-			try audioSession.setActive(true)
-			self.audioRecorder.prepareToRecord()
-			self.audioRecorder.record()
-		} catch let error as NSError {
-			NSLog("Unable to initialize AVAudioSession: \(error.debugDescription)")
-		}
-		
-	} else {
-		
-		//Record button -> Rec
-		self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
-		
-		//Stop recording
-		let audioSession = AVAudioSession.sharedInstance()
-		do {
-			try audioSession.setActive(false)
-			self.audioRecorder.stop()
-		} catch let error as NSError {
-			NSLog("Unable to deactivate AVAudioSession: \(error.debugDescription)")
-		}
-		
-		//Init audioplayer
-		getDataFromUrl(self.recordedAudioUrl) { (data, response, error)  in
-			dispatch_async(dispatch_get_main_queue()) { () -> Void in
-				guard let data = data where error == nil else {
-					print("Data error")
-					return
-				}
-				do {
-					try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(data: data)
-				} catch let error as NSError {
-					NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+		if !self.audioRecorder.recording {
+			
+			//Create a new audio file url
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+			let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
+			self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
+			
+			//Re-Init audiorecorder
+			do {
+				try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
+			} catch let error as NSError {
+				NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
+			}
+			
+			//Record button -> Stop
+			self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
+			
+			//Start recording
+			let audioSession = AVAudioSession.sharedInstance()
+			do {
+				try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+				try audioSession.setActive(true)
+				self.audioRecorder.prepareToRecord()
+				self.audioRecorder.record()
+			} catch let error as NSError {
+				NSLog("Unable to initialize AVAudioSession: \(error.debugDescription)")
+			}
+			
+		} else {
+			
+			//Record button -> Rec
+			self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+			
+			//Stop recording
+			let audioSession = AVAudioSession.sharedInstance()
+			do {
+				try audioSession.setActive(false)
+				self.audioRecorder.stop()
+			} catch let error as NSError {
+				NSLog("Unable to deactivate AVAudioSession: \(error.debugDescription)")
+			}
+			
+			//Init audioplayer
+			getDataFromUrl(self.recordedAudioUrl) { (data, response, error)  in
+				dispatch_async(dispatch_get_main_queue()) { () -> Void in
+					guard let data = data where error == nil else {
+						print("Data error")
+						return
+					}
+					do {
+						try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(data: data)
+					} catch let error as NSError {
+						NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
+					}
 				}
 			}
+			
 		}
-		
 	}
-}
 «ENDIF-»
 «ENDDEFINE-»
 

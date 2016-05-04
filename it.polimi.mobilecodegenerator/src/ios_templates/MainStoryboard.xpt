@@ -52,6 +52,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                <subviews>
 	                    «FOREACH vc.imageViews AS iv-»
 	                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
+	                        «IF iv.sourceType.toString().matches("hardwareFile")»
+	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+	                        «ENDIF»
 	                        «EXPAND uiControl FOR iv»
 	                    </imageView>
 	                    «ENDFOREACH-»
@@ -86,15 +89,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
 	                        «EXPAND uiControl FOR vc.photocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                        <state key="normal" title="Fotocamera">
-	                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-	                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
-	                        <state key="highlighted">
-	                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
+	                        <state key="normal" title="Fotocamera"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
 	                        <connections>
-	                            <action selector="showFotocameraUI:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.photocameraController.id»TouchUpInsideActionID"/>
+	                            <action selector="openPhotoCamera:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.photocameraController.id»TouchUpInsideActionID"/>
 	                        </connections>
 	                    </button>
 	                    «ENDIF-»
@@ -102,29 +102,28 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.videocameraController.id»" >
 	                        «EXPAND uiControl FOR vc.videocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                        <state key="normal" title="Videocamera">
-	                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-	                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
-	                        <state key="highlighted">
-	                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
+	                        <state key="normal" title="Videocamera"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
 	                        <connections>
-	                            <action selector="showVideocameraUI:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.videocameraController.id»TouchUpInsideActionID"/>
+	                            <action selector="openVideoCamera:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.videocameraController.id»TouchUpInsideActionID"/>
 	                        </connections>
 	                    </button>
+	                    «ENDIF-»
+	                    «IF vc.map != null-»
+	                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.map.id»">
+                            «EXPAND uiControl FOR vc.map»
+                        </mapView>
 	                    «ENDIF-»
 	                    «IF vc.audioRecorder!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.audioRecorder.id»" >
 	                        «EXPAND uiControl FOR vc.audioRecorder»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                        <state key="normal" title="Rec">
-	                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-	                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
-	                        <state key="highlighted">
-	                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-	                        </state>
+	                        <state key="normal" title="Rec"/>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
 	                        <connections>
 	                            <action selector="record:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«vc.audioRecorder.id»TouchUpInsideActionID"/>
 	                        </connections>
@@ -211,6 +210,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.videoViews AS vv-»
 	                    <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«vv.id»">
+	                        «IF vv.sourceType.toString().matches("hardwareFile")»
+	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+	                        «ENDIF»
 	                        «EXPAND uiControl FOR vv»
 	                    </webView>
 	                    «ENDFOREACH-»
@@ -314,37 +316,116 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»">
 	                        «EXPAND uiControl FOR gv»
 	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="«gv.id»FlowLayoutID">
-	                            <size key="itemSize" width="50" height="50"/>
+	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="«gv.id»FlowLayoutID">
+	                            <size key="itemSize" width="202" height="202"/>
 	                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
 	                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
 	                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
 	                        </collectionViewFlowLayout>
 	                        <cells>
-	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellIdentifier" id="«gv.id»CellID" customClass="CustomCollectionViewCell">
-	                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+	                        	«IF gv.gridType.matches("detailed")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="DetailedCollectionViewCell" customModule="newApp">
+	                            «ELSEIF gv.gridType.matches("image")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="ImageCollectionViewCell" customModule="newApp">
+	                            «ELSEIF gv.gridType.matches("simple")-»
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="SimpleCollectionViewCell" customModule="newApp">
+	                            «ENDIF-»
+	                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
 	                                <autoresizingMask key="autoresizingMask"/>
 	                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-	                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+	                                    <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
 	                                    <autoresizingMask key="autoresizingMask"/>
+	                                    «IF gv.gridType.matches("detailed")-»
 	                                    <subviews>
-	                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="«gv.id»CellLabelID">
-	                                            <rect key="frame" x="4" y="14" width="42" height="21"/>
-	                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-	                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-	                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-	                                            <nil key="highlightedColor"/>
-	                                        </label>
+	                                    	<imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellImageID">
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            </imageView>
+	                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellViewID">
+                                                <rect key="frame" x="0.0" y="158" width="202" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellLabelID">
+                                                        <rect key="frame" x="10" y="14" width="182" height="16"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39803340517241381" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="top" secondItem="«gv.id»CellViewID" secondAttribute="top" constant="14" id="«gv.id»CellConstA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="«gv.id»CellLabelID" secondAttribute="trailing" constant="10" id="«gv.id»CellConstB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="«gv.id»CellLabelID" secondAttribute="bottom" constant="14" id="«gv.id»CellConstC"/>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="leading" secondItem="«gv.id»CellViewID" secondAttribute="leading" constant="10" id="«gv.id»CellConstD"/>
+                                                    <constraint firstAttribute="height" constant="44" id="«gv.id»CellConstE"/>
+                                                </constraints>
+                                            </view>
 	                                    </subviews>
+	                                    «ELSEIF gv.gridType.matches("image")-»
+	                                    <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellImageID">
+                                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
+                                            </imageView>
+                                        </subviews>
+                                        «ELSEIF gv.gridType.matches("simple")-»
+	                                    <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellViewID">
+                                                <rect key="frame" x="0.0" y="158" width="202" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»CellLabelID">
+                                                        <rect key="frame" x="10" y="14" width="182" height="16"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39803340517241381" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="top" secondItem="«gv.id»CellViewID" secondAttribute="top" constant="14" id="«gv.id»CellConstA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="«gv.id»CellLabelID" secondAttribute="trailing" constant="10" id="«gv.id»CellConstB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="«gv.id»CellLabelID" secondAttribute="bottom" constant="14" id="«gv.id»CellConstC"/>
+                                                    <constraint firstItem="«gv.id»CellLabelID" firstAttribute="leading" secondItem="«gv.id»CellViewID" secondAttribute="leading" constant="10" id="«gv.id»CellConstD"/>
+                                                    <constraint firstAttribute="height" constant="44" id="«gv.id»CellConstE"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+	                                    «ENDIF-»
 	                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
 	                                </view>
+	                                <constraints>
+	                                	«IF gv.gridType.matches("detailed")-»
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellViewID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellImageID" secondAttribute="trailing" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstC"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="top" secondItem="«gv.id»CellID" secondAttribute="top" id="«gv.id»ConstD"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellImageID" secondAttribute="bottom" id="«gv.id»ConstE"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellViewID" secondAttribute="bottom" id="«gv.id»ConstF"/>
+                                        <constraint firstItem="«gv.id»CellViewID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstG"/>
+                                    	«ELSEIF gv.gridType.matches("image")-»
+                                    	<constraint firstAttribute="trailing" secondItem="«gv.id»CellImageID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellImageID" firstAttribute="top" secondItem="«gv.id»CellID" secondAttribute="top" id="«gv.id»ConstC"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellImageID" secondAttribute="bottom" id="«gv.id»ConstD"/>
+                                        «ELSEIF gv.gridType.matches("simple")-»
+                                        <constraint firstAttribute="trailing" secondItem="«gv.id»CellViewID" secondAttribute="trailing" id="«gv.id»ConstA"/>
+                                        <constraint firstAttribute="bottom" secondItem="«gv.id»CellViewID" secondAttribute="bottom" id="«gv.id»ConstB"/>
+                                        <constraint firstItem="«gv.id»CellViewID" firstAttribute="leading" secondItem="«gv.id»CellID" secondAttribute="leading" id="«gv.id»ConstC"/>
+                                        «ENDIF-»    
+                                    </constraints>
 	                                <connections>
-	                                    <outlet property="label" destination="«gv.id»CellLabelID" id="«gv.id»LabelOutletID"/>
+		                                «IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")-»
+		                                <outlet property="label" destination="«gv.id»CellLabelID" id="«gv.id»LabelOutlet"/>
+		                                «ENDIF-»
+		                                «IF gv.gridType.matches("image") || gv.gridType.matches("detailed")-»
+		                                <outlet property="img" destination="«gv.id»CellImageID" id="«gv.id»ImageOutlet"/>
+		                                «ENDIF-»
+		                                «IF gv.clickListener!=null && gv.clickListener.navigation!=null»
+			                    		<segue destination="«gv.clickListener.navigation.destination»ViewControllerID" kind="show" id="SegueIDFrom«gv.id»To«gv.clickListener.navigation.destination»ViewControllerID" identifier="SegueIdentifierFrom«gv.id»To«gv.clickListener.navigation.destination»ViewControllerID"/>
+			                    		«ENDIF»
 	                                </connections>
 	                            </collectionViewCell>
 	                        </cells>
 	                        <connections>
-	                            <outlet property="dataSource" destination="«vc.name»ViewControllerID" id="«gv.id»DataSourceOutletID"/>
+	                        	<outlet property="dataSource" destination="«vc.name»ViewControllerID" id="«gv.id»DataSourceOutletID"/>
 	                            <outlet property="delegate" destination="«vc.name»ViewControllerID" id="«gv.id»DelegateOutletID"/>
 	                        </connections>
 	                    </collectionView>
@@ -375,6 +456,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                «ENDFOREACH-»
 	                «IF vc.audioRecorder!=null-»
 	                <outlet property="recordButton" destination="«vc.audioRecorder.id»" id="«vc.audioRecorder.id»OutletID"/>
+	                «ENDIF-»
+	                «IF vc.map!=null-»
+	                <outlet property="«vc.map.id»" destination="«vc.map.id»" id="«vc.map.id»OutletID"/>
 	                «ENDIF-»
 	                «FOREACH vc.listViews AS lv-»
 	                <outlet property="«lv.id»" destination="«lv.id»" id="«lv.id»OutletID"/>
@@ -470,6 +554,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <image name="stop_icon.png" width="100" height="100"/>
         <image name="list_img.png" width="100" height="100"/>
         <image name="list_icon.png" width="100" height="100"/>
+        <image name="grid_image.png" width="100" height="100"/>
 	</resources>
 </document>
 «ENDFILE-»

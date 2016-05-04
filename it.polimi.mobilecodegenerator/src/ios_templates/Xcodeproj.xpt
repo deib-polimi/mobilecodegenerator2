@@ -47,9 +47,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
 		«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */; };
 		«ENDIF-»
-		«IF viewControllers.gridViews.size!=0-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
 		«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
 		«getFirstHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 		«getFirstHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */; };
 		«ENDIF-»
 		«FOREACH userFilesNames() AS filename-»
@@ -60,6 +64,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */; };
 		«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_img.png")» /* list_img.png */; };
 		«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_icon.png")» /* list_icon.png */; };
+		«getFirstHexadecimalId("grid_image.png")» /* grid_image.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("grid_image.png")» /* grid_image.png */; };
 			
 /* End PBXBuildFile section */
 
@@ -85,9 +90,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
 		«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		«ENDIF-»
-		«IF viewControllers.gridViews.size!=0-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
 		«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCollectionViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
 		«getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		«ENDIF-»
+		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 		«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewCell.swift; sourceTree = "<group>"; };
 		«ENDIF-»
 		«FOREACH userFilesNames() AS filename-»
@@ -98,6 +107,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = stop_icon.png; name = stop_icon.png; path = stop_icon.png; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("list_img.png")» /* list_img.png */ = {isa = PBXFileReference; lastKnownFileType = list_img.png; name = list_img.png; path = list_img.png; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */ = {isa = PBXFileReference; lastKnownFileType = list_icon.png; name = list_icon.png; path = list_icon.png; sourceTree = "<group>"; };
+		«getSecondHexadecimalId("grid_image.png")» /* grid_image.png */ = {isa = PBXFileReference; lastKnownFileType = grid_image.png; name = grid_image.png; path = grid_image.png; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -151,9 +161,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
 				«getSecondHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift */,
 				«ENDIF-»
-				«IF viewControllers.gridViews.size!=0-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
 				«getSecondHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
 				«getSecondHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift */,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 				«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */,
 				«ENDIF-»
 				«FOREACH userFilesNames() AS filename-»
@@ -164,6 +178,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */,
 				«getSecondHexadecimalId("list_img.png")» /* list_img.png */,
 				«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */,
+				«getSecondHexadecimalId("grid_image.png")» /* grid_image.png */,
 			);
 			path = «name»;
 			sourceTree = "<group>";
@@ -237,6 +252,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */,
 				«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */,
 				«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */,
+				«getFirstHexadecimalId("grid_image.png")» /* grid_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +279,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF viewControllers.listViews.size!=0 && viewControllers.listViews.listType.toString().contains("simple")-»
 				«getFirstHexadecimalId("SimpleTableViewCell.swift")» /* SimpleTableViewCell.swift in Sources*/,
 				«ENDIF-»
-				«IF viewControllers.gridViews.size!=0-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("detailed")-»
 				«getFirstHexadecimalId("DetailedCollectionViewCell.swift")» /* DetailedCollectionViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("image")-»
 				«getFirstHexadecimalId("ImageCollectionViewCell.swift")» /* ImageCollectionViewCell.swift in Sources*/,
+				«ENDIF-»
+				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 				«getFirstHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift in Sources*/,
 				«ENDIF-»
 			);

@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -15,21 +15,27 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE publicImports FOR ViewController-»
-import UIKit
-«IF locationManager!=null-»
-import CoreLocation
-«ENDIF-»
+«DEFINE propertiesDeclarations FOR ViewController-»
 «IF map!=null-»
-import MapKit
+	@IBOutlet weak var «map.id»: MKMapView!
 «ENDIF-»
-«IF videoViews.size!=0-»
-import AVKit
-«ENDIF-»
-«IF photocameraController!=null || videocameraController!=null-»
-import MobileCoreServices
-«ENDIF-»
-«IF audioPlayers.size > 0 || audioRecorder!=null-»
-import AVFoundation
-«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE viewDidLoad FOR ViewController-»
+	«IF map!=null-»
+		self.«map.id».delegate = self
+	        
+	    let lat = «map.lat»
+	    let lon = «map.lon»
+	    let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+	    
+	    let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon), MKCoordinateSpanMake(0.005, 0.005))
+	    
+	    let annotation = MKPointAnnotation()
+	    annotation.coordinate = coordinates
+	    annotation.title = "MARKER TITLE HERE"
+	    
+	    self.«map.id».setRegion(region, animated: true)
+	    self.«map.id».addAnnotation(annotation)
+	«ENDIF-»
 «ENDDEFINE-»

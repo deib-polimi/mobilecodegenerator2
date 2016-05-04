@@ -105,7 +105,7 @@ class SimpleTableViewCell: UITableViewCell {
 
 «REM» If there's a GridView in the application then create custom collection view cells «ENDREM»
 «IF viewControllers.gridViews.size!=0 -»
-
+«IF viewControllers.gridViews.gridType.toString().contains("detailed") -»
 «FILE this.name +"/"+this.name +"/"+ "DetailedCollectionViewCell.swift"-»
 import UIKit
 
@@ -116,27 +116,29 @@ class DetailedCollectionViewCell: UICollectionViewCell {
     
 }
 «ENDFILE-»
-
+«ENDIF-»
+«IF viewControllers.gridViews.gridType.toString().contains("image") -»
 «FILE this.name +"/"+this.name +"/"+ "ImageCollectionViewCell.swift"-»
 import UIKit
 
-class DetailedCollectionViewCell: UICollectionViewCell {
+class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var img: UIImageView!
     
 }
 «ENDFILE-»
-
+«ENDIF-»
+«IF viewControllers.gridViews.gridType.toString().contains("simple") -»
 «FILE this.name +"/"+this.name +"/"+ "SimpleCollectionViewCell.swift"-»
 import UIKit
 
-class DetailedCollectionViewCell: UICollectionViewCell {
+class SimpleCollectionViewCell: UICollectionViewCell {
        
     @IBOutlet weak var label: UILabel!
     
 }
 «ENDFILE-»
-
+«ENDIF-»
 «ENDIF-»
 
 

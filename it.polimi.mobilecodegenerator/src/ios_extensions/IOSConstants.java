@@ -24,7 +24,8 @@ public class IOSConstants {
 		sourceFilesFolder+"/pause_icon.png",
 		sourceFilesFolder+"/stop_icon.png",
 		sourceFilesFolder+"/list_img.png",
-		sourceFilesFolder+"/list_icon.png"
+		sourceFilesFolder+"/list_icon.png",
+		sourceFilesFolder+"/grid_image.png"
 	};
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
 	public static String[] destinationFilesPaths = {
@@ -33,6 +34,7 @@ public class IOSConstants {
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/pause_icon.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/stop_icon.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/list_img.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/list_icon.png"
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/list_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/grid_image.png"
 	};
 }

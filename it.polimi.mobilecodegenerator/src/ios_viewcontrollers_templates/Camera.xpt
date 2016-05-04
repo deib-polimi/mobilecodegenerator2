@@ -17,105 +17,116 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE propertiesDeclarations FOR ViewController-»
 «IF photocameraController != null && !photocameraController.imageViewId.matches("")-»
-@IBOutlet weak var «photocameraController.imageViewId»: UIImageView!
+	@IBOutlet weak var «photocameraController.imageViewId»: UIImageView!
 «ENDIF-»
 «IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
-@IBOutlet weak var «videocameraController.videoViewId»: UIWebView!
+	@IBOutlet weak var «videocameraController.videoViewId»: UIWebView!
 «ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE camera FOR ViewController-»
 «IF photocameraController!=null || videocameraController!=null-»
-func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-    dismissViewControllerAnimated(true, completion: nil)
-    
-    if mediaType.isEqualToString(kUTTypeImage as String) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.«photocameraController.imageViewId».image = image
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(ViewController.completionSelector(_:didFinishSavingWithError:contextInfo:)), nil)
-    }
-    else if mediaType.isEqualToString(kUTTypeMovie as String) {
-        let videoPath = info[UIImagePickerControllerMediaURL] as! String
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath)) {
-            let iframe = "<iframe width=\"\(self.«videocameraController.videoViewId».frame.width)\" height=\"\(self.«videocameraController.videoViewId».frame.height)\" src=\"\(videoPath)\" frameborder=\"0\"></iframe>"
-            self.«videocameraController.videoViewId».loadHTMLString(iframe, baseURL: nil)
-            UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, #selector(ViewController.completionSelector(_:didFinishSavingWithError:contextInfo:)), nil)
-        }
-    }
-    
-}
-    
-func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    dismissViewControllerAnimated(true, completion: nil)
-}
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	        
+	    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+	    dismissViewControllerAnimated(true, completion: nil)
+	    «IF photocameraController!=null-»
+	    
+	    if mediaType.isEqualToString(kUTTypeImage as String) {
+	        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+	        self.«photocameraController.imageViewId».image = image
+	        UIImageWriteToSavedPhotosAlbum(image, self, #selector(«name»ViewController.completionSelector(_:didFinishSavingWithError:contextInfo:)), nil)
+	    }
+	    
+	    «ENDIF-»
+	    «IF videocameraController!=null-»
+	    
+	    if mediaType.isEqualToString(kUTTypeMovie as String) {
+	        let videoPath = info[UIImagePickerControllerMediaURL] as! String
+	        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath)) {
+	            let iframe = "<iframe width=\"\(self.«videocameraController.videoViewId».frame.width)\" height=\"\(self.«videocameraController.videoViewId».frame.height)\" src=\"\(videoPath)\" frameborder=\"0\"></iframe>"
+	            self.«videocameraController.videoViewId».loadHTMLString(iframe, baseURL: nil)
+	            UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, #selector(«name»ViewController.completionSelector(_:didFinishSavingWithError:contextInfo:)), nil)
+	        }
+	    }
+	    
+	    «ENDIF-»
+	    
+	}
+	    
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+	    dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func completionSelector(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+	    if error != nil {
+	        let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.Alert)
+	        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+	        alert.addAction(cancelAction)
+	        self.presentViewController(alert, animated: true, completion: nil)
+	    }
+	}
+«ENDIF-»
+«IF photocameraController!=null-»
 
-func completionSelector(image: UIImage, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
-    if error != nil {
-        let alert = UIAlertController(title: "Save Failed", message: "Failed to save from camera", preferredStyle: UIAlertControllerStyle.Alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-        alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-}
-«ENDIF-»
-«IF photocameraController!=null-»
-@IBAction func openPhotoCamera(sender: UIButton) {
-    
-    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .Camera
-        picker.mediaTypes = [kUTTypeImage as String]
-        presentViewController(picker, animated: true, completion: nil)
-    }
-    
-}
+	@IBAction func openPhotoCamera(sender: UIButton) {
+	    
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	        let picker = UIImagePickerController()
+	        picker.delegate = self
+	        picker.sourceType = .Camera
+	        picker.mediaTypes = [kUTTypeImage as String]
+	        presentViewController(picker, animated: true, completion: nil)
+	    }
+	    
+	}
+	
 «ENDIF-»
 «IF videocameraController!=null-»
-@IBAction func openVideoCamera(sender: UIButton) {
-        
-    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .Camera
-        picker.mediaTypes = [kUTTypeMovie as String]
-        presentViewController(picker, animated: true, completion: nil)
-    }
-    
-}
+
+	@IBAction func openVideoCamera(sender: UIButton) {
+	        
+	    if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+	        let picker = UIImagePickerController()
+	        picker.delegate = self
+	        picker.sourceType = .Camera
+	        picker.mediaTypes = [kUTTypeMovie as String]
+	        presentViewController(picker, animated: true, completion: nil)
+	    }
+	    
+	}
+	
 «ENDIF-»
 «IF photocameraController!=null-»
-/*
-- (NSString *)copyImageInImagesFolder:(UIImage *)photo
-{
-    NSData *imageData = UIImagePNGRepresentation(photo);
-    NSString *imagesPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/images"];
-    [[NSFileManager defaultManager] createDirectoryAtPath:imagesPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"] ;
-    NSString *filename = [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".png"];
-    NSString *localImagePath= [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",imagesPath,filename]];
-    [imageData writeToFile:localImagePath atomically:YES];
-    return localImagePath;
-}
-*/
+	/*
+	- (NSString *)copyImageInImagesFolder:(UIImage *)photo
+	{
+	    NSData *imageData = UIImagePNGRepresentation(photo);
+	    NSString *imagesPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/images"];
+	    [[NSFileManager defaultManager] createDirectoryAtPath:imagesPath withIntermediateDirectories:YES attributes:nil error:nil];
+	    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+	    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"] ;
+	    NSString *filename = [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".png"];
+	    NSString *localImagePath= [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",imagesPath,filename]];
+	    [imageData writeToFile:localImagePath atomically:YES];
+	    return localImagePath;
+	}
+	*/
 «ENDIF-»
 «IF videocameraController!=null-»
-/*
-- (NSString *)copyVideoInVideosFolder:(NSURL *)sourceVideoFileUri
-{
-    NSData *videoData = [NSData dataWithContentsOfURL:sourceVideoFileUri];
-    NSString *videosPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/videos"];
-    [[NSFileManager defaultManager] createDirectoryAtPath:videosPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"] ;
-    NSString *filename = [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".mp4"];
-    NSString *localVideoPath= [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",videosPath,filename]];
-    [videoData writeToFile:localVideoPath atomically:YES];
-    return localVideoPath;
-}
-*/
+	/*
+	- (NSString *)copyVideoInVideosFolder:(NSURL *)sourceVideoFileUri
+	{
+	    NSData *videoData = [NSData dataWithContentsOfURL:sourceVideoFileUri];
+	    NSString *videosPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/videos"];
+	    [[NSFileManager defaultManager] createDirectoryAtPath:videosPath withIntermediateDirectories:YES attributes:nil error:nil];
+	    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+	    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"] ;
+	    NSString *filename = [[formatter stringFromDate:[NSDate date]] stringByAppendingString:@".mp4"];
+	    NSString *localVideoPath= [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@/%@",videosPath,filename]];
+	    [videoData writeToFile:localVideoPath atomically:YES];
+	    return localVideoPath;
+	}
+	*/
 «ENDIF-»
 «ENDDEFINE-»
