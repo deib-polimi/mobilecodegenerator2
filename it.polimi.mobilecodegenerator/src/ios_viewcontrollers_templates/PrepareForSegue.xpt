@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -15,10 +15,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE implements FOR ViewController-»
-«IF 	map==null && (listViews.size==0 && gridViews.size==0)-»
-«ELSEIF map==null && !(listViews.size==0 && gridViews.size==0)-»implements OnItemClickListener
-«ELSEIF map!=null && (listViews.size==0 && gridViews.size==0)-»implements OnMapReadyCallback
-«ELSEIF map!=null && !(listViews.size==0 && gridViews.size==0)-»implements OnMapReadyCallback, OnItemClickListener
-«ENDIF-»
+«DEFINE prepareForSegue FOR ViewController-»
+«EXPAND ios_viewcontrollers_templates::ListViews::prepareForSegue-»
+«EXPAND ios_viewcontrollers_templates::GridViews::prepareForSegue-»
 «ENDDEFINE-»

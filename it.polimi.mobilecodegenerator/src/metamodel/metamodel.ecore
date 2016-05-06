@@ -52,8 +52,6 @@
         eType="#//ProgressDialog" containment="true" eOpposite="#//ProgressDialog/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="alertDialogs" upperBound="-1"
         eType="#//AlertDialog" containment="true" eOpposite="#//AlertDialog/viewController"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="locationManager" eType="#//LocationManager"
-        containment="true" eOpposite="#//LocationManager/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="map" eType="#//Map" containment="true"
         eOpposite="#//Map/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="photocameraController"
@@ -188,10 +186,6 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/alertDialogs"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LocationManager">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
-        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/locationManager"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Map" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>

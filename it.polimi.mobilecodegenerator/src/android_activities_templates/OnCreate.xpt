@@ -44,7 +44,5 @@ setSupportActionBar(toolbar);
 
 «EXPAND android_activities_templates::AlertDialogs::onCreate-»
 
-«EXPAND android_activities_templates::LocationManager::onCreate-»
-
 «EXPAND android_activities_templates::AsyncTasks::onCreate-»
 «ENDDEFINE-»

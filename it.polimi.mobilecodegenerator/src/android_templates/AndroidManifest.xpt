@@ -21,7 +21,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="«this.companyIdentifier».«this.name.toLowerCase()»" >
     
-    «IF viewControllers.locationManager.contains(true) || viewControllers.map.size > 0-»
+    «IF viewControllers.map.size > 0-»
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     «ENDIF-»
 	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") || viewControllers.imageViews.sourceType.toString().contains("remoteFile") || 

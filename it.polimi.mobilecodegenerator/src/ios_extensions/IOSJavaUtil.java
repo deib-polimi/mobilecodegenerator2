@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -25,6 +25,12 @@ public class IOSJavaUtil {
 	
 	private static HashMap<String, String[]> hexadecimalIdsMap = new HashMap<String, String[]>();
 	private static int count = 1000000;
+	
+	/**
+	 * Returns the first hex id
+	 * @param key
+	 * @return
+	 */
 	public static String getFirstHexadecimalId(String key){
 		if(hexadecimalIdsMap.containsKey(key)){
 			return hexadecimalIdsMap.get(key)[0];		
@@ -33,11 +39,23 @@ public class IOSJavaUtil {
 			return generateNewHexadecimalIds(key)[0];
 		}
 	}
+	
+	/**
+	 * Returns the second hex id
+	 * @param key
+	 * @return
+	 */
 	public static String getSecondHexadecimalId(String key){
 		return hexadecimalIdsMap.get(key)[1];
 	}
-	//36181A and 5260094950D have been chosen randomly
+	
+	/**
+	 * Generates a couple of hex ids in the range 36181Axxxxxxx5260094950D
+	 * @param key
+	 * @return
+	 */
 	private static String[] generateNewHexadecimalIds(String key) {
+		//36181A and 5260094950D have been chosen randomly
 		String firstId 	= "36181A"+(++count)+"5260094950D";
 		String secondId = "36181A"+(++count)+"5260094950D";
 		String[] array = {firstId,secondId};
@@ -45,12 +63,17 @@ public class IOSJavaUtil {
 		return array;
 	}
 	
-	//delete application code folder and its content (if already exists)
+	/**
+	 * Deletes application code folder and its content (if already exists)
+	 */
 	public static void deleteApplicationFolder(){
 		File iosAppFolder = new File(IOSConstants.destinationFilesFolder);
 		AppJavaUtil.deleteFolder(iosAppFolder);
 	}
 	
+	/**
+	 * Copies user files
+	 */
 	public static void copyUserFiles(){
 		File folder = new File("utils/user_files");
 		for(File source : folder.listFiles()){
@@ -59,6 +82,9 @@ public class IOSJavaUtil {
 		}
 	}
 	
+	/**
+	 * Copies iOS default files
+	 */
 	public static void copyDefaultIOSFiles(){
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset").mkdirs();
@@ -77,6 +103,11 @@ public class IOSJavaUtil {
 		}
 	}
 	
+	/**
+	 * Returns the normalized rgb red
+	 * @param hexColor
+	 * @return
+	 */
 	public static float redFromHex(String hexColor) {
 		try {
 			hexColor = hexColor.replace("#", "0x");
@@ -86,6 +117,12 @@ public class IOSJavaUtil {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Returns the normalized rgb green
+	 * @param hexColor
+	 * @return
+	 */
 	public static float greenFromHex(String hexColor) {
 		try {
 			hexColor = hexColor.replace("#", "0x");
@@ -95,6 +132,12 @@ public class IOSJavaUtil {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Returns the normalized rgb blue
+	 * @param hexColor
+	 * @return
+	 */
 	public static float blueFromHex(String hexColor) {
 		try {
 			hexColor = hexColor.replace("#", "0x");
@@ -105,6 +148,11 @@ public class IOSJavaUtil {
 		}
 	}
 	
+	/**
+	 * Returns the main domain of a URL string
+	 * @param url
+	 * @return
+	 */
 	public String domainFromUrl(String url) {
 		String parts[] = url.split("//");
 		String cleanUrl = parts[1];
@@ -112,24 +160,15 @@ public class IOSJavaUtil {
 		return results[0];
 	}
 	
+	/**
+	 * Removes the extensions .mp3 or .mp4 from file name
+	 * @param fileName
+	 * @return
+	 */
 	public String removeExtension(String fileName) {
 		if (fileName.contains(".mp3"))		return fileName.split(".mp3")[0];
 		else if (fileName.contains(".mp4")) return fileName.split(".mp4")[0];
 		else return fileName;
 	}
 	
-	/*
-	private static Integer currentY;
-	private static final Integer Y_OFFSET = 10;
-	
-	public static void resetCurrentY(){
-		currentY = 20;
-	}
-	
-	public static Integer getYOnStoryboard(Integer height){
-		Integer y = currentY;
-		currentY = currentY + height + Y_OFFSET;
-		return y;
-	}
-	*/
 }

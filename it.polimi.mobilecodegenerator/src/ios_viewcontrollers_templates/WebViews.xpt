@@ -31,7 +31,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    }
 	«ELSE-»
 		/*
-		let «wv.id»FileName = "" //TODO insert local html file name
+		let «wv.id»FileName = "HTMLFileName"
 		if let «wv.id»Url = NSBundle.mainBundle().URLForResource(«wv.id»FileName, withExtension:"html") {
 	        let request = NSURLRequest(URL: «wv.id»Url)
 	        self.«wv.id».loadRequest(request)

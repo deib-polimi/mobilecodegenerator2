@@ -39,7 +39,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             self.«vv.id».scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
 		«ELSE-»
-		//Decomment here and replace URI
 		/*
 		if let «vv.id»String = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
             let «vv.id»Url = NSURL(fileURLWithPath: «vv.id»String)

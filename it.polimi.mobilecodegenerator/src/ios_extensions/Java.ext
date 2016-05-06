@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -15,15 +15,16 @@
 
 import metamodel;
 
-//iOS methods
 String getFirstHexadecimalId(String key):JAVA ios_extensions.IOSJavaUtil.getFirstHexadecimalId(java.lang.String);
 String getSecondHexadecimalId(String key):JAVA ios_extensions.IOSJavaUtil.getSecondHexadecimalId(java.lang.String);
 
 Void deleteApplicationFolder():JAVA ios_extensions.IOSJavaUtil.deleteApplicationFolder();
 Void copyDefaultIOSFiles():JAVA ios_extensions.IOSJavaUtil.copyDefaultIOSFiles();
 Void copyUserFiles():JAVA ios_extensions.IOSJavaUtil.copyUserFiles();
+
 float redFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.redFromHex(java.lang.String);
 float greenFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.greenFromHex(java.lang.String);
 float blueFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.blueFromHex(java.lang.String);
+
 String domainFromUrl(String url):JAVA ios_extensions.IOSJavaUtil.domainFromUrl(java.lang.String);
 String removeExtension(String fileName):JAVA ios_extensions.IOSJavaUtil.removeExtension(java.lang.String);

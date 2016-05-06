@@ -53,8 +53,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		
 		«EXPAND android_activities_templates::Camera::camera-»
 		
-		«EXPAND android_activities_templates::LocationManager::locationManager-»
-		
 		«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
 
 		«IF this.application.menu.menuItems.size > 0 && this.launcher -»
