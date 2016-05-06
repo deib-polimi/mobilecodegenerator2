@@ -20,14 +20,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IF audioRecorder!=null-»
 	@IBOutlet weak var recordButton: UIButton!
 	var audioRecorder: AVAudioRecorder!
-	var audiosUrl: NSURL!
-	var recordedAudioUrl: NSURL!
+	var recordedAudioUrl = NSURL()
 	let recordSettings = [
-		AVSampleRateKey : NSNumber(float: Float(44100.0)),
-		AVFormatIDKey : NSNumber(int: Int32(kAudioFormatMPEG4AAC)),
-		AVNumberOfChannelsKey : NSNumber(int: 1),
-		AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))
-	]
+        AVFormatIDKey : Int(kAudioFormatAppleLossless),
+		AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
+		AVEncoderBitRateKey : 320000,
+		AVNumberOfChannelsKey : 2,
+		AVSampleRateKey : 44100.0
+    ]
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
 	var «ap.id»: AVAudioPlayer!
@@ -35,10 +35,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE viewDidAppear FOR ViewController-»
-	«FOREACH audioPlayers AS ap-»
-	«IF !ap.sourceType.toString().matches("hardwareFile")-»
+«FOREACH audioPlayers AS ap-»
+«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	«IF ap.sourceType.toString().matches("localFile")-»
-	«IF !ap.fileUri.matches("")-»
+		«IF !ap.fileUri.matches("")-»
 		if let «ap.id»FilePathString = NSBundle.mainBundle().pathForResource("«removeExtension(ap.fileUri)»", ofType: "mp3") {
 			let «ap.id»FilePathUrl = NSURL(fileURLWithPath: «ap.id»FilePathString)
 			do {
@@ -61,7 +61,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		}
 	    */
 		«ENDIF-»
-		«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
+	«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 		«IF !ap.fileUri.matches("")-»
 		if let «ap.id»FileRemoteUrl = NSURL(string: "«ap.fileUri»") {
 			getDataFromUrl(«ap.id»FileRemoteUrl) { (data, response, error)  in
@@ -97,45 +97,22 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			}
 		}
 	    */
+		«ENDIF-»
 	«ENDIF-»
-	«ENDIF-»
-	«ENDIF-»
-	«ENDFOREACH-»
-	
-	«IF audioRecorder!=null-»
-		//Create audios folder
-		let documentsPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0])
-		self.audiosUrl = documentsPath.URLByAppendingPathComponent("audios")
-		do {
-			try NSFileManager.defaultManager().createDirectoryAtPath(audiosUrl.path!, withIntermediateDirectories: true, attributes: nil)
-		} catch let error as NSError {
-			NSLog("Unable to create directory: \(error.debugDescription)")
-		}
-		
-		//Create audio file url
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-		let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
-		self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
-		
-		//Init audiorecorder
-		do {
-			try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
-		} catch let error as NSError {
-			NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
-		}
-	«ENDIF-»
+«ENDIF-»
+«ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE audio FOR ViewController-»
-	«IF audioPlayers.size != 0-»
+«REM»Function needed for audioplayers which url is remote or local (not hardware)«ENDREM»
+«IF audioRecorder == null && audioPlayers.size != 0-»
 	//Function to get the data from a url
 	func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
 	    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
 	        completion(data: data, response: response, error: error)
 	        }.resume()
 	}
-	«ENDIF-»
+«ENDIF-»
 
 «FOREACH audioPlayers AS ap-»
 	@IBAction func «ap.id»Play(sender: UIButton) {
@@ -143,9 +120,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».play()
 	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-			self.«audioRecorder.audioPlayerId».play()
-		}
+		if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
+            if !self.audioRecorder.recording {
+                self.«audioRecorder.audioPlayerId».play()
+            }
+        }
 	    «ENDIF-»
 	}
 	
@@ -154,9 +133,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».pause()
 	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-			self.«audioRecorder.audioPlayerId».pause()
-		}
+		if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
+            if !self.audioRecorder.recording {
+                self.«audioRecorder.audioPlayerId».pause()
+            }
+        }
 	    «ENDIF-»
 	}
 	
@@ -166,77 +147,54 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    self.«ap.id».pause()
 	    self.«ap.id».currentTime = 0
 	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-	    if !self.audioRecorder.recording && self.«audioRecorder.audioPlayerId» != nil {
-			self.«audioRecorder.audioPlayerId».pause()
-			self.«audioRecorder.audioPlayerId».currentTime = 0
-		}
+	    if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
+            if !self.audioRecorder.recording {
+                self.«audioRecorder.audioPlayerId».pause()
+                self.«audioRecorder.audioPlayerId».currentTime = 0
+            }
+        }
 	    «ENDIF-»
 	}
 «ENDFOREACH-»
 
-«IF audioRecorder!=null-»
+«IF audioRecorder != null-»
 	@IBAction func record(sender: UIButton) {
-		
-		if !self.audioRecorder.recording {
-			
-			//Create a new audio file url
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
-			let fileNameString = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".caf")
-			self.recordedAudioUrl = self.audiosUrl.URLByAppendingPathComponent(fileNameString)
-			
-			//Re-Init audiorecorder
-			do {
-				try self.audioRecorder = AVAudioRecorder(URL: self.recordedAudioUrl, settings: self.recordSettings)
-			} catch let error as NSError {
-				NSLog("Unable to initialize AVAudioRecorder: \(error.debugDescription)")
-			}
-			
-			//Record button -> Stop
-			self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
-			
-			//Start recording
-			let audioSession = AVAudioSession.sharedInstance()
-			do {
-				try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-				try audioSession.setActive(true)
-				self.audioRecorder.prepareToRecord()
-				self.audioRecorder.record()
-			} catch let error as NSError {
-				NSLog("Unable to initialize AVAudioSession: \(error.debugDescription)")
-			}
-			
+		if self.recordButton.titleLabel?.text == "Rec" {
+            self.recordButton.setTitle("Stop", forState: UIControlState.Normal)
+            do {
+                try self.audioRecorder = AVAudioRecorder(URL: createFileUrl(), settings: self.recordSettings as! [String : AnyObject])
+            } catch {
+                NSLog("Unable to initialize AVAudioRecorder")
+            }
+            self.audioRecorder.prepareToRecord()
+            self.audioRecorder.record()
 		} else {
-			
-			//Record button -> Rec
-			self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
-			
-			//Stop recording
-			let audioSession = AVAudioSession.sharedInstance()
+            self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
+            self.audioRecorder.stop()
 			do {
-				try audioSession.setActive(false)
-				self.audioRecorder.stop()
-			} catch let error as NSError {
-				NSLog("Unable to deactivate AVAudioSession: \(error.debugDescription)")
-			}
-			
-			//Init audioplayer
-			getDataFromUrl(self.recordedAudioUrl) { (data, response, error)  in
-				dispatch_async(dispatch_get_main_queue()) { () -> Void in
-					guard let data = data where error == nil else {
-						print("Data error")
-						return
-					}
-					do {
-						try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(data: data)
-					} catch let error as NSError {
-						NSLog("Unable to initialize AVAudioPlayer: \(error.debugDescription)")
-					}
-				}
-			}
-			
+                try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(contentsOfURL: self.recordedAudioUrl)
+            } catch {
+                NSLog("Unable to initialize AVAudioPlayer")
+            }
+            self.«audioRecorder.audioPlayerId».prepareToPlay()
 		}
 	}
+	
+	func getCacheDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        return paths[0]
+    }
+    
+    func createFileUrl() -> NSURL {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        
+        let fileName: String = dateFormatter.stringFromDate(NSDate()).stringByAppendingString(".m4a")
+        let filePath: String = getCacheDirectory().stringByAppendingString("/\(fileName)")
+        
+        self.recordedAudioUrl = NSURL(fileURLWithPath: filePath)
+        return self.recordedAudioUrl
+    }
 «ENDIF-»
 «ENDDEFINE-»
 
@@ -254,7 +212,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ENDIF-»
 		«ENDIF-»
 		«FOREACH audioPlayers AS ap-»
-		«IF ap!=null && !ap.sourceType.toString().matches("hardwareFile")-»
+		«IF ap != null && !ap.sourceType.toString().matches("hardwareFile")-»
 		if self.«ap.id» != nil && self.«ap.id».playing {
 		    self.«ap.id».pause()
 		    self.«ap.id».currentTime = 0

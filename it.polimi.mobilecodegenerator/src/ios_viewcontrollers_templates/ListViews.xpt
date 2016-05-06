@@ -32,7 +32,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF lv.listViewCells.size!=0-»
 		// Change the images for each row here
 		«FOREACH lv.listViewCells AS lvc-»
-		UIImage(named: "list_img")!,
+		UIImage(named: "list_image")!,
 		«ENDFOREACH-»
 		«ENDIF-»
 	]

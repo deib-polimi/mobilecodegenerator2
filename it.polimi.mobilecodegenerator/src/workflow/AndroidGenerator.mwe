@@ -1,6 +1,6 @@
 <!--
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -17,7 +17,7 @@
 
 <workflow>
 
-	<!--<property file="AndroidGenerator.properties"/>-->
+	<!--xmi model-->
 	<property name="model" value="it.polimi.mobilecodegenerator/src/model/protocode.xmi" />
 	<property name="src-gen" value="src-gen/android" />
 	
@@ -42,67 +42,70 @@
 		<emfAllChildrenSlot value="model"/>
     </component>
     
-	
 	<!--  GENERATE CODE -->
-		<!-- clear application code folder and generate DefaultFiles -->
-		<component class="org.eclipse.xpand2.Generator">
-			<metaModel idRef="mm_emf"/>
-			<expand
-				value="android_templates::DefaultFiles::main FOR model" />
-			<outlet path="${src-gen}" >
-				<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-			</outlet>
-			<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-				<fileEncoding value="ISO-8859-1"/>
-			</resourceManager>
-		</component>
-		<!-- generate AndroidManifest -->
-		<component class="org.eclipse.xpand2.Generator">
-			<metaModel idRef="mm_emf"/>
-			<expand
-				value="android_templates::AndroidManifest::main FOR model" />
-			<outlet path="${src-gen}" >
-				<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-			</outlet>
-			<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-				<fileEncoding value="ISO-8859-1"/>
-			</resourceManager>
-		</component>
-		<!-- generate Activities -->
-		<component class="org.eclipse.xpand2.Generator">
-			<metaModel idRef="mm_emf"/>
-			<expand
-				value="android_templates::Activities::main FOR model" />
-			<outlet path="${src-gen}" >
-				<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-			</outlet>
-			<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-				<fileEncoding value="ISO-8859-1"/>
-			</resourceManager>
-		</component>
-		<!-- generate XMLFiles -->
-		<component class="org.eclipse.xpand2.Generator">
-			<metaModel idRef="mm_emf"/>
-			<expand
-				value="android_templates::XMLFiles::main FOR model" />
-			<outlet path="${src-gen}" >
-				<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-			</outlet>
-			<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-				<fileEncoding value="ISO-8859-1"/>
-			</resourceManager>
-		</component>
-		<!-- generate ImageDownloadingTask -->
-		<component class="org.eclipse.xpand2.Generator">
-			<metaModel idRef="mm_emf"/>
-			<expand
-				value="android_templates::ImageDownloadingTask::main FOR model" />
-			<outlet path="${src-gen}" >
-				<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-			</outlet>
-			<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-				<fileEncoding value="ISO-8859-1"/>
-			</resourceManager>
-		</component>
-		
+	<!-- clear application code folder and generate DefaultFiles -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::DefaultFiles::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate AndroidManifest -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::AndroidManifest::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate Activities -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::Activities::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate XMLFiles -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::XMLFiles::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate ImageDownloadingTask -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::ImageDownloadingTask::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 </workflow>

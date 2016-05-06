@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -20,45 +20,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JavaChecks {
-	public static List<String> duplicatedIds(List<String> ids){
-		ArrayList<String> duplicates = new ArrayList<String>();
-		for(int i=0; i<ids.size(); i++)
-			for(int j=0; j<ids.size(); j++){
-				if(ids.get(i).equals(ids.get(j)) && i!=j && !duplicates.contains(ids.get(i)))
-					duplicates.add(ids.get(i));
-			}
-		return duplicates;
-	}
 	
-	
-	
-	public static List<String> invalidFilesNames(){
-		String regex = "^[a-z0-9_]+";
-		File folder = new File("utils/user_files");
-		ArrayList<String> invalidFilesNames = new ArrayList<String>();
-		for(File source : folder.listFiles()){
-			if(source.isDirectory() || source.getName().length()<1 || source.getName().split("\\.").length!=2 || !source.getName().split("\\.")[0].matches(regex))
-				invalidFilesNames.add(source.getName());
+	/**
+	 * Check if the application name matches ^[a-zA-Z]+
+	 * @param appName
+	 * @return
+	 */
+	public static boolean isAppNameValid(String appName) {
+		String regex = "^[a-zA-Z]+";
+		if(!appName.matches(regex)) {
+			return false;
 		}
-		return invalidFilesNames;
-	}
-	
-	public static boolean validAppName(String name){
-		String regex = "^[a-zA-Z]+"; //empty string is not valid too
-		if(!name.matches(regex))
-			return false;
 		return true;
 	}
 	
-	public static boolean validCompanyIdentifier(String id){
+	/**
+	 * Check if the company identifier matches ^[a-z]+(\\.[a-z]+)*
+	 * @param companyIdentifier
+	 * @return
+	 */
+	public static boolean isCompanyIdentifierValid(String companyIdentifier) {
 		String regex = "^[a-z]+(\\.[a-z]+)*";
-		if(!id.matches(regex))
+		if(!companyIdentifier.matches(regex)) {
 			return false;
+		}
 		return true;
 	}
 	
+	/**
+	 * Returns the list of invalid ids
+	 * @param ids
+	 * @return
+	 */
 	public static List<String> invalidIds(List<String> ids){
-		String regex = "^[a-zA-Z][a-zA-Z0-9_]*"; //empty string is not valid too
+		String regex = "^[a-zA-Z][a-zA-Z0-9_]*";
 		ArrayList<String> invalidIds = new ArrayList<String>();
 		for(String id : ids){
 			if(!id.matches(regex)) {
@@ -69,7 +64,45 @@ public class JavaChecks {
 		return invalidIds;
 	}
 	
-	public static List<String> invalidFilesExtensions(){
+	/**
+	 * Returns the list of duplicated ids
+	 * @param ids
+	 * @return
+	 */
+	public static List<String> duplicatedIds(List<String> ids) {
+		ArrayList<String> duplicates = new ArrayList<String>();
+		for(int i=0; i<ids.size(); i++)
+			for(int j=0; j<ids.size(); j++){
+				if(ids.get(i).equals(ids.get(j)) && i!=j && !duplicates.contains(ids.get(i))) {
+					duplicates.add(ids.get(i));
+					System.out.println("-->" + ids.get(i));
+				}
+			}
+		return duplicates;
+	}
+	
+	/**
+	 * Returns the list of invalid files
+	 * @return
+	 */
+	public static List<String> invalidFilesNames() {
+		String regex = "^[a-z0-9_]+";
+		File folder = new File("utils/user_files");
+		ArrayList<String> invalidFilesNames = new ArrayList<String>();
+		for(File source : folder.listFiles()){
+			if(source.isDirectory() || source.getName().length()<1 || source.getName().split("\\.").length!=2 || !source.getName().split("\\.")[0].matches(regex)) {
+				invalidFilesNames.add(source.getName());
+				System.out.println("-->" + source.getName());
+			}
+		}
+		return invalidFilesNames;
+	}
+	
+	/**
+	 * Returns the list of invalid files
+	 * @return
+	 */
+	public static List<String> invalidFilesExtensions() {
 		File folder = new File("utils/user_files");
 		ArrayList<String> invalidFilesExtensions = new ArrayList<String>();
 		for(File source : folder.listFiles()){
@@ -84,18 +117,25 @@ public class JavaChecks {
 					sourceFileExtension.equalsIgnoreCase("3gp") ||
 					sourceFileExtension.equalsIgnoreCase("mp3") )){
 				invalidFilesExtensions.add(source.getName());
+				System.out.println("-->" + source.getName());
 			}
 		}
 		return invalidFilesExtensions;
 	}
 	
-	public static List<String> duplicatedFilesNames(){
+	/**
+	 * Returns the list of duplicated files
+	 * @return
+	 */
+	public static List<String> duplicatedFilesNames() {
 		File folder = new File("utils/user_files");
 		ArrayList<String> duplicatedFilesNames = new ArrayList<String>();
 		for(int i=0; i<folder.listFiles().length; i++){
 			for(int j=0; j<folder.listFiles().length; j++)
-				if(i!=j && folder.listFiles()[i].getName().split("\\.")[0].equals(folder.listFiles()[j].getName().split("\\.")[0]) && !duplicatedFilesNames.contains(folder.listFiles()[i]))
+				if(i!=j && folder.listFiles()[i].getName().split("\\.")[0].equals(folder.listFiles()[j].getName().split("\\.")[0]) && !duplicatedFilesNames.contains(folder.listFiles()[i])) {
 					duplicatedFilesNames.add(folder.listFiles()[i].getName());
+					System.out.println("-->" + folder.listFiles()[i].getName());
+				}
 		}
 		return duplicatedFilesNames;
 	}

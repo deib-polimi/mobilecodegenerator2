@@ -58,13 +58,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ENDIF-»
 		«FOREACH userFilesNames() AS filename-»
 		«getFirstHexadecimalId(filename)» /* «filename» in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(filename)» /* «filename» */; };
-		«ENDFOREACH-»
-		«getFirstHexadecimalId("play_icon.png")» /* play_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("play_icon.png")» /* play_icon.png */; };
-		«getFirstHexadecimalId("pause_icon.png")» /* pause_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */; };
-		«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */; };
-		«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_img.png")» /* list_img.png */; };
-		«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("list_icon.png")» /* list_icon.png */; };
-		«getFirstHexadecimalId("grid_image.png")» /* grid_image.png in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("grid_image.png")» /* grid_image.png */; };
+		«ENDFOREACH-»	
 			
 /* End PBXBuildFile section */
 
@@ -102,13 +96,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH userFilesNames() AS filename-»
 		«getSecondHexadecimalId(filename)» /* «filename» */ = {isa = PBXFileReference; lastKnownFileType = «filename»; name = «filename»; path = «filename»; sourceTree = "<group>"; };
 		«ENDFOREACH-»
-		«getSecondHexadecimalId("play_icon.png")» /* play_icon.png */ = {isa = PBXFileReference; lastKnownFileType = play_icon.png; name = play_icon.png; path = play_icon.png; sourceTree = "<group>"; };
-		«getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */ = {isa = PBXFileReference; lastKnownFileType = pause_icon.png; name = pause_icon.png; path = pause_icon.png; sourceTree = "<group>"; };
-		«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */ = {isa = PBXFileReference; lastKnownFileType = stop_icon.png; name = stop_icon.png; path = stop_icon.png; sourceTree = "<group>"; };
-		«getSecondHexadecimalId("list_img.png")» /* list_img.png */ = {isa = PBXFileReference; lastKnownFileType = list_img.png; name = list_img.png; path = list_img.png; sourceTree = "<group>"; };
-		«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */ = {isa = PBXFileReference; lastKnownFileType = list_icon.png; name = list_icon.png; path = list_icon.png; sourceTree = "<group>"; };
-		«getSecondHexadecimalId("grid_image.png")» /* grid_image.png */ = {isa = PBXFileReference; lastKnownFileType = grid_image.png; name = grid_image.png; path = grid_image.png; sourceTree = "<group>"; };
-
+		
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,12 +161,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«FOREACH userFilesNames() AS filename-»
 				«getSecondHexadecimalId(filename)» /* «filename» */,
 				«ENDFOREACH-»
-				«getSecondHexadecimalId("play_icon.png")» /* play_icon.png */,
-				«getSecondHexadecimalId("pause_icon.png")» /* pause_icon.png */,
-				«getSecondHexadecimalId("stop_icon.png")» /* stop_icon.png */,
-				«getSecondHexadecimalId("list_img.png")» /* list_img.png */,
-				«getSecondHexadecimalId("list_icon.png")» /* list_icon.png */,
-				«getSecondHexadecimalId("grid_image.png")» /* grid_image.png */,
 			);
 			path = «name»;
 			sourceTree = "<group>";
@@ -247,12 +229,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«FOREACH userFilesNames() AS filename-»
 				«getFirstHexadecimalId(filename)» /* «filename» in Resources */,
 				«ENDFOREACH-»
-				«getFirstHexadecimalId("play_icon.png")» /* play_icon.png in Resources */,
-				«getFirstHexadecimalId("pause_icon.png")» /* pause_icon.png in Resources */,
-				«getFirstHexadecimalId("stop_icon.png")» /* stop_icon.png in Resources */,
-				«getFirstHexadecimalId("list_img.png")» /* list_img.png in Resources */,
-				«getFirstHexadecimalId("list_icon.png")» /* list_icon.png in Resources */,
-				«getFirstHexadecimalId("grid_image.png")» /* grid_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,7 +51,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    «FOREACH vc.imageViews AS iv-»
-	                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
+	                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
 	                        «IF iv.sourceType.toString().matches("hardwareFile")»
 	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 	                        «ENDIF»
@@ -140,7 +140,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                         <constraint firstAttribute="width" constant="56" id="«ap.id»PlayWidthID"/>
                                         <constraint firstAttribute="height" constant="56" id="«ap.id»PlayHeightID"/>
                                     </constraints>
-									<state key="normal" title="Play" image="play_icon.png">
+									<state key="normal" title="Play" image="play_icon">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
@@ -153,7 +153,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                         <constraint firstAttribute="width" constant="56" id="«ap.id»PauseWidthID"/>
                                         <constraint firstAttribute="height" constant="56" id="«ap.id»PauseHeightID"/>
                                     </constraints>
-                                    <state key="normal" title="Pause" image="pause_icon.png">
+                                    <state key="normal" title="Pause" image="pause_icon">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
@@ -166,7 +166,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                         <constraint firstAttribute="width" constant="56" id="«ap.id»StopWidthID"/>
                                         <constraint firstAttribute="height" constant="56" id="«ap.id»StopHeightID"/>
                                     </constraints>
-	                                <state key="normal" title="Stop" image="stop_icon.png">
+	                                <state key="normal" title="Stop" image="stop_icon">
 	                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
 	                                </state>
 	                                <connections>
@@ -549,12 +549,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «ENDIF-»
         «ENDFOREACH-»
         «ENDFOREACH-»
-        <image name="pause_icon.png" width="100" height="100"/>
-        <image name="play_icon.png" width="100" height="100"/>
-        <image name="stop_icon.png" width="100" height="100"/>
-        <image name="list_img.png" width="100" height="100"/>
-        <image name="list_icon.png" width="100" height="100"/>
-        <image name="grid_image.png" width="100" height="100"/>
+        <image name="grid_image" width="202" height="202"/>
+        <image name="list_img" width="100" height="100"/>
+        <image name="list_icon" width="40" height="40"/>
+        <image name="pause_icon" width="56" height="56"/>
+        <image name="play_icon" width="56" height="56"/>
+        <image name="stop_icon" width="56" height="56"/>
 	</resources>
 </document>
 «ENDFILE-»

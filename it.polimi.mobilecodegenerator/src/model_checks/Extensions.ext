@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -15,15 +15,16 @@
 
 import metamodel;
 
+Boolean isAppNameValid(String name):JAVA model_checks.JavaChecks.isAppNameValid(java.lang.String);
+Boolean isCompanyIdentifierValid(String companyIdentifier):JAVA model_checks.JavaChecks.isCompanyIdentifierValid(java.lang.String);
+
+List[String] invalidIds(List[String] ids):JAVA model_checks.JavaChecks.invalidIds(java.util.List);
+List[String] duplicatedIds(List[String] ids):JAVA model_checks.JavaChecks.duplicatedIds(java.util.List);
+
 List[String] invalidFilesNames():JAVA model_checks.JavaChecks.invalidFilesNames();
 List[String] invalidFilesExtensions():JAVA model_checks.JavaChecks.invalidFilesExtensions();
-
-Boolean validAppName(String name):JAVA model_checks.JavaChecks.validAppName(java.lang.String);
-Boolean validCompanyIdentifier(String id):JAVA model_checks.JavaChecks.validCompanyIdentifier(java.lang.String);
-List[String] invalidIds(List[String] ids):JAVA model_checks.JavaChecks.invalidIds(java.util.List);
-
 List[String] duplicatedFilesNames():JAVA model_checks.JavaChecks.duplicatedFilesNames();
-List[String] duplicatedIds(List[String] ids):JAVA model_checks.JavaChecks.duplicatedIds(java.util.List);
+
 
 
 List[String] ids(Application this) : 
