@@ -17,6 +17,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «EXPAND android_activities_templates::Buttons::attributesDeclarations-»
+«EXPAND android_activities_templates::Sliders::attributesDeclarations-»
+«EXPAND android_activities_templates::Switches::attributesDeclarations-»
 «EXPAND android_activities_templates::EditTexts::attributesDeclarations-»
 «EXPAND android_activities_templates::WebViews::attributesDeclarations-»
 «EXPAND android_activities_templates::ImageViews::attributesDeclarations-»

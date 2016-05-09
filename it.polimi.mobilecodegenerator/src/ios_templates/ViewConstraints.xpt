@@ -20,6 +20,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 					        «EXPAND siblingConstraints FOR b»
 					        «EXPAND parentContraints FOR b»
 						«ENDFOREACH-»
+						«FOREACH sliders AS s-»
+					        «EXPAND siblingConstraints FOR s»
+					        «EXPAND parentContraints FOR s»
+						«ENDFOREACH-»
+						«FOREACH switches AS s-»
+					        «EXPAND siblingConstraints FOR s»
+					        «EXPAND parentContraints FOR s»
+						«ENDFOREACH-»
 						«FOREACH textViews AS tv-»
 							«EXPAND siblingConstraints FOR tv»
 					        «EXPAND parentContraints FOR tv»

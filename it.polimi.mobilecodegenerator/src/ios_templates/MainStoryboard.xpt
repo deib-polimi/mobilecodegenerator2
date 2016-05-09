@@ -85,6 +85,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                        </connections>
 	                    </button>
 	                    «ENDFOREACH-»
+	                    «FOREACH vc.sliders AS s-»
+	                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+                            «EXPAND uiControl FOR s»
+                            <connections>
+                                <action selector="«s.id»ValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«s.id»ValueChangedActionID"/>
+                            </connections>
+                        </slider>
+	                    «ENDFOREACH-»
 	                    «IF vc.photocameraController!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
 	                        «EXPAND uiControl FOR vc.photocameraController»
@@ -129,9 +137,28 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                        </connections>
 	                    </button>
 						«ENDIF-»
+						«FOREACH vc.switches AS s-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+	                    	<rect key="frame" x="«s.posX.toInteger()»" y="«s.posY.toInteger() + 64»" width="«s.width.toInteger()»" height="«s.height.toInteger()»"/>
+	                    	<subviews>
+			                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»Button">    
+		                            <rect key="frame" x="0" y="0" width="51" height="31"/>
+		                            <connections>
+		                                <action selector="«s.id»ButtonValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«s.id»ButtonValueChangedActionID"/>
+		                            </connections>
+		                        </switch>
+                        	</subviews>
+                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR s-»
+                                <constraint firstItem="«s.id»Button" firstAttribute="centerX" secondItem="«s.id»" secondAttribute="centerX" id="«s.id»ButtonConstCenterX"/>
+                                <constraint firstItem="«s.id»Button" firstAttribute="centerY" secondItem="«s.id»" secondAttribute="centerY" id="«s.id»ButtonConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
 	                    «FOREACH vc.audioPlayers AS ap-»
 	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»">
-	                    	<rect key="frame" x="«ap.posX.toInteger()»" y="«ap.posY.toInteger() + 62»" width="«ap.width.toInteger()»" height="«ap.height.toInteger()»"/>
+	                    	<rect key="frame" x="«ap.posX.toInteger()»" y="«ap.posY.toInteger() + 64»" width="«ap.width.toInteger()»" height="«ap.height.toInteger()»"/>
 							<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
 	                        <subviews>
 	                        	<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»AudioPlayerPlayButton">
@@ -442,6 +469,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                «ENDFOREACH-»
 	      			«FOREACH vc.editTexts AS et-»
 	                <outlet property="«et.id»" destination="«et.id»" id="«et.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.sliders AS s-»
+	                <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.switches AS s-»
+	                <outlet property="«s.id»Button" destination="«s.id»Button" id="«s.id»ButtonOutletID"/>
 	                «ENDFOREACH-»
 	      			«FOREACH vc.webViews AS wv-»
 	                <outlet property="«wv.id»" destination="«wv.id»" id="«wv.id»OutletID"/>

@@ -26,6 +26,10 @@ setSupportActionBar(toolbar);
 
 «EXPAND android_activities_templates::Buttons::onCreate-»
 
+«EXPAND android_activities_templates::Sliders::onCreate-»
+
+«EXPAND android_activities_templates::Switches::onCreate-»
+
 «EXPAND android_activities_templates::EditTexts::onCreate-»
 
 «EXPAND android_activities_templates::Camera::onCreate-»
