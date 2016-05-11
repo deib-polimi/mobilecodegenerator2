@@ -25,6 +25,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="switches" ordered="false"
         upperBound="-1" eType="#//Switch" containment="true" eOpposite="#//Switch/viewController"
         eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datepickers" ordered="false"
+        upperBound="-1" eType="#//Datepicker" containment="true" eOpposite="#//Datepicker/viewController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timepickers" ordered="false"
+        upperBound="-1" eType="#//Timepicker" containment="true" eOpposite="#//Timepicker/viewController"
+        eKeys="#//UiControl/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sliders" ordered="false"
         upperBound="-1" eType="#//Slider" containment="true" eOpposite="#//Slider/viewController"
         eKeys="#//UiControl/id"/>
@@ -84,6 +90,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Switch" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/switches"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Datepicker" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/datepickers"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Timepicker" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/timepickers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slider" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"

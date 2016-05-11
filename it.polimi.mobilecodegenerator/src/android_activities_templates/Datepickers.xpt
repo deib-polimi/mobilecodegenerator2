@@ -15,7 +15,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE prepareForSegue FOR ViewController-»
-«EXPAND ios_viewcontrollers_templates::GridViews::prepareForSegue-»
-«EXPAND ios_viewcontrollers_templates::ListViews::prepareForSegue-»
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH datepickers AS d-»
+private CalendarView «d.id»Picker;
+«ENDFOREACH-»
 «ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH datepickers AS d-»
+«d.id»Picker = (CalendarView) findViewById(R.id.«d.id»Picker);
+«d.id»Picker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+    @Override
+    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+    	Log.i("Date", dayOfMonth+"/"+month+"/"+year);
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+

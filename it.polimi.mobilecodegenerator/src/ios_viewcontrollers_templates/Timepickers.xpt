@@ -15,7 +15,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE prepareForSegue FOR ViewController-»
-«EXPAND ios_viewcontrollers_templates::GridViews::prepareForSegue-»
-«EXPAND ios_viewcontrollers_templates::ListViews::prepareForSegue-»
+«DEFINE propertiesDeclarations FOR ViewController-»
+	«FOREACH timepickers AS t-»
+	@IBOutlet weak var «t.id»Picker: UIDatePicker!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE timepickers FOR ViewController-»
+«FOREACH timepickers AS t-»
+    @IBAction func «t.id»PickerValueChangedAction(sender: UIDatePicker) {
+        let timeString = String(sender.date)
+        let hh = timeString.substringWithRange(
+            Range<String.Index>(timeString.startIndex.advancedBy(11)...timeString.startIndex.advancedBy(12))
+        )
+        let mm = timeString.substringWithRange(
+            Range<String.Index>(timeString.startIndex.advancedBy(14)...timeString.startIndex.advancedBy(15))
+        )
+        NSLog("Time : \(hh):\(mm)")
+    }
+«ENDFOREACH-»
 «ENDDEFINE-»

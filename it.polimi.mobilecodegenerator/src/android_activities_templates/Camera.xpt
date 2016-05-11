@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -16,11 +16,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE attributesDeclarations FOR ViewController-»
-«IF photocameraController!=null-»
+«IF photocameraController != null-»
 private Button fotocameraButton;
 private static final int IMAGE_CAPTURE_ACTIVITY_REQUEST_CODE = 100;
 «ENDIF-»
-«IF videocameraController!=null-»
+«IF videocameraController != null-»
 private Button videocameraButton;
 private Uri videoFileUri;
 private static final int VIDEO_CAPTURE_ACTIVITY_REQUEST_CODE = 200;
@@ -29,7 +29,7 @@ private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 300;
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
-«IF photocameraController!=null-»
+«IF photocameraController != null-»
 fotocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
 fotocameraButton.setOnClickListener(new OnClickListener() {
 	@Override
@@ -40,7 +40,7 @@ fotocameraButton.setOnClickListener(new OnClickListener() {
 });
 «ENDIF-»
 
-«IF videocameraController!=null-»
+«IF videocameraController != null-»
 //Request permissions to save the video at runtime ONLY for API >= 23
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 	requestPermissions(
@@ -53,7 +53,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 «ENDDEFINE-»
 
 «DEFINE camera FOR ViewController-»
-«IF videocameraController!=null-»
+«IF videocameraController != null-»
 @Override
 public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 	switch (requestCode) {
@@ -84,11 +84,11 @@ private void setUpRecorder() {
 }
 «ENDIF-»
 
-«IF photocameraController!=null || videocameraController!=null-»
+«IF photocameraController != null || videocameraController != null-»
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {        
 	if(resultCode == Activity.RESULT_OK) {
-		«IF photocameraController!=null-»
+		«IF photocameraController != null-»
 		if(requestCode == IMAGE_CAPTURE_ACTIVITY_REQUEST_CODE) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			String localImageFileUri = this.copyImageInImagesFolder(photo);
@@ -98,7 +98,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             «ENDIF-»
 		}
 		«ENDIF-»
-		«IF videocameraController!=null-»
+		«IF videocameraController != null-»
 		if (requestCode == VIDEO_CAPTURE_ACTIVITY_REQUEST_CODE) {
 				videoFileUri = data.getData();
 				String localVideoFileUri = this.copyVideoInVideosFolder(videoFileUri);
@@ -117,7 +117,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 
-«IF photocameraController!=null-»
+«IF photocameraController != null-»
 private String copyImageInImagesFolder(Bitmap image){
 	String localImagePath = null;
 	try {
@@ -130,8 +130,7 @@ private String copyImageInImagesFolder(Bitmap image){
 	    FileOutputStream outputStream = new FileOutputStream(localImageFile);
 		image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 		outputStream.close();
-	}
-	catch (IOException e) {
+	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
@@ -139,7 +138,7 @@ private String copyImageInImagesFolder(Bitmap image){
 }
 «ENDIF-»
 
-«IF videocameraController!=null-»
+«IF videocameraController != null-»
 private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 	String localVideoPath = null;
 	try {
@@ -159,8 +158,7 @@ private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 	    }
 	    fis.close();
 	    fos.close();
-	}
-	catch (IOException e) {
+	} catch (IOException e) {
 	   	// TODO Auto-generated catch block
 		e.printStackTrace();
 	}

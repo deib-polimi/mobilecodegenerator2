@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -15,7 +15,6 @@
 
 import metamodel;
 
-//Android methods
 Void deleteApplicationFolder():JAVA android_extensions.AndroidJavaUtil.deleteApplicationFolder();
 Void copyDefaultAndroidFiles():JAVA android_extensions.AndroidJavaUtil.copyDefaultAndroidFiles();
 Void copyUserFiles():JAVA android_extensions.AndroidJavaUtil.copyUserFiles();

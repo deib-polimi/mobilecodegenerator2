@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -14,6 +14,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDREM»
 
 «IMPORT metamodel»
+
 «DEFINE main FOR Application-»
 
 «IF menu.menuItems.size > 0-»
@@ -28,8 +29,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 
-«REM» If there's a ListView in the application then create the xml layout files «ENDREM»
-«IF viewControllers.listViews.size!=0-»
+«REM» If there's at least one ListView, create the xml layout files «ENDREM»
+«IF viewControllers.listViews.size != 0-»
 «FILE name+"/app/src/main/res/layout/my_list_row_simple.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
@@ -138,7 +139,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 
-«REM» If there's a GridView in the application then create the xml layout files «ENDREM»
+«REM» If there's at least one GridView, create the xml layout files «ENDREM»
 «IF viewControllers.gridViews.size!=0-»
 «FILE name+"/app/src/main/res/drawable/my_grid_background.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
@@ -238,7 +239,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 
-«REM» Foreach button that has a custom background color then create the xml drawable file«ENDREM»
+«REM» Foreach button that has a custom background color, create the xml drawable file«ENDREM»
 «FOREACH viewControllers.buttons AS b-»
 «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
 «FILE name+"/app/src/main/res/drawable/"+b.id.toLowerCase()+"_background.xml"-»
@@ -305,6 +306,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 </android.support.design.widget.CoordinatorLayout>
 «ENDFILE-»
+
 «FILE this.application.name+"/app/src/main/res/layout/"+"content_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -360,6 +362,32 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
+	«FOREACH timepickers AS t-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiControl FOR t»
+	>
+	
+		<TimePicker
+			android:id="@+id/«t.id»Picker"
+        	android:layout_width="351dp"
+			android:layout_height="432dp"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH datepickers AS d-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiControl FOR d»
+	>
+	
+		<CalendarView
+			android:id="@+id/«d.id»Picker"
+        	android:layout_width="320dp"
+            android:layout_height="320dp"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
 	«IF photocameraController!=null-»
 	<Button
         «EXPAND uiControl FOR photocameraController»
@@ -375,7 +403,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«EXPAND uiControl FOR audioRecorder»
         android:text="Rec" />
 	«ENDIF-»
-	«IF map!=null-»
+	«IF map != null-»
 	<fragment
 		android:name="com.google.android.gms.maps.SupportMapFragment"
 		«EXPAND uiControl FOR map»

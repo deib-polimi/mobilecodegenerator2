@@ -16,7 +16,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE viewDidLoad FOR ViewController-»
-	«FOREACH asyncTasks AS at-»
+		«FOREACH asyncTasks AS at-»
 		// «at.name» : do this operation on another thread
 	    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
 	    dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -27,5 +27,5 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	            
 	        }
 	    }	
-	«ENDFOREACH-»
+		«ENDFOREACH-»
 «ENDDEFINE-»

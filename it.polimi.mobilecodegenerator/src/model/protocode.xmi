@@ -4,8 +4,17 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <sliders id="alphSlider" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="150" height="50" viewController="//@viewControllers[name='Main']"/>
-        <switches id="ctnhSwitch" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="30" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Main']/@sliders[id='alphSlider']" viewController="//@viewControllers[name='Main']"/>
+        <datepickers id="fkodDatepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="348" height="338" viewController="//@viewControllers[name='Main']"/>
     </viewControllers>
-    <menu/>
+    <viewControllers name="Other" launcher="false">
+        <timepickers id="hTimepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="400" height="450" viewController="//@viewControllers[name='Other']"/>
+    </viewControllers>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+        <menuItems title="Other" id="Other">
+            <navigation destination="Other"/>
+        </menuItems>
+    </menu>
 </metamodel:Application>

@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -15,6 +15,5 @@
 
 import metamodel;
 
-//App methods
-Void saveApplicationName(String applicationName):JAVA app_extensions.AppJavaUtil.saveApplicationName(java.lang.String);
-List[String] userFilesNames():JAVA app_extensions.AppJavaUtil.userFilesNames();
+Void setApplicationName(String applicationName):JAVA app_extensions.AppJavaUtil.setApplicationName(java.lang.String);
+List[String] getUserFilesNames():JAVA app_extensions.AppJavaUtil.getUserFilesNames();

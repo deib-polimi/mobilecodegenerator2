@@ -105,7 +105,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE audio FOR ViewController-»
 «REM»Function needed for audioplayers which url is remote or local (not hardware)«ENDREM»
-«IF audioRecorder == null && audioPlayers.size != 0-»
+«IF audioPlayers.sourceType.toString().contains("localFile") || audioPlayers.sourceType.toString().contains("remoteFile")-»
 	//Function to get the data from a url
 	func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
 	    NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in

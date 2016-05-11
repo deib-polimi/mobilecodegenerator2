@@ -18,13 +18,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXTENSION ios_extensions::Java»
 «DEFINE main FOR Application-»
 
-«saveApplicationName(name)»
+«setApplicationName(name)»
 «deleteApplicationFolder()»
 «copyDefaultIOSFiles()»
 «copyUserFiles()»
 
 «FILE this.name +"/"+this.name +"/"+ "AppDelegate.swift"-»
-
 import UIKit
 
 @UIApplicationMain
@@ -62,8 +61,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 «ENDFILE»
 
-«REM» If there's a ListView in the application then create custom table view cells «ENDREM»
-«IF viewControllers.listViews.size!=0 -»
+«REM» If there's at least one ImageView with remote source, create ImageDownloadingTask.swift «ENDREM»
+«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
+«FILE this.name +"/"+this.name +"/"+ "ImageDownloadingTask.swift"-»
+import UIKit
+
+class ImageDownloadingTask {
+    
+    //Function to download the image
+    static func downloadImage(url: NSURL, imageView: UIImageView){
+        getDataFromUrl(url) { (data, response, error)  in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                guard let data = data where error == nil else { return }
+                imageView.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    //Function to get the data from a url
+    static func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
+        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
+            completion(data: data, response: response, error: error)
+            }.resume()
+    }
+
+}
+«ENDFILE-»
+«ENDIF-»
+
+«IF viewControllers.listViews.size != 0 -»
+«REM» If there's at least one "detailed" ListView create custom table view cells «ENDREM»
 «IF viewControllers.listViews.listType.toString().contains("detailed") -»
 «FILE this.name +"/"+this.name +"/"+ "DetailedTableViewCell.swift"-»
 import UIKit
@@ -77,6 +104,8 @@ class DetailedTableViewCell: UITableViewCell {
 }
 «ENDFILE-»
 «ENDIF-»
+
+«REM» If there's at least one "image" ListView create custom table view cells «ENDREM»
 «IF viewControllers.listViews.listType.toString().contains("image") -»
 «FILE this.name +"/"+this.name +"/"+ "ImageTableViewCell.swift"-»
 import UIKit
@@ -89,6 +118,8 @@ class ImageTableViewCell: UITableViewCell {
 }
 «ENDFILE-»
 «ENDIF-»
+
+«REM» If there's at least one "simple" ListView create custom table view cells «ENDREM»
 «IF viewControllers.listViews.listType.toString().contains("simple") -»
 «FILE this.name +"/"+this.name +"/"+ "SimpleTableViewCell.swift"-»
 import UIKit
@@ -102,8 +133,8 @@ class SimpleTableViewCell: UITableViewCell {
 «ENDIF-»
 «ENDIF-»
 
-«REM» If there's a GridView in the application then create custom collection view cells «ENDREM»
-«IF viewControllers.gridViews.size!=0 -»
+«IF viewControllers.gridViews.size != 0 -»
+«REM» If there's at least one "detailed" GridView create custom table view cells «ENDREM»
 «IF viewControllers.gridViews.gridType.toString().contains("detailed") -»
 «FILE this.name +"/"+this.name +"/"+ "DetailedCollectionViewCell.swift"-»
 import UIKit
@@ -116,6 +147,8 @@ class DetailedCollectionViewCell: UICollectionViewCell {
 }
 «ENDFILE-»
 «ENDIF-»
+
+«REM» If there's at least one "image" GridView create custom table view cells «ENDREM»
 «IF viewControllers.gridViews.gridType.toString().contains("image") -»
 «FILE this.name +"/"+this.name +"/"+ "ImageCollectionViewCell.swift"-»
 import UIKit
@@ -127,6 +160,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
 }
 «ENDFILE-»
 «ENDIF-»
+
+«REM» If there's at least one "simple" GridView create custom table view cells «ENDREM»
 «IF viewControllers.gridViews.gridType.toString().contains("simple") -»
 «FILE this.name +"/"+this.name +"/"+ "SimpleCollectionViewCell.swift"-»
 import UIKit
@@ -139,6 +174,5 @@ class SimpleCollectionViewCell: UICollectionViewCell {
 «ENDFILE-»
 «ENDIF-»
 «ENDIF-»
-
 
 «ENDDEFINE-»

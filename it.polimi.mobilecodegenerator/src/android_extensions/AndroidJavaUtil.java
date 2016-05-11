@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -16,45 +16,48 @@
 package android_extensions;
 
 import java.io.File;
-
 import app_extensions.AppJavaUtil;
 
 public class AndroidJavaUtil {
 	
-	//deletes application code folder and its content (if already exists)
+	/**
+	 * Deletes application code folder and its content (if already exists) 
+	 */
 	public static void deleteApplicationFolder(){
 		File androidAppFolder = new File(AndroidConstants.destinationFilesFolder);
 		AppJavaUtil.deleteFolder(androidAppFolder);
 	}
 	
+	/**
+	 * Copies all user's files according to their extension
+	 * Raw 		folder contains .html .txt .mp4 .3gp
+	 * Assets 	folder contains .css .mp3
+	 * Drawable folder contains .png .jpg .gif
+	 */
 	public static void copyUserFiles(){
 		File folder = new File("utils/user_files");
-		for(File source : folder.listFiles()){
+		for(File source : folder.listFiles()) {
 			String sourceFileName = source.getName();
 			String sourceFileExtension = source.getName().split("\\.")[1];
-			if(sourceFileExtension.equalsIgnoreCase("html") || sourceFileExtension.equalsIgnoreCase("txt")){
+			if(sourceFileExtension.equalsIgnoreCase("html") || sourceFileExtension.equalsIgnoreCase("txt") || 
+					sourceFileExtension.equalsIgnoreCase("mp4") || sourceFileExtension.equalsIgnoreCase("3gp")) {
 				File destination = new File(AndroidConstants.rawFolder+"/"+sourceFileName);
 				AppJavaUtil.copyFile(source, destination);
 			}
-			else if(sourceFileExtension.equalsIgnoreCase("css")){
+			else if(sourceFileExtension.equalsIgnoreCase("css") || sourceFileExtension.equalsIgnoreCase("mp3")){
 				File destination = new File(AndroidConstants.assetsFolder+"/"+sourceFileName);
 				AppJavaUtil.copyFile(source, destination);
 			}
-			else if(sourceFileExtension.equalsIgnoreCase("png") || sourceFileExtension.equalsIgnoreCase("jpg") || sourceFileExtension.equalsIgnoreCase("gif")){
+			else if(sourceFileExtension.equalsIgnoreCase("png") || sourceFileExtension.equalsIgnoreCase("jpg") || sourceFileExtension.equalsIgnoreCase("gif")) {
 				File destination = new File(AndroidConstants.drawableFolder+"/"+sourceFileName);
-				AppJavaUtil.copyFile(source, destination);
-			}
-			else if(sourceFileExtension.equalsIgnoreCase("mp4") || sourceFileExtension.equalsIgnoreCase("3gp")){
-				File destination = new File(AndroidConstants.rawFolder+"/"+sourceFileName);
-				AppJavaUtil.copyFile(source, destination);
-			}
-			else if(sourceFileExtension.equalsIgnoreCase("mp3")){
-				File destination = new File(AndroidConstants.assetsFolder+"/"+sourceFileName);
 				AppJavaUtil.copyFile(source, destination);
 			}
 		}
 	}
 	
+	/**
+	 * Copies default Android files
+	 */
 	public static void copyDefaultAndroidFiles(){
 		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/assets").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-hdpi").mkdirs();
@@ -76,10 +79,11 @@ public class AndroidJavaUtil {
 		new File(AndroidConstants.destinationFilesFolder+"/gradle").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/gradle/wrapper").mkdirs();
 		
-		for(int i=0; i<AndroidConstants.sourceFilesPaths.length; i++){
+		for(int i = 0; i < AndroidConstants.sourceFilesPaths.length; i++) {
 			File source = new File(AndroidConstants.sourceFilesPaths[i]);
 			File destination = new File(AndroidConstants.destinationFilesPaths[i]);
 			AppJavaUtil.copyFile(source, destination);
 		}
 	}
+
 }

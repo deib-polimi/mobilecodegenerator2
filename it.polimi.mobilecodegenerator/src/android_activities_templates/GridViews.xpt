@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -56,7 +56,7 @@ private String[] «gv.id»Contents;
 «ENDIF-»
 «gv.id» = (GridView) findViewById(R.id.«gv.id»);
 «gv.id».setAdapter(«gv.id»Adapter);
-«IF gv.clickListener!=null-»
+«IF gv.clickListener != null-»
 «gv.id».setOnItemClickListener(this);
 «ENDIF-»
 «ENDFOREACH-»
@@ -65,14 +65,14 @@ private String[] «gv.id»Contents;
 
 «DEFINE onItemClick FOR ViewController-»
 «FOREACH gridViews AS gv-»
-«IF gv.clickListener!=null-»
+«IF gv.clickListener != null-»
 if(l.getId() == R.id.«gv.id»){
 	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
 	String clickedImageId = «gv.id»Images[position].toString();
 	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
 	String clickedItem = «gv.id»Contents[position];
 	«ENDIF-»
-	«IF gv.clickListener.navigation!=null-»
+	«IF gv.clickListener.navigation != null-»
 	Intent intent = new Intent(«this.name»Activity.this, «gv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination»Activity
 	startActivity(intent);

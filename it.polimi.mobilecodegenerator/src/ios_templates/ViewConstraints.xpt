@@ -28,6 +28,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 					        «EXPAND siblingConstraints FOR s»
 					        «EXPAND parentContraints FOR s»
 						«ENDFOREACH-»
+						«FOREACH datepickers AS d-»
+					        «EXPAND siblingConstraints FOR d»
+					        «EXPAND parentContraints FOR d»
+						«ENDFOREACH-»
 						«FOREACH textViews AS tv-»
 							«EXPAND siblingConstraints FOR tv»
 					        «EXPAND parentContraints FOR tv»
@@ -56,6 +60,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 					    	«EXPAND siblingConstraints FOR gv»
 					        «EXPAND parentContraints FOR gv»
 					    «ENDFOREACH-»
+						«FOREACH timepickers AS t-»
+					        «EXPAND siblingConstraints FOR t»
+					        «EXPAND parentContraints FOR t»
+						«ENDFOREACH-»
 					    «IF photocameraController!=null-»
 					    	«EXPAND siblingConstraints FOR photocameraController»
 					        «EXPAND parentContraints FOR photocameraController»

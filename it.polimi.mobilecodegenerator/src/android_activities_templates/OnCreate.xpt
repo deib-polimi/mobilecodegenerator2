@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -20,33 +20,38 @@ setContentView(R.layout.activity_«name.toLowerCase()»);
 Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
 setSupportActionBar(toolbar);
 
+«EXPAND android_activities_templates::AlertDialogs::onCreate-»
+
+«EXPAND android_activities_templates::AsyncTasks::onCreate-»
+
 «EXPAND android_activities_templates::Audio::onCreate-»
+
+«EXPAND android_activities_templates::Buttons::onCreate-»
+
+«EXPAND android_activities_templates::Camera::onCreate-»
+
+«EXPAND android_activities_templates::Datepickers::onCreate-»
+
+«EXPAND android_activities_templates::EditTexts::onCreate-»
+
+«EXPAND android_activities_templates::GridViews::onCreate-»
+
+«EXPAND android_activities_templates::ImageViews::onCreate-»
+
+«EXPAND android_activities_templates::ListViews::onCreate-»
 
 «EXPAND android_activities_templates::Map::onCreate-»
 
-«EXPAND android_activities_templates::Buttons::onCreate-»
+«EXPAND android_activities_templates::ProgressDialogs::onCreate-»
 
 «EXPAND android_activities_templates::Sliders::onCreate-»
 
 «EXPAND android_activities_templates::Switches::onCreate-»
 
-«EXPAND android_activities_templates::EditTexts::onCreate-»
-
-«EXPAND android_activities_templates::Camera::onCreate-»
+«EXPAND android_activities_templates::Timepickers::onCreate-»
 
 «EXPAND android_activities_templates::VideoViews::onCreate-»
 
-«EXPAND android_activities_templates::ListViews::onCreate-»
-
-«EXPAND android_activities_templates::GridViews::onCreate-»
-
 «EXPAND android_activities_templates::WebViews::onCreate-»
 
-«EXPAND android_activities_templates::ImageViews::onCreate-»
-
-«EXPAND android_activities_templates::ProgressDialogs::onCreate-»
-
-«EXPAND android_activities_templates::AlertDialogs::onCreate-»
-
-«EXPAND android_activities_templates::AsyncTasks::onCreate-»
 «ENDDEFINE-»

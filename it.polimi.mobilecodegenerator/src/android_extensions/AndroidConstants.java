@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -18,7 +18,9 @@ package android_extensions;
 import app_extensions.AppJavaUtil;
 
 public class AndroidConstants {
+	
 	private static String sourceFilesFolder = "utils/android_default_files";
+	
 	public static String[] sourceFilesPaths = {
 		sourceFilesFolder+"/app/src/main/res/raw/grid_image.jpg",
 		sourceFilesFolder+"/app/src/main/res/drawable-hdpi/ic_chevron_right_black_36dp.png",
@@ -62,7 +64,9 @@ public class AndroidConstants {
 		sourceFilesFolder+"/build.gradle",
 		sourceFilesFolder+"/settings.gradle"
 	};
+	
 	public static String destinationFilesFolder = "src-gen/android/"+AppJavaUtil.APPLICATION_NAME;
+	
 	public static String[] destinationFilesPaths = {
 		destinationFilesFolder+"/app/src/main/res/raw/grid_image.jpg",
 		destinationFilesFolder+"/app/src/main/res/drawable-hdpi/ic_chevron_right_black_36dp.png",
@@ -106,7 +110,10 @@ public class AndroidConstants {
 		destinationFilesFolder+"/build.gradle",
 		destinationFilesFolder+"/settings.gradle"
 	};
+	
 	public static String rawFolder = destinationFilesFolder+"/app/src/main/res/raw";
+	
 	public static String assetsFolder = destinationFilesFolder+"/app/src/main/assets";
+	
 	public static String drawableFolder = destinationFilesFolder+"/app/src/main/res/drawable";
 }

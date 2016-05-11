@@ -17,7 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE viewDidAppear FOR ViewController-»
 	«EXPAND ios_viewcontrollers_templates::AlertDialogs::viewDidAppear-»
+	«EXPAND ios_viewcontrollers_templates::Audio::viewDidAppear-»
 	«EXPAND ios_viewcontrollers_templates::ProgressDialogs::viewDidAppear-»
 	«EXPAND ios_viewcontrollers_templates::VideoView::viewDidAppear-»
-	«EXPAND ios_viewcontrollers_templates::Audio::viewDidAppear-»
 «ENDDEFINE-»

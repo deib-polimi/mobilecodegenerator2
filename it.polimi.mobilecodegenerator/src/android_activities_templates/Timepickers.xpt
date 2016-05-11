@@ -15,7 +15,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE prepareForSegue FOR ViewController-»
-«EXPAND ios_viewcontrollers_templates::GridViews::prepareForSegue-»
-«EXPAND ios_viewcontrollers_templates::ListViews::prepareForSegue-»
+«DEFINE attributesDeclarations FOR ViewController-»
+«FOREACH timepickers AS t-»
+private TimePicker «t.id»Picker;
+«ENDFOREACH-»
 «ENDDEFINE-»
+
+«DEFINE onCreate FOR ViewController-»
+«FOREACH timepickers AS t-»
+«t.id»Picker = (TimePicker) findViewById(R.id.«t.id»Picker);
+«t.id»Picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+    @Override
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+        Log.i("Time", hourOfDay+":"+minute);
+    }
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+

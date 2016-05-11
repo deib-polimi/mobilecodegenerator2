@@ -17,7 +17,9 @@ package ios_extensions;
 import app_extensions.AppJavaUtil;
 
 public class IOSConstants {
+	
 	public static String sourceFilesFolder = "utils/ios_default_files";
+	
 	public static String[] sourceFilesPaths = {
 		sourceFilesFolder+"/Contents.json",
 		sourceFilesFolder+"/AppIcon.appiconset/Contents.json",
@@ -46,7 +48,9 @@ public class IOSConstants {
 		sourceFilesFolder+"/stop_icon.imageset/stop_icon@2x.png",
 		sourceFilesFolder+"/stop_icon.imageset/stop_icon.png"
 	};
+	
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
+	
 	public static String[] destinationFilesPaths = {
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/Contents.json",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/AppIcon.appiconset/Contents.json",

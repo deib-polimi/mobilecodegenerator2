@@ -156,6 +156,50 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                             </constraints>
                         </view>
 	                    «ENDFOREACH-»
+	                    «FOREACH vc.datepickers AS d-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«d.id»">
+	                    	<rect key="frame" x="«d.posX.toInteger()»" y="«d.posY.toInteger() + 64»" width="«d.width.toInteger()»" height="«d.height.toInteger()»"/>
+	                    	<subviews>
+	                    		<datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="«d.id»Picker">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="450"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="484569814.93492299">
+                                        <!--2016-05-10 10:43:34 +0000-->
+                                    </date>
+		                            <connections>
+		                                <action selector="«d.id»PickerValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«d.id»PickerValueChangedActionID"/>
+		                            </connections>
+		                        </datePicker>
+                        	</subviews>
+                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR d-»
+                                <constraint firstItem="«d.id»Picker" firstAttribute="centerX" secondItem="«d.id»" secondAttribute="centerX" id="«d.id»PickerConstCenterX"/>
+                                <constraint firstItem="«d.id»Picker" firstAttribute="centerY" secondItem="«d.id»" secondAttribute="centerY" id="«d.id»PickerConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.timepickers AS t-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«t.id»">
+	                    	<rect key="frame" x="«t.posX.toInteger()»" y="«t.posY.toInteger() + 64»" width="«t.width.toInteger()»" height="«t.height.toInteger()»"/>
+	                    	<subviews>
+	                    		<datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="«t.id»Picker">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="450"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="484569814.93492299">
+                                        <!--2016-05-10 10:43:34 +0000-->
+                                    </date>
+		                            <connections>
+		                                <action selector="«t.id»PickerValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«t.id»PickerValueChangedActionID"/>
+		                            </connections>
+		                        </datePicker>
+                        	</subviews>
+                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                            	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR t-»
+                                <constraint firstItem="«t.id»Picker" firstAttribute="centerX" secondItem="«t.id»" secondAttribute="centerX" id="«t.id»PickerConstCenterX"/>
+                                <constraint firstItem="«t.id»Picker" firstAttribute="centerY" secondItem="«t.id»" secondAttribute="centerY" id="«t.id»PickerConstCenterY"/>
+                            </constraints>
+                        </view>
+	                    «ENDFOREACH-»
 	                    «FOREACH vc.audioPlayers AS ap-»
 	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«ap.id»">
 	                    	<rect key="frame" x="«ap.posX.toInteger()»" y="«ap.posY.toInteger() + 64»" width="«ap.width.toInteger()»" height="«ap.height.toInteger()»"/>

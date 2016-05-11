@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -16,16 +16,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE attributesDeclarations FOR ViewController-»
+«EXPAND android_activities_templates::Audio::attributesDeclarations-»
 «EXPAND android_activities_templates::Buttons::attributesDeclarations-»
+«EXPAND android_activities_templates::Camera::attributesDeclarations-»
+«EXPAND android_activities_templates::Datepickers::attributesDeclarations-»
+«EXPAND android_activities_templates::EditTexts::attributesDeclarations-»
+«EXPAND android_activities_templates::GridViews::attributesDeclarations-»
+«EXPAND android_activities_templates::ImageViews::attributesDeclarations-»
+«EXPAND android_activities_templates::ListViews::attributesDeclarations-»
+«EXPAND android_activities_templates::Map::attributesDeclarations-»
 «EXPAND android_activities_templates::Sliders::attributesDeclarations-»
 «EXPAND android_activities_templates::Switches::attributesDeclarations-»
-«EXPAND android_activities_templates::EditTexts::attributesDeclarations-»
-«EXPAND android_activities_templates::WebViews::attributesDeclarations-»
-«EXPAND android_activities_templates::ImageViews::attributesDeclarations-»
+«EXPAND android_activities_templates::Timepickers::attributesDeclarations-»
 «EXPAND android_activities_templates::VideoViews::attributesDeclarations-»
-«EXPAND android_activities_templates::Camera::attributesDeclarations-»
-«EXPAND android_activities_templates::Audio::attributesDeclarations-»
-«EXPAND android_activities_templates::Map::attributesDeclarations-»
-«EXPAND android_activities_templates::ListViews::attributesDeclarations-»
-«EXPAND android_activities_templates::GridViews::attributesDeclarations-»
+«EXPAND android_activities_templates::WebViews::attributesDeclarations-»
 «ENDDEFINE-»

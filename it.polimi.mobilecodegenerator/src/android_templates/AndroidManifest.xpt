@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -14,6 +14,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDREM»
 
 «IMPORT metamodel»
+
 «DEFINE main FOR Application-»
 
 «FILE name+"/app/src/main/AndroidManifest.xml"-»
@@ -21,11 +22,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="«this.companyIdentifier».«this.name.toLowerCase()»" >
     
-    «IF viewControllers.map.size > 0-»
+    «IF viewControllers.map != null-»
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     «ENDIF-»
-	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") || viewControllers.imageViews.sourceType.toString().contains("remoteFile") || 
-    viewControllers.audioPlayers.sourceType.toString().contains("remoteFile")-»
+	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") ||
+		viewControllers.imageViews.sourceType.toString().contains("remoteFile") || 
+    	viewControllers.audioPlayers.sourceType.toString().contains("remoteFile")-»
     <uses-permission android:name="android.permission.INTERNET"/>
     «ENDIF-»
     «IF viewControllers.videoViews.sourceType.toString().contains("hardwareFile")-»
@@ -41,14 +43,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        «IF viewControllers.map.size > 0-» 
+        «IF viewControllers.map != null-» 
         <!--
-        TODO: Before you run your application, you need a Google Maps API key.
+        TODO: Before you run the application, you need a Google Maps API key.
         https://developers.google.com/maps/documentation/android/start#get-key
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR API KEY HERE" />
+            android:value="YOUR_API_KEY_HERE" />
         «ENDIF-» 
         «FOREACH viewControllers AS vc-»
 		<activity

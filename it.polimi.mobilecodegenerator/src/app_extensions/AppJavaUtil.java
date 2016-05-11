@@ -1,5 +1,5 @@
 /************************************************************************************************************************
- * Copyright 2013 Gregorio Perego, Stefania Pezzetti
+ * Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
  * This file is part of it.polimi.mobilecodegenerator.
  * 
  * it.polimi.mobilecodegenerator is free software: 
@@ -26,13 +26,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppJavaUtil {
+	
 	public static String APPLICATION_NAME;
 	
-	public static void saveApplicationName(String applicationName){
+	/**
+	 * Sets the application name
+	 * @param applicationName
+	 */
+	public static void setApplicationName(String applicationName) {
 		APPLICATION_NAME = applicationName;
 	}
 	
-	public static List<String> userFilesNames(){
+	/**
+	 * Returns the list of user's files
+	 * @return
+	 */
+	public static List<String> getUserFilesNames(){
 		File folder = new File("utils/user_files");
 		List<String> userFilesNames = new ArrayList<String>();
 		for(File source : folder.listFiles()){
@@ -41,8 +50,13 @@ public class AppJavaUtil {
 		return userFilesNames;
 	}
 
+	/**
+	 * Copies a file
+	 * @param source
+	 * @param destination
+	 */
 	public static void copyFile(File source, File destination){
-		try{
+		try {
 			if(!destination.exists()){
 				destination.createNewFile();
 			}
@@ -55,15 +69,17 @@ public class AppJavaUtil {
 			}
 			in.close();
 			out.close();
-		}
-		catch(FileNotFoundException e){
+		} catch(FileNotFoundException e){
 			e.printStackTrace();
-		} 
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Deletes a folder and all its content
+	 * @param folder
+	 */
 	public static void deleteFolder(File folder) {
 	    File[] files = folder.listFiles();
 	    if(files!=null) {
