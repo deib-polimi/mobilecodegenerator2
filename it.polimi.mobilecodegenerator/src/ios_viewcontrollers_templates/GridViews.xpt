@@ -132,7 +132,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF gv.clickListener != null && gv.clickListener.navigation != null-»
 		//You can reference to the next ViewController and the selected UICollectionViewCell     
 		if segue.identifier == "SegueIdentifierFrom«gv.id»To«gv.clickListener.navigation.destination»ViewControllerID" {
- 	        let index = self.«gv.id».indexPathForSelectedRow!
+ 	        let index = self.«gv.id».indexPathsForSelectedItems()
 			let destination = segue.destinationViewController as! «gv.clickListener.navigation.destination»ViewController
             // Pass the selected cell content to destination ...
 		}

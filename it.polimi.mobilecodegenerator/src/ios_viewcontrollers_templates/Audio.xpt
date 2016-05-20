@@ -117,43 +117,59 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FOREACH audioPlayers AS ap-»
 	@IBAction func «ap.id»Play(sender: UIButton) {
 	
-		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».play()
-	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
-		if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
+	«ELSE-»    
+	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
+		if self.audioRecorder != nil && self.«ap.id» != nil {
             if !self.audioRecorder.recording {
-                self.«audioRecorder.audioPlayerId».play()
+                self.«ap.id».play()
             }
         }
+        «ELSE-» 
+        // Check your model
+        // You are missing the audiorecorder or it does not match the audioplayer id
 	    «ENDIF-»
+	«ENDIF-»
+	
 	}
 	
 	@IBAction func «ap.id»Pause(sender: UIButton) {
 	
-		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».pause()
-	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
+	«ELSE-»    
+	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
 		if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
             if !self.audioRecorder.recording {
                 self.«audioRecorder.audioPlayerId».pause()
             }
         }
+        «ELSE-» 
+        // Check your model
+        // You are missing the audiorecorder or it does not match the audioplayer id
 	    «ENDIF-»
+	«ENDIF-»
 	}
 	
 	@IBAction func «ap.id»Stop(sender: UIButton) {
 	
-		«IF !ap.sourceType.toString().matches("hardwareFile")-»
+	«IF !ap.sourceType.toString().matches("hardwareFile")-»
 	    self.«ap.id».pause()
 	    self.«ap.id».currentTime = 0
-	    «ELSEIF audioRecorder!=null && !audioRecorder.audioPlayerId.matches("")-»
+	«ELSE-»    
+	    «IF audioRecorder!=null && audioRecorder.audioPlayerId.matches(ap.id)-»
 	    if self.audioRecorder != nil && self.«audioRecorder.audioPlayerId» != nil {
             if !self.audioRecorder.recording {
                 self.«audioRecorder.audioPlayerId».pause()
                 self.«audioRecorder.audioPlayerId».currentTime = 0
             }
         }
+        «ELSE-» 
+        // Check your model
+        // You are missing the audiorecorder or it does not match the audioplayer id
 	    «ENDIF-»
+	«ENDIF-»
 	}
 «ENDFOREACH-»
 
@@ -171,12 +187,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		} else {
             self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
             self.audioRecorder.stop()
+            «IF !audioRecorder.audioPlayerId.matches("")-»
 			do {
                 try self.«audioRecorder.audioPlayerId» = AVAudioPlayer(contentsOfURL: self.recordedAudioUrl)
             } catch {
                 NSLog("Unable to initialize AVAudioPlayer")
             }
             self.«audioRecorder.audioPlayerId».prepareToPlay()
+            «ENDIF-»
+            
 		}
 	}
 	
@@ -199,24 +218,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE viewDidDisappear FOR ViewController-»
-		«IF audioRecorder!=null-»
+	«IF audioRecorder!=null-»
 		if self.audioRecorder != nil && self.audioRecorder.recording {
 		    self.recordButton.setTitle("Rec", forState: UIControlState.Normal)
 			self.audioRecorder.stop()
 		}
-		«IF !audioRecorder.audioPlayerId.matches("")-»
-		if self.«audioRecorder.audioPlayerId» != nil && self.«audioRecorder.audioPlayerId».playing {
-		    self.«audioRecorder.audioPlayerId».pause()
-		    self.«audioRecorder.audioPlayerId».currentTime = 0
-		}
-		«ENDIF-»
-		«ENDIF-»
-		«FOREACH audioPlayers AS ap-»
-		«IF ap != null && !ap.sourceType.toString().matches("hardwareFile")-»
+	«ENDIF-»
+	«FOREACH audioPlayers AS ap-»
 		if self.«ap.id» != nil && self.«ap.id».playing {
 		    self.«ap.id».pause()
 		    self.«ap.id».currentTime = 0
 		}
-		«ENDIF-»
-		«ENDFOREACH-»
+	«ENDFOREACH-»
 «ENDDEFINE-»

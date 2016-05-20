@@ -56,7 +56,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 		«getFirstHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */; };
 		«ENDIF-»
-		«FOREACH userFilesNames() AS filename-»
+		«FOREACH getUserFilesNames() AS filename-»
 		«getFirstHexadecimalId(filename)» /* «filename» in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(filename)» /* «filename» */; };
 		«ENDFOREACH-»	
 			
@@ -93,7 +93,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 		«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCollectionViewCell.swift; sourceTree = "<group>"; };
 		«ENDIF-»
-		«FOREACH userFilesNames() AS filename-»
+		«FOREACH getUserFilesNames() AS filename-»
 		«getSecondHexadecimalId(filename)» /* «filename» */ = {isa = PBXFileReference; lastKnownFileType = «filename»; name = «filename»; path = «filename»; sourceTree = "<group>"; };
 		«ENDFOREACH-»
 		
@@ -158,7 +158,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«IF viewControllers.gridViews.size!=0 && viewControllers.gridViews.gridType.toString().contains("simple")-»
 				«getSecondHexadecimalId("SimpleCollectionViewCell.swift")» /* SimpleCollectionViewCell.swift */,
 				«ENDIF-»
-				«FOREACH userFilesNames() AS filename-»
+				«FOREACH getUserFilesNames() AS filename-»
 				«getSecondHexadecimalId(filename)» /* «filename» */,
 				«ENDFOREACH-»
 			);
@@ -226,7 +226,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 				«getFirstHexadecimalId("LaunchScreen.storyboard")» /* LaunchScreen.storyboard in Resources */,
 				«getFirstHexadecimalId("Assets.xcassets")» /* Assets.xcassets in Resources */,
 				«getFirstHexadecimalId("Main.storyboard")» /* Main.storyboard in Resources */,
-				«FOREACH userFilesNames() AS filename-»
+				«FOREACH getUserFilesNames() AS filename-»
 				«getFirstHexadecimalId(filename)» /* «filename» in Resources */,
 				«ENDFOREACH-»
 			);

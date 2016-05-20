@@ -15,77 +15,82 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 «DEFINE constraints FOR ViewController-»
-						<constraints>
-						«FOREACH buttons AS b-»
-					        «EXPAND siblingConstraints FOR b»
-					        «EXPAND parentContraints FOR b»
-						«ENDFOREACH-»
-						«FOREACH sliders AS s-»
-					        «EXPAND siblingConstraints FOR s»
-					        «EXPAND parentContraints FOR s»
-						«ENDFOREACH-»
-						«FOREACH switches AS s-»
-					        «EXPAND siblingConstraints FOR s»
-					        «EXPAND parentContraints FOR s»
-						«ENDFOREACH-»
-						«FOREACH datepickers AS d-»
-					        «EXPAND siblingConstraints FOR d»
-					        «EXPAND parentContraints FOR d»
-						«ENDFOREACH-»
-						«FOREACH textViews AS tv-»
-							«EXPAND siblingConstraints FOR tv»
-					        «EXPAND parentContraints FOR tv»
-						«ENDFOREACH-»
-						«FOREACH editTexts AS et-»
-							«EXPAND siblingConstraints FOR et»
-					        «EXPAND parentContraints FOR et»
-					    «ENDFOREACH-»
-						«FOREACH imageViews AS iv-»
-							«EXPAND siblingConstraints FOR iv»
-					        «EXPAND parentContraints FOR iv»
-					    «ENDFOREACH-»
-					    «FOREACH videoViews AS vv-»
-							«EXPAND siblingConstraints FOR vv»
-					        «EXPAND parentContraints FOR vv»
-					    «ENDFOREACH-»
-						«FOREACH webViews AS wv-»
-							«EXPAND siblingConstraints FOR wv»
-					        «EXPAND parentContraints FOR wv»
-						«ENDFOREACH-» 
-					    «FOREACH listViews AS lv-»
-					    	«EXPAND siblingConstraints FOR lv»
-					        «EXPAND parentContraints FOR lv»
-					    «ENDFOREACH-»   
-					    «FOREACH gridViews AS gv-»
-					    	«EXPAND siblingConstraints FOR gv»
-					        «EXPAND parentContraints FOR gv»
-					    «ENDFOREACH-»
-						«FOREACH timepickers AS t-»
-					        «EXPAND siblingConstraints FOR t»
-					        «EXPAND parentContraints FOR t»
-						«ENDFOREACH-»
-					    «IF photocameraController!=null-»
-					    	«EXPAND siblingConstraints FOR photocameraController»
-					        «EXPAND parentContraints FOR photocameraController»
-						«ENDIF-»
-						«IF videocameraController!=null-»
-							«EXPAND siblingConstraints FOR videocameraController»
-					        «EXPAND parentContraints FOR videocameraController»
-						«ENDIF-»
-						«IF audioRecorder!=null-»
-							«EXPAND siblingConstraints FOR audioRecorder»
-					        «EXPAND parentContraints FOR audioRecorder»
-						«ENDIF-»
-						«IF map!=null-»
-							«EXPAND siblingConstraints FOR map»
-					        «EXPAND parentContraints FOR map»
-						«ENDIF-»
-						«FOREACH audioPlayers AS ap-»
-					        «EXPAND siblingConstraints FOR ap»
-					        «EXPAND parentContraints FOR ap»
-						«ENDFOREACH-»
-						</constraints>
+<constraints>
+«FOREACH buttons AS b-»
+    «EXPAND siblingConstraints FOR b»
+    «EXPAND parentContraints FOR b»
+«ENDFOREACH-»
+«FOREACH cards AS c-»
+    «EXPAND siblingConstraints FOR c»
+    «EXPAND parentContraints FOR c»
+«ENDFOREACH-»
+«FOREACH sliders AS s-»
+    «EXPAND siblingConstraints FOR s»
+    «EXPAND parentContraints FOR s»
+«ENDFOREACH-»
+«FOREACH switches AS s-»
+    «EXPAND siblingConstraints FOR s»
+    «EXPAND parentContraints FOR s»
+«ENDFOREACH-»
+«FOREACH datepickers AS d-»
+    «EXPAND siblingConstraints FOR d»
+    «EXPAND parentContraints FOR d»
+«ENDFOREACH-»
+«FOREACH textViews AS tv-»
+	«EXPAND siblingConstraints FOR tv»
+    «EXPAND parentContraints FOR tv»
+«ENDFOREACH-»
+«FOREACH editTexts AS et-»
+	«EXPAND siblingConstraints FOR et»
+    «EXPAND parentContraints FOR et»
+«ENDFOREACH-»
+«FOREACH imageViews AS iv-»
+	«EXPAND siblingConstraints FOR iv»
+    «EXPAND parentContraints FOR iv»
+«ENDFOREACH-»
+«FOREACH videoViews AS vv-»
+	«EXPAND siblingConstraints FOR vv»
+    «EXPAND parentContraints FOR vv»
+«ENDFOREACH-»
+«FOREACH webViews AS wv-»
+	«EXPAND siblingConstraints FOR wv»
+    «EXPAND parentContraints FOR wv»
+«ENDFOREACH-» 
+«FOREACH listViews AS lv-»
+	«EXPAND siblingConstraints FOR lv»
+    «EXPAND parentContraints FOR lv»
+«ENDFOREACH-»   
+«FOREACH gridViews AS gv-»
+	«EXPAND siblingConstraints FOR gv»
+    «EXPAND parentContraints FOR gv»
+«ENDFOREACH-»
+«FOREACH timepickers AS t-»
+    «EXPAND siblingConstraints FOR t»
+    «EXPAND parentContraints FOR t»
+«ENDFOREACH-»
+«IF photocameraController!=null-»
+	«EXPAND siblingConstraints FOR photocameraController»
+    «EXPAND parentContraints FOR photocameraController»
+«ENDIF-»
+«IF videocameraController!=null-»
+	«EXPAND siblingConstraints FOR videocameraController»
+    «EXPAND parentContraints FOR videocameraController»
+«ENDIF-»
+«IF audioRecorder!=null-»
+	«EXPAND siblingConstraints FOR audioRecorder»
+    «EXPAND parentContraints FOR audioRecorder»
+«ENDIF-»
+«IF map!=null-»
+	«EXPAND siblingConstraints FOR map»
+    «EXPAND parentContraints FOR map»
+«ENDIF-»
+«FOREACH audioPlayers AS ap-»
+    «EXPAND siblingConstraints FOR ap»
+    «EXPAND parentContraints FOR ap»
+«ENDFOREACH-»
+</constraints>
 «ENDDEFINE-»
+
 «DEFINE innerConstraints FOR UiControl-»
 «IF ((alignTop == null &&
 	!alignParentTop &&
@@ -93,7 +98,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	(alignBottom == null &&
 	!alignParentBottom &&
 	above == null))-»
-									<constraint firstAttribute="height" constant="«height.toInteger()»" id="«id»-height"/>
+<constraint firstAttribute="height" constant="«height.toInteger()»" id="«id»-height"/>
 «ENDIF-»
 «IF ((alignStart == null &&
 	!alignParentStart &&
@@ -102,36 +107,35 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	!alignParentEnd &&
 	toStartOf == null))
 	-»
-									<constraint firstAttribute="width" constant="«width.toInteger()»" id="«id»-width"/>
+<constraint firstAttribute="width" constant="«width.toInteger()»" id="«id»-width"/>
 «ENDIF-»
 «ENDDEFINE-»
 
-
 «DEFINE siblingConstraints FOR UiControl-»
-							«IF alignTop != null-»
-						    <constraint firstItem="«id»" firstAttribute="top" secondItem="«alignTop.id»" secondAttribute="top" priority="750" constant="«((marginTop + paddingTop) - alignTop.marginTop).toInteger()»" id="«id»-align-top"/>
-						    «ENDIF-»
-						    «IF alignBottom != null-»
-						    <constraint firstItem="«id»" firstAttribute="bottom" secondItem="«alignBottom.id»" secondAttribute="bottom" priority="750" constant="«(alignBottom.marginBottom - (marginBottom + paddingBottom)).toInteger()»" id="«id»-align-bottom"/>
-						    «ENDIF-»
-						    «IF alignStart != null-»
-						    <constraint firstItem="«id»" firstAttribute="leading" secondItem="«alignStart.id»" secondAttribute="leading" priority="750" constant="«((marginStart + paddingStart) - alignStart.marginStart).toInteger()»" id="«id»-align-start"/>
-						    «ENDIF-»
-						    «IF alignEnd != null-»
-						    <constraint firstItem="«id»" firstAttribute="trailing" secondItem="«alignEnd.id»" secondAttribute="trailing" priority="750" constant="«(alignEnd.marginEnd - (marginEnd + paddingEnd)).toInteger()»" id="«id»-align-end"/>
-						    «ENDIF-»
-						    «IF below != null-»
-						    <constraint firstItem="«id»" firstAttribute="top" secondItem="«below.id»" secondAttribute="bottom" priority="750" constant="«((marginTop + paddingTop) + below.marginBottom).toInteger()»" id="«id»-bottom"/>
-						    «ENDIF-»
-						    «IF above != null-»
-						    <constraint firstItem="«id»" firstAttribute="bottom" secondItem="«above.id»" secondAttribute="top" priority="750" constant="«(-(marginBottom + paddingBottom) - above.marginTop).toInteger()»" id="«id»-above"/>
-						    «ENDIF-»
-						    «IF toStartOf != null-»
-						    <constraint firstItem="«id»" firstAttribute="trailing" secondItem="«toStartOf.id»" secondAttribute="leading" priority="750" constant="«(-(marginEnd + paddingEnd) - toStartOf.marginStart).toInteger()»" id="«id»-to-start-of"/>
-						    «ENDIF-»
-						    «IF toEndOf != null-»
-						    <constraint firstItem="«id»" firstAttribute="leading" secondItem="«toEndOf.id»" secondAttribute="trailing" priority="750" constant="«((marginStart + paddingStart) + toEndOf.marginEnd).toInteger()»" id="«id»-to-end-of"/>
-						    «ENDIF-»
+«IF alignTop != null-»
+<constraint firstItem="«id»" firstAttribute="top" secondItem="«alignTop.id»" secondAttribute="top" priority="750" constant="«((marginTop + paddingTop) - alignTop.marginTop).toInteger()»" id="«id»-align-top"/>
+«ENDIF-»
+«IF alignBottom != null-»
+<constraint firstItem="«id»" firstAttribute="bottom" secondItem="«alignBottom.id»" secondAttribute="bottom" priority="750" constant="«(alignBottom.marginBottom - (marginBottom + paddingBottom)).toInteger()»" id="«id»-align-bottom"/>
+«ENDIF-»
+«IF alignStart != null-»
+<constraint firstItem="«id»" firstAttribute="leading" secondItem="«alignStart.id»" secondAttribute="leading" priority="750" constant="«((marginStart + paddingStart) - alignStart.marginStart).toInteger()»" id="«id»-align-start"/>
+«ENDIF-»
+«IF alignEnd != null-»
+<constraint firstItem="«id»" firstAttribute="trailing" secondItem="«alignEnd.id»" secondAttribute="trailing" priority="750" constant="«(alignEnd.marginEnd - (marginEnd + paddingEnd)).toInteger()»" id="«id»-align-end"/>
+«ENDIF-»
+«IF below != null-»
+<constraint firstItem="«id»" firstAttribute="top" secondItem="«below.id»" secondAttribute="bottom" priority="750" constant="«((marginTop + paddingTop) + below.marginBottom).toInteger()»" id="«id»-bottom"/>
+«ENDIF-»
+«IF above != null-»
+<constraint firstItem="«id»" firstAttribute="bottom" secondItem="«above.id»" secondAttribute="top" priority="750" constant="«(-(marginBottom + paddingBottom) - above.marginTop).toInteger()»" id="«id»-above"/>
+«ENDIF-»
+«IF toStartOf != null-»
+<constraint firstItem="«id»" firstAttribute="trailing" secondItem="«toStartOf.id»" secondAttribute="leading" priority="750" constant="«(-(marginEnd + paddingEnd) - toStartOf.marginStart).toInteger()»" id="«id»-to-start-of"/>
+«ENDIF-»
+«IF toEndOf != null-»
+<constraint firstItem="«id»" firstAttribute="leading" secondItem="«toEndOf.id»" secondAttribute="trailing" priority="750" constant="«((marginStart + paddingStart) + toEndOf.marginEnd).toInteger()»" id="«id»-to-end-of"/>
+«ENDIF-»
 «ENDDEFINE-»
 
 

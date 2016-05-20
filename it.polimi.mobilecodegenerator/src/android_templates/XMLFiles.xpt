@@ -329,6 +329,77 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    «ENDIF-»
 	/>
     «ENDFOREACH-»
+    «FOREACH cards AS c-»
+    <!-- height will be dinamically changed -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp"
+        «EXPAND uiControl FOR c»
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- height will be dinamically changed -->
+            <ImageView
+                android:id="@+id/«c.id»ImageView"
+                android:layout_width="match_parent"
+                android:layout_height="208dp"
+                android:background="#000"
+                android:src="@drawable/card_image"/>
+
+            <TextView
+                android:id="@+id/«c.id»Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="«c.title»"
+                android:textSize="24dp"
+                android:textColor="#333"/>
+
+            <TextView
+                android:id="@+id/«c.id»Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="«c.subtitle»"
+                android:textSize="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/«c.id»Buttons"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp">
+				
+				«FOREACH 1.upTo(c.numActions) AS n-»
+                <Button
+                    android:id="@+id/«c.id»Button«n»"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="Action «n»"
+                    android:textColor="@color/colorAccent"
+                    style="?android:attr/borderlessButtonStyle"/>
+				«ENDFOREACH-»
+				
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    «ENDFOREACH-»
 	«FOREACH buttons AS b-»
 	<Button
         «EXPAND uiControl FOR b»

@@ -4,17 +4,90 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="Main" launcher="true">
-        <datepickers id="fkodDatepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="348" height="338" viewController="//@viewControllers[name='Main']"/>
+        <textViews id="sccmLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" viewController="//@viewControllers[name='Main']" content="Authentication" textAlign="center" textColor="#cc0000" textSize="24" textDecoration="bold"/>
+        <editTexts id="gfhimEditText" posX="152" posY="103" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="20" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Main']/@textViews[id='sccmLabel']" viewController="//@viewControllers[name='Main']" initialContent="" placeholder="Username" textColor="#cc0000" textSize="14"/>
+        <editTexts id="cvacmEditText" posX="63" posY="143" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="20" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Main']/@editTexts[id='gfhimEditText']" viewController="//@viewControllers[name='Main']" initialContent="" placeholder="Password" textColor="#cc0000" textSize="14"/>
+        <switches id="dulnkSwitch" posX="49" posY="188" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="51" height="36" below="//@viewControllers[name='Main']/@editTexts[id='cvacmEditText']" viewController="//@viewControllers[name='Main']"/>
+        <textViews id="hqfpLabel" posX="177" posY="196" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="20" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" width="130" height="36" alignEnd="//@viewControllers[name='Main']/@editTexts[id='cvacmEditText']" below="//@viewControllers[name='Main']/@editTexts[id='cvacmEditText']" toEndOf="//@viewControllers[name='Main']/@switches[id='dulnkSwitch']" viewController="//@viewControllers[name='Main']" content="Keep me logged in" textAlign="left" textColor="#000000" textSize="14" textDecoration="italic"/>
+        <buttons id="jsugButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="66" below="//@viewControllers[name='Main']/@textViews[id='hqfpLabel']" viewController="//@viewControllers[name='Main']" title="Login" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="15" clickColor="#000000">
+            <clickListener>
+                <navigation destination="Home"/>
+            </clickListener>
+        </buttons>
     </viewControllers>
-    <viewControllers name="Other" launcher="false">
-        <timepickers id="hTimepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="400" height="450" viewController="//@viewControllers[name='Other']"/>
+    <viewControllers name="Map" launcher="false">
+        <map id="icuMap" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="true" alignParentStart="true" alignParentEnd="true" width="270" height="270" viewController="//@viewControllers[name='Map']" lat="45.478" lon="9.227"/>
+    </viewControllers>
+    <viewControllers name="Date" launcher="false">
+        <textViews id="jkhLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="348" height="36" viewController="//@viewControllers[name='Date']" content="Save the date" textAlign="center" textColor="#cc0000" textSize="24" textDecoration="bold"/>
+        <datepickers id="hjiDatepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="348" height="338" below="//@viewControllers[name='Date']/@textViews[id='jkhLabel']" viewController="//@viewControllers[name='Date']"/>
+    </viewControllers>
+    <viewControllers name="Time" launcher="false">
+        <textViews id="ghvirLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" viewController="//@viewControllers[name='Time']" content="Countdown" textAlign="center" textColor="#cc0000" textSize="24" textDecoration="bold"/>
+        <timepickers id="lnlepTimepicker" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="400" height="346" below="//@viewControllers[name='Time']/@textViews[id='ghvirLabel']" viewController="//@viewControllers[name='Time']"/>
+    </viewControllers>
+    <viewControllers name="Home" launcher="false">
+        <textViews id="arnLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" viewController="//@viewControllers[name='Home']" content="Music List" textAlign="center" textColor="#cc0000" textSize="24" textDecoration="bold"/>
+        <listViews id="hiListView" posX="2" posY="92" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="270" height="170" below="//@viewControllers[name='Home']/@textViews[id='arnLabel']" viewController="//@viewControllers[name='Home']" listType="detailed">
+            <clickListener>
+                <navigation destination="Audio"/>
+            </clickListener>
+            <listViewCells title="Still Waiting"/>
+            <listViewCells title="The Hell Song"/>
+            <listViewCells title="What's My Age Again"/>
+        </listViews>
+        <textViews id="tbbnLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Home']/@listViews[id='hiListView']" viewController="//@viewControllers[name='Home']" content="Media Collection" textAlign="center" textColor="#cc0000" textSize="24" textDecoration="bold"/>
+        <gridViews id="criGridView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="204" height="220" below="//@viewControllers[name='Home']/@textViews[id='tbbnLabel']" viewController="//@viewControllers[name='Home']" gridType="detailed">
+            <clickListener>
+                <navigation destination="Media"/>
+            </clickListener>
+            <gridViewCells title="Images (372)"/>
+            <gridViewCells title="Videos (39)"/>
+        </gridViews>
+        <buttons id="appButton" posX="79" posY="596" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Home']/@gridViews[id='criGridView']" viewController="//@viewControllers[name='Home']" title="Add New Files" textColor="#ffffff" backgroundColor="#cc0000" borderRadius="10" clickColor="#000000">
+            <clickListener>
+                <navigation destination="Controller"/>
+            </clickListener>
+        </buttons>
+    </viewControllers>
+    <viewControllers name="Audio" launcher="false">
+        <cards id="ceCard" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="8" marginEnd="8" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="204" height="398" viewController="//@viewControllers[name='Audio']" title="Still Waiting" subtitle="Sum 41 - Does this look infected? 2002" numActions="3"/>
+        <audioPlayers id="sngbAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="250" height="75" below="//@viewControllers[name='Audio']/@cards[id='ceCard']" viewController="//@viewControllers[name='Audio']" sourceType="localFile" fileUri="utils_folder_audio.mp3"/>
+        <sliders id="ukSlider" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="40" marginEnd="40" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="150" height="50" below="//@viewControllers[name='Audio']/@audioPlayers[id='sngbAudioPlayer']" viewController="//@viewControllers[name='Audio']"/>
+    </viewControllers>
+    <viewControllers name="Media" launcher="false">
+        <imageViews id="qbasImageView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="-2" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="8" marginEnd="8" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="180" viewController="//@viewControllers[name='Media']" sourceType="localFile" fileUri="utils_folder_image.jpg"/>
+        <videoViews id="rkemVideoView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="8" marginStart="8" marginEnd="8" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="200" below="//@viewControllers[name='Media']/@imageViews[id='qbasImageView']" viewController="//@viewControllers[name='Media']" sourceType="localFile" fileUri="utils_folder_video.mp4"/>
+        <webViews id="ccafWebView" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="8" marginEnd="8" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="200" below="//@viewControllers[name='Media']/@videoViews[id='rkemVideoView']" viewController="//@viewControllers[name='Media']" HTMLFileName="utils_folder_page.html"/>
+    </viewControllers>
+    <viewControllers name="Controller" launcher="false">
+        <audioPlayers id="plrnAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="250" height="75" viewController="//@viewControllers[name='Controller']" sourceType="hardwareFile" fileUri=""/>
+        <audioRecorder id="uudAudioRecorder" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="20" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Controller']/@audioPlayers[id='plrnAudioPlayer']" viewController="//@viewControllers[name='Controller']" audioPlayerId="plrnAudioPlayer"/>
+        <imageViews id="jrioImageView" posX="93" posY="146" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="150" below="//@viewControllers[name='Controller']/@audioRecorder" viewController="//@viewControllers[name='Controller']" sourceType="hardwareFile" fileUri=""/>
+        <photocameraController id="eejdPhotocameraController" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="20" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Controller']/@imageViews[id='jrioImageView']" viewController="//@viewControllers[name='Controller']" imageViewId="jrioImageView"/>
+        <videoViews id="tgdiVideoView" posX="90" posY="326" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="150" below="//@viewControllers[name='Controller']/@photocameraController" viewController="//@viewControllers[name='Controller']" sourceType="hardwareFile" fileUri=""/>
+        <videocameraController id="nssbVideocameraController" posX="154" posY="496" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="0" marginStart="50" marginEnd="50" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="88" height="36" below="//@viewControllers[name='Controller']/@videoViews[id='tgdiVideoView']" viewController="//@viewControllers[name='Controller']" videoViewId="tgdiVideoView"/>
+    </viewControllers>
+    <viewControllers name="Remote" launcher="false">
+        <audioPlayers id="icdeAudioPlayer" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="250" height="75" viewController="//@viewControllers[name='Remote']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/horse.mp3"/>
+        <imageViews id="jhhImageView" posX="74" posY="146" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="20" marginBottom="20" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="150" below="//@viewControllers[name='Remote']/@audioPlayers[id='icdeAudioPlayer']" viewController="//@viewControllers[name='Remote']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/pic_mountain.jpg"/>
+        <videoViews id="utVideoView" posX="90" posY="298" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="240" height="150" below="//@viewControllers[name='Remote']/@imageViews[id='jhhImageView']" viewController="//@viewControllers[name='Remote']" sourceType="remoteFile" fileUri="http://www.w3schools.com/html/movie.mp4"/>
     </viewControllers>
     <menu>
         <menuItems title="Main" id="Main">
             <navigation destination="Main"/>
         </menuItems>
-        <menuItems title="Other" id="Other">
-            <navigation destination="Other"/>
+        <menuItems title="Map" id="Map">
+            <navigation destination="Map"/>
+        </menuItems>
+        <menuItems title="Date" id="Date">
+            <navigation destination="Date"/>
+        </menuItems>
+        <menuItems title="Time" id="Time">
+            <navigation destination="Time"/>
+        </menuItems>
+        <menuItems title="Remote" id="Remote">
+            <navigation destination="Remote"/>
         </menuItems>
     </menu>
 </metamodel:Application>

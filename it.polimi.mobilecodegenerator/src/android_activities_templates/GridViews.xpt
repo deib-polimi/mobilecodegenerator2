@@ -34,7 +34,7 @@ private String[] «gv.id»Contents;
 //Change this to set a specific image id for each row
 «gv.id»Images = new Integer[]{
 	«FOREACH gv.gridViewCells AS gvc-»
-		R.raw.grid_image,
+		R.drawable.grid_image,
 	«ENDFOREACH-»
 };
 «ENDIF-»

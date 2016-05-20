@@ -33,7 +33,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	        //Do something before dismissing it: use "progress" property of the Progress Dialog for updating the progress bar status.
 	        spinner.startAnimating()
 	        
-	        //«pd.id».dismissViewControllerAnimated(true, completion: nil)
+	        «pd.id».dismissViewControllerAnimated(true, completion: nil)
 	    })
 		«ELSE-»
 		//Present the AlertController
@@ -47,7 +47,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	        //Do something before dismissing it: use "progress" property of the Progress Dialog for updating the progress bar status.
 	        progressView.progress = 0.5
 	        
-	        //«pd.id».dismissViewControllerAnimated(true, completion: nil)
+	        «pd.id».dismissViewControllerAnimated(true, completion: nil)
 	    })
 		«ENDIF-»
 «ENDFOREACH-»

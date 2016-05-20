@@ -50,6 +50,8 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 	
 	«EXPAND ios_viewcontrollers_templates::Camera::camera-»
 	
+	«EXPAND ios_viewcontrollers_templates::Cards::cards-»
+	
 	«EXPAND ios_viewcontrollers_templates::Datepickers::datepickers-»
 	
 	«EXPAND ios_viewcontrollers_templates::GridViews::gridViews-»

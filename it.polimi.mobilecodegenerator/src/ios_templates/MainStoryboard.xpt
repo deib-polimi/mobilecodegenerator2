@@ -38,7 +38,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	<scenes>
 	«FOREACH viewControllers AS vc-»
 	<!--«vc.name»ViewController-->
-	«REM»«resetCurrentY()»«ENDREM»
 	<scene sceneID="«vc.name»ViewControllerSceneID">
 		<objects>
 	        <viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
@@ -84,6 +83,88 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    		<action selector="«b.id»TouchDown:" destination="«vc.name»ViewControllerID" eventType="touchDown" id="«b.id»TouchDownActionID"/>
 	                        </connections>
 	                    </button>
+	                    «ENDFOREACH-»
+	                    «FOREACH vc.cards AS c-»
+	                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»">
+                            <rect key="frame" x="«c.posX.toInteger()»" y="«c.posY.toInteger()+64»" width="«c.width.toInteger()»" height="«c.height.toInteger()»"/>
+                            «REM»Never use inner constraints«ENDREM»
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card_image" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»ImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="398" height="224"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»ImageView" secondAttribute="height" multiplier="16:9" id="«c.id»ImageViewARID"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="«c.title»" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Title">
+                                    <rect key="frame" x="16" y="248" width="366" height="37"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»Title" secondAttribute="height" multiplier="10:1" id="«c.id»TitleARID"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="«c.subtitle»" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Subtitle">
+                                    <rect key="frame" x="16" y="301" width="366" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="«c.id»Subtitle" secondAttribute="height" multiplier="16:1" id="«c.id»SubtitleARID"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                «FOREACH 1.upTo(c.numActions) AS n-»
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«c.id»Button«n»">
+                                    <rect key="frame" x="16" y="352" width="88" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="88" id="«c.id»Button«n»Const"/>
+                                    </constraints>
+                                    <state key="normal" title="Action «n»"/>
+                                    <connections>
+                                        <action selector="«c.id»Action«n»TouchUpInside:" destination="«vc.name»ViewControllerID" eventType="touchUpInside" id="«c.id»«n»TouchUpInsideID"/>
+                                    </connections>
+                                </button>
+                                «ENDFOREACH-»
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0094558189655172421" colorSpace="calibratedRGB"/>
+                            <constraints>
+                            	<constraint firstAttribute="trailing" secondItem="«c.id»Title" secondAttribute="trailing" constant="16" id="5e5-9a-L5O"/>
+                                <constraint firstAttribute="trailing" secondItem="«c.id»Subtitle" secondAttribute="trailing" constant="16" id="7ig-Tp-Zyq"/>
+                                <constraint firstItem="«c.id»Subtitle" firstAttribute="top" secondItem="«c.id»Title" secondAttribute="bottom" constant="16" id="CJq-64-Kjt"/>
+                            	«IF c.numActions == 1-»
+                            	<constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                «ELSEIF c.numActions == 2-»
+								<constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button2" secondAttribute="bottom" constant="16" id="eyP-o9-AYS"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                <constraint firstItem="«c.id»Button2" firstAttribute="leading" secondItem="«c.id»Button1" secondAttribute="trailing" constant="8" id="pOL-PY-yHJ"/>
+                                «ELSEIF c.numActions == 3-»
+								<constraint firstItem="«c.id»Button3" firstAttribute="leading" secondItem="«c.id»Button2" secondAttribute="trailing" constant="8" id="Gub-ti-mtz"/>
+                                <constraint firstItem="«c.id»Button1" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="OPr-Qx-u5n"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" id="RQH-eR-1bl"/>
+                                <constraint firstAttribute="width" secondItem="«c.id»" secondAttribute="height" multiplier="1:1" id="VUS-KD-zk8"/>
+                                <constraint firstItem="«c.id»ImageView" firstAttribute="top" secondItem="«c.id»" secondAttribute="top" id="XGW-7m-tAK"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button3" secondAttribute="bottom" constant="16" id="b4a-bZ-kSe"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="top" secondItem="«c.id»ImageView" secondAttribute="bottom" constant="24" id="ddo-Uv-9D3"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button2" secondAttribute="bottom" constant="16" id="eyP-o9-AYS"/>
+                                <constraint firstAttribute="bottom" secondItem="«c.id»Button1" secondAttribute="bottom" constant="16" id="oDC-Nb-uRZ"/>
+                                <constraint firstItem="«c.id»Button2" firstAttribute="leading" secondItem="«c.id»Button1" secondAttribute="trailing" constant="8" id="pOL-PY-yHJ"/>
+								«ENDIF -»
+								<constraint firstAttribute="trailing" secondItem="«c.id»ImageView" secondAttribute="trailing" id="qee-Mm-jma"/>
+                                <constraint firstItem="«c.id»Subtitle" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="sJc-hn-Bfn"/>
+                                <constraint firstItem="«c.id»Title" firstAttribute="leading" secondItem="«c.id»" secondAttribute="leading" constant="16" id="tqE-o1-Al3"/>
+                            </constraints>
+                        </view>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.sliders AS s-»
 	                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
@@ -543,6 +624,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                «FOREACH vc.gridViews AS gv-»
 	                <outlet property="«gv.id»" destination="«gv.id»" id="«gv.id»OutletID"/>
 	                «ENDFOREACH-»
+	                «FOREACH vc.cards AS c-»
+	                <outlet property="«c.id»" destination="«c.id»" id="«c.id»OutletID"/>
+	                «ENDFOREACH-»
 	      		</connections>
 	    	</viewController>
 	    	<placeholder placeholderIdentifier="IBFirstResponder" id="«vc.name»PlaceholderID" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -627,6 +711,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «ENDFOREACH-»
         «ENDFOREACH-»
         <image name="grid_image" width="202" height="202"/>
+        <image name="card_image" width="426" height="240"/>
         <image name="list_img" width="100" height="100"/>
         <image name="list_icon" width="40" height="40"/>
         <image name="pause_icon" width="56" height="56"/>
@@ -639,8 +724,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 «DEFINE uiControl FOR UiControl-»
-								<rect key="frame" x="«posX.toInteger()»" y="«posY.toInteger()+64»" width="«width.toInteger()»" height="«height.toInteger()»"/>
-								<constraints>
-									«EXPAND ios_templates::ViewConstraints::innerConstraints FOR this-»	
-								</constraints>
+<rect key="frame" x="«posX.toInteger()»" y="«posY.toInteger()+64»" width="«width.toInteger()»" height="«height.toInteger()»"/>
+<constraints>
+	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR this-»	
+</constraints>
 «ENDDEFINE-»

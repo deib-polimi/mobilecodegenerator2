@@ -54,6 +54,9 @@ dependencies {
     «IF viewControllers.map != null-»
     compile 'com.google.android.gms:play-services:8.4.0'
     «ENDIF-»
+    «IF viewControllers.cards.size > 0-»
+    compile 'com.android.support:cardview-v7:23.3.0'
+    «ENDIF-»
 }
 «ENDFILE-»
 

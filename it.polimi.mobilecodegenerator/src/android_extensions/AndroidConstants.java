@@ -22,7 +22,8 @@ public class AndroidConstants {
 	private static String sourceFilesFolder = "utils/android_default_files";
 	
 	public static String[] sourceFilesPaths = {
-		sourceFilesFolder+"/app/src/main/res/raw/grid_image.jpg",
+		sourceFilesFolder+"/app/src/main/res/drawable/grid_image.png",
+		sourceFilesFolder+"/app/src/main/res/drawable/card_image.png",
 		sourceFilesFolder+"/app/src/main/res/drawable-hdpi/ic_chevron_right_black_36dp.png",
 		sourceFilesFolder+"/app/src/main/res/drawable-mdpi/ic_chevron_right_black_36dp.png",
 		sourceFilesFolder+"/app/src/main/res/drawable-xhdpi/ic_chevron_right_black_36dp.png",
@@ -68,7 +69,8 @@ public class AndroidConstants {
 	public static String destinationFilesFolder = "src-gen/android/"+AppJavaUtil.APPLICATION_NAME;
 	
 	public static String[] destinationFilesPaths = {
-		destinationFilesFolder+"/app/src/main/res/raw/grid_image.jpg",
+		destinationFilesFolder+"/app/src/main/res/drawable/grid_image.png",
+		destinationFilesFolder+"/app/src/main/res/drawable/card_image.png",
 		destinationFilesFolder+"/app/src/main/res/drawable-hdpi/ic_chevron_right_black_36dp.png",
 		destinationFilesFolder+"/app/src/main/res/drawable-mdpi/ic_chevron_right_black_36dp.png",
 		destinationFilesFolder+"/app/src/main/res/drawable-xhdpi/ic_chevron_right_black_36dp.png",

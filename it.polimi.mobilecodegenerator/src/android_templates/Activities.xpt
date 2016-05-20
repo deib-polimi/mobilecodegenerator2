@@ -50,6 +50,8 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	
 	«EXPAND android_activities_templates::Camera::camera-»
 	
+	«EXPAND android_activities_templates::Cards::cards-»
+	
 	«EXPAND android_activities_templates::Map::map-»
 
 	«IF this.application.menu.menuItems.size > 0 && this.launcher -»

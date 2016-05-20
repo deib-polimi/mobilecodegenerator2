@@ -19,6 +19,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXPAND ios_viewcontrollers_templates::Audio::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Buttons::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Camera::propertiesDeclarations-»
+«EXPAND ios_viewcontrollers_templates::Cards::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Datepickers::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::EditTexts::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::GridViews::propertiesDeclarations-»

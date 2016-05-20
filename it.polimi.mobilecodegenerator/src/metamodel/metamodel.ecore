@@ -22,6 +22,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buttons" ordered="false"
         upperBound="-1" eType="#//Button" containment="true" eOpposite="#//Button/viewController"
         eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cards" ordered="false"
+        upperBound="-1" eType="#//Card" containment="true" eOpposite="#//Card/viewController"
+        eKeys="#//UiControl/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="switches" ordered="false"
         upperBound="-1" eType="#//Switch" containment="true" eOpposite="#//Switch/viewController"
         eKeys="#//UiControl/id"/>
@@ -86,6 +89,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="borderRadius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clickColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Card" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subtitle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numActions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/cards"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Switch" eSuperTypes="#//UiControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
