@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metamodel:Application xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
+    <viewControllers name="newView" launcher="true">
+        <cards id="rCard" posX="15" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="8" marginBottom="8" marginStart="8" marginEnd="8" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="398" height="398" viewController="//@viewControllers[name='newView']" title="Title goes here" subtitle="Subtitle here" numActions="2"/>
+    </viewControllers>
+    <menu>
+        <menuItems title="item" id="item">
+            <navigation destination="newView"/>
+        </menuItems>
+    </menu>
+</metamodel:Application>

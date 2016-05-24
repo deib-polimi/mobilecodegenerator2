@@ -1,0 +1,70 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+
+«DEFINE onCreate FOR ViewController-»
+«IF videocameraController != null -»
+//Request permissions to save the video at runtime ONLY for API >= 23
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+	requestPermissions(
+			new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+			REQUEST_CODE_READ_EXTERNAL_STORAGE);
+} else {
+	setUpCameraRecorder();
+}
+«ENDIF-»
+«IF audioRecorder != null -»
+//Request permissions to record audio at runtime ONLY for API >= 23
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+	requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},
+			REQUEST_CODE_RECORD_AUDIO);
+} else {
+	setUpAudioRecorder();
+}
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE permissions FOR ViewController-»
+«IF videocameraController != null || audioRecorder != null-»
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	switch (requestCode) {
+		«IF videocameraController != null-»
+		case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				setUpCameraRecorder();
+			} else {
+				//No permissions
+				Toast.makeText(this, "Permission to record has been denied", Toast.LENGTH_SHORT).show();
+			}
+			return;
+		}
+		«ENDIF-»
+		«IF audioRecorder != null-»
+		case REQUEST_CODE_RECORD_AUDIO : {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				setUpAudioRecorder();
+			} else {
+				//No permissions
+				Toast.makeText(this, "Permission to record has been denied", Toast.LENGTH_SHORT).show();
+			}
+			return;
+		}
+		«ENDIF-»
+	}
+}
+«ENDIF-»
+«ENDDEFINE-»

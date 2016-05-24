@@ -39,37 +39,11 @@ fotocameraButton.setOnClickListener(new OnClickListener() {
 	}
 });
 «ENDIF-»
-
-«IF videocameraController != null-»
-//Request permissions to save the video at runtime ONLY for API >= 23
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-	requestPermissions(
-			new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-			REQUEST_CODE_READ_EXTERNAL_STORAGE);
-} else {
-	setUpRecorder();
-}
-«ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE camera FOR ViewController-»
 «IF videocameraController != null-»
-@Override
-public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-	switch (requestCode) {
-		case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpRecorder();
-			} else {
-				//No permissions
-				Toast.makeText(this, "Permission to record has been denied", Toast.LENGTH_SHORT).show();
-			}
-			return;
-		}
-	}
-}
-
-private void setUpRecorder() {
+private void setUpCameraRecorder() {
 	«IF !videocameraController.videoViewId.matches("")-»
 	«videocameraController.videoViewId-» = (VideoView) this.findViewById(R.id.«videocameraController.videoViewId-»);
 	«ENDIF-»

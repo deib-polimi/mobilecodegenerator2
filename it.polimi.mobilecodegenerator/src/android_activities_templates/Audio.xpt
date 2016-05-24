@@ -31,37 +31,9 @@ private static final int REQUEST_CODE_RECORD_AUDIO = 400;
 «ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE onCreate FOR ViewController-»
-«IF audioRecorder!=null-»
-//Request permissions to record audio at runtime ONLY for API >= 23
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-	requestPermissions(new String[]{
-					Manifest.permission.RECORD_AUDIO},
-					REQUEST_CODE_RECORD_AUDIO);
-} else {
-	setUpRecorder();
-}
-«ENDIF-»
-«ENDDEFINE-»
-
 «DEFINE audio FOR ViewController-»
 «IF audioRecorder!=null-»
-@Override
-public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-	switch (requestCode) {
-		case REQUEST_CODE_RECORD_AUDIO: {
-			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpRecorder();
-			} else {
-				//No permissions
-				Toast.makeText(this, "Permission to record has been denied", Toast.LENGTH_SHORT).show();
-			}
-			return;
-		}
-	}
-}
-
-private void setUpRecorder() {
+private void setUpAudioRecorder() {
 	recordButton = (Button) this.findViewById(R.id.«audioRecorder.id»);
 	recordButton.setText("Rec");
 	recordButton.setOnClickListener(new OnClickListener() {
@@ -84,7 +56,6 @@ private void setUpRecorder() {
 	                audioRecorder.start();
 	            }
 	            catch (IOException e) {
-	            	// TODO Auto-generated catch block
 	            	e.printStackTrace();
 	            }
 	        	recordButton.setText("Stop");
@@ -100,7 +71,6 @@ private void setUpRecorder() {
 	    			«audioRecorder.audioPlayerId».prepare();
 	    		}
 	    		catch (Exception e) {
-	    			// TODO Auto-generated catch block
 	    			e.printStackTrace();
 	    		}
 	    		«ENDIF-»
@@ -123,7 +93,6 @@ private void setUpRecorder() {
 					«audioRecorder.audioPlayerId».prepare();
 					«audioRecorder.audioPlayerId».start();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				recordButton.setText("Rec");
