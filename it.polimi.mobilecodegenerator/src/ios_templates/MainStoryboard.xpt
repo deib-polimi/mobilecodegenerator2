@@ -46,7 +46,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	            	<viewControllerLayoutGuide type="bottom" id="«vc.name»-guide-bottom"/>
 	            </layoutGuides>
 	        	<view key="view" contentMode="scaleToFill" id="«vc.name»ViewID">
-	        		<rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    «FOREACH vc.imageViews AS iv-»
@@ -587,7 +587,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                «EXPAND ios_templates::ViewConstraints::constraints FOR vc»
 	            </view>
 				<navigationItem key="navigationItem" id="«vc.name»ViewControllerNavigationItemID"/>
-				<simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
 	      		<connections>
 	      			«FOREACH vc.buttons AS b-»
 	                <outlet property="«b.id»" destination="«b.id»" id="«b.id»OutletID"/>
@@ -639,7 +638,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     <scene sceneID="TabBarControllerSceneID">
         <objects>
             <tabBarController  automaticallyAdjustsScrollViewInsets="NO" id="TabBarControllerID" sceneMemberID="viewController">
-            	<simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 <tabBar key="tabBar" contentMode="scaleToFill" id="TabBarControllerTabBarID">
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -685,7 +683,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <objects>
             <navigationController id="NavigationControllerIDWithRoot«vc.name»ViewControllerID" sceneMemberID="viewController">
                 <toolbarItems/>
-                <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 <navigationBar key="navigationBar" contentMode="scaleToFill" id="NavigationControllerBarIDWithRoot«vc.name»ViewControllerID">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
