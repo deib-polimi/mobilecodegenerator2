@@ -39,12 +39,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	        
 	    let mediaType = info[UIImagePickerControllerMediaType] as! NSString
 	    
-	    «IF photocameraController!=null-»
+	    «IF photocameraController!=null && !photocameraController.imageViewId.matches("")-»
 	    if mediaType.isEqualToString(kUTTypeImage as String) {
 	        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
 	        self.«photocameraController.imageViewId».image = image
 	        UIImageWriteToSavedPhotosAlbum(image, self, #selector(«name»ViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
 	    }
+	    «ELSE-»
+	    // Check your model
+        // You are missing the videocameraController or it does not match the imageview id
 	    «ENDIF-»
 	    
 	    «IF videocameraController!=null-»
@@ -73,12 +76,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             alert.addAction(cancelAction)
             self.presentViewController(alert, animated: true, completion: nil)
         } 
-        «IF videocameraController != null-»
+        «IF videocameraController != null && !videocameraController.videoViewId.matches("")-»
         else {
             // Setup iFrame
             let iframe = "<body style=\"margin:0\"><iframe width=\"\(self.«videocameraController.videoViewId».frame.width)\" height=\"\(self.«videocameraController.videoViewId».frame.height)\" src=\"\(self.iframeSrc)\" frameborder=\"0\"></iframe></body>"
             self.«videocameraController.videoViewId».loadHTMLString(iframe, baseURL: nil)
         }
+        «ELSE-»
+        // Check your model
+        // You are missing the videocameraController or it does not match the videoview id
         «ENDIF-»
     }
 

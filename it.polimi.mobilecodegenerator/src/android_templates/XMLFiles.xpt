@@ -314,6 +314,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    «IF !backgroundColor.matches("")-»
+    android:background="«backgroundColor»"
+    «ENDIF-»
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
     tools:showIn="@layout/activity_«name.toLowerCase()»">
@@ -442,7 +445,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		<TimePicker
 			android:id="@+id/«t.id»Picker"
         	android:layout_width="351dp"
-			android:layout_height="432dp"/>
+			android:layout_height="432dp"
+			android:background="#fcfcfc"/>
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
@@ -455,20 +459,36 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		<CalendarView
 			android:id="@+id/«d.id»Picker"
         	android:layout_width="320dp"
-            android:layout_height="320dp"/>
+            android:layout_height="320dp"
+            android:background="#fcfcfc"/>
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
+	
 	«IF photocameraController!=null-»
+	«IF photocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/photocamera_icon"
+	«ELSEIF photocameraController.backgroundType.matches("normal")-»
 	<Button
-        «EXPAND uiControl FOR photocameraController»
-        android:text="Fotocamera" />
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiControl FOR photocameraController»
+     	/>
 	«ENDIF-»
+	
 	«IF videocameraController!=null-»
+	«IF videocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/videocamera_icon"
+	«ELSEIF videocameraController.backgroundType.matches("normal")-»
 	<Button
-		«EXPAND uiControl FOR videocameraController»
-        android:text="Videocamera" />
-	«ENDIF-»
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiControl FOR videocameraController»
+     	/>
+	«ENDIF-»	
+
 	«IF audioRecorder!=null-»
 	<Button
 		«EXPAND uiControl FOR audioRecorder»

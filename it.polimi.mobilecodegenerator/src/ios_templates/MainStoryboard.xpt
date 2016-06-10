@@ -127,7 +127,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                 </button>
                                 «ENDFOREACH-»
                             </subviews>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0094558189655172421" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                             	<constraint firstAttribute="trailing" secondItem="«c.id»Title" secondAttribute="trailing" constant="16" id="5e5-9a-L5O"/>
                                 <constraint firstAttribute="trailing" secondItem="«c.id»Subtitle" secondAttribute="trailing" constant="16" id="7ig-Tp-Zyq"/>
@@ -178,7 +178,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
 	                        «EXPAND uiControl FOR vc.photocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-	                        <state key="normal" title="Fotocamera"/>
+	                        «IF vc.photocameraController.backgroundType.matches("normal")-»
+	                        <state key="normal" title="Photocamera"/>
+	                        «ELSEIF vc.photocameraController.backgroundType.matches("icon")-»
+	                        <state key="normal" image="photocamera_icon"/>
+	                        «ENDIF-»
                             <state key="highlighted">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -191,7 +195,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.videocameraController.id»" >
 	                        «EXPAND uiControl FOR vc.videocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+	                        «IF vc.videocameraController.backgroundType.matches("normal")-»
 	                        <state key="normal" title="Videocamera"/>
+	                        «ELSEIF vc.videocameraController.backgroundType.matches("icon")-»
+	                        <state key="normal" image="videocamera_icon"/>
+	                        «ENDIF-»
                             <state key="highlighted">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -229,7 +237,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		                            </connections>
 		                        </switch>
                         	</subviews>
-                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                             	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR s-»
                                 <constraint firstItem="«s.id»Button" firstAttribute="centerX" secondItem="«s.id»" secondAttribute="centerX" id="«s.id»ButtonConstCenterX"/>
@@ -251,7 +258,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		                            </connections>
 		                        </datePicker>
                         	</subviews>
-                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                             	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR d-»
                                 <constraint firstItem="«d.id»Picker" firstAttribute="centerX" secondItem="«d.id»" secondAttribute="centerX" id="«d.id»PickerConstCenterX"/>
@@ -273,7 +279,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		                            </connections>
 		                        </datePicker>
                         	</subviews>
-                        	<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                             	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR t-»
                                 <constraint firstItem="«t.id»Picker" firstAttribute="centerX" secondItem="«t.id»" secondAttribute="centerX" id="«t.id»PickerConstCenterX"/>
@@ -326,7 +331,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                                </connections>
 	                            </button>
 	                        </subviews>
-	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
 	                        <constraints>
 	                        	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR ap-»
 	                        	<constraint firstItem="«ap.id»AudioPlayerStopButton" firstAttribute="leading" secondItem="«ap.id»AudioPlayerPauseButton" secondAttribute="trailing" constant="8" id="«ap.id»StopConst"/>
@@ -377,14 +381,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «FOREACH vc.listViews AS lv-»
 	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»">
 	                        «EXPAND uiControl FOR lv»
-	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                        «IF !vc.backgroundColor.matches("")-»
+			                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+			                «ELSE-»
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+			                «ENDIF-»
 	                        <prototypes>
 	                        	«IF lv.listType.matches("detailed")-»
-	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="DetailedTableViewCell" customModule="newApp" customModuleProvider="target">
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="DetailedTableViewCell" customModule="«name»" customModuleProvider="target">
 	                        	«ELSEIF lv.listType.matches("image")-»
-	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="ImageTableViewCell" customModule="newApp" customModuleProvider="target">
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="ImageTableViewCell" customModule="«name»" customModuleProvider="target">
 	                        	«ELSEIF lv.listType.matches("simple")-»
-	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="SimpleTableViewCell" customModule="newApp" customModuleProvider="target">	                          
+	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="SimpleTableViewCell" customModule="«name»" customModuleProvider="target">	                          
 	                        	«ENDIF-»
 	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -443,6 +451,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                             «ENDIF-»
                                         </constraints>
                                    	</tableViewCellContentView>
+                                   	«IF !vc.backgroundColor.matches("")-»
+					                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+					                «ELSE-»
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+					                «ENDIF-»
                                 	<connections>
                                 		«IF lv.listType.matches("detailed")-»
                                         <outlet property="icon" destination="«lv.id»CellIconID" id="«lv.id»IconOutlet"/>
@@ -467,7 +480,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «FOREACH vc.gridViews AS gv-»
 	                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»">
 	                        «EXPAND uiControl FOR gv»
-	                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                        «IF !vc.backgroundColor.matches("")-»
+			                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+			                «ELSE-»
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+			                «ENDIF-»
 	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="«gv.id»FlowLayoutID">
 	                            <size key="itemSize" width="202" height="202"/>
 	                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -476,11 +493,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                        </collectionViewFlowLayout>
 	                        <cells>
 	                        	«IF gv.gridType.matches("detailed")-»
-	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="DetailedCollectionViewCell" customModule="newApp">
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="DetailedCollectionViewCell" customModule="«name»">
 	                            «ELSEIF gv.gridType.matches("image")-»
-	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="ImageCollectionViewCell" customModule="newApp">
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="ImageCollectionViewCell" customModule="«name»">
 	                            «ELSEIF gv.gridType.matches("simple")-»
-	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="SimpleCollectionViewCell" customModule="newApp">
+	                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="«gv.id»CollectionViewCell" id="«gv.id»CellID" customClass="SimpleCollectionViewCell" customModule="«name»">
 	                            «ENDIF-»
 	                                <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
 	                                <autoresizingMask key="autoresizingMask"/>
@@ -541,7 +558,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                             </view>
                                         </subviews>
 	                                    «ENDIF-»
-	                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+	                                    «IF !vc.backgroundColor.matches("")-»
+						                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+						                «ELSE-»
+						                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+						                «ENDIF-»
 	                                </view>
 	                                <constraints>
 	                                	«IF gv.gridType.matches("detailed")-»
@@ -583,7 +604,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    </collectionView>
 	                    «ENDFOREACH-»
 	                </subviews>
+	                «IF !vc.backgroundColor.matches("")-»
+	                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                «ELSE-»
 	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+	                «ENDIF-»
 	                «EXPAND ios_templates::ViewConstraints::constraints FOR vc»
 	            </view>
 				<navigationItem key="navigationItem" id="«vc.name»ViewControllerNavigationItemID"/>
@@ -714,6 +739,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <image name="pause_icon" width="56" height="56"/>
         <image name="play_icon" width="56" height="56"/>
         <image name="stop_icon" width="56" height="56"/>
+        <image name="photocamera_icon" width="36" height="36"/>
+        <image name="videocamera_icon" width="36" height="36"/>
 	</resources>
 </document>
 «ENDFILE-»

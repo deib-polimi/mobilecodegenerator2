@@ -16,12 +16,22 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE attributesDeclarations FOR ViewController-»
+
 «IF photocameraController != null-»
-private Button fotocameraButton;
+«IF photocameraController.backgroundType.matches("icon")-»
+private ImageButton photocameraButton;
+«ELSEIF photocameraController.backgroundType.matches("normal")-»
+private Button photocameraButton;
+«ENDIF-»
 private static final int IMAGE_CAPTURE_ACTIVITY_REQUEST_CODE = 100;
 «ENDIF-»
+
 «IF videocameraController != null-»
+«IF photocameraController.backgroundType.matches("icon")-»
+private ImageButton videocameraButton;
+«ELSEIF photocameraController.backgroundType.matches("normal")-»
 private Button videocameraButton;
+«ENDIF-»
 private Uri videoFileUri;
 private static final int VIDEO_CAPTURE_ACTIVITY_REQUEST_CODE = 200;
 private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 300;
@@ -30,8 +40,12 @@ private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 300;
 
 «DEFINE onCreate FOR ViewController-»
 «IF photocameraController != null-»
-fotocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
-fotocameraButton.setOnClickListener(new OnClickListener() {
+«IF photocameraController.backgroundType.matches("icon")-»
+photocameraButton = (ImageButton) this.findViewById(R.id.«photocameraController.id»);
+«ELSEIF photocameraController.backgroundType.matches("normal")-»
+photocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
+«ENDIF-»
+photocameraButton.setOnClickListener(new OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -47,7 +61,11 @@ private void setUpCameraRecorder() {
 	«IF !videocameraController.videoViewId.matches("")-»
 	«videocameraController.videoViewId-» = (VideoView) this.findViewById(R.id.«videocameraController.videoViewId-»);
 	«ENDIF-»
+	«IF videocameraController.backgroundType.matches("icon")-»
+	videocameraButton = (ImageButton) this.findViewById(R.id.«videocameraController.id»);
+	«ELSEIF videocameraController.backgroundType.matches("normal")-»
 	videocameraButton = (Button) this.findViewById(R.id.«videocameraController.id»);
+	«ENDIF-»
 	videocameraButton.setOnClickListener(new OnClickListener() {
 		@Override
 		public void onClick(View v) {

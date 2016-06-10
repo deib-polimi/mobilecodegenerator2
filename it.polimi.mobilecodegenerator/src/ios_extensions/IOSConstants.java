@@ -50,7 +50,15 @@ public class IOSConstants {
 		sourceFilesFolder+"/stop_icon.imageset/Contents.json",
 		sourceFilesFolder+"/stop_icon.imageset/stop_icon@3x.png",
 		sourceFilesFolder+"/stop_icon.imageset/stop_icon@2x.png",
-		sourceFilesFolder+"/stop_icon.imageset/stop_icon.png"
+		sourceFilesFolder+"/stop_icon.imageset/stop_icon.png",
+		sourceFilesFolder+"/photocamera_icon.imageset/Contents.json",
+		sourceFilesFolder+"/photocamera_icon.imageset/photocamera_icon@3x.png",
+		sourceFilesFolder+"/photocamera_icon.imageset/photocamera_icon@2x.png",
+		sourceFilesFolder+"/photocamera_icon.imageset/photocamera_icon.png",
+		sourceFilesFolder+"/videocamera_icon.imageset/Contents.json",
+		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon@3x.png",
+		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon@2x.png",
+		sourceFilesFolder+"/videocamera_icon.imageset/videocamera_icon.png"
 	};
 	
 	public static String destinationFilesFolder = "src-gen/ios/"+AppJavaUtil.APPLICATION_NAME;
@@ -85,7 +93,15 @@ public class IOSConstants {
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/stop_icon.imageset/Contents.json",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/stop_icon.imageset/stop_icon@3x.png",
 		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/stop_icon.imageset/stop_icon@2x.png",
-		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/stop_icon.imageset/stop_icon.png"
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/stop_icon.imageset/stop_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/photocamera_icon.imageset/Contents.json",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/photocamera_icon.imageset/photocamera_icon@3x.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/photocamera_icon.imageset/photocamera_icon@2x.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/photocamera_icon.imageset/photocamera_icon.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/Contents.json",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon@3x.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon@2x.png",
+		destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset/videocamera_icon.png"
 		
 	};
 }
