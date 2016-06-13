@@ -53,13 +53,13 @@ private String[] «lv.id»Contents;
 	«ENDFOREACH-»
 };
 «IF lv.listType.matches("detailed")»
-«lv.id»Adapter = new MyListAdapter(this, «lv.id»Contents, «lv.id»Images, «lv.id»Icons);
+«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Images, «lv.id»Icons);
 «ENDIF-»
 «IF lv.listType.matches("image")»
-«lv.id»Adapter = new MyListAdapter(this, «lv.id»Contents, «lv.id»Images);
+«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_image_layout, «lv.id»Contents, «lv.id»Images);
 «ENDIF-»
 «IF lv.listType.matches("simple")»
-«lv.id»Adapter = new MyListAdapter(this, «lv.id»Contents);
+«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_simple_layout, «lv.id»Contents);
 «ENDIF-»
 «lv.id» = (ListView) findViewById(R.id.«lv.id»);
 «lv.id».setAdapter(«lv.id»Adapter);

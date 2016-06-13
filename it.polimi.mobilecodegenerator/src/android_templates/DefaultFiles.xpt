@@ -168,7 +168,7 @@ public class ImageDownloadingTask extends AsyncTask<ImageView, Void, Bitmap>{
 «ENDFILE-»
 «ENDIF-»
 
-«REM» If there's at list one ListView, create MyListAdapter.java «ENDREM»
+«REM» MyListAdapter.java «ENDREM»
 «IF viewControllers.listViews.size!=0-»
 «FILE name+"/app/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
@@ -189,28 +189,28 @@ public final class MyListAdapter extends ArrayAdapter<String> {
     private final Integer[] imgIds;
     private final Integer[] iconsIds;
 
-	public MyListAdapter(Activity context, String[] itemNames) {
-        super(context, R.layout.my_list_row_simple, itemNames);
+	public MyListAdapter(Activity context, int layoutId, String[] itemNames) {
+        super(context, layoutId, itemNames);
         this.context   	 = context;
-        this.layoutId	 = R.layout.my_list_row_simple;
+        this.layoutId	 = layoutId;
         this.itemNames   = itemNames;
         this.imgIds      = null;
         this.iconsIds 	 = null;
     }
 	
-	public MyListAdapter(Activity context, String[] itemNames, Integer[] imgIds) {
-        super(context, R.layout.my_list_row_image, itemNames);
+	public MyListAdapter(Activity context, int layoutId, String[] itemNames, Integer[] imgIds) {
+        super(context, layoutId, itemNames);
         this.context   	 = context;
-        this.layoutId	 = R.layout.my_list_row_image;
+        this.layoutId	 = layoutId;
         this.itemNames   = itemNames;
         this.imgIds      = imgIds;
         this.iconsIds 	 = null;
     }
 	
-    public MyListAdapter(Activity context, String[] itemNames, Integer[] imgIds, Integer[] iconsIds) {
-        super(context, R.layout.my_list_row_detailed, itemNames);
+    public MyListAdapter(Activity context, int layoutId, String[] itemNames, Integer[] imgIds, Integer[] iconsIds) {
+        super(context, layoutId, itemNames);
         this.context   	 = context;
-        this.layoutId	 = R.layout.my_list_row_detailed;
+        this.layoutId	 = layoutId;
         this.itemNames   = itemNames;
         this.imgIds      = imgIds;
         this.iconsIds 	 = iconsIds;
@@ -220,23 +220,28 @@ public final class MyListAdapter extends ArrayAdapter<String> {
     	LayoutInflater inflater = context.getLayoutInflater();
         View rowView            = inflater.inflate(this.layoutId, null, true);
 
-		if(this.layoutId == R.layout.my_list_row_simple) {
-			TextView tv 	= (TextView) rowView.findViewById(R.id.listview_simple_tv); 
+		try {
+			TextView tv = (TextView) rowView
+					.findViewById(R.id.listview_tv);
 			tv.setText(itemNames[position]);
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
-		else if(this.layoutId == R.layout.my_list_row_image) {
-			ImageView iv 	= (ImageView) rowView.findViewById(R.id.listview_image_img);
+
+		try {
+			ImageView iv = (ImageView) rowView
+					.findViewById(R.id.listview_img);
 			iv.setImageResource(imgIds[position]);
-			TextView tv 	= (TextView) rowView.findViewById(R.id.listview_image_tv); 
-			tv.setText(itemNames[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		else if(this.layoutId == R.layout.my_list_row_detailed) {
-			ImageView iv 	= (ImageView) rowView.findViewById(R.id.listview_detailed_img);
-			iv.setImageResource(imgIds[position]);
-			TextView tv 	= (TextView) rowView.findViewById(R.id.listview_detailed_tv); 
-			tv.setText(itemNames[position]);
-			ImageView ic 	= (ImageView) rowView.findViewById(R.id.listview_detailed_ico);
+
+		try {
+			ImageView ic 	= (ImageView) rowView
+					.findViewById(R.id.listview_ico);
 			ic.setImageResource(iconsIds[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
         return rowView;

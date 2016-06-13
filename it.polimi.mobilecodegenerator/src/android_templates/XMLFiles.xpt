@@ -29,9 +29,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDFILE-»
 «ENDIF-»
 
-«REM» If there's at least one ListView, create the xml layout files «ENDREM»
-«IF viewControllers.listViews.size != 0-»
-«FILE name+"/app/src/main/res/layout/my_list_row_simple.xml"-»
+«FOREACH viewControllers.listViews AS l-»
+
+«REM»Create a simple/image/detailed xml layout«ENDREM»
+«IF l.listType.matches("simple")-»
+
+«FILE name+"/app/src/main/res/layout/"+l.id.toLowerCase()+"_simple_layout.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,10 +44,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:paddingRight="16dp"
     android:paddingBottom="8dp"
     android:paddingLeft="16dp"
+    «IF !l.backgroundColor.matches("")-»
+    android:background="@drawable/«l.id.toLowerCase()»_background"
+    «ENDIF-»
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/listview_simple_tv"
+        android:id="@+id/listview_tv"
         android:text="Single-line Item"
         android:textColor="#333333"
         android:layout_width="match_parent"
@@ -57,7 +63,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/app/src/main/res/layout/my_list_row_image.xml"-»
+«ELSEIF l.listType.matches("image")-»
+
+«FILE name+"/app/src/main/res/layout/"+l.id.toLowerCase()+"_image_layout.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -67,10 +75,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:paddingRight="16dp"
     android:paddingBottom="8dp"
     android:paddingLeft="16dp"
+    «IF !l.backgroundColor.matches("")-»
+    android:background="@drawable/«l.id.toLowerCase()»_background"
+    «ENDIF-»
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/listview_image_img"
+        android:id="@+id/listview_img"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginRight="16dp"
@@ -78,7 +89,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         />
 
     <TextView
-        android:id="@+id/listview_image_tv"
+        android:id="@+id/listview_tv"
         android:text="Single-line Item"
         android:textColor="#333333"
         android:layout_width="match_parent"
@@ -91,7 +102,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 </LinearLayout>
 «ENDFILE-»
 
-«FILE name+"/app/src/main/res/layout/my_list_row_detailed.xml"-»
+«ELSEIF l.listType.matches("detailed")-»
+
+«FILE name+"/app/src/main/res/layout/"+l.id.toLowerCase()+"_detailed_layout.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -101,10 +114,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:paddingRight="16dp"
     android:paddingBottom="8dp"
     android:paddingLeft="16dp"
+    «IF !l.backgroundColor.matches("")-»
+    android:background="@drawable/«l.id.toLowerCase()»_background"
+    «ENDIF-»
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/listview_detailed_img"
+        android:id="@+id/listview_img"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginRight="16dp"
@@ -112,7 +128,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     />
 
     <TextView
-        android:id="@+id/listview_detailed_tv"
+        android:id="@+id/listview_tv"
         android:text="Single-line Item"
         android:textColor="#333333"
         android:layout_width="match_parent"
@@ -124,7 +140,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 
     <ImageView
-        android:id="@+id/listview_detailed_ico"
+        android:id="@+id/listview_ico"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_marginTop="8dp"
@@ -137,7 +153,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 </LinearLayout>
 «ENDFILE-»
+
 «ENDIF-»
+
+«REM»Create eventually the background color«ENDREM»
+«IF !l.backgroundColor.matches("")-»
+«FILE name+"/app/src/main/res/drawable/"+l.id.toLowerCase()+"_background.xml"-»
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="#efefef" />
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid
+                android:color="«l.backgroundColor»" />
+        </shape>
+    </item>
+</selector>
+«ENDFILE-»
+«ENDIF-»
+
+«ENDFOREACH-»
 
 «REM» If there's at least one GridView, create the xml layout files «ENDREM»
 «IF viewControllers.gridViews.size!=0-»
@@ -314,7 +354,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    «IF !backgroundColor.matches("")-»
+    «IF !backgroundImage.matches("")-»
+    android:background="@drawable/«backgroundImage.split("\\.").get(0)»"
+    «ELSEIF !backgroundColor.matches("")-»
     android:background="«backgroundColor»"
     «ENDIF-»
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -565,7 +607,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«ENDFOREACH-» 
     «FOREACH listViews AS lv-»
     <ListView
-        «EXPAND uiControl FOR lv»>
+        «EXPAND uiControl FOR lv»
+        android:divider="#efefef"
+		android:dividerHeight="1dp"
+        >
     </ListView>
     «ENDFOREACH-»   
     «FOREACH gridViews AS gv-»

@@ -23,7 +23,9 @@ import java.util.Date;
 import android.os.*;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+«IF cards.size > 0 -»
 import android.support.v7.widget.CardView;
+«ENDIF -»
 import android.app.*;
 import android.content.*;
 import android.content.res.*;
@@ -41,11 +43,12 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
-
+«IF map != null-»
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+«ENDIF-»
 «ENDDEFINE-»

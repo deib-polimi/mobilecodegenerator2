@@ -46,6 +46,7 @@ setUpCardView(R.id.«c.id», R.id.«c.id»ImageView, R.id.«c.id»Title, R.id.«c.id»Su
 «ENDDEFINE-»
 
 «DEFINE cards FOR ViewController-»
+«IF cards.size > 0 -»
 private void setUpCardView(int cardId, int cardImageId, int cardTitleId, int cardSubtitleId, int cardButtonsId) {
 
     CardView c = (CardView) findViewById(cardId);
@@ -98,4 +99,5 @@ private float cardButtonsHeight(int id) {
     float cardButtonsSizePx = ((LinearLayout.LayoutParams) cardButtonsLp).height;
     return cardButtonsTopMarginPx + 2*cardButtonsBottomMarginPx + cardButtonsSizePx;
 }
+«ENDIF-»
 «ENDDEFINE-»

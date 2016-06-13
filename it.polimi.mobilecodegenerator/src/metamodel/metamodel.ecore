@@ -16,6 +16,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundImage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="launcher" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
@@ -160,6 +161,7 @@
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioPlayers"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListView" eSuperTypes="#//UiControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="listViewCells" upperBound="-1"
         eType="#//ListViewCell" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="clickListener" eType="#//ClickListener"
