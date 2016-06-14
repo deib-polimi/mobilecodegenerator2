@@ -49,6 +49,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	        		<rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
+	                	«IF !vc.backgroundImage.matches("")-»
+	                	<imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="«vc.backgroundImage»" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.name»BackgroundImageId">
+                        	<rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        </imageView>
+	                	«ENDIF-»
 	                    «FOREACH vc.imageViews AS iv-»
 	                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
 	                        «IF iv.sourceType.toString().matches("hardwareFile")»
@@ -395,6 +400,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="«lv.id»TableViewCell" rowHeight="57" id="«lv.id»CellID" customClass="SimpleTableViewCell" customModule="«name»" customModuleProvider="target">	                          
 	                        	«ENDIF-»
 	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
+	                                «IF !lv.backgroundColor.matches("")-»
+	                        		<color key="backgroundColor" red="«redFromHex(lv.backgroundColor)»" green="«greenFromHex(lv.backgroundColor)»" blue="«blueFromHex(lv.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
+	                        		«ENDIF-»
                                     <autoresizingMask key="autoresizingMask"/>
 	                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="«lv.id»CellID" id="«lv.id»ContentViewID">
 	                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -480,11 +488,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «FOREACH vc.gridViews AS gv-»
 	                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»">
 	                        «EXPAND uiControl FOR gv»
-	                        «IF !vc.backgroundColor.matches("")-»
-			                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
-			                «ELSE-»
-			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-			                «ENDIF-»
+			                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
 	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="«gv.id»FlowLayoutID">
 	                            <size key="itemSize" width="202" height="202"/>
 	                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -609,7 +613,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                «ELSE-»
 	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                «ENDIF-»
+	                <constraints>
+	                «IF !vc.backgroundImage.matches("")-»
+	                <constraint firstAttribute="trailing" secondItem="«vc.name»BackgroundImageId" secondAttribute="trailing" id="«vc.name»BackImageConstA"/>
+                    <constraint firstAttribute="bottom" secondItem="«vc.name»BackgroundImageId" secondAttribute="bottom" id="«vc.name»BackImageConstB"/>
+                    <constraint firstItem="«vc.name»BackgroundImageId" firstAttribute="leading" secondItem="«vc.name»ViewID" secondAttribute="leading" id="«vc.name»BackImageConstC"/>
+                    <constraint firstItem="«vc.name»BackgroundImageId" firstAttribute="top" secondItem="«vc.name»-guide-top" secondAttribute="bottom" id="«vc.name»BackImageConstD"/>
+	                «ENDIF-»
 	                «EXPAND ios_templates::ViewConstraints::constraints FOR vc»
+	                </constraints>
 	            </view>
 				<navigationItem key="navigationItem" id="«vc.name»ViewControllerNavigationItemID"/>
 	      		<connections>

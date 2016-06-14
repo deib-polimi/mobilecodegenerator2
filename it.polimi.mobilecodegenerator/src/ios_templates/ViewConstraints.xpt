@@ -15,7 +15,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 «DEFINE constraints FOR ViewController-»
-<constraints>
+
 «FOREACH buttons AS b-»
     «EXPAND siblingConstraints FOR b»
     «EXPAND parentContraints FOR b»
@@ -88,7 +88,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «EXPAND siblingConstraints FOR ap»
     «EXPAND parentContraints FOR ap»
 «ENDFOREACH-»
-</constraints>
+
 «ENDDEFINE-»
 
 «DEFINE innerConstraints FOR UiControl-»
