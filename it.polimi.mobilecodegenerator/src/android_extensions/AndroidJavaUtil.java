@@ -59,25 +59,39 @@ public class AndroidJavaUtil {
 	 * Copies default Android files
 	 */
 	public static void copyDefaultAndroidFiles(){
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/assets").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-hdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-mdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-xhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-xxhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/mipmap-xxxhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable-hdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable-mdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable-xhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable-xxhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/drawable-xxxhdpi").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/menu").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/raw").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/values").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/values-v21").mkdirs();
-		new File(AndroidConstants.destinationFilesFolder+"/app/src/main/res/values-w820dp").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/assets").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/mipmap-hdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/mipmap-mdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/mipmap-xhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/mipmap-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/mipmap-xxxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable-hdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable-mdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable-xhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/drawable-xxxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/menu").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/raw").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/values").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/values-v21").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/mobile/src/main/res/values-w820dp").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/gradle").mkdirs();
 		new File(AndroidConstants.destinationFilesFolder+"/gradle/wrapper").mkdirs();
+		
+
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/mipmap-hdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/mipmap-mdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/mipmap-xhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/mipmap-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/mipmap-xxxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable-hdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable-mdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable-xhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable-xxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/drawable-xxxhdpi").mkdirs();
+		new File(AndroidConstants.destinationFilesFolder+"/wear/src/main/res/values").mkdirs();
 		
 		for(int i = 0; i < AndroidConstants.sourceFilesPaths.length; i++) {
 			File source = new File(AndroidConstants.sourceFilesPaths[i]);

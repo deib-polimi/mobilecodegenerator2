@@ -17,7 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE main FOR Application-»
 
-«FILE name+"/app/src/main/AndroidManifest.xml"-»
+«FILE name+"/mobile/src/main/AndroidManifest.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="«this.companyIdentifier».«this.name.toLowerCase()»" >
@@ -43,15 +43,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        «IF viewControllers.map != null-» 
+        «IF smartwatch.voiceMessage == true-»
+        <service android:name=".ListenerServiceFromWear">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
+                <data android:scheme="wear" android:host="*" android:path="/wear-app-message" />
+            </intent-filter>
+        </service>
+        «ENDIF-»
         <!--
-        TODO: Before you run the application, you need a Google Maps API key.
+        TODO: Get a Google Maps API key here.
         https://developers.google.com/maps/documentation/android/start#get-key
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY_HERE" />
-        «ENDIF-» 
         «FOREACH viewControllers AS vc-»
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
@@ -66,6 +72,42 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         </activity>
 		«ENDFOREACH-»
     </application>
+</manifest>
+«ENDFILE-»
+
+«FILE name+"/wear/src/main/AndroidManifest.xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="«this.companyIdentifier».«this.name.toLowerCase()»" >
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="«this.name.toLowerCase()»"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault">
+        <activity
+            android:name=".MainActivity"
+            android:label="«this.name.toLowerCase()»">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+		«IF smartwatch.voiceMessage == true-»
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".SendActivity"
+            android:label="«this.name.toLowerCase()»"></activity>
+        «ENDIF-»    
+    </application>
+
 </manifest>
 «ENDFILE-»
 

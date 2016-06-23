@@ -11,6 +11,8 @@
         eKeys="#//ViewController/name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="menu" eType="#//Menu" containment="true"
         eOpposite="#//Menu/application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="smartwatch" eType="#//Smartwatch"
+        containment="true" eOpposite="#//Smartwatch/application"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewController">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -254,11 +256,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/audioRecorder"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Smartwatch">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" changeable="false" eOpposite="#//Application/smartwatch"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="voiceMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Menu">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="menuItems" upperBound="-1"
-        eType="#//MenuItem" containment="true" eOpposite="#//MenuItem/menu"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
         eType="#//Application" changeable="false" eOpposite="#//Application/menu"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="menuItems" upperBound="-1"
+        eType="#//MenuItem" containment="true" eOpposite="#//MenuItem/menu"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MenuItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

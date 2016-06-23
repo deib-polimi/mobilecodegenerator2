@@ -1,0 +1,87 @@
+«REM»
+Copyright 2016 Aldo Pintus
+This file is part of it.polimi.mobilecodegenerator.
+
+it.polimi.mobilecodegenerator is free software: 
+you can redistribute it and/or modify it under the terms of the 
+GNU General Public License as published by the Free Software Foundation, 
+either version 3 of the License, or (at your option) any later version.
+
+it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
+but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
+along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+«ENDREM»
+
+«IMPORT metamodel»
+«DEFINE main FOR Application-»
+
+«FILE name +"/"+name+" WatchKit Extension/InterfaceController.swift"-»
+import WatchKit
+«IF smartwatch.voiceMessage == true -»
+import WatchConnectivity
+«ENDIF-»
+import Foundation
+
+class InterfaceController: WKInterfaceController«IF smartwatch.voiceMessage == true -», WCSessionDelegate«ENDIF-» {
+
+	«IF smartwatch.voiceMessage == true -»
+    var session : WCSession!
+    
+    @IBAction func sendVoiceMessage() {
+        send("messageId")
+    }
+    
+    private func send(messageId: String) {
+        
+        let phrases = ["I'm busy", "OK", "Bye"]
+        
+        presentTextInputControllerWithSuggestions(
+            phrases,
+            allowedInputMode: .Plain,
+            completion: { (result) -> Void in
+                
+                let messageContent = String(result)
+                    .stringByReplacingOccurrencesOfString("Optional([", withString: "")
+                    .stringByReplacingOccurrencesOfString("])", withString: "")
+                
+                let applicationData = [messageId: messageContent]
+                
+                self.session.sendMessage(applicationData, replyHandler: {
+                    (_: [String : AnyObject]) -> Void in
+                    // handle reply from iPhone app here
+                    
+                    }, errorHandler: {(error ) -> Void in
+                    // catch any errors here
+                
+                })
+                
+            }
+        )
+ 
+    }
+    «ENDIF-»
+    
+    override func awakeWithContext(context: AnyObject?) {
+        super.awakeWithContext(context)
+    }
+
+    override func willActivate() {
+        super.willActivate()
+        «IF smartwatch.voiceMessage == true -»
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
+        «ENDIF-»
+    }
+
+    override func didDeactivate() {
+        super.didDeactivate()
+    }
+
+}
+«ENDFILE-»
+
+«ENDDEFINE-»

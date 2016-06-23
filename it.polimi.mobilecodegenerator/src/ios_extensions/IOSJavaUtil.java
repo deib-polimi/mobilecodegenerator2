@@ -60,6 +60,7 @@ public class IOSJavaUtil {
 		String secondId = "36181A"+(++count)+"5260094950D";
 		String[] array = {firstId,secondId};
 		hexadecimalIdsMap.put(key,array);
+		
 		return array;
 	}
 	
@@ -98,6 +99,13 @@ public class IOSJavaUtil {
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/photocamera_icon.imageset").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Assets.xcassets/videocamera_icon.imageset").mkdirs();
 		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+"/Base.lproj").mkdirs();
+		
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Assets.xcassets/AppIcon.appiconset").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit App/Base.lproj").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension").mkdirs();
+		new File(IOSConstants.destinationFilesFolder+"/"+AppJavaUtil.APPLICATION_NAME+" WatchKit Extension/Assets.xcassets").mkdirs();
 		
 		for(int i=0; i<IOSConstants.sourceFilesPaths.length; i++){
 			File source = new File(IOSConstants.sourceFilesPaths[i]);
