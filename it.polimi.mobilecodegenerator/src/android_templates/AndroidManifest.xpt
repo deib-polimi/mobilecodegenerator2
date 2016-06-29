@@ -43,7 +43,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        «IF smartwatch.voiceMessage == true-»
+        «IF watchControllers.watchVoiceMessage.size > 0-»
         <service android:name=".ListenerServiceFromWear">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
@@ -51,6 +51,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             </intent-filter>
         </service>
         «ENDIF-»
+        «IF viewControllers.map != null-»
         <!--
         TODO: Get a Google Maps API key here.
         https://developers.google.com/maps/documentation/android/start#get-key
@@ -58,6 +59,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY_HERE" />
+        «ENDIF-»
         «FOREACH viewControllers AS vc-»
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
@@ -88,26 +90,24 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
-        <activity
-            android:name=".MainActivity"
-            android:label="«this.name.toLowerCase()»">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-		«IF smartwatch.voiceMessage == true-»
+        «IF watchControllers.watchVoiceMessage.size > 0-»
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity
-            android:name=".SendActivity"
-            android:label="«this.name.toLowerCase()»"></activity>
-        «ENDIF-»    
+		«ENDIF-»
+		«FOREACH watchControllers AS wc-»
+		<activity
+            android:name="«wc.application.companyIdentifier».«this.name.toLowerCase()».«wc.name»Activity"
+            android:label="«this.name.toLowerCase()»">
+            «IF wc.launcher-»
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+			«ENDIF-»
+        </activity>
+		«ENDFOREACH-»          
     </application>
-
 </manifest>
 «ENDFILE-»
 

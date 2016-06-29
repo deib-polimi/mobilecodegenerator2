@@ -79,6 +79,9 @@ public class AndroidConstants {
 		sourceFilesFolder+"/wear/src/main/res/mipmap-mdpi/ic_launcher.png",
 		sourceFilesFolder+"/wear/src/main/res/mipmap-xhdpi/ic_launcher.png",
 		sourceFilesFolder+"/wear/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+		sourceFilesFolder+"/wear/src/main/res/drawable-hdpi/ic_cancel_blue_24dp.png",
+		sourceFilesFolder+"/wear/src/main/res/drawable-mdpi/ic_cancel_blue_24dp.png",
+		sourceFilesFolder+"/wear/src/main/res/drawable-xhdpi/ic_cancel_blue_24dp.png",
 	};
 	
 	public static String destinationFilesFolder = "src-gen/android/"+AppJavaUtil.APPLICATION_NAME;
@@ -141,6 +144,9 @@ public class AndroidConstants {
 		destinationFilesFolder+"/wear/src/main/res/mipmap-mdpi/ic_launcher.png",
 		destinationFilesFolder+"/wear/src/main/res/mipmap-xhdpi/ic_launcher.png",
 		destinationFilesFolder+"/wear/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+		destinationFilesFolder+"/wear/src/main/res/drawable-hdpi/ic_cancel_blue_24dp.png",
+		destinationFilesFolder+"/wear/src/main/res/drawable-mdpi/ic_cancel_blue_24dp.png",
+		destinationFilesFolder+"/wear/src/main/res/drawable-xhdpi/ic_cancel_blue_24dp.png",
 	};
 	
 	public static String rawFolder = destinationFilesFolder+"/mobile/src/main/res/raw";

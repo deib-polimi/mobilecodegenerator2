@@ -3,7 +3,17 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
-    <viewControllers name="Main" backgroundColor="" backgroundImage="" launcher="true"/>
+    <viewControllers name="newView" backgroundColor="" backgroundImage="" launcher="true"/>
+    <watchControllers name="Main" launcher="true">
+        <watchButtons id="hnuWatchButton" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" watchController="//@watchControllers[name='Main']" title="Button">
+            <watchClickListener>
+                <watchNavigation destination="Other"/>
+            </watchClickListener>
+        </watchButtons>
+    </watchControllers>
+    <watchControllers name="Other" launcher="false">
+        <watchTextViews id="lduWatchLabel" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" watchController="//@watchControllers[name='Other']" content="Label" textAlign="center" textDecoration="bold"/>
+        <watchVoiceMessage id="qrcWatchVoiceMessage" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" below="//@watchControllers[name='Other']/@watchTextViews[id='lduWatchLabel']" watchController="//@watchControllers[name='Other']" title="REC"/>
+    </watchControllers>
     <menu/>
-    <smartwatch voiceMessage="true"/>
 </metamodel:Application>

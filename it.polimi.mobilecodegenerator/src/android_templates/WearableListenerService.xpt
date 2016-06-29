@@ -17,7 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE main FOR Application-»
 
-«IF smartwatch.voiceMessage == true-»
+«IF watchControllers.watchVoiceMessage.size > 0-»
 
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "ListenerServiceFromWear.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
