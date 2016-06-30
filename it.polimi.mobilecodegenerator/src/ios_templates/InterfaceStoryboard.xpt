@@ -57,7 +57,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                     	
                     	«FOREACH wc.watchTextViews AS tv-»
                     	«IF tv.order == i -»
-                    	<label width="1" height="«tv.height»" alignment="center" title="«tv.content»" id="«tv.id»"/>
+                    	<label width="1" height="«tv.height»" alignment="center" textAlignment="center" text="«tv.content»" id="«tv.id»">
+                    		«IF tv.textDecoration.matches("bold") -»
+                    		<fontDescription key="font" type="boldSystem" pointSize="16"/>
+                    		«ELSEIF tv.textDecoration.matches("italic") -»
+                    		<fontDescription key="font" type="italicSystem" pointSize="16"/>
+                    		«ELSE-»
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		«ENDIF-»
+                    	</label>
                     	«ENDIF-»
                     	«ENDFOREACH-»
                     	
