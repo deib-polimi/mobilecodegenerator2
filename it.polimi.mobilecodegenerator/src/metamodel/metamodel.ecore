@@ -104,6 +104,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="UiWatchControl" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="watchController" ordered="false"
         eType="#//WatchController" eKeys="#//ViewController/name"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="posX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="posY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paddingTop" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

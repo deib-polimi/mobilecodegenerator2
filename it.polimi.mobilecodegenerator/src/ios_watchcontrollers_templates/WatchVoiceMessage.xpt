@@ -14,21 +14,34 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDREM»
 
 «IMPORT metamodel»
-«DEFINE main FOR Application-»
 
-«FILE name +"/"+name+" WatchKit Extension/InterfaceController.swift"-»
-import WatchKit
-«IF smartwatch.voiceMessage == true -»
-import WatchConnectivity
-«ENDIF-»
-import Foundation
+«DEFINE propertiesDeclarations FOR WatchController-»
+	«IF watchVoiceMessage != null-»
+	var session : WCSession!
+	«ENDIF-»
+«ENDDEFINE-»
 
-class InterfaceController: WKInterfaceController«IF smartwatch.voiceMessage == true -», WCSessionDelegate«ENDIF-» {
+«DEFINE awakeWithContext FOR WatchController-»
+«IF watchVoiceMessage != null-»«ENDIF-»
+«ENDDEFINE-»
 
-	«IF smartwatch.voiceMessage == true -»
-    var session : WCSession!
-    
-    @IBAction func sendVoiceMessage() {
+«DEFINE willActivate FOR WatchController-»
+	«IF watchVoiceMessage != null-»
+    if (WCSession.isSupported()) {
+        session = WCSession.defaultSession()
+        session.delegate = self
+        session.activateSession()
+    }
+    «ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE didDeactivate FOR WatchController-»
+	«IF watchVoiceMessage != null-»«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE watchVoiceMessage FOR WatchController-»
+	«IF watchVoiceMessage != null -»
+	@IBAction func sendVoiceMessage() {
         send("messageId")
     }
     
@@ -61,27 +74,4 @@ class InterfaceController: WKInterfaceController«IF smartwatch.voiceMessage == t
  
     }
     «ENDIF-»
-    
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-    }
-
-    override func willActivate() {
-        super.willActivate()
-        «IF smartwatch.voiceMessage == true -»
-        if (WCSession.isSupported()) {
-            session = WCSession.defaultSession()
-            session.delegate = self
-            session.activateSession()
-        }
-        «ENDIF-»
-    }
-
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
-
-}
-«ENDFILE-»
-
 «ENDDEFINE-»

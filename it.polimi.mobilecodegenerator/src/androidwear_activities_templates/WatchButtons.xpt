@@ -21,7 +21,7 @@ private Button «b.id»;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
-«DEFINE onCreate FOR WatchController-»
+«DEFINE onLayoutInflated FOR WatchController-»
 «FOREACH watchButtons AS b-»
 «b.id» = (Button) stub.findViewById(R.id.«b.id»);
 «IF b.watchClickListener != null-»

@@ -15,18 +15,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE onCreate FOR WatchController-»
-
-«EXPAND androidwear_activities_templates::WatchVoiceMessage::onCreate-»
-
-final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
-stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-    @Override
-    public void onLayoutInflated(WatchViewStub stub) {
-    
-		«EXPAND androidwear_activities_templates::OnLayoutInflated::onLayoutInflated-»
-	
-	}
-	
-});
+«DEFINE willActivate FOR WatchController-»
+	«EXPAND ios_watchcontrollers_templates::WatchButtons::willActivate-»
+	«EXPAND ios_watchcontrollers_templates::WatchVoiceMessage::willActivate-»
 «ENDDEFINE-»

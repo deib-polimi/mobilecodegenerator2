@@ -35,6 +35,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH viewControllers AS vc-»
 		«getFirstHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */; };
 		«ENDFOREACH-»
+		«FOREACH watchControllers AS wc-»
+		«getFirstHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */; };
+		«ENDFOREACH-»
 		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 		«getFirstHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */; };
 		«ENDIF-»
@@ -64,7 +67,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */; };
 		«getFirstHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		«getFirstHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */; };		
-		«getFirstHexadecimalId("InterfaceController.swift")» /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("InterfaceController.swift")» /* InterfaceController.swift */; };
 		«getFirstHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = «getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */; };	
 			
 /* End PBXBuildFile section */
@@ -121,6 +123,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«FOREACH viewControllers AS vc-»
 		«getSecondHexadecimalId(vc.name+"ViewController.swift")» /* «vc.name»ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «vc.name»ViewController.swift; sourceTree = "<group>"; };
 		«ENDFOREACH-»
+		«FOREACH watchControllers AS wc-»
+		«getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = «wc.name»InterfaceController.swift; sourceTree = "<group>"; };
+		«ENDFOREACH-»
 		«IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 		«getSecondHexadecimalId("ImageDownloadingTask.swift")» /* ImageDownloadingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadingTask.swift; sourceTree = "<group>"; };
 		«ENDIF-»
@@ -150,7 +155,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getSecondHexadecimalId("WatchKit App Assets.xcassets")» /* WatchKit App Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("WatchKit App Info.plist")» /* WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		«getSecondHexadecimalId(name+" WatchKit Extension.appex")» /* «name» WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "«name» WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		«getSecondHexadecimalId("InterfaceController.swift")» /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		«getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* WatchKit Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		«getFirstHexadecimalId("WatchKit Extension Info.plist")» /* WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -246,7 +250,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«getFirstHexadecimalId(name+" WatchKit Extension")» /* «name» WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				«getSecondHexadecimalId("InterfaceController.swift")» /* InterfaceController.swift */,
+				«FOREACH watchControllers AS wc-»
+				«getSecondHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift */,
+				«ENDFOREACH-»
 				«getSecondHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift */,
 				«getSecondHexadecimalId("WatchKit Extension Assets.xcassets")» /* Assets.xcassets */,
 				«getFirstHexadecimalId("WatchKit Extension Info.plist")» /* Info.plist */,
@@ -422,7 +428,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			buildActionMask = 2147483647;
 			files = (
 				«getFirstHexadecimalId("ExtensionDelegate.swift")» /* ExtensionDelegate.swift in Sources */,
-				«getFirstHexadecimalId("InterfaceController.swift")» /* InterfaceController.swift in Sources */,
+				«FOREACH watchControllers AS wc-»
+				«getFirstHexadecimalId(wc.name+"InterfaceController.swift")» /* «wc.name»InterfaceController.swift in Sources*/,
+				«ENDFOREACH-»
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

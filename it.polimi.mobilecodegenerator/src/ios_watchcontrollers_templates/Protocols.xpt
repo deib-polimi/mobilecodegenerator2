@@ -10,23 +10,15 @@ either version 3 of the License, or (at your option) any later version.
 it.polimi.mobilecodegenerator is distributed in the hope that it will be useful, 
 but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
 See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
-along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
+along with it.polimi.mobilecodegenerator. If not, see http://www.gnu.org/licenses/
 «ENDREM»
 
 «IMPORT metamodel»
 
-«DEFINE onCreate FOR WatchController-»
-
-«EXPAND androidwear_activities_templates::WatchVoiceMessage::onCreate-»
-
-final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
-stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-    @Override
-    public void onLayoutInflated(WatchViewStub stub) {
-    
-		«EXPAND androidwear_activities_templates::OnLayoutInflated::onLayoutInflated-»
-	
-	}
-	
-});
+«DEFINE publicProtocols FOR WatchController-»
+«IF 	watchVoiceMessage==null-»
+WKInterfaceController
+«ELSEIF watchVoiceMessage!=null-»
+WKInterfaceController, WCSessionDelegate
+«ENDIF-»
 «ENDDEFINE-»

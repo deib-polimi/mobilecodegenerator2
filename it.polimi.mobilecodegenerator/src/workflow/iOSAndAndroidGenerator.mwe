@@ -57,11 +57,37 @@
 		</resourceManager>
 	</component>
 	
+	<!-- generate DefaultFilesWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::DefaultFilesWatch::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 	<!-- generate AndroidManifest -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
 			value="android_templates::AndroidManifest::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate AndroidManifestWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::AndroidManifestWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -83,11 +109,11 @@
 		</resourceManager>
 	</component>
 	
-	<!-- generate WearableListenerService -->
+	<!-- generate ActivitiesWatch -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
-			value="android_templates::WearableListenerService::main FOR model" />
+			value="android_templates::ActivitiesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -101,6 +127,19 @@
 		<metaModel idRef="mm_emf"/>
 		<expand
 			value="android_templates::XMLFiles::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate XMLFilesWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::XMLFilesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -141,6 +180,19 @@
 		<metaModel idRef="mm_emf"/>
 		<expand
 			value="ios_templates::DefaultFiles::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
+	<!-- generate DefaultFilesWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="ios_templates::DefaultFilesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -201,6 +253,19 @@
 		</resourceManager>
 	</component>
 	
+	<!--  generate InterfaceStoryboard -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="ios_templates::InterfaceStoryboard::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 	<!--  generate ViewControllers -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
@@ -214,24 +279,11 @@
 		</resourceManager>
 	</component>
 	
-	<!--  generate WatchKit App InterfaceStoryboard -->
+	<!--  generate InterfaceControllers -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
-			value="ios_templates::InterfaceStoryboard::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!--  generate InterfaceController -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="ios_templates::InterfaceController::main FOR model" />
+			value="ios_templates::InterfaceControllers::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>

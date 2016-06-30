@@ -36,6 +36,18 @@ private TextView mDelayedViewTextView;
 
 «DEFINE onCreate FOR WatchController-»
 «IF watchVoiceMessage != null -»
+mDelayedConfirmationListener = this;
+
+mGoogleApiClient = new GoogleApiClient.Builder(this)
+        .addApi(Wearable.API)
+        .addConnectionCallbacks(this)
+        .addOnConnectionFailedListener(this)
+        .build();
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE onLayoutInflated FOR WatchController-»
+«IF watchVoiceMessage != null -»
 mDelayedViewContainer = (RelativeLayout) stub.findViewById(R.id.delayed_confirm_container);
 mDelayedViewTextView = (TextView) stub.findViewById(R.id.delayed_confirm_text_view);
 mDelayedView = (DelayedConfirmationView) stub.findViewById(R.id.delayed_confirm);

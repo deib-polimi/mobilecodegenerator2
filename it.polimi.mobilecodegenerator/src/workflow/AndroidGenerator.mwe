@@ -56,10 +56,11 @@
 		</resourceManager>
 	</component>
 	
+	<!-- generate DefaultFilesWatch -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
-			value="android_templates::WatchDefaultFiles::main FOR model" />
+			value="android_templates::DefaultFilesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -81,6 +82,19 @@
 		</resourceManager>
 	</component>
 	
+	<!-- generate AndroidManifestWatch -->
+	<component class="org.eclipse.xpand2.Generator">
+		<metaModel idRef="mm_emf"/>
+		<expand
+			value="android_templates::AndroidManifestWatch::main FOR model" />
+		<outlet path="${src-gen}" >
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
+		</outlet>
+		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
+			<fileEncoding value="ISO-8859-1"/>
+		</resourceManager>
+	</component>
+	
 	<!-- generate Activities -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
@@ -94,24 +108,11 @@
 		</resourceManager>
 	</component>
 	
-	<!-- generate WatchActivities -->
+	<!-- generate ActivitiesWatch -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
-			value="android_templates::WatchActivities::main FOR model" />
-		<outlet path="${src-gen}" >
-			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
-		</outlet>
-		<resourceManager class ="org.eclipse.xtend.expression.ResourceManagerDefaultImpl">
-			<fileEncoding value="ISO-8859-1"/>
-		</resourceManager>
-	</component>
-	
-	<!-- generate WearableListenerService -->
-	<component class="org.eclipse.xpand2.Generator">
-		<metaModel idRef="mm_emf"/>
-		<expand
-			value="android_templates::WearableListenerService::main FOR model" />
+			value="android_templates::ActivitiesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>
@@ -133,11 +134,11 @@
 		</resourceManager>
 	</component>
 	
-	<!-- generate WatchXMLFiles -->
+	<!-- generate XMLFilesWatch -->
 	<component class="org.eclipse.xpand2.Generator">
 		<metaModel idRef="mm_emf"/>
 		<expand
-			value="android_templates::WatchXMLFiles::main FOR model" />
+			value="android_templates::XMLFilesWatch::main FOR model" />
 		<outlet path="${src-gen}" >
 			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier" />
 		</outlet>

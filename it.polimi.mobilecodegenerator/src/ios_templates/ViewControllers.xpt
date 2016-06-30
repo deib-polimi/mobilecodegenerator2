@@ -30,7 +30,6 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-	    // Do any additional setup after loading the view, typically from a nib.
 		«EXPAND ios_viewcontrollers_templates::ViewDidLoad::viewDidLoad-»
 	}
 	

@@ -182,4 +182,12 @@ public class IOSJavaUtil {
 		else return fileName;
 	}
 	
+	public int numUiWatchControls(String watchControllerString) {
+		watchControllerString = watchControllerString.replace("metamodel::WatchButton","MCGmetamodel::WatchButton");
+		watchControllerString = watchControllerString.replace("metamodel::WatchTextView","MCGmetamodel::WatchTextView");
+		watchControllerString = watchControllerString.replace("metamodel::WatchVoiceMessage","MCGmetamodel::WatchVoiceMessage");
+		String[] watchControls = watchControllerString.split("MCG");
+		return watchControls.length-1;
+	}
+	
 }

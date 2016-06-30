@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AppJavaUtil {
@@ -92,5 +93,16 @@ public class AppJavaUtil {
 	        }
 	    }
 	    folder.delete();
+	}
+	
+	public static boolean existsAtLeastOne(Collection<?> c) {
+		Object[] array = c.toArray();
+		
+		for(int i = 0; i < array.length; i++) {
+			if(array[i] != null) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

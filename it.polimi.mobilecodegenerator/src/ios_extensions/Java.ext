@@ -28,3 +28,5 @@ float blueFromHex(String hexColor):JAVA ios_extensions.IOSJavaUtil.blueFromHex(j
 
 String domainFromUrl(String url):JAVA ios_extensions.IOSJavaUtil.domainFromUrl(java.lang.String);
 String removeExtension(String fileName):JAVA ios_extensions.IOSJavaUtil.removeExtension(java.lang.String);
+
+Integer numUiWatchControls(String watchControllerString):JAVA ios_extensions.IOSJavaUtil.numUiWatchControls(java.lang.String);

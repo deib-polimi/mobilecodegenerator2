@@ -32,19 +32,10 @@ public class «name»Activity extends Activity «EXPAND androidwear_activities_temp
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_«name.toLowerCase()»);
-		
-		«IF watchVoiceMessage != null-»
-		mDelayedConfirmationListener = this;
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-        «ENDIF-»        
+		setContentView(R.layout.activity_«name.toLowerCase()»);  
                 
 		«EXPAND androidwear_activities_templates::OnCreate::onCreate-»
+		
 	}
 	
 	«EXPAND androidwear_activities_templates::WatchVoiceMessage::watchVoiceMessage-»
