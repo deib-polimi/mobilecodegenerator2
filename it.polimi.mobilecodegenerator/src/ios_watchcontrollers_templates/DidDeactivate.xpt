@@ -16,6 +16,4 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE didDeactivate FOR WatchController-»
-	«EXPAND ios_watchcontrollers_templates::WatchButtons::didDeactivate-»
-	«EXPAND ios_watchcontrollers_templates::WatchVoiceMessage::didDeactivate-»
 «ENDDEFINE-»

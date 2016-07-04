@@ -15,5 +15,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE awakeWithContext FOR WatchController-»
+«DEFINE propertiesDeclarations FOR WatchController-»
+	«FOREACH watchSliders AS s-»
+	@IBOutlet weak var «s.id»: WKInterfaceSlider!
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE watchSliders FOR WatchController-»
+«FOREACH watchSliders AS s-»
+	@IBAction func «s.id»Action(value: Float) {
+        // You can reference to the progress value of the slider
+        let progressValue: Float = value
+    }
+«ENDFOREACH-»
 «ENDDEFINE-»

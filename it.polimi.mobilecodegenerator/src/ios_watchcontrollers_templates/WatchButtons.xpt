@@ -16,17 +16,15 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE propertiesDeclarations FOR WatchController-»
-	«FOREACH watchButtons AS b-»«ENDFOREACH-»
+	«FOREACH watchButtons AS b-»
+	@IBOutlet weak var «b.id»: WKInterfaceButton!
+	«ENDFOREACH-»
 «ENDDEFINE-»
 
-«DEFINE awakeWithContext FOR WatchController-»
-	«FOREACH watchButtons AS b-»«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE willActivate FOR WatchController-»
-	«FOREACH watchButtons AS b-»«ENDFOREACH-»
-«ENDDEFINE-»
-
-«DEFINE didDeactivate FOR WatchController-»
-	«FOREACH watchButtons AS b-»«ENDFOREACH-»
+«DEFINE watchButtons FOR WatchController-»
+«FOREACH watchButtons AS b-»
+	@IBAction func «b.id»Action() {
+        //TODO Implement the action
+    }  
+«ENDFOREACH-»
 «ENDDEFINE-»

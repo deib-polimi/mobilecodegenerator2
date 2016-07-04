@@ -46,11 +46,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                     	«FOREACH wc.watchButtons AS b-»
                     	«IF b.order == i -»
                     	<button width="1" height="«b.height»" alignment="center" title="«b.title»" id="«b.id»">
-                    	«IF b.watchClickListener!=null && b.watchClickListener.watchNavigation!=null»
+                    		<fontDescription key="font" type="system" pointSize="16"/>
                     		<connections>
+                    			«IF b.watchClickListener!=null && b.watchClickListener.watchNavigation!=null»
 	                    		<segue destination="«b.watchClickListener.watchNavigation.destination»InterfaceControllerID" kind="push" id="SegueIDFrom«b.id»To«b.watchClickListener.watchNavigation.destination»InterfaceControllerID"/>
+	                        	«ENDIF-»
+	                        	<action selector="«b.id»Action:" destination="«wc.name»InterfaceControllerID" id="«b.id»ActionID"/>
 	                        </connections>
-	                    «ENDIF-»
                     	</button>
                     	«ENDIF-»
                     	«ENDFOREACH-»
@@ -69,9 +71,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                     	«ENDIF-»
                     	«ENDFOREACH-»
                     	
+                    	«FOREACH wc.watchSliders AS s-»
+                    	«IF s.order == i -»
+                    	<slider width="1" height="«s.height»" alignment="center" value="2" maximum="4" steps="4" id="«s.id»">
+                    		<connections>
+                                <action selector="«s.id»Action:" destination="«wc.name»InterfaceControllerID" id="«s.id»ActionID"/>
+                            </connections>
+                        </slider>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
+                    	«FOREACH wc.watchSwitches AS s-»
+                    	«IF s.order == i -»
+                    	<switch width="1" height="«s.height»" alignment="center" value="YES" title="«s.title»" id="«s.id»Button">
+                    		<fontDescription key="font" type="system" pointSize="16"/>
+                    		<connections>
+                				<action selector="«s.id»Action:" destination="«wc.name»InterfaceControllerID" id="«s.id»ActionID"/>
+		                    </connections>
+                    	</switch>
+                    	«ENDIF-»
+                    	«ENDFOREACH-»
+                    	
                     	«IF wc.watchVoiceMessage != null-»
                     	«IF wc.watchVoiceMessage.order == i -»
                     	<button width="1" height="«wc.watchVoiceMessage.height»" alignment="center" title="«wc.watchVoiceMessage.title»" id="«wc.watchVoiceMessage.id»">
+                    		<fontDescription key="font" type="system" pointSize="16"/>
                     		<connections>
                                 <action selector="sendVoiceMessage" destination="«wc.name»InterfaceControllerID" id="«wc.watchVoiceMessage.id»nActionID"/>
                             </connections>
@@ -81,6 +105,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                     	
                     «ENDFOREACH-»
                     </items>
+                    <connections>
+                        «FOREACH wc.watchButtons AS b-»
+                        <outlet property="«b.id»" destination="«b.id»" id="«b.id»OutletID"/>
+                        «ENDFOREACH»
+                        «FOREACH wc.watchSliders AS s-»
+                        <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+                        «ENDFOREACH»
+                        «FOREACH wc.watchSwitches AS s-»
+                        <outlet property="«s.id»Button" destination="«s.id»Button" id="«s.id»OutletID"/>
+                        «ENDFOREACH»
+                    </connections>
                 </controller>
             </objects>
         </scene>

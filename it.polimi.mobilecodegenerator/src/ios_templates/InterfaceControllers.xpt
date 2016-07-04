@@ -35,14 +35,19 @@ class «name»InterfaceController: «EXPAND ios_watchcontrollers_templates::Protoco
 
     override func willActivate() {
         super.willActivate()
-        «EXPAND ios_watchcontrollers_templates::WillActivate::willActivate-»
-        
+        «EXPAND ios_watchcontrollers_templates::WillActivate::willActivate-»   
     }
 
     override func didDeactivate() {
         super.didDeactivate()
         «EXPAND ios_watchcontrollers_templates::DidDeactivate::didDeactivate-»
     }
+    
+    «EXPAND ios_watchcontrollers_templates::WatchButtons::watchButtons-»
+    
+    «EXPAND ios_watchcontrollers_templates::WatchSliders::watchSliders-»
+    
+    «EXPAND ios_watchcontrollers_templates::WatchSwitches::watchSwitches-»
     
     «EXPAND ios_watchcontrollers_templates::WatchVoiceMessage::watchVoiceMessage-»
 

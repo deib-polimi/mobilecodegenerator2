@@ -17,5 +17,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR WatchController-»
 «EXPAND androidwear_activities_templates::WatchButtons::attributesDeclarations-»
+«EXPAND androidwear_activities_templates::WatchSliders::attributesDeclarations-»
+«EXPAND androidwear_activities_templates::WatchSwitches::attributesDeclarations-»
 «EXPAND androidwear_activities_templates::WatchVoiceMessage::attributesDeclarations-»
 «ENDDEFINE-»

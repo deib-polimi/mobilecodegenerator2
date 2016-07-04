@@ -30,6 +30,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="watchTextViews" ordered="false"
         upperBound="-1" eType="#//WatchTextView" containment="true" eOpposite="#//WatchTextView/watchController"
         eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="watchSliders" ordered="false"
+        upperBound="-1" eType="#//WatchSlider" containment="true" eOpposite="#//WatchSlider/watchController"
+        eKeys="#//UiControl/id"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="watchSwitches" ordered="false"
+        upperBound="-1" eType="#//WatchSwitch" containment="true" eOpposite="#//WatchSwitch/watchController"
+        eKeys="#//UiControl/id"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="watchVoiceMessage" eType="#//WatchVoiceMessage"
         containment="true" eOpposite="#//WatchVoiceMessage/watchController"/>
   </eClassifiers>
@@ -155,6 +161,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="textDecoration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="watchController" lowerBound="1"
         eType="#//WatchController" changeable="false" eOpposite="#//WatchController/watchTextViews"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WatchSlider" eSuperTypes="#//UiWatchControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="watchController" lowerBound="1"
+        eType="#//WatchController" changeable="false" eOpposite="#//WatchController/watchSliders"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WatchSwitch" eSuperTypes="#//UiWatchControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="watchController" lowerBound="1"
+        eType="#//WatchController" changeable="false" eOpposite="#//WatchController/watchSwitches"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WatchVoiceMessage" eSuperTypes="#//UiWatchControl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"

@@ -184,6 +184,8 @@ public class IOSJavaUtil {
 	
 	public int numUiWatchControls(String watchControllerString) {
 		watchControllerString = watchControllerString.replace("metamodel::WatchButton","MCGmetamodel::WatchButton");
+		watchControllerString = watchControllerString.replace("metamodel::WatchSlider","MCGmetamodel::WatchSlider");
+		watchControllerString = watchControllerString.replace("metamodel::WatchSwitch","MCGmetamodel::WatchSwitch");
 		watchControllerString = watchControllerString.replace("metamodel::WatchTextView","MCGmetamodel::WatchTextView");
 		watchControllerString = watchControllerString.replace("metamodel::WatchVoiceMessage","MCGmetamodel::WatchVoiceMessage");
 		String[] watchControls = watchControllerString.split("MCG");

@@ -29,8 +29,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:id="@+id/watch_view_stub"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:rectLayout="@layout/rect_activity_main"
-    app:roundLayout="@layout/round_activity_main"
+    app:rectLayout="@layout/rect_activity_«name.toLowerCase()»"
+    app:roundLayout="@layout/round_activity_«name.toLowerCase()»"
     tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
     tools:deviceIds="wear"></android.support.wearable.view.WatchViewStub>
 «ENDFILE-»
@@ -62,6 +62,30 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «IF tv.textDecoration.matches("none")==false»
         android:textStyle="«tv.textDecoration»"
         «ENDIF-»
+	/>        
+	«ENDFOREACH-»
+	
+	«FOREACH watchSwitches AS s-»
+	<RelativeLayout
+        «EXPAND uiWatchControl FOR s»
+        >
+    
+        <Switch
+            android:id="@+id/«s.id»Button"
+            android:text="«s.title»"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
+
+    </RelativeLayout> 
+	«ENDFOREACH-»
+	
+	«FOREACH watchSliders AS s-»
+	<SeekBar
+		android:progress="50"
+        «EXPAND uiWatchControl FOR s»
 	/>        
 	«ENDFOREACH-»
 	

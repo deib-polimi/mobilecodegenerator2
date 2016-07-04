@@ -3,27 +3,26 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
-    <viewControllers name="Main" backgroundColor="" backgroundImage="" launcher="true"/>
+    <viewControllers name="newView" backgroundColor="" backgroundImage="" launcher="true"/>
     <watchControllers name="Main" launcher="true">
-        <watchTextViews id="icuoeWatchLabel" order="1" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" watchController="//@watchControllers[name='Main']" content="Main" textAlign="center" textDecoration="bold"/>
-        <watchButtons id="hqkWatchButton" order="2" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" below="//@watchControllers[name='Main']/@watchTextViews[id='icuoeWatchLabel']" watchController="//@watchControllers[name='Main']" title="ToOther">
+        <watchTextViews id="mqjrgWatchLabel" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='Main']" content="Label" textAlign="center" textDecoration="none"/>
+        <watchButtons id="dphWatchButton" order="2" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Main']/@watchTextViews[id='mqjrgWatchLabel']" watchController="//@watchControllers[name='Main']" title="Go To Other">
             <watchClickListener>
                 <watchNavigation destination="Other"/>
             </watchClickListener>
         </watchButtons>
-        <watchButtons id="kbmqaWatchButton" order="3" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" below="//@watchControllers[name='Main']/@watchButtons[id='hqkWatchButton']" watchController="//@watchControllers[name='Main']" title="ToLast">
+    </watchControllers>
+    <watchControllers name="Other" launcher="false">
+        <watchSwitches id="lmuoWatchSwitch" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='Other']" title="Switch Label"/>
+        <watchSliders id="chuWatchSlider" order="2" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Other']/@watchSwitches[id='lmuoWatchSwitch']" watchController="//@watchControllers[name='Other']"/>
+        <watchButtons id="cntWatchButton" order="3" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" below="//@watchControllers[name='Other']/@watchSliders[id='chuWatchSlider']" watchController="//@watchControllers[name='Other']" title="Go To Last">
             <watchClickListener>
                 <watchNavigation destination="Last"/>
             </watchClickListener>
         </watchButtons>
     </watchControllers>
-    <watchControllers name="Other" launcher="false">
-        <watchTextViews id="hWatchLabel" order="1" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" watchController="//@watchControllers[name='Other']" content="Other" textAlign="center" textDecoration="italic"/>
-        <watchVoiceMessage id="anrktWatchVoiceMessage" order="2" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" below="//@watchControllers[name='Other']/@watchTextViews[id='hWatchLabel']" watchController="//@watchControllers[name='Other']" title="REC"/>
-    </watchControllers>
     <watchControllers name="Last" launcher="false">
-        <watchTextViews id="hhqcWatchLabel" order="1" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" watchController="//@watchControllers[name='Last']" content="Last" textAlign="center" textDecoration="italic"/>
-        <watchVoiceMessage id="mmoWatchVoiceMessage" order="2" posX="0" posY="0" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" width="125" height="48" below="//@watchControllers[name='Last']/@watchTextViews[id='hhqcWatchLabel']" watchController="//@watchControllers[name='Last']" title="REC"/>
+        <watchVoiceMessage id="lcWatchVoiceMessage" order="1" posX="0" posY="0" width="125" height="48" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" watchController="//@watchControllers[name='Last']" title="REC"/>
     </watchControllers>
     <menu/>
 </metamodel:Application>

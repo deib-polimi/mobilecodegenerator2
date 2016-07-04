@@ -15,5 +15,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE awakeWithContext FOR WatchController-»
+«DEFINE attributesDeclarations FOR WatchController-»
+«FOREACH watchSliders AS s-»
+private SeekBar «s.id»;
+«ENDFOREACH-»
 «ENDDEFINE-»
+
+«DEFINE onLayoutInflated FOR WatchController-»
+«FOREACH watchSliders AS s-»
+«s.id» = (SeekBar) stub.findViewById(R.id.«s.id»);
+«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        Log.i("Progress", progress+"");
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+

@@ -727,6 +727,40 @@
     <element xmi:type="ecore:EClass" href="metamodel.ecore#//WatchVoiceMessage"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6aViPT1AEeacZpLwX0_kfg" x="-430" y="-10"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_gyBvEEHREeafs7dzQEamhg" type="2001" fontName=".SF NS Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_gyC9MEHREeafs7dzQEamhg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyC9MUHREeafs7dzQEamhg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyC9MkHREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyC9M0HREeafs7dzQEamhg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyC9NEHREeafs7dzQEamhg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyC9NUHREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyC9NkHREeafs7dzQEamhg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyDkQEHREeafs7dzQEamhg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyDkQUHREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyDkQkHREeafs7dzQEamhg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="metamodel.ecore#//WatchSlider"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gyBvEUHREeafs7dzQEamhg"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_gyDkQ0HREeafs7dzQEamhg" type="2001" fontName=".SF NS Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_gyDkRUHREeafs7dzQEamhg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyDkRkHREeafs7dzQEamhg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyDkR0HREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyDkSEHREeafs7dzQEamhg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyELUEHREeafs7dzQEamhg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyELUUHREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyELUkHREeafs7dzQEamhg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_gyELU0HREeafs7dzQEamhg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_gyELVEHREeafs7dzQEamhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_gyELVUHREeafs7dzQEamhg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="metamodel.ecore#//WatchSwitch"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gyDkREHREeafs7dzQEamhg" x="132"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_-V4GccLuEeKL_aiCnWUpgg"/>
   <element xmi:type="ecore:EPackage" href="metamodel.ecore#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_Bt5hgO9EEeWOM7fVnmFKmQ" type="4003" source="_BsHY0O9EEeWOM7fVnmFKmQ" target="_BsHY3O9EEeWOM7fVnmFKmQ">
@@ -1535,5 +1569,37 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_wF82YT1CEeacZpLwX0_kfg" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiWatchControl/watchController"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wF82Yj1CEeacZpLwX0_kfg" points="[69, -157, -964, 1493]$[587, -1338, -446, 312]$[979, -1612, -54, 38]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_gyqoQEHREeafs7dzQEamhg" type="4003" source="_kd3nsD08EeacZpLwX0_kfg" target="_gyBvEEHREeafs7dzQEamhg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_gyrPUEHREeafs7dzQEamhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_gyrPUUHREeafs7dzQEamhg" x="136" y="-17"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_gyrPUkHREeafs7dzQEamhg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_gyrPU0HREeafs7dzQEamhg" x="-9" y="-14"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_gyqoQUHREeafs7dzQEamhg" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//WatchController/watchSliders"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gyqoQkHREeafs7dzQEamhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_gywH0EHREeafs7dzQEamhg" type="4003" source="_kd3nsD08EeacZpLwX0_kfg" target="_gyDkQ0HREeafs7dzQEamhg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_gywH00HREeafs7dzQEamhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_gywH1EHREeafs7dzQEamhg" x="174" y="-23"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_gywH1UHREeafs7dzQEamhg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_gywH1kHREeafs7dzQEamhg" x="-8" y="-15"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_gywH0UHREeafs7dzQEamhg" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//WatchController/watchSwitches"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gywH0kHREeafs7dzQEamhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_gyzyMEHREeafs7dzQEamhg" type="4004" source="_gyBvEEHREeafs7dzQEamhg" target="_e2ViAD09EeacZpLwX0_kfg">
+    <styles xmi:type="notation:FontStyle" xmi:id="_gyzyMUHREeafs7dzQEamhg" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gyzyMkHREeafs7dzQEamhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_gy3ckEHREeafs7dzQEamhg" type="4004" source="_gyDkQ0HREeafs7dzQEamhg" target="_e2ViAD09EeacZpLwX0_kfg">
+    <styles xmi:type="notation:FontStyle" xmi:id="_gy3ckUHREeafs7dzQEamhg" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gy3ckkHREeafs7dzQEamhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
   </edges>
 </notation:Diagram>

@@ -21,10 +21,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE awakeWithContext FOR WatchController-»
-«IF watchVoiceMessage != null-»«ENDIF-»
-«ENDDEFINE-»
-
 «DEFINE willActivate FOR WatchController-»
 	«IF watchVoiceMessage != null-»
     if (WCSession.isSupported()) {
@@ -33,10 +29,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         session.activateSession()
     }
     «ENDIF-»
-«ENDDEFINE-»
-
-«DEFINE didDeactivate FOR WatchController-»
-	«IF watchVoiceMessage != null-»«ENDIF-»
 «ENDDEFINE-»
 
 «DEFINE watchVoiceMessage FOR WatchController-»
