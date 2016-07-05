@@ -93,6 +93,8 @@ public class ListenerServiceFromWear extends WearableListenerService {
 
         //You can reference to the messages from any activity like this
         //Map<String, String> messages = ListenerServiceFromWear.messages;
+        //int numMessages = messages.size();
+		//String lastMessage = (String) messages.values().toArray()[0];
 
     }
 

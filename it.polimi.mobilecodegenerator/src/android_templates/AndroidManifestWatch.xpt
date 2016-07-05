@@ -36,6 +36,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <activity
+            android:name="android.support.wearable.activity.ConfirmationActivity">
+        </activity>
 		«ENDIF-»
 		«FOREACH watchControllers AS wc-»
 		<activity
