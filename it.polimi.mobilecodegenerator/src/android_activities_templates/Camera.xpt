@@ -27,9 +27,9 @@ private static final int IMAGE_CAPTURE_ACTIVITY_REQUEST_CODE = 100;
 «ENDIF-»
 
 «IF videocameraController != null-»
-«IF photocameraController.backgroundType.matches("icon")-»
+«IF videocameraController.backgroundType.matches("icon")-»
 private ImageButton videocameraButton;
-«ELSEIF photocameraController.backgroundType.matches("normal")-»
+«ELSEIF videocameraController.backgroundType.matches("normal")-»
 private Button videocameraButton;
 «ENDIF-»
 private Uri videoFileUri;

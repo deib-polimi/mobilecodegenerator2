@@ -56,9 +56,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                	«ENDIF-»
 	                    «FOREACH vc.imageViews AS iv-»
 	                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
-	                        «IF iv.sourceType.toString().matches("hardwareFile")»
 	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-	                        «ENDIF»
 	                        «EXPAND uiControl FOR iv»
 	                    </imageView>
 	                    «ENDFOREACH-»
@@ -423,6 +421,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                                 <nil key="highlightedColor"/>
                                             </label>
 	                    					«IF lv.listType.matches("detailed")-»
+	                    					<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellContentID">
+                                                <rect key="frame" x="72" y="8" width="288" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»CellIconID">
                                                 <rect key="frame" x="376" y="17" width="22" height="22"/>
                                                 <constraints>
@@ -433,16 +437,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                                         </subviews>
                                         <constraints>
                                         	«IF lv.listType.matches("detailed")-»
-                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstA"/>
-                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellLabelID" secondAttribute="bottom" constant="8" id="«lv.id»ConstB"/>
-                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstC"/>
-                                            <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstD"/>
-                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstE"/>
-                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellIconID" secondAttribute="bottom" constant="17" id="«lv.id»ConstF"/>
-                                            <constraint firstAttribute="trailing" secondItem="«lv.id»CellIconID" secondAttribute="trailing" constant="16" id="«lv.id»ConstG"/>
-                                            <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstH"/>
-                                            <constraint firstItem="«lv.id»CellIconID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="17" id="«lv.id»ConstI"/>
-                                            <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="«lv.id»CellContentID" secondAttribute="bottom" constant="8" id="«lv.id»ConstA"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellContentID" secondAttribute="trailing" constant="16" id="«lv.id»ConstB"/>
+										    <constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstC"/>
+										    <constraint firstAttribute="bottom" secondItem="«lv.id»CellImageID" secondAttribute="bottom" constant="8" id="«lv.id»ConstD"/>
+										    <constraint firstItem="«lv.id»CellImageID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstE"/>
+										    <constraint firstItem="«lv.id»CellLabelID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="8" id="«lv.id»ConstF"/>
+										    <constraint firstAttribute="bottom" secondItem="«lv.id»CellIconID" secondAttribute="bottom" constant="17" id="«lv.id»ConstG"/>
+										    <constraint firstAttribute="trailing" secondItem="«lv.id»CellIconID" secondAttribute="trailing" constant="16" id="«lv.id»ConstH"/>
+										    <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstI"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="top" secondItem="«lv.id»ContentViewID" secondAttribute="top" constant="17" id="«lv.id»ConstJ"/>
+										    <constraint firstItem="«lv.id»CellIconID" firstAttribute="leading" secondItem="«lv.id»CellLabelID" secondAttribute="trailing" constant="16" id="«lv.id»ConstK"/>
+										    <constraint firstItem="«lv.id»CellContentID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstL"/>
                                         	«ELSEIF lv.listType.matches("image")-»
                                         	<constraint firstItem="«lv.id»CellImageID" firstAttribute="leading" secondItem="«lv.id»ContentViewID" secondAttribute="leading" constant="16" id="«lv.id»ConstA"/>
                                             <constraint firstItem="«lv.id»CellLabelID" firstAttribute="leading" secondItem="«lv.id»CellImageID" secondAttribute="trailing" constant="16" id="«lv.id»ConstB"/>
@@ -466,6 +472,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 					                «ENDIF-»
                                 	<connections>
                                 		«IF lv.listType.matches("detailed")-»
+                                        <outlet property="content" destination="«lv.id»CellContentID" id="«lv.id»ContentOutlet"/>
                                         <outlet property="icon" destination="«lv.id»CellIconID" id="«lv.id»IconOutlet"/>
                                         «ENDIF-»
                                         «IF lv.listType.matches("image") || lv.listType.matches("detailed")-»

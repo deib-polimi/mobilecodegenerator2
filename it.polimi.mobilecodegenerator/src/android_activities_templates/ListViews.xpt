@@ -23,6 +23,7 @@ private MyListAdapter «lv.id»Adapter;
 private Integer[] «lv.id»Images;
 «ENDIF-»
 «IF lv.listType.matches("detailed")»
+private String[] «lv.id»Subcontents;
 private Integer[] «lv.id»Icons;
 «ENDIF-»
 private String[] «lv.id»Contents;
@@ -46,6 +47,11 @@ private String[] «lv.id»Contents;
 		R.drawable.ic_chevron_right_black_36dp,
 	«ENDFOREACH-»
 };
+«lv.id»Subcontents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+	«ENDFOREACH-»
+};
 «ENDIF-»
 «lv.id»Contents = new String[]{
 	«FOREACH lv.listViewCells AS lvc-»
@@ -53,7 +59,7 @@ private String[] «lv.id»Contents;
 	«ENDFOREACH-»
 };
 «IF lv.listType.matches("detailed")»
-«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Images, «lv.id»Icons);
+«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Subcontents, «lv.id»Images, «lv.id»Icons);
 «ENDIF-»
 «IF lv.listType.matches("image")»
 «lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_image_layout, «lv.id»Contents, «lv.id»Images);

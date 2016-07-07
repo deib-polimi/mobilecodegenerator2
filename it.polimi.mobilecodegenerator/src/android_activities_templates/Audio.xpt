@@ -39,6 +39,15 @@ private void setUpAudioRecorder() {
 	recordButton.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 	        if (!isRecording) {	//start recording
+	        
+	        	//Stop audioplayer eventually
+	        	try {
+					«audioRecorder.audioPlayerId».pause();
+					«audioRecorder.audioPlayerId».seekTo(0);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	        
 	        	String audiosPath = getFilesDir().getAbsolutePath() + "/audios";
 			    File audiosDirectory = new File(audiosPath);
 			    audiosDirectory.mkdir();

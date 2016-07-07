@@ -39,6 +39,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 
 «IF lv.listType.matches("detailed") -»
+	var «lv.id»Subcontents: [String] = [
+		«IF lv.listViewCells.size!=0-»
+		«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+		«ENDFOREACH-»
+		«ENDIF-»
+	]
+	
 	var «lv.id»Icons: [UIImage] = [
 		«IF lv.listViewCells.size!=0-»
 		// Change the images for each row here
@@ -84,6 +92,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    	let «lv.id»Cell = tableView.dequeueReusableCellWithIdentifier("«lv.id»TableViewCell", forIndexPath: indexPath) as! DetailedTableViewCell
 	        «lv.id»Cell.img.image = self.«lv.id»Images[indexPath.row]
 	        «lv.id»Cell.label.text = self.«lv.id»Contents[indexPath.row]
+	        «lv.id»Cell.content.text = self.«lv.id»Subcontents[indexPath.row]
 	        «lv.id»Cell.icon.image = self.«lv.id»Icons[indexPath.row]
 	        return «lv.id»Cell
 	    	«ELSEIF lv.listType.matches("image") -»
