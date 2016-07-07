@@ -381,10 +381,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	    «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
 	    android:src="@drawable/«iv.fileUri.split("\\.").get(0)»"
 	    «ENDIF-»
-	    «IF iv.sourceType.toString().matches("hardwareFile")-»
-	    android:background="#000"
-	    «ENDIF-»
-	    android:scaleType="fitXY"
+	    android:background="#000000"
 	/>
     «ENDFOREACH-»
     «FOREACH cards AS c-»
@@ -468,6 +465,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «ENDIF-»
         «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
         android:background="@drawable/«b.id.toLowerCase()»_background"
+		style="?android:attr/borderlessButtonStyle"
         «ENDIF-»
 	/>        
 	«ENDFOREACH-»
