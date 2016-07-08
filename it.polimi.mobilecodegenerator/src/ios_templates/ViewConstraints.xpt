@@ -91,7 +91,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «ENDDEFINE-»
 
-«DEFINE innerConstraints FOR UiControl-»
+«DEFINE innerConstraints FOR UiPhoneControl-»
 «IF ((alignTop == null &&
 	!alignParentTop &&
 	below == null) ||
@@ -111,7 +111,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE siblingConstraints FOR UiControl-»
+«DEFINE siblingConstraints FOR UiPhoneControl-»
 «IF alignTop != null-»
 <constraint firstItem="«id»" firstAttribute="top" secondItem="«alignTop.id»" secondAttribute="top" priority="750" constant="«((marginTop + paddingTop) - alignTop.marginTop).toInteger()»" id="«id»-align-top"/>
 «ENDIF-»
@@ -139,7 +139,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDDEFINE-»
 
 
-«DEFINE parentContraints FOR UiControl-»
+«DEFINE parentContraints FOR UiPhoneControl-»
 							«IF alignParentTop-»
 							<constraint firstItem="«id»" firstAttribute="top" secondItem="«viewController.name»-guide-top" secondAttribute="bottom" constant="«(marginTop + paddingTop).toInteger()»" id="«id»-alignParentTop"/>
 							«ENDIF-»

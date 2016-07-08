@@ -57,12 +57,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «FOREACH vc.imageViews AS iv-»
 	                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»image="«iv.fileUri»"«ENDIF-» id="«iv.id»">
 	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-	                        «EXPAND uiControl FOR iv»
+	                        «EXPAND uiPhoneControl FOR iv»
 	                    </imageView>
 	                    «ENDFOREACH-»
 	                	«FOREACH vc.buttons AS b-»
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«b.id»">
-	                    	«EXPAND uiControl FOR b»
+	                    	«EXPAND uiPhoneControl FOR b»
 	                    	«IF !b.backgroundColor.matches("")-»
 	                    	<color key="backgroundColor" red="«redFromHex(b.backgroundColor)»" green="«greenFromHex(b.backgroundColor)»" blue="«blueFromHex(b.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
                             «ENDIF-»
@@ -171,7 +171,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.sliders AS s-»
 	                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
-                            «EXPAND uiControl FOR s»
+                            «EXPAND uiPhoneControl FOR s»
                             <connections>
                                 <action selector="«s.id»ValueChangedAction:" destination="«vc.name»ViewControllerID" eventType="valueChanged" id="«s.id»ValueChangedActionID"/>
                             </connections>
@@ -179,7 +179,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDFOREACH-»
 	                    «IF vc.photocameraController!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
-	                        «EXPAND uiControl FOR vc.photocameraController»
+	                        «EXPAND uiPhoneControl FOR vc.photocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
 	                        «IF vc.photocameraController.backgroundType.matches("normal")-»
 	                        <state key="normal" title="Photocamera"/>
@@ -196,7 +196,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDIF-»
 	                    «IF vc.videocameraController!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.videocameraController.id»" >
-	                        «EXPAND uiControl FOR vc.videocameraController»
+	                        «EXPAND uiPhoneControl FOR vc.videocameraController»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
 	                        «IF vc.videocameraController.backgroundType.matches("normal")-»
 	                        <state key="normal" title="Videocamera"/>
@@ -213,12 +213,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDIF-»
 	                    «IF vc.map != null-»
 	                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.map.id»">
-                            «EXPAND uiControl FOR vc.map»
+                            «EXPAND uiPhoneControl FOR vc.map»
                         </mapView>
 	                    «ENDIF-»
 	                    «IF vc.audioRecorder!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.audioRecorder.id»" >
-	                        «EXPAND uiControl FOR vc.audioRecorder»
+	                        «EXPAND uiPhoneControl FOR vc.audioRecorder»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
 	                        <state key="normal" title="Rec"/>
                             <state key="highlighted">
@@ -347,7 +347,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.textViews AS tv-»
 	                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="«tv.textAlign.toString()»" text="«tv.content»" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="«tv.id»">
-	                        «EXPAND uiControl FOR tv»
+	                        «EXPAND uiPhoneControl FOR tv»
 	                        «IF tv.textDecoration.matches("bold")-»
 	                        <fontDescription key="fontDescription" type="boldSystem" pointSize="«tv.textSize»"/>
 	                        «ELSEIF tv.textDecoration.matches("italic")-»
@@ -361,7 +361,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.editTexts AS et-»
 	                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="«et.placeholder»" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" text="«et.initialContent»" id="«et.id»">
-	                        «EXPAND uiControl FOR et»
+	                        «EXPAND uiPhoneControl FOR et»
 	                        <color key="textColor" red="«redFromHex(et.textColor)»" green="«greenFromHex(et.textColor)»" blue="«blueFromHex(et.textColor)»" alpha="1" colorSpace="calibratedRGB"/>
 	                        <fontDescription key="fontDescription" type="system" pointSize="«et.textSize»"/>
 	                        <textInputTraits key="textInputTraits"/>
@@ -372,18 +372,18 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                        «IF vv.sourceType.toString().matches("hardwareFile")»
 	                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 	                        «ENDIF»
-	                        «EXPAND uiControl FOR vv»
+	                        «EXPAND uiPhoneControl FOR vv»
 	                    </webView>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.webViews AS wv-»
 	                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="«wv.id»">
-	                    	«EXPAND uiControl FOR wv»
+	                    	«EXPAND uiPhoneControl FOR wv»
 	                    	<color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 	                    </webView>
 	                    «ENDFOREACH-»
 	                    «FOREACH vc.listViews AS lv-»
 	                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="57" sectionHeaderHeight="0.0" sectionFooterHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="«lv.id»">
-	                        «EXPAND uiControl FOR lv»
+	                        «EXPAND uiPhoneControl FOR lv»
 	                        «IF !vc.backgroundColor.matches("")-»
 			                <color key="backgroundColor" red="«redFromHex(vc.backgroundColor)»" green="«greenFromHex(vc.backgroundColor)»" blue="«blueFromHex(vc.backgroundColor)»" alpha="1" colorSpace="calibratedRGB"/>
 			                «ELSE-»
@@ -494,7 +494,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                    
 	                    «FOREACH vc.gridViews AS gv-»
 	                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="«gv.id»">
-	                        «EXPAND uiControl FOR gv»
+	                        «EXPAND uiPhoneControl FOR gv»
 			                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
 	                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="«gv.id»FlowLayoutID">
 	                            <size key="itemSize" width="202" height="202"/>
@@ -745,11 +745,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	</scenes>
 	<resources>
 		«FOREACH viewControllers AS vc-»
+		
 		«FOREACH vc.imageViews AS iv-»
         «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
-        <image name="«iv.fileUri»" width="100" height="100"/>
+        «addStoryboardImage(iv.fileUri)»
         «ENDIF-»
         «ENDFOREACH-»
+        
+        «IF !vc.backgroundImage.matches("")-»
+        «addStoryboardImage(vc.backgroundImage)»
+        «ENDIF-»
+        
+        «ENDFOREACH-»
+        
+        «FOREACH 0.upTo(numStoryboardImages()) AS i-»
+        <image name="«getStoryboardImage(i)»" width="100" height="100"/>
         «ENDFOREACH-»
         <image name="grid_image" width="202" height="202"/>
         <image name="card_image" width="426" height="240"/>
@@ -766,7 +776,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «ENDDEFINE-»
 
-«DEFINE uiControl FOR UiControl-»
+«DEFINE uiPhoneControl FOR UiPhoneControl-»
 <rect key="frame" x="«posX.toInteger()»" y="«posY.toInteger()+64»" width="«width.toInteger()»" height="«height.toInteger()»"/>
 <constraints>
 	«EXPAND ios_templates::ViewConstraints::innerConstraints FOR this-»	

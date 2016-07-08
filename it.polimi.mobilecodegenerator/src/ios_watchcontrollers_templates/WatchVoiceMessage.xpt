@@ -23,11 +23,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE willActivate FOR WatchController-»
 	«IF watchVoiceMessage != null-»
-    if (WCSession.isSupported()) {
-        session = WCSession.defaultSession()
-        session.delegate = self
-        session.activateSession()
-    }
+	    if (WCSession.isSupported()) {
+	        session = WCSession.defaultSession()
+	        session.delegate = self
+	        session.activateSession()
+	    }
     «ENDIF-»
 «ENDDEFINE-»
 

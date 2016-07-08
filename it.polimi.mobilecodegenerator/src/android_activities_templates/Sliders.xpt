@@ -23,7 +23,7 @@ private AppCompatSeekBar «s.id»;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH sliders AS s-»
-«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»);
+«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»Bar);
 «s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

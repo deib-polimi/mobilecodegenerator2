@@ -30,3 +30,8 @@ String domainFromUrl(String url):JAVA ios_extensions.IOSJavaUtil.domainFromUrl(j
 String removeExtension(String fileName):JAVA ios_extensions.IOSJavaUtil.removeExtension(java.lang.String);
 
 Integer numUiWatchControls(String watchControllerString):JAVA ios_extensions.IOSJavaUtil.numUiWatchControls(java.lang.String);
+
+Void addStoryboardImage(String s):JAVA ios_extensions.IOSJavaUtil.addStoryboardImage(java.lang.String);
+Integer numStoryboardImages():JAVA ios_extensions.IOSJavaUtil.numStoryboardImages();
+String getStoryboardImage(Integer index):JAVA ios_extensions.IOSJavaUtil.getStoryboardImage(java.lang.Integer);
+

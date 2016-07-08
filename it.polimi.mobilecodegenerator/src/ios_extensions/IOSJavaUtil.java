@@ -16,7 +16,9 @@
 package ios_extensions;
 
 import java.awt.Color;
+import java.awt.List;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import app_extensions.AppJavaUtil;
@@ -25,6 +27,7 @@ public class IOSJavaUtil {
 	
 	private static HashMap<String, String[]> hexadecimalIdsMap = new HashMap<String, String[]>();
 	private static int count = 1000000;
+	private HashMap<String, String> storyboardImages = new HashMap<String, String>();
 	
 	/**
 	 * Returns the first hex id
@@ -190,6 +193,18 @@ public class IOSJavaUtil {
 		watchControllerString = watchControllerString.replace("metamodel::WatchVoiceMessage","MCGmetamodel::WatchVoiceMessage");
 		String[] watchControls = watchControllerString.split("MCG");
 		return watchControls.length-1;
+	}
+	
+	public void addStoryboardImage(String s) {
+		this.storyboardImages.put(s, "");
+	}
+	
+	public int numStoryboardImages() {
+		return this.storyboardImages.size()-1;
+	}
+	
+	public String getStoryboardImage(Integer index) {
+		return (String) this.storyboardImages.keySet().toArray()[index];
 	}
 	
 }
