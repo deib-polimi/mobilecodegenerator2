@@ -45,7 +45,7 @@ photocameraButton = (ImageButton) this.findViewById(R.id.«photocameraController.
 «ELSEIF photocameraController.backgroundType.matches("normal")-»
 photocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
 «ENDIF-»
-photocameraButton.setOnClickListener(new OnClickListener() {
+photocameraButton.setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -66,7 +66,7 @@ private void setUpCameraRecorder() {
 	«ELSEIF videocameraController.backgroundType.matches("normal")-»
 	videocameraButton = (Button) this.findViewById(R.id.«videocameraController.id»);
 	«ENDIF-»
-	videocameraButton.setOnClickListener(new OnClickListener() {
+	videocameraButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);

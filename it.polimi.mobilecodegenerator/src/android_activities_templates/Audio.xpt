@@ -36,7 +36,7 @@ private static final int REQUEST_CODE_RECORD_AUDIO = 400;
 private void setUpAudioRecorder() {
 	recordButton = (Button) this.findViewById(R.id.«audioRecorder.id»);
 	recordButton.setText("Rec");
-	recordButton.setOnClickListener(new OnClickListener() {
+	recordButton.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
 	        if (!isRecording) {	//start recording
 	        
@@ -90,7 +90,7 @@ private void setUpAudioRecorder() {
 	});
 	«IF !audioRecorder.audioPlayerId.matches("")-»
 	this.«audioRecorder.audioPlayerId»PlayButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
-	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new OnClickListener() {
+	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
 	    	if (audioRecorder != null && isRecording){ 
 				audioRecorder.stop();
@@ -114,7 +114,7 @@ private void setUpAudioRecorder() {
 	});
 
 	this.«audioRecorder.audioPlayerId»PauseButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
-	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new OnClickListener() {
+	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
 	    	if(«audioRecorder.audioPlayerId»!=null){
 	    		«audioRecorder.audioPlayerId».pause();
@@ -123,7 +123,7 @@ private void setUpAudioRecorder() {
 	});
 
 	this.«audioRecorder.audioPlayerId»StopButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
-	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new OnClickListener() {
+	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
 	    	if(«audioRecorder.audioPlayerId»!=null){
 		    	«audioRecorder.audioPlayerId».pause();
@@ -163,21 +163,21 @@ catch (Exception e) {
 }
 
 this.«ap.id»PlayButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_playButton);
-this.«ap.id»PlayButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»PlayButton.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
     	«ap.id».start();
     }
 });
 
 this.«ap.id»PauseButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_pauseButton);
-this.«ap.id»PauseButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»PauseButton.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
     	«ap.id».pause();
     }
 });
 
 this.«ap.id»StopButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_stopButton);
-this.«ap.id»StopButton.setOnClickListener(new OnClickListener() {
+this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
     	«ap.id».pause();
     	«ap.id».seekTo(0);

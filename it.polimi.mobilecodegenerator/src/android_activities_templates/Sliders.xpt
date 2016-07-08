@@ -17,13 +17,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH sliders AS s-»
-private SeekBar «s.id»;
+private AppCompatSeekBar «s.id»;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH sliders AS s-»
-«s.id» = (SeekBar) this.findViewById(R.id.«s.id»);
+«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»);
 «s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

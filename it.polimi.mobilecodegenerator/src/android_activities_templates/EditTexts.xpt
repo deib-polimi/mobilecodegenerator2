@@ -17,13 +17,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH editTexts AS et-»
-private EditText «et.id»;
+private AppCompatEditText «et.id»;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH editTexts AS et-»
-«et.id» = (EditText) this.findViewById(R.id.«et.id»);
+«et.id» = (AppCompatEditText) this.findViewById(R.id.«et.id»);
 «et.id».setText("«et.initialContent»");
 «ENDFOREACH-»
 «ENDDEFINE-»

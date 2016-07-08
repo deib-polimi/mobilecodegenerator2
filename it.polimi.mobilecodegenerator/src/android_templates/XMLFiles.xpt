@@ -470,7 +470,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	/>        
 	«ENDFOREACH-»
 	«FOREACH sliders AS s-»
-	<SeekBar
+	<android.support.v7.widget.AppCompatSeekBar
 		android:progress="50"
         «EXPAND uiControl FOR s»
 	/>        
@@ -481,7 +481,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«EXPAND uiControl FOR s»
 	>
 	
-		<Switch
+		<android.support.v7.widget.SwitchCompat
 			android:id="@+id/«s.id»Button"
 			android:checked="true"
         	android:layout_width="wrap_content"
@@ -597,7 +597,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     />
 	«ENDFOREACH-»
 	«FOREACH editTexts AS et-»
-	<EditText
+	<android.support.v7.widget.AppCompatEditText
 		«EXPAND uiControl FOR et»
         android:ems="10"
         android:inputType="textMultiLine"
@@ -606,7 +606,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:textColor="«et.textColor»"
         android:textSize="«et.textSize»dp"
         >
-    </EditText>
+    </android.support.v7.widget.AppCompatEditText>
     «ENDFOREACH-»
     «FOREACH videoViews AS vv-»
 	<VideoView

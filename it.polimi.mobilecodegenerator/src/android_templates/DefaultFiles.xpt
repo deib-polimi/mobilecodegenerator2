@@ -52,8 +52,10 @@ dependencies {
 	wearApp project(':wear')
 	compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
+    «IF existsAtLeastOne(viewControllers.map) || existsAtLeastOne(watchControllers.watchVoiceMessage)-»
     compile 'com.google.android.gms:play-services:8.4.0'
-    «IF viewControllers.cards.size > 0-»
+    «ENDIF-»
+    «IF existsAtLeastOne(viewControllers.cards)-»
     compile 'com.android.support:cardview-v7:23.3.0'
     «ENDIF-»
 }

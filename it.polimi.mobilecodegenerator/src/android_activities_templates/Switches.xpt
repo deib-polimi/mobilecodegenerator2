@@ -17,13 +17,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH switches AS s-»
-private Switch «s.id»Button;
+private SwitchCompat «s.id»Button;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH switches AS s-»
-«s.id»Button = (Switch) this.findViewById(R.id.«s.id»Button);
+«s.id»Button = (SwitchCompat) this.findViewById(R.id.«s.id»Button);
 «s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
