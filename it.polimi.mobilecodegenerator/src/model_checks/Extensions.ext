@@ -25,7 +25,7 @@ List[String] invalidFilesNames():JAVA model_checks.JavaChecks.invalidFilesNames(
 List[String] invalidFilesExtensions():JAVA model_checks.JavaChecks.invalidFilesExtensions();
 List[String] duplicatedFilesNames():JAVA model_checks.JavaChecks.duplicatedFilesNames();
 
-
+Boolean isDestinationNotAMenuItem(String destination, List[String] menuItems):JAVA model_checks.JavaChecks.isDestinationNotAMenuItem(java.lang.String, java.util.List);
 
 List[String] ids(Application this) : 
 

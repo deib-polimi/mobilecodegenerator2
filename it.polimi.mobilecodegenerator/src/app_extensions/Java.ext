@@ -19,3 +19,5 @@ Void setApplicationName(String applicationName):JAVA app_extensions.AppJavaUtil.
 List[String] getUserFilesNames():JAVA app_extensions.AppJavaUtil.getUserFilesNames();
 
 Boolean existsAtLeastOne(Collection c):JAVA app_extensions.AppJavaUtil.existsAtLeastOne(java.util.Collection);
+
+Boolean isAMenuDestination(String name, List menuItems):JAVA app_extensions.AppJavaUtil.isAMenuDestination(java.lang.String, java.util.List);

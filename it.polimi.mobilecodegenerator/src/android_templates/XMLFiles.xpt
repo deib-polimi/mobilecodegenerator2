@@ -15,19 +15,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE main FOR Application-»
+«EXTENSION app_extensions::Java»
 
-«IF menu.menuItems.size > 0-»
-«FILE name+"/mobile/src/main/res/menu/"+"main_menu.xml"-»
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    «FOREACH menu.menuItems AS i-»
-    <item
-        android:id="@+id/«i.id»"
-        android:title="«i.title»"/>
-    «ENDFOREACH-»
-</menu>
-«ENDFILE-»
-«ENDIF-»
+«DEFINE main FOR Application-»
 
 «FOREACH viewControllers.listViews AS l-»
 
@@ -85,7 +75,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_stars_black_36dp"
+        android:src="@drawable/ic_stars_white"
         />
 
     <TextView
@@ -124,7 +114,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_stars_black_36dp"
+        android:src="@drawable/ic_stars_white"
     />
 
     <LinearLayout
@@ -325,11 +315,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «ENDIF-»
 «ENDFOREACH-»
 
-«EXPAND viewController FOREACH viewControllers-»
 
+
+
+«IF menu.menuItems.size > 0 -»
+«EXPAND fragmentAndActivity FOREACH viewControllers-»
+«ELSE-»
+«EXPAND activity FOREACH viewControllers-»
+«ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE viewController FOR ViewController-»
+
+
+
+«DEFINE fragmentAndActivity FOR ViewController-»
+«IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
 «FILE this.application.name+"/mobile/src/main/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -350,7 +350,347 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/«name.toLowerCase()»_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:tabMode="scrollable" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/«name.toLowerCase()»_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>
+«ENDFILE-»
+«ENDIF-»
+
+«IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) -»
+«FILE this.application.name+"/mobile/src/main/res/layout/"+"fragment_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    «IF !backgroundImage.matches("")-»
+    android:background="@drawable/«backgroundImage.split("\\.").get(0)»"
+    «ELSEIF !backgroundColor.matches("")-»
+    android:background="«backgroundColor»"
+    «ENDIF-»
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Fragment"
+    >
+    
+	«FOREACH imageViews AS iv-»
+	<ImageView
+	    «EXPAND uiPhoneControl FOR iv»
+	    «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
+	    android:src="@drawable/«iv.fileUri.split("\\.").get(0)»"
+	    «ENDIF-»
+	    android:background="#000000"
+	/>
+    «ENDFOREACH-»
+    «FOREACH cards AS c-»
+    <!-- height will be dinamically changed -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp"
+        «EXPAND uiPhoneControl FOR c»
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- height will be dinamically changed -->
+            <ImageView
+                android:id="@+id/«c.id»ImageView"
+                android:layout_width="match_parent"
+                android:layout_height="208dp"
+                android:background="#000"
+                android:src="@drawable/card_image"/>
+
+            <TextView
+                android:id="@+id/«c.id»Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="«c.title»"
+                android:textSize="24dp"
+                android:textColor="#333"/>
+
+            <TextView
+                android:id="@+id/«c.id»Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="«c.subtitle»"
+                android:textSize="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/«c.id»Buttons"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp">
+				
+				«FOREACH 1.upTo(c.numActions) AS n-»
+                <Button
+                    android:id="@+id/«c.id»Button«n»"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="Action «n»"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorAccent"
+                    style="?android:attr/borderlessButtonStyle"/>
+				«ENDFOREACH-»
+				
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    «ENDFOREACH-»
+	«FOREACH buttons AS b-»
+	<Button
+        «EXPAND uiPhoneControl FOR b»
+        android:textAllCaps="false"
+        android:text="«b.title»"
+        «IF b.textColor.matches("")==false»
+        android:textColor="«b.textColor»"
+        «ENDIF-»
+        «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
+        android:background="@drawable/«b.id.toLowerCase()»_background"
+		style="?android:attr/borderlessButtonStyle"
+        «ENDIF-»
+	/>        
+	«ENDFOREACH-»
+	«FOREACH sliders AS s-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR s»
+	>
+	
+		<android.support.v7.widget.AppCompatSeekBar
+			android:progress="50"
+			android:id="@+id/«s.id»Bar"
+        	android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH switches AS s-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR s»
+	>
+	
+		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/«s.id»Button"
+			android:checked="true"
+        	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH timepickers AS t-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR t»
+	>
+			
+		<picker.ugurtekbas.com.Picker.Picker
+			android:id="@+id/«t.id»Picker"
+			android:layout_width="346dp"
+			android:layout_height="346dp"
+			app:hourFormat="false"
+			app:canvasColor="@android:color/transparent"
+			app:textColor="#000000"
+			app:trackSize="8dp"
+			app:dialRadius="16dp"
+			/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH datepickers AS d-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR d»
+	>
+            
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+			android:id="@+id/«d.id»Picker"
+			android:layout_width="348dp"
+			android:layout_height="358dp"
+			app:mcv_showOtherDates="all"
+			app:mcv_firstDayOfWeek="monday"
+			app:mcv_selectionColor="@color/colorAccent" />
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	
+	«IF photocameraController!=null-»
+	«IF photocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/photocamera_icon"
+	«ELSEIF photocameraController.backgroundType.matches("normal")-»
+	<Button
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiPhoneControl FOR photocameraController»
+     	/>
+	«ENDIF-»
+	
+	«IF videocameraController!=null-»
+	«IF videocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/videocamera_icon"
+	«ELSEIF videocameraController.backgroundType.matches("normal")-»
+	<Button
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiPhoneControl FOR videocameraController»
+     	/>
+	«ENDIF-»	
+
+	«IF audioRecorder!=null-»
+	<Button
+		«EXPAND uiPhoneControl FOR audioRecorder»
+        android:text="Rec" />
+	«ENDIF-»
+	«IF map != null-»
+	<fragment
+		android:name="com.google.android.gms.maps.SupportMapFragment"
+		«EXPAND uiPhoneControl FOR map»
+        />
+    «ENDIF-»
+	«FOREACH audioPlayers AS ap-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR ap»
+		>
+		
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_playButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_play_arrow_white_36dp" />
+		
+	    <android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_pauseButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_pause_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_playButton" />
+			
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_stopButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_stop_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_pauseButton" />		
+
+     </RelativeLayout>
+	«ENDFOREACH-»
+	«FOREACH textViews AS tv-»
+	<TextView
+		«EXPAND uiPhoneControl FOR tv»
+        android:text="«tv.content»"
+        android:gravity="«tv.textAlign.toString()»|center_vertical"
+        android:textColor="«tv.textColor»"
+        android:textSize="«tv.textSize»dp"
+        «IF tv.textDecoration.matches("none")==false»
+        android:textStyle="«tv.textDecoration»"
+        «ENDIF-»
+    />
+	«ENDFOREACH-»
+	«FOREACH editTexts AS et-»
+	<android.support.v7.widget.AppCompatEditText
+		«EXPAND uiPhoneControl FOR et»       
+        android:text="«et.initialContent»"
+        android:hint="«et.placeholder»" 
+        android:textColor="«et.textColor»"
+        android:textSize="«et.textSize»dp"
+        >
+    </android.support.v7.widget.AppCompatEditText>
+    «ENDFOREACH-»
+    «FOREACH videoViews AS vv-»
+	<VideoView
+	    «EXPAND uiPhoneControl FOR vv» />
+	«ENDFOREACH-»
+	«FOREACH webViews AS wv-»
+	<WebView
+        «EXPAND uiPhoneControl FOR wv» />
+	«ENDFOREACH-» 
+    «FOREACH listViews AS lv-»
+    <ListView
+        «EXPAND uiPhoneControl FOR lv»
+        android:divider="#efefef"
+		android:dividerHeight="1dp"
+        >
+    </ListView>
+    «ENDFOREACH-»   
+    «FOREACH gridViews AS gv-»
+    <GridView
+        «EXPAND uiPhoneControl FOR gv»
+        android:stretchMode="columnWidth"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp" >
+    </GridView>
+    «ENDFOREACH-»
+</RelativeLayout>
+«ENDFILE-»
+
+«ELSE-»
+«FILE this.application.name+"/mobile/src/main/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/«name.toLowerCase()»_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -445,6 +785,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:text="Action «n»"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
                     android:textColor="@color/colorAccent"
                     style="?android:attr/borderlessButtonStyle"/>
 				«ENDFOREACH-»
@@ -502,12 +844,17 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		android:gravity="center"
 		«EXPAND uiPhoneControl FOR t»
 	>
-	
-		<TimePicker
+				
+		<picker.ugurtekbas.com.Picker.Picker
 			android:id="@+id/«t.id»Picker"
-        	android:layout_width="351dp"
-			android:layout_height="432dp"
-			android:background="#fcfcfc"/>
+			android:layout_width="346dp"
+			android:layout_height="346dp"
+			app:hourFormat="false"
+			app:canvasColor="@android:color/transparent"
+			app:textColor="#000000"
+			app:trackSize="8dp"
+			app:dialRadius="16dp"
+			/>
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
@@ -516,12 +863,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		android:gravity="center"
 		«EXPAND uiPhoneControl FOR d»
 	>
-	
-		<CalendarView
+            
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
 			android:id="@+id/«d.id»Picker"
-        	android:layout_width="320dp"
-            android:layout_height="320dp"
-            android:background="#fcfcfc"/>
+			android:layout_width="348dp"
+			android:layout_height="358dp"
+			app:mcv_showOtherDates="all"
+			app:mcv_firstDayOfWeek="monday"
+			app:mcv_selectionColor="@color/colorAccent" />
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
@@ -607,8 +956,341 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«FOREACH editTexts AS et-»
 	<android.support.v7.widget.AppCompatEditText
 		«EXPAND uiPhoneControl FOR et»
-        android:ems="10"
-        android:inputType="textMultiLine"
+        android:text="«et.initialContent»"
+        android:hint="«et.placeholder»" 
+        android:textColor="«et.textColor»"
+        android:textSize="«et.textSize»dp"
+        >
+    </android.support.v7.widget.AppCompatEditText>
+    «ENDFOREACH-»
+    «FOREACH videoViews AS vv-»
+	<VideoView
+	    «EXPAND uiPhoneControl FOR vv» />
+	«ENDFOREACH-»
+	«FOREACH webViews AS wv-»
+	<WebView
+        «EXPAND uiPhoneControl FOR wv» />
+	«ENDFOREACH-» 
+    «FOREACH listViews AS lv-»
+    <ListView
+        «EXPAND uiPhoneControl FOR lv»
+        android:divider="#efefef"
+		android:dividerHeight="1dp"
+        >
+    </ListView>
+    «ENDFOREACH-»   
+    «FOREACH gridViews AS gv-»
+    <GridView
+        «EXPAND uiPhoneControl FOR gv»
+        android:stretchMode="columnWidth"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp" >
+    </GridView>
+    «ENDFOREACH-»
+</RelativeLayout>
+«ENDFILE-»
+«ENDIF-»
+
+«ENDDEFINE-»
+
+
+
+
+
+
+
+
+«DEFINE activity FOR ViewController-»
+«FILE this.application.name+"/mobile/src/main/res/layout/"+"activity_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/«name.toLowerCase()»_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_«name.toLowerCase()»" />
+
+</android.support.design.widget.CoordinatorLayout>
+«ENDFILE-»
+
+«FILE this.application.name+"/mobile/src/main/res/layout/"+"content_"+name.toLowerCase()+".xml"-»
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    «IF !backgroundImage.matches("")-»
+    android:background="@drawable/«backgroundImage.split("\\.").get(0)»"
+    «ELSEIF !backgroundColor.matches("")-»
+    android:background="«backgroundColor»"
+    «ENDIF-»
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="«this.application.companyIdentifier».«this.application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:showIn="@layout/activity_«name.toLowerCase()»">
+    
+	«FOREACH imageViews AS iv-»
+	<ImageView
+	    «EXPAND uiPhoneControl FOR iv»
+	    «IF iv.sourceType.toString().matches("localFile") && !iv.fileUri.matches("")-»
+	    android:src="@drawable/«iv.fileUri.split("\\.").get(0)»"
+	    «ENDIF-»
+	    android:background="#000000"
+	/>
+    «ENDFOREACH-»
+    «FOREACH cards AS c-»
+    <!-- height will be dinamically changed -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="2dp"
+        «EXPAND uiPhoneControl FOR c»
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- height will be dinamically changed -->
+            <ImageView
+                android:id="@+id/«c.id»ImageView"
+                android:layout_width="match_parent"
+                android:layout_height="208dp"
+                android:background="#000"
+                android:src="@drawable/card_image"/>
+
+            <TextView
+                android:id="@+id/«c.id»Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="«c.title»"
+                android:textSize="24dp"
+                android:textColor="#333"/>
+
+            <TextView
+                android:id="@+id/«c.id»Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="«c.subtitle»"
+                android:textSize="14dp"/>
+
+            <LinearLayout
+                android:id="@+id/«c.id»Buttons"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp">
+				
+				«FOREACH 1.upTo(c.numActions) AS n-»
+                <Button
+                    android:id="@+id/«c.id»Button«n»"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="Action «n»"
+                    android:textAllCaps="true"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorAccent"
+                    style="?android:attr/borderlessButtonStyle"/>
+				«ENDFOREACH-»
+				
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    «ENDFOREACH-»
+	«FOREACH buttons AS b-»
+	<Button
+        «EXPAND uiPhoneControl FOR b»
+        android:textAllCaps="false"
+        android:text="«b.title»"
+        «IF b.textColor.matches("")==false»
+        android:textColor="«b.textColor»"
+        «ENDIF-»
+        «IF b.backgroundColor.matches("")==false || b.clickColor.matches("")==false»
+        android:background="@drawable/«b.id.toLowerCase()»_background"
+		style="?android:attr/borderlessButtonStyle"
+        «ENDIF-»
+	/>        
+	«ENDFOREACH-»
+	«FOREACH sliders AS s-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR s»
+	>
+	
+		<android.support.v7.widget.AppCompatSeekBar
+			android:progress="50"
+			android:id="@+id/«s.id»Bar"
+        	android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH switches AS s-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR s»
+	>
+	
+		<android.support.v7.widget.SwitchCompat
+			android:id="@+id/«s.id»Button"
+			android:checked="true"
+        	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH timepickers AS t-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR t»
+	>
+				
+		<picker.ugurtekbas.com.Picker.Picker
+			android:id="@+id/«t.id»Picker"
+			android:layout_width="346dp"
+			android:layout_height="346dp"
+			app:hourFormat="false"
+			app:canvasColor="@android:color/transparent"
+			app:textColor="#000000"
+			app:trackSize="8dp"
+			app:dialRadius="16dp"
+			/>
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH datepickers AS d-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR d»
+	>
+            
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+			android:id="@+id/«d.id»Picker"
+			android:layout_width="348dp"
+			android:layout_height="358dp"
+			app:mcv_showOtherDates="all"
+			app:mcv_firstDayOfWeek="monday"
+			app:mcv_selectionColor="@color/colorAccent" />
+	
+	</RelativeLayout>        
+	«ENDFOREACH-»
+	
+	«IF photocameraController!=null-»
+	«IF photocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/photocamera_icon"
+	«ELSEIF photocameraController.backgroundType.matches("normal")-»
+	<Button
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiPhoneControl FOR photocameraController»
+     	/>
+	«ENDIF-»
+	
+	«IF videocameraController!=null-»
+	«IF videocameraController.backgroundType.matches("icon")-»
+	<ImageButton
+		android:src="@drawable/videocamera_icon"
+	«ELSEIF videocameraController.backgroundType.matches("normal")-»
+	<Button
+		android:text="Fotocamera" 
+    «ENDIF-»
+    	«EXPAND uiPhoneControl FOR videocameraController»
+     	/>
+	«ENDIF-»	
+
+	«IF audioRecorder!=null-»
+	<Button
+		«EXPAND uiPhoneControl FOR audioRecorder»
+        android:text="Rec" />
+	«ENDIF-»
+	«IF map != null-»
+	<fragment
+		android:name="com.google.android.gms.maps.SupportMapFragment"
+		«EXPAND uiPhoneControl FOR map»
+        />
+    «ENDIF-»
+	«FOREACH audioPlayers AS ap-»
+	<RelativeLayout
+		android:gravity="center"
+		«EXPAND uiPhoneControl FOR ap»
+		>
+		
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_playButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_play_arrow_white_36dp" />
+		
+	    <android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_pauseButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_pause_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_playButton" />
+			
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/«ap.id»_stopButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="4dp"
+			android:src="@drawable/ic_stop_white_36dp"
+			android:layout_toRightOf="@+id/«ap.id»_pauseButton" />		
+
+     </RelativeLayout>
+	«ENDFOREACH-»
+	«FOREACH textViews AS tv-»
+	<TextView
+		«EXPAND uiPhoneControl FOR tv»
+        android:text="«tv.content»"
+        android:gravity="«tv.textAlign.toString()»|center_vertical"
+        android:textColor="«tv.textColor»"
+        android:textSize="«tv.textSize»dp"
+        «IF tv.textDecoration.matches("none")==false»
+        android:textStyle="«tv.textDecoration»"
+        «ENDIF-»
+    />
+	«ENDFOREACH-»
+	«FOREACH editTexts AS et-»
+	<android.support.v7.widget.AppCompatEditText
+		«EXPAND uiPhoneControl FOR et»
         android:text="«et.initialContent»"
         android:hint="«et.placeholder»" 
         android:textColor="«et.textColor»"

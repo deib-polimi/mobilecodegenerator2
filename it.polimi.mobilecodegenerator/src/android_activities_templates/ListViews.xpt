@@ -36,7 +36,7 @@ private String[] «lv.id»Contents;
 //Change this to set a specific image id for each row
 «lv.id»Images = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
-		R.drawable.ic_stars_black_36dp,
+		R.drawable.ic_stars_white,
 	«ENDFOREACH-»
 };
 «ENDIF-»
@@ -75,6 +75,51 @@ private String[] «lv.id»Contents;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.listType.matches("detailed") || lv.listType.matches("image")»
+//Change this to set a specific image id for each row
+«lv.id»Images = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_stars_white,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF lv.listType.matches("detailed")»
+//Change this to set a specific icon id for each row
+«lv.id»Icons = new Integer[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		R.drawable.ic_chevron_right_black_36dp,
+	«ENDFOREACH-»
+};
+«lv.id»Subcontents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.subtitle»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«lv.id»Contents = new String[]{
+	«FOREACH lv.listViewCells AS lvc-»
+		"«lvc.title»",
+	«ENDFOREACH-»
+};
+«IF lv.listType.matches("detailed")»
+«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Subcontents, «lv.id»Images, «lv.id»Icons);
+«ENDIF-»
+«IF lv.listType.matches("image")»
+«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_image_layout, «lv.id»Contents, «lv.id»Images);
+«ENDIF-»
+«IF lv.listType.matches("simple")»
+«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_simple_layout, «lv.id»Contents);
+«ENDIF-»
+«lv.id» = (ListView) rootView.findViewById(R.id.«lv.id»);
+«lv.id».setAdapter(«lv.id»Adapter);
+«IF lv.clickListener!=null-»
+«lv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
 «DEFINE onItemClick FOR ViewController-»
 «FOREACH listViews AS lv-»
 «IF lv.clickListener!=null-»
@@ -82,6 +127,23 @@ if(l.getId() == R.id.«lv.id»){
 	String clickedItem = «lv.id»Contents[position];
 	«IF lv.clickListener.navigation!=null-»
 	Intent intent = new Intent(«this.name»Activity.this, «lv.clickListener.navigation.destination»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onItemClickFrag FOR ViewController-»
+«FOREACH listViews AS lv-»
+«IF lv.clickListener!=null-»
+if(l.getId() == R.id.«lv.id»){
+	String clickedItem = «lv.id»Contents[position];
+	«IF lv.clickListener.navigation!=null-»
+	Intent intent = new Intent(getActivity(), «lv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
 	startActivity(intent);
 	«ELSE-»

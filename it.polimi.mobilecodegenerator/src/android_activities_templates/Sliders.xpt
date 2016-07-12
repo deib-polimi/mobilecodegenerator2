@@ -43,3 +43,25 @@ private AppCompatSeekBar «s.id»;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH sliders AS s-»
+«s.id» = (AppCompatSeekBar) rootView.findViewById(R.id.«s.id»Bar);
+«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        Log.i("Progress", progress+"");
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+

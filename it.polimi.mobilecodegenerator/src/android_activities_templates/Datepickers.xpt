@@ -17,17 +17,31 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH datepickers AS d-»
-private CalendarView «d.id»Picker;
+private MaterialCalendarView «d.id»Picker;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH datepickers AS d-»
-«d.id»Picker = (CalendarView) findViewById(R.id.«d.id»Picker);
-«d.id»Picker.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-    @Override
-    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-    	Log.i("Date", dayOfMonth+"/"+month+"/"+year);
+«d.id»Picker = (MaterialCalendarView) findViewById(R.id.«d.id»Picker);
+«d.id»Picker.setSelectedDate(Calendar.getInstance());
+«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
+	@Override
+	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+		Log.i("Date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH datepickers AS d-»
+«d.id»Picker = (MaterialCalendarView) rootView.findViewById(R.id.«d.id»Picker);
+«d.id»Picker.setSelectedDate(Calendar.getInstance());
+«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
+	@Override
+	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+		Log.i("Date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
 	}
 });
 «ENDFOREACH-»

@@ -28,6 +28,21 @@ mapFragment.getMapAsync(this);
 «ENDIF-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«IF map!=null-»
+//FragmentManager fm = getChildFragmentManager();
+//SupportMapFragment mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.«map.id»);
+SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.«map.id»);
+/*
+if (mapFragment == null) {
+	mapFragment = SupportMapFragment.newInstance();
+	fm.beginTransaction().replace(R.id.«map.id», mapFragment).commit();
+}
+*/
+mapFragment.getMapAsync(this);
+«ENDIF-»
+«ENDDEFINE-»
+
 «DEFINE map FOR ViewController-»
 «IF map!=null-»
 @Override

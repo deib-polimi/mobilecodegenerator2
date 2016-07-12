@@ -105,4 +105,13 @@ public class AppJavaUtil {
 		}
 		return false;
 	}
+	
+	public boolean isAMenuDestination(String name, List menuItems) {
+		for(int i = 0; i < menuItems.size(); i++) {
+			if(name.equals(menuItems.get(i))) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

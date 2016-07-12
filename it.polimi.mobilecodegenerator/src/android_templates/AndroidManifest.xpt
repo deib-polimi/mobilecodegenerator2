@@ -44,6 +44,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:icon="@mipmap/ic_launcher"
         android:label="«this.name.toLowerCase()»"
         android:supportsRtl="true"
+        android:windowSoftInputMode="stateVisible"
         android:theme="@style/AppTheme">
         «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
         <service android:name=".ListenerServiceFromWear">
@@ -62,6 +63,27 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_API_KEY_HERE" />
         «ENDIF-»
+        
+        «IF menu.menuItems.size > 0 -»
+        «FOREACH viewControllers AS vc-»
+        «IF vc.launcher-»
+        <activity
+            android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
+            android:label="«this.name»" 
+            android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        «ELSEIF !vc.launcher && !isAMenuDestination(vc.name, vc.application.menu.menuItems.navigation.destination)-»
+        <activity
+            android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
+            android:label="«this.name»" 
+            android:theme="@style/AppTheme.NoActionBar"/>
+        «ENDIF-»
+		«ENDFOREACH-»
+        «ELSE-»
         «FOREACH viewControllers AS vc-»
 		<activity
             android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
@@ -75,6 +97,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			«ENDIF-»
         </activity>
 		«ENDFOREACH-»
+        «ENDIF-»
+        
     </application>
 </manifest>
 «ENDFILE-»

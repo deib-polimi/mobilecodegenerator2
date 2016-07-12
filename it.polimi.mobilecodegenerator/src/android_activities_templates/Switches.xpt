@@ -33,3 +33,15 @@ private SwitchCompat «s.id»Button;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH switches AS s-»
+«s.id»Button = (SwitchCompat) rootView.findViewById(R.id.«s.id»Button);
+«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Log.i("Checked", isChecked+"");
+    }
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+

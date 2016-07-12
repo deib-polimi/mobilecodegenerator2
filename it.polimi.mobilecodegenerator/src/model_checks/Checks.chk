@@ -47,6 +47,8 @@ context Button if(clickListener!=null && clickListener.navigation!=null) ERROR "
 
 context Button if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must be the name of an existing ViewController [Button: '"+id+"']" : viewController.application.viewControllers.exists(vc| vc.name==clickListener.navigation.destination);
 
+context Button if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must not be a Menu Item [Button: '"+id+"']" : isDestinationNotAMenuItem(clickListener.navigation.destination, viewController.application.menu.menuItems.navigation.destination) == true;
+
 context WatchButton if(watchClickListener!=null && watchClickListener.watchNavigation!=null) ERROR "WatchNavigation must have a destination [WatchButton: '"+id+"']" : !watchClickListener.watchNavigation.destination.matches("");
 
 context WatchButton if(watchClickListener.watchNavigation!=null && watchClickListener.watchNavigation.destination!=null) ERROR "Destination of WatchNavigation must be the name of an existing WatchController [WatchButton: '"+id+"']" : watchController.application.watchControllers.exists(vc| vc.name==watchClickListener.watchNavigation.destination);
@@ -56,10 +58,14 @@ context ListView if(clickListener.navigation!=null) ERROR "Navigation must have 
 
 context ListView if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must be the name of an existing ViewController [ListView: '"+id+"']" : viewController.application.viewControllers.exists(vc| vc.name==clickListener.navigation.destination);
 
+context ListView if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must not be a Menu Item [GridView: '"+id+"']" : isDestinationNotAMenuItem(clickListener.navigation.destination, viewController.application.menu.menuItems.navigation.destination) == true;
+
 
 context GridView if(clickListener!=null && clickListener.navigation!=null) ERROR "Navigation must have a destination [GridView: '"+id+"']" : !clickListener.navigation.destination.matches("");
 
 context GridView if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must be the name of an existing ViewController [GridView: '"+id+"']" : viewController.application.viewControllers.exists(vc| vc.name==clickListener.navigation.destination);
+
+context GridView if(clickListener.navigation!=null && clickListener.navigation.destination!=null) ERROR "Destination of Navigation must not be a Menu Item [GridView: '"+id+"']" : isDestinationNotAMenuItem(clickListener.navigation.destination, viewController.application.menu.menuItems.navigation.destination) == true;
 
 
 context PhotocameraController if(!imageViewId.matches("")) ERROR "ImageViewId of PhotocameraController must be the id of an existing ImageView with sourceType = 'hardwareFile' in the same ViewController" : viewController.imageViews.exists(iv| iv.id.matches(imageViewId) && iv.sourceType.toString().matches("hardwareFile"));		
@@ -91,6 +97,8 @@ context ViewController ERROR "Names of AsyncTasks must be unique in the same Vie
 
 
 context Menu if (this != null && menuItems.size > 0) ERROR "Menu must contain the launcher ViewController as first menu item": menuItems.get(0).navigation.destination.matches(application.viewControllers.select(vc | vc.launcher==true).first().name);
+
+context Menu if (this != null && menuItems.size > 0) ERROR "Menu items must be all different ": duplicatedIds(menuItems.navigation.destination).size == 0;
 
 context MenuItem ERROR "There must be a Navigation for every MenuItem [MenuItem: '"+id+"']" : navigation!=null;
 

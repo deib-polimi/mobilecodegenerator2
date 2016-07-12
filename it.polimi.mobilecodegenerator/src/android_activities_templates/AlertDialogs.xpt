@@ -1,5 +1,5 @@
 «REM»
-Copyright 2016 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -17,22 +17,60 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH alertDialogs AS ad-»
-AlertDialog.Builder «ad.id»Builder = new AlertDialog.Builder(this);
-«ad.id»Builder.setTitle("«ad.title»");
-«ad.id»Builder.setMessage("«ad.message»");
-«ad.id»Builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		//TODO implement the positive action
-	}
-});
-«ad.id»Builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		//TODO implement the negative action
-	}
-});
-AlertDialog «ad.id» = «ad.id»Builder.create();
-«ad.id».show();
+show«ad.id»();
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE setUserVisibleHint FOR ViewController-»
+«FOREACH alertDialogs AS ad-»
+show«ad.id»();
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE alertDialogs FOR ViewController-»
+«FOREACH alertDialogs AS ad-»
+private void show«ad.id»() {
+	AlertDialog.Builder «ad.id»Builder = new AlertDialog.Builder(this);
+	«ad.id»Builder.setTitle("«ad.title»");
+	«ad.id»Builder.setMessage("«ad.message»");
+	«ad.id»Builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			//TODO implement the positive action
+		}
+	});
+	«ad.id»Builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			//TODO implement the negative action
+		}
+	});
+	AlertDialog «ad.id» = «ad.id»Builder.create();
+	«ad.id».show();
+}
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE alertDialogsFrag FOR ViewController-»
+«FOREACH alertDialogs AS ad-»
+private void show«ad.id»() {
+	AlertDialog.Builder «ad.id»Builder = new AlertDialog.Builder(getActivity());
+	«ad.id»Builder.setTitle("«ad.title»");
+	«ad.id»Builder.setMessage("«ad.message»");
+	«ad.id»Builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			//TODO implement the positive action
+		}
+	});
+	«ad.id»Builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			//TODO implement the negative action
+		}
+	});
+	AlertDialog «ad.id» = «ad.id»Builder.create();
+	«ad.id».show();
+}
 «ENDFOREACH-»
 «ENDDEFINE-»

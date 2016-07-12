@@ -12,14 +12,166 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY o
 See the GNU General Public License for more details.You should have received a copy of the GNU General Public License
 along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licenses/>
 «ENDREM»
-
 «IMPORT metamodel»
 
+«EXTENSION app_extensions::Java»
+
 «DEFINE main FOR Application-»
-«EXPAND viewController FOREACH viewControllers-»
+«IF menu.menuItems.size > 0 -»
+«EXPAND fragmentAndActivity FOREACH viewControllers-»
+«ELSE-»
+«EXPAND activity FOREACH viewControllers-»
+«ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE viewController FOR ViewController-»
+«DEFINE fragmentAndActivity FOR ViewController-»
+«REM»Launcher ViewController is translated into an Activity containing the SectionPagerAdapter«ENDREM»
+«IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
+«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
+package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+
+import android.support.design.widget.TabLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
+
+public class «this.name»Activity extends AppCompatActivity {
+
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private ViewPager mViewPager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_«this.name.toLowerCase()»);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+        setSupportActionBar(toolbar);
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.«name.toLowerCase()»_container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.«name.toLowerCase()»_tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+    }
+
+
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+            	«FOREACH 0.upTo(application.menu.menuItems.size - 1) AS i-»
+                case «i»:
+                    return new «application.menu.menuItems.get(i).navigation.destination»Fragment();
+                «ENDFOREACH-»
+            }
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            return «application.menu.menuItems.size»;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+            	«FOREACH 0.upTo(application.menu.menuItems.size - 1) AS i-»
+                case «i»:
+                    return "«application.menu.menuItems.get(i).navigation.destination.toUpperCase()»";
+                «ENDFOREACH-»
+            }
+            return null;
+        }
+    }
+
+}
+«ENDFILE-»
+«ENDIF-»
+
+«REM»Menu items are translated into Fragments of the Launcher ViewController«ENDREM»
+«IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) -»
+«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Fragment.java"-»
+package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+
+«EXPAND android_activities_templates::Imports::importsFrag-»
+
+public class «this.name»Fragment extends Fragment «EXPAND android_activities_templates::Implements::implements-» {
+
+	private View rootView;
+	«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»	
+
+	public «this.name»Fragment() {}
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    
+    	View rootView = inflater.inflate(R.layout.fragment_«this.name.toLowerCase()», container, false);
+    	this.rootView = rootView;
+    	
+    	«EXPAND android_activities_templates::onCreateView::onCreateView-»
+    	
+    	return rootView;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser){
+        super.setUserVisibleHint(isVisibleToUser);
+        
+        «EXPAND android_activities_templates::setUserVisibleHint::setUserVisibleHint-»
+
+    }
+    
+    «IF listViews.size!=0 || gridViews.size!=0-»
+	@Override
+	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+		«EXPAND android_activities_templates::ListViews::onItemClickFrag-»
+		«EXPAND android_activities_templates::GridViews::onItemClickFrag-»
+	}
+	«ENDIF-»
+    
+    «EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
+    
+    «EXPAND android_activities_templates::AlertDialogs::alertDialogsFrag-»
+    
+    «EXPAND android_activities_templates::ProgressDialogs::progressDialogsFrag-»
+	
+	«EXPAND android_activities_templates::Audio::audioFrag-»
+	
+	«EXPAND android_activities_templates::Camera::cameraFrag-»
+	
+	«EXPAND android_activities_templates::Permissions::permissionsFrag-»
+	
+	«EXPAND android_activities_templates::Cards::cardsFrag-»
+	
+	«EXPAND android_activities_templates::Map::map-»
+    
+    @Override
+	public void onResume() {
+		super.onResume();
+		«EXPAND android_activities_templates::OnResume::onResumeFrag-»
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		«EXPAND android_activities_templates::OnPause::onPause-»
+	}
+
+}
+«ENDFILE-»
+
+«REM»All the other ViewControllers«ENDREM»
+«ELSE-»
 «FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
 package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
 	
@@ -32,6 +184,10 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_«name.toLowerCase()»);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+		setSupportActionBar(toolbar);
+		
 		«EXPAND android_activities_templates::OnCreate::onCreate-»
 	}
 	
@@ -46,6 +202,10 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	
 	«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
 	
+	«EXPAND android_activities_templates::AlertDialogs::alertDialogs-»
+    
+    «EXPAND android_activities_templates::ProgressDialogs::progressDialogs-»
+	
 	«EXPAND android_activities_templates::Audio::audio-»
 	
 	«EXPAND android_activities_templates::Camera::camera-»
@@ -55,26 +215,84 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	«EXPAND android_activities_templates::Cards::cards-»
 	
 	«EXPAND android_activities_templates::Map::map-»
-
-	«IF this.application.menu.menuItems.size > 0 && this.launcher -»
+	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main_menu, menu);
-		return true;
+	protected void onStart() {
+		super.onStart();
 	}
-
+	
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-        	«FOREACH this.application.menu.menuItems AS i-»
-            case R.id.«i.id»:
-            	startActivity(new Intent(this, «i.navigation.destination»Activity.class));
-                break;
-            «ENDFOREACH-»
-        }
-        return true;
-    }
-    «ENDIF-»
+	protected void onResume() {
+		super.onResume();
+		«EXPAND android_activities_templates::OnResume::onResume-»
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		«EXPAND android_activities_templates::OnPause::onPause-»
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+}
+«ENDFILE-»
+«ENDIF-»
+«ENDDEFINE-»
+
+
+
+
+
+
+
+
+«DEFINE activity FOR ViewController-»
+«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
+package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+	
+«EXPAND android_activities_templates::Imports::imports-»
+
+public class «this.name»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
+	
+	«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_«name.toLowerCase()»);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+		setSupportActionBar(toolbar);
+		
+		«EXPAND android_activities_templates::OnCreate::onCreate-»
+	}
+	
+	«IF listViews.size!=0 || gridViews.size!=0-»
+	@Override
+	public void onItemClick(AdapterView<?> l, View v, int position, long id) {
+		«EXPAND android_activities_templates::ListViews::onItemClick-»
+		«EXPAND android_activities_templates::GridViews::onItemClick-»
+	}
+	«ENDIF-»
+	
+	
+	«EXPAND android_activities_templates::AsyncTasks::asyncTasks-»
+	
+	«EXPAND android_activities_templates::AlertDialogs::alertDialogs-»
+    
+    «EXPAND android_activities_templates::ProgressDialogs::progressDialogs-»
+	
+	«EXPAND android_activities_templates::Audio::audio-»
+	
+	«EXPAND android_activities_templates::Camera::camera-»
+	
+	«EXPAND android_activities_templates::Permissions::permissions-»
+	
+	«EXPAND android_activities_templates::Cards::cards-»
+	
+	«EXPAND android_activities_templates::Map::map-»
 	
 	@Override
 	protected void onStart() {

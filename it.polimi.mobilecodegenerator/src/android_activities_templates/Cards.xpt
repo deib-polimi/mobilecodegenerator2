@@ -45,6 +45,25 @@ setUpCardView(R.id.«c.id», R.id.«c.id»ImageView, R.id.«c.id»Title, R.id.«c.id»Su
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH cards AS c-»
+«c.id» = (CardView) rootView.findViewById(R.id.«c.id»);
+«c.id»ImageView = (ImageView) rootView.findViewById(R.id.«c.id»ImageView);
+setUpCardView(R.id.«c.id», R.id.«c.id»ImageView, R.id.«c.id»Title, R.id.«c.id»Subtitle, R.id.«c.id»Buttons);
+«FOREACH 1.upTo(c.numActions) AS n-»
+
+«c.id»Button«n» = (Button) rootView.findViewById(R.id.«c.id»Button«n»);
+«c.id»Button«n».setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Log.i("Button "+v.getId(), "Clicked");
+    }
+});
+
+«ENDFOREACH-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
 «DEFINE cards FOR ViewController-»
 «IF cards.size > 0 -»
 private void setUpCardView(int cardId, int cardImageId, int cardTitleId, int cardSubtitleId, int cardButtonsId) {
@@ -93,6 +112,65 @@ private float cardTextHeight(int id) {
 
 private float cardButtonsHeight(int id) {
     LinearLayout cardButtons = (LinearLayout) findViewById(id);
+    ViewGroup.LayoutParams cardButtonsLp = cardButtons.getLayoutParams();
+    float cardButtonsTopMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).topMargin;
+    float cardButtonsBottomMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).bottomMargin;
+    float cardButtonsSizePx = ((LinearLayout.LayoutParams) cardButtonsLp).height;
+    return cardButtonsTopMarginPx + 2*cardButtonsBottomMarginPx + cardButtonsSizePx;
+}
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE cardsFrag FOR ViewController-»
+«IF cards.size > 0 -»
+private void setUpCardView(int cardId, int cardImageId, int cardTitleId, int cardSubtitleId, int cardButtonsId) {
+
+    CardView c = (CardView) this.rootView.findViewById(cardId);
+    ImageView iv = (ImageView) this.rootView.findViewById(cardImageId);
+
+    ViewGroup.LayoutParams cardLp = c.getLayoutParams();
+    ViewGroup.LayoutParams cardImageViewLp = iv.getLayoutParams();
+
+    //Card side margin
+    float screenWidthPx = getResources().getDisplayMetrics().widthPixels;
+    float cardViewLMarginPx = ((RelativeLayout.LayoutParams) cardLp).leftMargin;
+    float cardViewRMarginPx = ((RelativeLayout.LayoutParams) cardLp).rightMargin;
+    float cardWidthPx = screenWidthPx - cardViewLMarginPx - cardViewRMarginPx;
+
+    //Card image height (dynamic)
+    float aspectRatio = (float) 16/9;
+    float cardImageHeightPx = cardWidthPx / aspectRatio;
+
+    //Card extra height (fixed)
+    float titleHeightPx = cardTextHeight(cardTitleId);
+    float subtitleHeightPx = cardTextHeight(cardSubtitleId);
+    float cardButtonsHeightPx = cardButtonsHeight(cardButtonsId);
+    float extraHeightPx = titleHeightPx + subtitleHeightPx + cardButtonsHeightPx;
+
+    //Card height (dynamic)
+    float cardHeightPx = cardImageHeightPx + extraHeightPx;
+
+    cardLp.height = (int) cardHeightPx;
+    cardImageViewLp.height = (int) cardImageHeightPx;
+
+    c.setLayoutParams(cardLp);
+    iv.setLayoutParams(cardImageViewLp);
+
+}
+
+private float cardTextHeight(int id) {
+	
+	TextView title = (TextView) this.rootView.findViewById(id);
+    ViewGroup.LayoutParams titleLp = title.getLayoutParams();
+    float titleTopMarginPx = ((LinearLayout.LayoutParams) titleLp).topMargin;
+    float titleBottomMarginPx = ((LinearLayout.LayoutParams) titleLp).bottomMargin;
+    float titleSizePx = title.getTextSize();
+    return titleTopMarginPx + titleBottomMarginPx + titleSizePx;
+}
+
+private float cardButtonsHeight(int id) {
+
+	LinearLayout cardButtons = (LinearLayout) this.rootView.findViewById(id);
     ViewGroup.LayoutParams cardButtonsLp = cardButtons.getLayoutParams();
     float cardButtonsTopMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).topMargin;
     float cardButtonsBottomMarginPx = ((LinearLayout.LayoutParams) cardButtonsLp).bottomMargin;

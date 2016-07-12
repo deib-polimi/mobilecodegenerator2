@@ -62,6 +62,40 @@ private String[] «gv.id»Contents;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+//Change this to set a specific image id for each row
+«gv.id»Images = new Integer[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		R.drawable.grid_image,
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+«gv.id»Contents = new String[]{
+	«FOREACH gv.gridViewCells AS gvc-»
+		"«gvc.title»",
+	«ENDFOREACH-»
+};
+«ENDIF-»
+«IF gv.gridType.matches("detailed")»
+«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Contents, «gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("image")»
+«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Images);
+«ENDIF-»
+«IF gv.gridType.matches("simple")»
+«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Contents);
+«ENDIF-»
+«gv.id» = (GridView) rootView.findViewById(R.id.«gv.id»);
+«gv.id».setAdapter(«gv.id»Adapter);
+«IF gv.clickListener != null-»
+«gv.id».setOnItemClickListener(this);
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
 
 «DEFINE onItemClick FOR ViewController-»
 «FOREACH gridViews AS gv-»
@@ -74,6 +108,27 @@ if(l.getId() == R.id.«gv.id»){
 	«ENDIF-»
 	«IF gv.clickListener.navigation != null-»
 	Intent intent = new Intent(«this.name»Activity.this, «gv.clickListener.navigation.destination»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination»Activity
+	startActivity(intent);
+	«ELSE-»
+	//TODO implement the action
+	«ENDIF-»
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onItemClickFrag FOR ViewController-»
+«FOREACH gridViews AS gv-»
+«IF gv.clickListener != null-»
+if(l.getId() == R.id.«gv.id»){
+	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
+	String clickedImageId = «gv.id»Images[position].toString();
+	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
+	String clickedItem = «gv.id»Contents[position];
+	«ENDIF-»
+	«IF gv.clickListener.navigation != null-»
+	Intent intent = new Intent(getActivity(), «gv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «gv.clickListener.navigation.destination»Activity
 	startActivity(intent);
 	«ELSE-»

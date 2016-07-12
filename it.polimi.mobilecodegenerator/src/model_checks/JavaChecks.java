@@ -81,6 +81,16 @@ public class JavaChecks {
 		return duplicates;
 	}
 	
+	
+	public static boolean isDestinationNotAMenuItem(String destination, List<String> menuItems) {
+		for(int i = 0; i < menuItems.size(); i++) {
+			if(destination.equals(menuItems.get(i).toString())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * Returns the list of invalid files
 	 * @return

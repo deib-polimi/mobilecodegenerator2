@@ -17,18 +17,48 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE attributesDeclarations FOR ViewController-»
 «FOREACH timepickers AS t-»
-private TimePicker «t.id»Picker;
+private Picker «t.id»Picker;
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH timepickers AS t-»
-«t.id»Picker = (TimePicker) findViewById(R.id.«t.id»Picker);
-«t.id»Picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-    @Override
-    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-        Log.i("Time", hourOfDay+":"+minute);
-    }
+«t.id»Picker = (Picker) findViewById(R.id.«t.id»Picker);
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«t.id»Picker.setTime(hours, minutes);
+«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+	@Override
+	public void timeChanged(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int hours = calendar.get(Calendar.HOUR);
+		int minutes = calendar.get(Calendar.MINUTE);
+		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
+		Log.i("Time", hours + ":" + minutes + " " + ampm);
+	}
+});
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onCreateView FOR ViewController-»
+«FOREACH timepickers AS t-»
+«t.id»Picker = (Picker) findViewById(R.id.«t.id»Picker);
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«t.id»Picker.setTime(hours, minutes);
+«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+	@Override
+	public void timeChanged(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int hours = calendar.get(Calendar.HOUR);
+		int minutes = calendar.get(Calendar.MINUTE);
+		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
+		Log.i("Time", hours + ":" + minutes + " " + ampm);
+	}
 });
 «ENDFOREACH-»
 «ENDDEFINE-»

@@ -31,6 +31,42 @@ private static final int REQUEST_CODE_RECORD_AUDIO = 400;
 «ENDIF-»
 «ENDDEFINE-»
 
+«DEFINE setUserVisibleHint FOR ViewController-»
+«IF audioRecorder!=null-»
+//Stop audio player eventually
+try {
+	«audioRecorder.audioPlayerId».pause();
+	«audioRecorder.audioPlayerId».seekTo(0);
+	«audioRecorder.audioPlayerId».release();
+	«audioRecorder.audioPlayerId» = null;
+} catch (Exception e) {
+	e.printStackTrace();
+}
+//Stop audio recorder eventually
+try {
+	if (isRecording) {
+		stopRecording();
+		isRecording = !isRecording;
+	}
+} catch (Exception e) {
+	e.printStackTrace();
+}
+«ENDIF-»
+«FOREACH audioPlayers AS ap-»
+«IF !ap.sourceType.toString().matches("hardwareFile")-»
+//Stop audio player eventually
+try {
+	«ap.id».pause();
+	«ap.id».seekTo(0);
+	«ap.id».release();
+	«ap.id» = null;
+} catch(Exception e) {
+	e.printStackTrace();
+}
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
 «DEFINE audio FOR ViewController-»
 «IF audioRecorder!=null-»
 private void setUpAudioRecorder() {
@@ -38,54 +74,12 @@ private void setUpAudioRecorder() {
 	recordButton.setText("Rec");
 	recordButton.setOnClickListener(new View.OnClickListener() {
 	    public void onClick(View v) {
-	        if (!isRecording) {	//start recording
-	        
-	        	//Stop audioplayer eventually
-	        	try {
-					«audioRecorder.audioPlayerId».pause();
-					«audioRecorder.audioPlayerId».seekTo(0);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-	        
-	        	String audiosPath = getFilesDir().getAbsolutePath() + "/audios";
-			    File audiosDirectory = new File(audiosPath);
-			    audiosDirectory.mkdir();
-			    String filename = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date())+".mp3";
-			    String localAudioPath = audiosPath+"/"+filename;
-				recordedAudioPath = localAudioPath;
-        
-	        	audioRecorder = new MediaRecorder();
-	            audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-	            audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-	            audioRecorder.setOutputFile(recordedAudioPath);
-	            audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-	            try {
-	                audioRecorder.prepare();
-	                audioRecorder.start();
-	            }
-	            catch (IOException e) {
-	            	e.printStackTrace();
-	            }
-	        	recordButton.setText("Stop");
-	        }
-	        else {	//stop recording
-	        	audioRecorder.stop();
-	            audioRecorder.release();
-	            audioRecorder = null;
-	            «IF !audioRecorder.audioPlayerId.matches("")-»
-	    		try {
-	    			«audioRecorder.audioPlayerId» = new MediaPlayer();
-	    			«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
-	    			«audioRecorder.audioPlayerId».prepare();
-	    		}
-	    		catch (Exception e) {
-	    			e.printStackTrace();
-	    		}
-	    		«ENDIF-»
-	        	recordButton.setText("Rec");
-	        }
-	        isRecording = !isRecording;
+	    	if (!isRecording) {
+				startRecording();
+			} else {
+				stopRecording();
+			}
+			isRecording = !isRecording;
 	    }
 	});
 	«IF !audioRecorder.audioPlayerId.matches("")-»
@@ -133,6 +127,157 @@ private void setUpAudioRecorder() {
 	});
 	«ENDIF-»
 }
+
+private void startRecording() {
+	//Stop audioplayer eventually
+	try {
+		«audioRecorder.audioPlayerId».pause();
+		«audioRecorder.audioPlayerId».seekTo(0);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	String audiosPath = getFilesDir().getAbsolutePath() + "/audios";
+	File audiosDirectory = new File(audiosPath);
+	audiosDirectory.mkdir();
+	String filename = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()) + ".mp3";
+	String localAudioPath = audiosPath + "/" + filename;
+	recordedAudioPath = localAudioPath;
+
+	audioRecorder = new MediaRecorder();
+	audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+	audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+	audioRecorder.setOutputFile(recordedAudioPath);
+	audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+	try {
+		audioRecorder.prepare();
+		audioRecorder.start();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	recordButton.setText("Stop");
+}
+
+private void stopRecording() {
+	audioRecorder.stop();
+	audioRecorder.release();
+	audioRecorder = null;
+	try {
+		«audioRecorder.audioPlayerId» = new MediaPlayer();
+		«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
+		«audioRecorder.audioPlayerId».prepare();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	recordButton.setText("Rec");
+}
+«ENDIF-»
+«ENDDEFINE-»
+
+«DEFINE audioFrag FOR ViewController-»
+«IF audioRecorder!=null-»
+private void setUpAudioRecorder(View rootView) {
+	recordButton = (Button) rootView.findViewById(R.id.«audioRecorder.id»);
+	recordButton.setText("Rec");
+	recordButton.setOnClickListener(new View.OnClickListener() {
+	    public void onClick(View v) {
+	    	if (!isRecording) {
+				startRecording();
+			} else {
+				stopRecording();
+			}
+			isRecording = !isRecording;
+	    }
+	});
+	«IF !audioRecorder.audioPlayerId.matches("")-»
+	this.«audioRecorder.audioPlayerId»PlayButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
+	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new View.OnClickListener() {
+	    public void onClick(View v) {
+	    	if (audioRecorder != null && isRecording){ 
+				audioRecorder.stop();
+				audioRecorder.release();
+				audioRecorder = null;
+				try {
+					«audioRecorder.audioPlayerId» = new MediaPlayer();
+					«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
+					«audioRecorder.audioPlayerId».prepare();
+					«audioRecorder.audioPlayerId».start();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				recordButton.setText("Rec");
+				isRecording = false;
+			}
+			else if(«audioRecorder.audioPlayerId»!=null){
+	    		«audioRecorder.audioPlayerId».start();
+	    	}
+	    }
+	});
+
+	this.«audioRecorder.audioPlayerId»PauseButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
+	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new View.OnClickListener() {
+	    public void onClick(View v) {
+	    	if(«audioRecorder.audioPlayerId»!=null){
+	    		«audioRecorder.audioPlayerId».pause();
+	    	}
+	    }
+	});
+
+	this.«audioRecorder.audioPlayerId»StopButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
+	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new View.OnClickListener() {
+	    public void onClick(View v) {
+	    	if(«audioRecorder.audioPlayerId»!=null){
+		    	«audioRecorder.audioPlayerId».pause();
+		    	«audioRecorder.audioPlayerId».seekTo(0);
+		    }
+		}
+	});
+	«ENDIF-»
+}
+
+private void startRecording() {
+	//Stop audioplayer eventually
+	try {
+		«audioRecorder.audioPlayerId».pause();
+		«audioRecorder.audioPlayerId».seekTo(0);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+
+	String audiosPath = getActivity().getFilesDir().getAbsolutePath() + "/audios";
+	File audiosDirectory = new File(audiosPath);
+	audiosDirectory.mkdir();
+	String filename = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()) + ".mp3";
+	String localAudioPath = audiosPath + "/" + filename;
+	recordedAudioPath = localAudioPath;
+
+	audioRecorder = new MediaRecorder();
+	audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+	audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+	audioRecorder.setOutputFile(recordedAudioPath);
+	audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+	try {
+		audioRecorder.prepare();
+		audioRecorder.start();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	recordButton.setText("Stop");
+}
+
+private void stopRecording() {
+	audioRecorder.stop();
+	audioRecorder.release();
+	audioRecorder = null;
+	try {
+		«audioRecorder.audioPlayerId» = new MediaPlayer();
+		«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
+		«audioRecorder.audioPlayerId».prepare();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	recordButton.setText("Rec");
+}
 «ENDIF-»
 «ENDDEFINE-»
 
@@ -177,6 +322,57 @@ this.«ap.id»PauseButton.setOnClickListener(new View.OnClickListener() {
 });
 
 this.«ap.id»StopButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_stopButton);
+this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
+    public void onClick(View v) {
+    	«ap.id».pause();
+    	«ap.id».seekTo(0);
+    }
+});
+«ENDIF-»
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE onResumeFrag FOR ViewController-»
+«FOREACH audioPlayers AS ap-»
+«IF !ap.sourceType.toString().matches("hardwareFile")-»
+try {
+«ap.id» = new MediaPlayer();
+«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
+«IF ap.sourceType.toString().matches("localFile")-»
+«IF !ap.fileUri.matches("")-»
+«ap.id».setDataSource(getActivity().getAssets().openFd("«ap.fileUri»").getFileDescriptor());
+«ELSE-»
+«ap.id».setDataSource(getActivity().getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
+«ENDIF-»
+«ELSEIF ap.sourceType.toString().matches("remoteFile")-»
+«IF !ap.fileUri.matches("")-»
+«ap.id».setDataSource("«ap.fileUri»");
+«ELSE-»
+«ap.id».setDataSource("http://..."); //TODO insert remote file uri
+«ENDIF-»
+«ENDIF-»
+«ap.id».prepare();
+}
+catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+
+this.«ap.id»PlayButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_playButton);
+this.«ap.id»PlayButton.setOnClickListener(new View.OnClickListener() {
+    public void onClick(View v) {
+    	«ap.id».start();
+    }
+});
+
+this.«ap.id»PauseButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_pauseButton);
+this.«ap.id»PauseButton.setOnClickListener(new View.OnClickListener() {
+    public void onClick(View v) {
+    	«ap.id».pause();
+    }
+});
+
+this.«ap.id»StopButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_stopButton);
 this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
     	«ap.id».pause();

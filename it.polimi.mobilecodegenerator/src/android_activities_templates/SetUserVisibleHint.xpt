@@ -15,10 +15,20 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
-«DEFINE onResume FOR ViewController-»
-«EXPAND android_activities_templates::Audio::onResume-»
-«ENDDEFINE-»
+«DEFINE setUserVisibleHint FOR ViewController-»
+if (isVisibleToUser) {
+	
+	«EXPAND android_activities_templates::AlertDialogs::setUserVisibleHint-»
 
-«DEFINE onResumeFrag FOR ViewController-»
-«EXPAND android_activities_templates::Audio::onResumeFrag-»
+	«EXPAND android_activities_templates::ProgressDialogs::setUserVisibleHint-»
+	
+} else {
+
+	«EXPAND android_activities_templates::Audio::setUserVisibleHint-»
+	
+	«EXPAND android_activities_templates::Camera::setUserVisibleHint-»
+	
+	«EXPAND android_activities_templates::VideoViews::setUserVisibleHint-»
+
+}
 «ENDDEFINE-»
