@@ -15,6 +15,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 
+
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»-------------------------------- Activities Layout XML Files --------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+«REM»---------------------------------------------------------------------------------------------«ENDREM»
+
+
 «DEFINE main FOR Application-»
 «EXPAND watchController FOREACH watchControllers-»
 «ENDDEFINE-»
@@ -46,48 +54,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
     tools:deviceIds="wear_square">
 
-	«FOREACH watchButtons AS b-»
-	<Button
-        «EXPAND uiWatchControl FOR b»
-        android:textAllCaps="false"
-        android:text="«b.title»"
-	/>        
-	«ENDFOREACH-»
-	
-	«FOREACH watchTextViews AS tv-»
-	<TextView
-        «EXPAND uiWatchControl FOR tv»
-        android:text="«tv.content»"
-        android:gravity="«tv.textAlign.toString()»|center_vertical"
-        «IF tv.textDecoration.matches("none")==false»
-        android:textStyle="«tv.textDecoration»"
-        «ENDIF-»
-	/>        
-	«ENDFOREACH-»
-	
-	«FOREACH watchSwitches AS s-»
-	<RelativeLayout
-        «EXPAND uiWatchControl FOR s»
-        >
-    
-        <Switch
-            android:id="@+id/«s.id»Button"
-            android:text="«s.title»"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:checked="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp" />
-
-    </RelativeLayout> 
-	«ENDFOREACH-»
-	
-	«FOREACH watchSliders AS s-»
-	<SeekBar
-		android:progress="50"
-        «EXPAND uiWatchControl FOR s»
-	/>        
-	«ENDFOREACH-»
+	«EXPAND widgets FOR this»
 	
 	«IF watchVoiceMessage != null -»
 	<Button
@@ -172,31 +139,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
     tools:deviceIds="wear_round">
     
-	«FOREACH watchButtons AS b-»
-	<Button
-        «EXPAND uiWatchControl FOR b»
-        android:textAllCaps="false"
-        android:text="«b.title»"
-    />        
-	«ENDFOREACH-»
-	
-	«FOREACH watchTextViews AS tv-»
-	<TextView
-        «EXPAND uiWatchControl FOR tv»
-        android:text="«tv.content»"
-        android:gravity="«tv.textAlign.toString()»|center_vertical"
-        «IF tv.textDecoration.matches("none")==false»
-        android:textStyle="«tv.textDecoration»"
-        «ENDIF-»
-	/>        
-	«ENDFOREACH-»
+	«EXPAND widgets FOR this»
 	
 	«IF watchVoiceMessage != null -»
 	<Button
         «EXPAND uiWatchControl FOR watchVoiceMessage»
         android:textAllCaps="false"
-        android:text="«watchVoiceMessage.title»"
-	/>
+        android:text="«watchVoiceMessage.title»"/>
 
     <RelativeLayout
         android:id="@+id/delayed_confirm_container"
@@ -268,6 +217,52 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «ENDDEFINE-»
 
+
+
+
+«DEFINE widgets FOR WatchController-»
+	«FOREACH watchButtons AS b-»
+	<Button
+        «EXPAND uiWatchControl FOR b»
+        android:textAllCaps="false"
+        android:text="«b.title»"/>        
+	«ENDFOREACH-»
+	
+	«FOREACH watchTextViews AS tv-»
+	<TextView
+        «EXPAND uiWatchControl FOR tv»
+        «IF tv.textDecoration.matches("none")==false»
+        android:textStyle="«tv.textDecoration»"
+        «ENDIF-»
+        android:text="«tv.content»"
+        android:gravity="«tv.textAlign.toString()»|center_vertical"/>        
+	«ENDFOREACH-»
+	
+	«FOREACH watchSwitches AS s-»
+	<RelativeLayout
+        «EXPAND uiWatchControl FOR s» >
+    
+        <Switch
+            android:id="@+id/«s.id»Button"
+            android:text="«s.title»"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checked="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp" />
+
+    </RelativeLayout> 
+	«ENDFOREACH-»
+	
+	«FOREACH watchSliders AS s-»
+	<SeekBar
+        «EXPAND uiWatchControl FOR s»
+        android:progress="50"/>        
+	«ENDFOREACH-»
+«ENDDEFINE-»
+
+
+«REM»--------------------------- UiWatchControl Positioning XML Files ---------------------------«ENDREM»
 «DEFINE uiWatchControl FOR UiWatchControl-»
 		android:id="@+id/«id»"
 		android:layout_width="«width»dp"

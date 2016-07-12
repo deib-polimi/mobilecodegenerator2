@@ -23,12 +23,12 @@ private Picker «t.id»Picker;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH timepickers AS t-»
-«t.id»Picker = (Picker) findViewById(R.id.«t.id»Picker);
+this.«t.id»Picker = (Picker) this.findViewById(R.id.«t.id»Picker);
 Calendar calendar = Calendar.getInstance();
 int hours = calendar.get(Calendar.HOUR);
 int minutes = calendar.get(Calendar.MINUTE);
-«t.id»Picker.setTime(hours, minutes);
-«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+this.«t.id»Picker.setTime(hours, minutes);
+this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 	@Override
 	public void timeChanged(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -44,12 +44,12 @@ int minutes = calendar.get(Calendar.MINUTE);
 
 «DEFINE onCreateView FOR ViewController-»
 «FOREACH timepickers AS t-»
-«t.id»Picker = (Picker) findViewById(R.id.«t.id»Picker);
+this.«t.id»Picker = (Picker) rootView.findViewById(R.id.«t.id»Picker);
 Calendar calendar = Calendar.getInstance();
 int hours = calendar.get(Calendar.HOUR);
 int minutes = calendar.get(Calendar.MINUTE);
-«t.id»Picker.setTime(hours, minutes);
-«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
+this.«t.id»Picker.setTime(hours, minutes);
+this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 	@Override
 	public void timeChanged(Date date) {
 		Calendar calendar = Calendar.getInstance();

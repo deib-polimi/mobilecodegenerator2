@@ -3,9 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
-    <viewControllers name="Main" backgroundColor="" backgroundImage="" launcher="true">
-        <videocameraController id="gjesuVideocameraController" posX="123" posY="179" width="120" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='Main']" backgroundType="icon"/>
-    </viewControllers>
+    <viewControllers name="Main" backgroundColor="" backgroundImage="" launcher="false"/>
+    <viewControllers name="Other" backgroundColor="" backgroundImage="" launcher="true"/>
     <watchControllers name="Main" launcher="true"/>
-    <menu/>
+    <menu>
+        <menuItems title="Main" id="Main">
+            <navigation destination="Main"/>
+        </menuItems>
+        <menuItems title="Other" id="Other">
+            <navigation destination="Other"/>
+        </menuItems>
+    </menu>
 </metamodel:Application>

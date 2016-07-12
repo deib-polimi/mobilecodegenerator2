@@ -42,7 +42,7 @@ private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 300;
 «IF photocameraController != null-»
 //Remove image captured
 try {
-	«photocameraController.imageViewId».setImageBitmap(null);
+	this.«photocameraController.imageViewId».setImageBitmap(null);
 } catch(Exception e) {
 	e.printStackTrace();
 }
@@ -50,8 +50,8 @@ try {
 «IF videocameraController != null-»
 //Eventually stop the video
 try {
-	«videocameraController.videoViewId».stopPlayback();
-	«videocameraController.videoViewId».setBackgroundColor(Color.BLACK);
+	this.«videocameraController.videoViewId».stopPlayback();
+	this.«videocameraController.videoViewId».setBackgroundColor(Color.BLACK);
 } catch(Exception e) {
 	e.printStackTrace();
 }
@@ -61,11 +61,11 @@ try {
 «DEFINE onCreate FOR ViewController-»
 «IF photocameraController != null-»
 «IF photocameraController.backgroundType.matches("icon")-»
-photocameraButton = (ImageButton) this.findViewById(R.id.«photocameraController.id»);
+this.photocameraButton = (ImageButton) this.findViewById(R.id.«photocameraController.id»);
 «ELSEIF photocameraController.backgroundType.matches("normal")-»
-photocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
+this.photocameraButton = (Button) this.findViewById(R.id.«photocameraController.id»);
 «ENDIF-»
-photocameraButton.setOnClickListener(new View.OnClickListener() {
+this.photocameraButton.setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -78,11 +78,11 @@ photocameraButton.setOnClickListener(new View.OnClickListener() {
 «DEFINE onCreateView FOR ViewController-»
 «IF photocameraController != null-»
 «IF photocameraController.backgroundType.matches("icon")-»
-photocameraButton = (ImageButton) rootView.findViewById(R.id.«photocameraController.id»);
+this.photocameraButton = (ImageButton) rootView.findViewById(R.id.«photocameraController.id»);
 «ELSEIF photocameraController.backgroundType.matches("normal")-»
-photocameraButton = (Button) rootView.findViewById(R.id.«photocameraController.id»);
+this.photocameraButton = (Button) rootView.findViewById(R.id.«photocameraController.id»);
 «ENDIF-»
-photocameraButton.setOnClickListener(new View.OnClickListener() {
+this.photocameraButton.setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -96,14 +96,14 @@ photocameraButton.setOnClickListener(new View.OnClickListener() {
 «IF videocameraController != null-»
 private void setUpCameraRecorder() {
 	«IF !videocameraController.videoViewId.matches("")-»
-	«videocameraController.videoViewId-» = (VideoView) this.findViewById(R.id.«videocameraController.videoViewId-»);
+	this.«videocameraController.videoViewId-» = (VideoView) this.findViewById(R.id.«videocameraController.videoViewId-»);
 	«ENDIF-»
 	«IF videocameraController.backgroundType.matches("icon")-»
-	videocameraButton = (ImageButton) this.findViewById(R.id.«videocameraController.id»);
+	this.videocameraButton = (ImageButton) this.findViewById(R.id.«videocameraController.id»);
 	«ELSEIF videocameraController.backgroundType.matches("normal")-»
-	videocameraButton = (Button) this.findViewById(R.id.«videocameraController.id»);
+	this.videocameraButton = (Button) this.findViewById(R.id.«videocameraController.id»);
 	«ENDIF-»
-	videocameraButton.setOnClickListener(new View.OnClickListener() {
+	this.videocameraButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -122,30 +122,29 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			String localImageFileUri = this.copyImageInImagesFolder(photo);
             «IF !photocameraController.imageViewId.matches("")-»
-            «photocameraController.imageViewId».setImageBitmap(photo);
+            this.«photocameraController.imageViewId».setImageBitmap(photo);
             «ELSE-»
             //TODO use the photo
-            //mImageView.setImageBitmap(photo);
+            //this.mImageView.setImageBitmap(photo);
             «ENDIF-»
 		}
 		«ENDIF-»
 		«IF videocameraController != null-»
 		if (requestCode == VIDEO_CAPTURE_ACTIVITY_REQUEST_CODE) {
-				videoFileUri = data.getData();
-				String localVideoFileUri = this.copyVideoInVideosFolder(videoFileUri);
-				«IF !videocameraController.videoViewId.matches("")-»
-				«videocameraController.videoViewId».setBackgroundColor(Color.TRANSPARENT);
-	        	«videocameraController.videoViewId».setVideoURI(videoFileUri);
-	            «videocameraController.videoViewId».setMediaController(new MediaController(this));
-	            «videocameraController.videoViewId».requestFocus();
-	            «videocameraController.videoViewId».start();
-	            «ENDIF-»
+			this.videoFileUri = data.getData();
+			String localVideoFileUri = this.copyVideoInVideosFolder(this.videoFileUri);
+			«IF !videocameraController.videoViewId.matches("")-»
+			this.«videocameraController.videoViewId».setBackgroundColor(Color.TRANSPARENT);
+        	this.«videocameraController.videoViewId».setVideoURI(this.videoFileUri);
+            this.«videocameraController.videoViewId».setMediaController(new MediaController(this));
+            this.«videocameraController.videoViewId».requestFocus();
+            this.«videocameraController.videoViewId».start();
+            «ENDIF-»
 		}
 		«ENDIF-»
 	}
 	else if(resultCode == Activity.RESULT_CANCELED) {
-    	//User cancelled the media capture
-    	//TODO implement the action
+    	//TODO implement the cancel action
     }
 }
 
@@ -163,7 +162,6 @@ private String copyImageInImagesFolder(Bitmap image){
 		image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 		outputStream.close();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return localImagePath;
@@ -191,7 +189,6 @@ private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 	    fis.close();
 	    fos.close();
 	} catch (IOException e) {
-	   	// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return localVideoPath;
@@ -204,14 +201,14 @@ private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 «IF videocameraController != null-»
 private void setUpCameraRecorder(View rootView) {
 	«IF !videocameraController.videoViewId.matches("")-»
-	«videocameraController.videoViewId-» = (VideoView) rootView.findViewById(R.id.«videocameraController.videoViewId-»);
+	this.«videocameraController.videoViewId-» = (VideoView) rootView.findViewById(R.id.«videocameraController.videoViewId-»);
 	«ENDIF-»
 	«IF videocameraController.backgroundType.matches("icon")-»
-	videocameraButton = (ImageButton) rootView.findViewById(R.id.«videocameraController.id»);
+	this.videocameraButton = (ImageButton) rootView.findViewById(R.id.«videocameraController.id»);
 	«ELSEIF videocameraController.backgroundType.matches("normal")-»
-	videocameraButton = (Button) rootView.findViewById(R.id.«videocameraController.id»);
+	this.videocameraButton = (Button) rootView.findViewById(R.id.«videocameraController.id»);
 	«ENDIF-»
-	videocameraButton.setOnClickListener(new View.OnClickListener() {
+	this.videocameraButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -230,29 +227,28 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 			Bitmap photo = (Bitmap) data.getExtras().get("data");
 			String localImageFileUri = this.copyImageInImagesFolder(photo);
             «IF !photocameraController.imageViewId.matches("")-»
-            «photocameraController.imageViewId».setImageBitmap(photo);
+            this.«photocameraController.imageViewId».setImageBitmap(photo);
             «ELSE-»
             //TODO use the photo
-            //mImageView.setImageBitmap(photo);
+            //this.mImageView.setImageBitmap(photo);
             «ENDIF-»
 		}
 		«ENDIF-»
 		«IF videocameraController != null-»
 		if (requestCode == VIDEO_CAPTURE_ACTIVITY_REQUEST_CODE) {
-				videoFileUri = data.getData();
-				String localVideoFileUri = this.copyVideoInVideosFolder(videoFileUri);
-				«IF !videocameraController.videoViewId.matches("")-»
-	        	«videocameraController.videoViewId».setVideoURI(videoFileUri);
-	            «videocameraController.videoViewId».setMediaController(new MediaController(getActivity()));
-	            «videocameraController.videoViewId».requestFocus();
-	            «videocameraController.videoViewId».start();
-	            «ENDIF-»
+			this.videoFileUri = data.getData();
+			String localVideoFileUri = this.copyVideoInVideosFolder(this.videoFileUri);
+			«IF !videocameraController.videoViewId.matches("")-»
+        	this.«videocameraController.videoViewId».setVideoURI(this.videoFileUri);
+            this.«videocameraController.videoViewId».setMediaController(new MediaController(getActivity()));
+            this.«videocameraController.videoViewId».requestFocus();
+            this.«videocameraController.videoViewId».start();
+            «ENDIF-»
 		}
 		«ENDIF-»
 	}
 	else if(resultCode == Activity.RESULT_CANCELED) {
-    	//User cancelled the media capture
-    	//TODO implement the action
+    	//TODO implement the cancel action
     }
 }
 
@@ -270,7 +266,6 @@ private String copyImageInImagesFolder(Bitmap image){
 		image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 		outputStream.close();
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return localImagePath;
@@ -298,7 +293,6 @@ private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 	    fis.close();
 	    fos.close();
 	} catch (IOException e) {
-	   	// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	return localVideoPath;
@@ -306,5 +300,3 @@ private String copyVideoInVideosFolder(Uri sourceVideoFileUri){
 «ENDIF-»
 «ENDIF-»
 «ENDDEFINE-»
-
-

@@ -23,8 +23,8 @@ private AppCompatSeekBar «s.id»;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH sliders AS s-»
-«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»Bar);
-«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+this.«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»Bar);
+this.«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.i("Progress", progress+"");
@@ -32,12 +32,12 @@ private AppCompatSeekBar «s.id»;
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+		//TODO
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+		//TODO
     }
 });
 «ENDFOREACH-»
@@ -45,8 +45,8 @@ private AppCompatSeekBar «s.id»;
 
 «DEFINE onCreateView FOR ViewController-»
 «FOREACH sliders AS s-»
-«s.id» = (AppCompatSeekBar) rootView.findViewById(R.id.«s.id»Bar);
-«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+this.«s.id» = (AppCompatSeekBar) rootView.findViewById(R.id.«s.id»Bar);
+this.«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         Log.i("Progress", progress+"");
@@ -54,12 +54,12 @@ private AppCompatSeekBar «s.id»;
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+		//TODO
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+		//TODO
     }
 });
 «ENDFOREACH-»

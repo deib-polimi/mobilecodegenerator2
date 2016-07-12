@@ -17,13 +17,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH alertDialogs AS ad-»
-show«ad.id»();
+this.show«ad.id»();
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE setUserVisibleHint FOR ViewController-»
 «FOREACH alertDialogs AS ad-»
-show«ad.id»();
+this.show«ad.id»();
 «ENDFOREACH-»
 «ENDDEFINE-»
 

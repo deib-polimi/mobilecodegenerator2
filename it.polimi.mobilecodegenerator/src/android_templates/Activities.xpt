@@ -18,13 +18,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE main FOR Application-»
 «IF menu.menuItems.size > 0 -»
-«EXPAND fragmentAndActivity FOREACH viewControllers-»
+«EXPAND fragmentsAndActivity FOREACH viewControllers-»
 «ELSE-»
 «EXPAND activity FOREACH viewControllers-»
 «ENDIF-»
 «ENDDEFINE-»
 
-«DEFINE fragmentAndActivity FOR ViewController-»
+«DEFINE fragmentsAndActivity FOR ViewController-»
 «REM»Launcher ViewController is translated into an Activity containing the SectionPagerAdapter«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
 «FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
@@ -118,7 +118,7 @@ public class «this.name»Fragment extends Fragment «EXPAND android_activities_tem
     	View rootView = inflater.inflate(R.layout.fragment_«this.name.toLowerCase()», container, false);
     	this.rootView = rootView;
     	
-    	«EXPAND android_activities_templates::onCreateView::onCreateView-»
+    	«EXPAND android_activities_templates::OnCreateView::onCreateView-»
     	
     	return rootView;
     }
@@ -127,7 +127,7 @@ public class «this.name»Fragment extends Fragment «EXPAND android_activities_tem
     public void setUserVisibleHint(boolean isVisibleToUser){
         super.setUserVisibleHint(isVisibleToUser);
         
-        «EXPAND android_activities_templates::setUserVisibleHint::setUserVisibleHint-»
+        «EXPAND android_activities_templates::SetUserVisibleHint::setUserVisibleHint-»
 
     }
     

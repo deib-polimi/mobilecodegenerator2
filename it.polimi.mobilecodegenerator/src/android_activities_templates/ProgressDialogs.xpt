@@ -17,13 +17,13 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH progressDialogs AS pd-»
-show«pd.id»();
+this.show«pd.id»();
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE setUserVisibleHint FOR ViewController-»
 «FOREACH progressDialogs AS pd-»
-show«pd.id»();
+this.show«pd.id»();
 «ENDFOREACH-»
 «ENDDEFINE-»
 

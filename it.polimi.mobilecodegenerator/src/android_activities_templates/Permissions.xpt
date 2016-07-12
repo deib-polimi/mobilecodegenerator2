@@ -23,7 +23,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
 			REQUEST_CODE_READ_EXTERNAL_STORAGE);
 } else {
-	setUpCameraRecorder();
+	this.setUpCameraRecorder();
 }
 «ENDIF-»
 «IF audioRecorder != null -»
@@ -32,7 +32,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 	requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},
 			REQUEST_CODE_RECORD_AUDIO);
 } else {
-	setUpAudioRecorder();
+	this.setUpAudioRecorder();
 }
 «ENDIF-»
 «ENDDEFINE-»
@@ -47,7 +47,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
 			REQUEST_CODE_READ_EXTERNAL_STORAGE);
 } else {
-	setUpCameraRecorder(rootView);
+	this.setUpCameraRecorder(rootView);
 }
 «ENDIF-»
 «IF audioRecorder != null -»
@@ -58,7 +58,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 	requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},
 			REQUEST_CODE_RECORD_AUDIO);
 } else {
-	setUpAudioRecorder(rootView);
+	this.setUpAudioRecorder(rootView);
 }
 «ENDIF-»
 «ENDDEFINE-»
@@ -71,9 +71,9 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 		«IF videocameraController != null-»
 		case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpCameraRecorder();
+				this.setUpCameraRecorder();
 			} else {
-				//No permissions
+				//TODO No permissions
 			}
 			return;
 		}
@@ -81,9 +81,9 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 		«IF audioRecorder != null-»
 		case REQUEST_CODE_RECORD_AUDIO : {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpAudioRecorder();
+				this.setUpAudioRecorder();
 			} else {
-				//No permissions
+				//TODO No permissions
 			}
 			return;
 		}
@@ -101,9 +101,9 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 		«IF videocameraController != null-»
 		case REQUEST_CODE_READ_EXTERNAL_STORAGE: {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpCameraRecorder(this.rootView);
+				this.setUpCameraRecorder(this.rootView);
 			} else {
-				//No permissions
+				//TODO No permissions
 			}
 			return;
 		}
@@ -111,9 +111,9 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 		«IF audioRecorder != null-»
 		case REQUEST_CODE_RECORD_AUDIO : {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				setUpAudioRecorder(this.rootView);
+				this.setUpAudioRecorder(this.rootView);
 			} else {
-				//No permissions
+				//TODO No permissions
 			}
 			return;
 		}

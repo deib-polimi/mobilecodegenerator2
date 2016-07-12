@@ -1,5 +1,5 @@
 «REM»
-Copyright 2013 Gregorio Perego, Stefania Pezzetti
+Copyright 2016 Gregorio Perego, Stefania Pezzetti, Aldo Pintus
 This file is part of it.polimi.mobilecodegenerator.
 
 it.polimi.mobilecodegenerator is free software: 
@@ -36,6 +36,7 @@ private class «at.name»AsyncTask extends AsyncTask<Void /*params*/, Void /*progr
 	protected Void doInBackground(Void... params) {
 		Void result = null;
 		//TODO execute the task in background
+		
 		return result;
 	}
 
@@ -50,4 +51,3 @@ private class «at.name»AsyncTask extends AsyncTask<Void /*params*/, Void /*progr
 }
 «ENDFOREACH-»
 «ENDDEFINE-»
-

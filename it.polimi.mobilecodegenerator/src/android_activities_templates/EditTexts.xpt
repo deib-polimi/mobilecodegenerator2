@@ -23,15 +23,15 @@ private AppCompatEditText «et.id»;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH editTexts AS et-»
-«et.id» = (AppCompatEditText) this.findViewById(R.id.«et.id»);
-«et.id».setText("«et.initialContent»");
+this.«et.id» = (AppCompatEditText) this.findViewById(R.id.«et.id»);
+this.«et.id».setText("«et.initialContent»");
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreateView FOR ViewController-»
 «FOREACH editTexts AS et-»
-«et.id» = (AppCompatEditText) rootView.findViewById(R.id.«et.id»);
-«et.id».setText("«et.initialContent»");
+this.«et.id» = (AppCompatEditText) rootView.findViewById(R.id.«et.id»);
+this.«et.id».setText("«et.initialContent»");
 «ENDFOREACH-»
 «ENDDEFINE-»
 

@@ -32,32 +32,32 @@ private String[] «gv.id»Contents;
 «FOREACH gridViews AS gv-»
 «IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
 //Change this to set a specific image id for each row
-«gv.id»Images = new Integer[]{
+this.«gv.id»Images = new Integer[]{
 	«FOREACH gv.gridViewCells AS gvc-»
 		R.drawable.grid_image,
 	«ENDFOREACH-»
 };
 «ENDIF-»
 «IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
-«gv.id»Contents = new String[]{
+this.«gv.id»Contents = new String[]{
 	«FOREACH gv.gridViewCells AS gvc-»
 		"«gvc.title»",
 	«ENDFOREACH-»
 };
 «ENDIF-»
 «IF gv.gridType.matches("detailed")»
-«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Contents, «gv.id»Images);
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Contents, this.«gv.id»Images);
 «ENDIF-»
 «IF gv.gridType.matches("image")»
-«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Images);
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Images);
 «ENDIF-»
 «IF gv.gridType.matches("simple")»
-«gv.id»Adapter = new MyGridAdapter(this, «gv.id»Contents);
+this.«gv.id»Adapter = new MyGridAdapter(this, this.«gv.id»Contents);
 «ENDIF-»
-«gv.id» = (GridView) findViewById(R.id.«gv.id»);
-«gv.id».setAdapter(«gv.id»Adapter);
+this.«gv.id» = (GridView) this.findViewById(R.id.«gv.id»);
+this.«gv.id».setAdapter(this.«gv.id»Adapter);
 «IF gv.clickListener != null-»
-«gv.id».setOnItemClickListener(this);
+this.«gv.id».setOnItemClickListener(this);
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
@@ -66,32 +66,32 @@ private String[] «gv.id»Contents;
 «FOREACH gridViews AS gv-»
 «IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
 //Change this to set a specific image id for each row
-«gv.id»Images = new Integer[]{
+this.«gv.id»Images = new Integer[]{
 	«FOREACH gv.gridViewCells AS gvc-»
 		R.drawable.grid_image,
 	«ENDFOREACH-»
 };
 «ENDIF-»
 «IF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
-«gv.id»Contents = new String[]{
+this.«gv.id»Contents = new String[]{
 	«FOREACH gv.gridViewCells AS gvc-»
 		"«gvc.title»",
 	«ENDFOREACH-»
 };
 «ENDIF-»
 «IF gv.gridType.matches("detailed")»
-«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Contents, «gv.id»Images);
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Contents, this.«gv.id»Images);
 «ENDIF-»
 «IF gv.gridType.matches("image")»
-«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Images);
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Images);
 «ENDIF-»
 «IF gv.gridType.matches("simple")»
-«gv.id»Adapter = new MyGridAdapter(getActivity(), «gv.id»Contents);
+this.«gv.id»Adapter = new MyGridAdapter(getActivity(), this.«gv.id»Contents);
 «ENDIF-»
-«gv.id» = (GridView) rootView.findViewById(R.id.«gv.id»);
-«gv.id».setAdapter(«gv.id»Adapter);
+this.«gv.id» = (GridView) rootView.findViewById(R.id.«gv.id»);
+this.«gv.id».setAdapter(this.«gv.id»Adapter);
 «IF gv.clickListener != null-»
-«gv.id».setOnItemClickListener(this);
+this.«gv.id».setOnItemClickListener(this);
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
@@ -102,9 +102,9 @@ private String[] «gv.id»Contents;
 «IF gv.clickListener != null-»
 if(l.getId() == R.id.«gv.id»){
 	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
-	String clickedImageId = «gv.id»Images[position].toString();
+	String clickedImageId = this.«gv.id»Images[position].toString();
 	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
-	String clickedItem = «gv.id»Contents[position];
+	String clickedItem = this.«gv.id»Contents[position];
 	«ENDIF-»
 	«IF gv.clickListener.navigation != null-»
 	Intent intent = new Intent(«this.name»Activity.this, «gv.clickListener.navigation.destination»Activity.class);
@@ -123,9 +123,9 @@ if(l.getId() == R.id.«gv.id»){
 «IF gv.clickListener != null-»
 if(l.getId() == R.id.«gv.id»){
 	«IF gv.gridType.matches("detailed") || gv.gridType.matches("image")»
-	String clickedImageId = «gv.id»Images[position].toString();
+	String clickedImageId = this.«gv.id»Images[position].toString();
 	«ELSEIF gv.gridType.matches("detailed") || gv.gridType.matches("simple")»
-	String clickedItem = «gv.id»Contents[position];
+	String clickedItem = this.«gv.id»Contents[position];
 	«ENDIF-»
 	«IF gv.clickListener.navigation != null-»
 	Intent intent = new Intent(getActivity(), «gv.clickListener.navigation.destination»Activity.class);
@@ -138,4 +138,3 @@ if(l.getId() == R.id.«gv.id»){
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
-

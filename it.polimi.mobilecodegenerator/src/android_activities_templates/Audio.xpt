@@ -35,18 +35,18 @@ private static final int REQUEST_CODE_RECORD_AUDIO = 400;
 «IF audioRecorder!=null-»
 //Stop audio player eventually
 try {
-	«audioRecorder.audioPlayerId».pause();
-	«audioRecorder.audioPlayerId».seekTo(0);
-	«audioRecorder.audioPlayerId».release();
-	«audioRecorder.audioPlayerId» = null;
+	this.«audioRecorder.audioPlayerId».pause();
+	this.«audioRecorder.audioPlayerId».seekTo(0);
+	this.«audioRecorder.audioPlayerId».release();
+	this.«audioRecorder.audioPlayerId» = null;
 } catch (Exception e) {
 	e.printStackTrace();
 }
 //Stop audio recorder eventually
 try {
-	if (isRecording) {
-		stopRecording();
-		isRecording = !isRecording;
+	if (this.isRecording) {
+		this.stopRecording();
+		this.isRecording = !this.isRecording;
 	}
 } catch (Exception e) {
 	e.printStackTrace();
@@ -56,10 +56,10 @@ try {
 «IF !ap.sourceType.toString().matches("hardwareFile")-»
 //Stop audio player eventually
 try {
-	«ap.id».pause();
-	«ap.id».seekTo(0);
-	«ap.id».release();
-	«ap.id» = null;
+	this.«ap.id».pause();
+	this.«ap.id».seekTo(0);
+	this.«ap.id».release();
+	this.«ap.id» = null;
 } catch(Exception e) {
 	e.printStackTrace();
 }
@@ -70,58 +70,62 @@ try {
 «DEFINE audio FOR ViewController-»
 «IF audioRecorder!=null-»
 private void setUpAudioRecorder() {
-	recordButton = (Button) this.findViewById(R.id.«audioRecorder.id»);
-	recordButton.setText("Rec");
-	recordButton.setOnClickListener(new View.OnClickListener() {
+	this.recordButton = (Button) this.findViewById(R.id.«audioRecorder.id»);
+	this.recordButton.setText("Rec");
+	this.recordButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if (!isRecording) {
-				startRecording();
+	    	if (!this.isRecording) {
+				this.startRecording();
 			} else {
-				stopRecording();
+				this.stopRecording();
 			}
-			isRecording = !isRecording;
+			this.isRecording = !this.isRecording;
 	    }
 	});
 	«IF !audioRecorder.audioPlayerId.matches("")-»
 	this.«audioRecorder.audioPlayerId»PlayButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
 	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if (audioRecorder != null && isRecording){ 
-				audioRecorder.stop();
-				audioRecorder.release();
-				audioRecorder = null;
+	    	if (this.audioRecorder != null && this.isRecording){ 
+				this.audioRecorder.stop();
+				this.audioRecorder.release();
+				this.audioRecorder = null;
 				try {
-					«audioRecorder.audioPlayerId» = new MediaPlayer();
-					«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
-					«audioRecorder.audioPlayerId».prepare();
-					«audioRecorder.audioPlayerId».start();
+					this.«audioRecorder.audioPlayerId» = new MediaPlayer();
+					this.«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(this.recordedAudioPath).getFD());
+					this.«audioRecorder.audioPlayerId».prepare();
+					this.«audioRecorder.audioPlayerId».start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				recordButton.setText("Rec");
-				isRecording = false;
+				this.recordButton.setText("Rec");
+				this.isRecording = false;
 			}
-			else if(«audioRecorder.audioPlayerId»!=null){
-	    		«audioRecorder.audioPlayerId».start();
+			else if(this.«audioRecorder.audioPlayerId» != null){
+	    		this.«audioRecorder.audioPlayerId».start();
 	    	}
 	    }
 	});
 
 	this.«audioRecorder.audioPlayerId»PauseButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
 	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if(«audioRecorder.audioPlayerId»!=null){
-	    		«audioRecorder.audioPlayerId».pause();
+	    	if(this.«audioRecorder.audioPlayerId» != null){
+	    		this.«audioRecorder.audioPlayerId».pause();
 	    	}
 	    }
 	});
 
 	this.«audioRecorder.audioPlayerId»StopButton = (FloatingActionButton) this.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
 	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if(«audioRecorder.audioPlayerId»!=null){
-		    	«audioRecorder.audioPlayerId».pause();
-		    	«audioRecorder.audioPlayerId».seekTo(0);
+	    	if(this.«audioRecorder.audioPlayerId» != null){
+		    	this.«audioRecorder.audioPlayerId».pause();
+		    	this.«audioRecorder.audioPlayerId».seekTo(0);
 		    }
 		}
 	});
@@ -131,8 +135,8 @@ private void setUpAudioRecorder() {
 private void startRecording() {
 	//Stop audioplayer eventually
 	try {
-		«audioRecorder.audioPlayerId».pause();
-		«audioRecorder.audioPlayerId».seekTo(0);
+		this.«audioRecorder.audioPlayerId».pause();
+		this.«audioRecorder.audioPlayerId».seekTo(0);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -142,34 +146,34 @@ private void startRecording() {
 	audiosDirectory.mkdir();
 	String filename = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()) + ".mp3";
 	String localAudioPath = audiosPath + "/" + filename;
-	recordedAudioPath = localAudioPath;
+	this.recordedAudioPath = localAudioPath;
 
-	audioRecorder = new MediaRecorder();
-	audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-	audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-	audioRecorder.setOutputFile(recordedAudioPath);
-	audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+	this.audioRecorder = new MediaRecorder();
+	this.audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+	this.audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+	this.audioRecorder.setOutputFile(recordedAudioPath);
+	this.audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 	try {
-		audioRecorder.prepare();
-		audioRecorder.start();
+		this.audioRecorder.prepare();
+		this.audioRecorder.start();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-	recordButton.setText("Stop");
+	this.recordButton.setText("Stop");
 }
 
 private void stopRecording() {
-	audioRecorder.stop();
-	audioRecorder.release();
-	audioRecorder = null;
+	this.audioRecorder.stop();
+	this.audioRecorder.release();
+	this.audioRecorder = null;
 	try {
-		«audioRecorder.audioPlayerId» = new MediaPlayer();
-		«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
-		«audioRecorder.audioPlayerId».prepare();
+		this.«audioRecorder.audioPlayerId» = new MediaPlayer();
+		this.«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(this.recordedAudioPath).getFD());
+		this.«audioRecorder.audioPlayerId».prepare();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	recordButton.setText("Rec");
+	this.recordButton.setText("Rec");
 }
 «ENDIF-»
 «ENDDEFINE-»
@@ -177,58 +181,62 @@ private void stopRecording() {
 «DEFINE audioFrag FOR ViewController-»
 «IF audioRecorder!=null-»
 private void setUpAudioRecorder(View rootView) {
-	recordButton = (Button) rootView.findViewById(R.id.«audioRecorder.id»);
-	recordButton.setText("Rec");
-	recordButton.setOnClickListener(new View.OnClickListener() {
+	this.recordButton = (Button) rootView.findViewById(R.id.«audioRecorder.id»);
+	this.recordButton.setText("Rec");
+	this.recordButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if (!isRecording) {
-				startRecording();
+	    	if (!this.isRecording) {
+				this.startRecording();
 			} else {
-				stopRecording();
+				this.stopRecording();
 			}
-			isRecording = !isRecording;
+			this.isRecording = !this.isRecording;
 	    }
 	});
 	«IF !audioRecorder.audioPlayerId.matches("")-»
 	this.«audioRecorder.audioPlayerId»PlayButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_playButton);
 	this.«audioRecorder.audioPlayerId»PlayButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if (audioRecorder != null && isRecording){ 
-				audioRecorder.stop();
-				audioRecorder.release();
-				audioRecorder = null;
+	    	if (this.audioRecorder != null && this.isRecording){ 
+				this.audioRecorder.stop();
+				this.audioRecorder.release();
+				this.audioRecorder = null;
 				try {
-					«audioRecorder.audioPlayerId» = new MediaPlayer();
-					«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
-					«audioRecorder.audioPlayerId».prepare();
-					«audioRecorder.audioPlayerId».start();
+					this.«audioRecorder.audioPlayerId» = new MediaPlayer();
+					this.«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(this.recordedAudioPath).getFD());
+					this.«audioRecorder.audioPlayerId».prepare();
+					this.«audioRecorder.audioPlayerId».start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				recordButton.setText("Rec");
-				isRecording = false;
+				this.recordButton.setText("Rec");
+				this.isRecording = false;
 			}
-			else if(«audioRecorder.audioPlayerId»!=null){
-	    		«audioRecorder.audioPlayerId».start();
+			else if(this.«audioRecorder.audioPlayerId» != null){
+	    		this.«audioRecorder.audioPlayerId».start();
 	    	}
 	    }
 	});
 
 	this.«audioRecorder.audioPlayerId»PauseButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_pauseButton);
 	this.«audioRecorder.audioPlayerId»PauseButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if(«audioRecorder.audioPlayerId»!=null){
-	    		«audioRecorder.audioPlayerId».pause();
+	    	if(this.«audioRecorder.audioPlayerId» != null){
+	    		this.«audioRecorder.audioPlayerId».pause();
 	    	}
 	    }
 	});
 
 	this.«audioRecorder.audioPlayerId»StopButton = (FloatingActionButton) rootView.findViewById(R.id.«audioRecorder.audioPlayerId»_stopButton);
 	this.«audioRecorder.audioPlayerId»StopButton.setOnClickListener(new View.OnClickListener() {
+	    @Override
 	    public void onClick(View v) {
-	    	if(«audioRecorder.audioPlayerId»!=null){
-		    	«audioRecorder.audioPlayerId».pause();
-		    	«audioRecorder.audioPlayerId».seekTo(0);
+	    	if(this.«audioRecorder.audioPlayerId» != null){
+		    	this.«audioRecorder.audioPlayerId».pause();
+		    	this.«audioRecorder.audioPlayerId».seekTo(0);
 		    }
 		}
 	});
@@ -238,8 +246,8 @@ private void setUpAudioRecorder(View rootView) {
 private void startRecording() {
 	//Stop audioplayer eventually
 	try {
-		«audioRecorder.audioPlayerId».pause();
-		«audioRecorder.audioPlayerId».seekTo(0);
+		this.«audioRecorder.audioPlayerId».pause();
+		this.«audioRecorder.audioPlayerId».seekTo(0);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -249,34 +257,34 @@ private void startRecording() {
 	audiosDirectory.mkdir();
 	String filename = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date()) + ".mp3";
 	String localAudioPath = audiosPath + "/" + filename;
-	recordedAudioPath = localAudioPath;
+	this.recordedAudioPath = localAudioPath;
 
-	audioRecorder = new MediaRecorder();
-	audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-	audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-	audioRecorder.setOutputFile(recordedAudioPath);
-	audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+	this.audioRecorder = new MediaRecorder();
+	this.audioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+	this.audioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+	this.audioRecorder.setOutputFile(recordedAudioPath);
+	this.audioRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 	try {
-		audioRecorder.prepare();
-		audioRecorder.start();
+		this.audioRecorder.prepare();
+		this.audioRecorder.start();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
-	recordButton.setText("Stop");
+	this.recordButton.setText("Stop");
 }
 
 private void stopRecording() {
-	audioRecorder.stop();
-	audioRecorder.release();
-	audioRecorder = null;
+	this.audioRecorder.stop();
+	this.audioRecorder.release();
+	this.audioRecorder = null;
 	try {
-		«audioRecorder.audioPlayerId» = new MediaPlayer();
-		«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(recordedAudioPath).getFD());
-		«audioRecorder.audioPlayerId».prepare();
+		this.«audioRecorder.audioPlayerId» = new MediaPlayer();
+		this.«audioRecorder.audioPlayerId».setDataSource(new FileInputStream(this.recordedAudioPath).getFD());
+		this.«audioRecorder.audioPlayerId».prepare();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	recordButton.setText("Rec");
+	this.recordButton.setText("Rec");
 }
 «ENDIF-»
 «ENDDEFINE-»
@@ -285,47 +293,49 @@ private void stopRecording() {
 «FOREACH audioPlayers AS ap-»
 «IF !ap.sourceType.toString().matches("hardwareFile")-»
 try {
-«ap.id» = new MediaPlayer();
-«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
+this.«ap.id» = new MediaPlayer();
+this.«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
 «IF ap.sourceType.toString().matches("localFile")-»
 «IF !ap.fileUri.matches("")-»
-«ap.id».setDataSource(getAssets().openFd("«ap.fileUri»").getFileDescriptor());
+this.«ap.id».setDataSource(getAssets().openFd("«ap.fileUri»").getFileDescriptor());
 «ELSE-»
-«ap.id».setDataSource(getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
+this.«ap.id».setDataSource(getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
 «ENDIF-»
 «ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 «IF !ap.fileUri.matches("")-»
-«ap.id».setDataSource("«ap.fileUri»");
+this.«ap.id».setDataSource("«ap.fileUri»");
 «ELSE-»
-«ap.id».setDataSource("http://..."); //TODO insert remote file uri
+this.«ap.id».setDataSource("http://..."); //TODO insert remote file uri
 «ENDIF-»
 «ENDIF-»
-«ap.id».prepare();
-}
-catch (Exception e) {
+this.«ap.id».prepare();
+} catch (Exception e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
 
 this.«ap.id»PlayButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_playButton);
 this.«ap.id»PlayButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».start();
+    	this.«ap.id».start();
     }
 });
 
 this.«ap.id»PauseButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_pauseButton);
 this.«ap.id»PauseButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».pause();
+    	this.«ap.id».pause();
     }
 });
 
 this.«ap.id»StopButton = (FloatingActionButton) this.findViewById(R.id.«ap.id»_stopButton);
 this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».pause();
-    	«ap.id».seekTo(0);
+    	this.«ap.id».pause();
+    	this.«ap.id».seekTo(0);
     }
 });
 «ENDIF-»
@@ -336,47 +346,49 @@ this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
 «FOREACH audioPlayers AS ap-»
 «IF !ap.sourceType.toString().matches("hardwareFile")-»
 try {
-«ap.id» = new MediaPlayer();
-«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
+this.«ap.id» = new MediaPlayer();
+this.«ap.id».setAudioStreamType(AudioManager.STREAM_MUSIC);
 «IF ap.sourceType.toString().matches("localFile")-»
 «IF !ap.fileUri.matches("")-»
-«ap.id».setDataSource(getActivity().getAssets().openFd("«ap.fileUri»").getFileDescriptor());
+this.«ap.id».setDataSource(getActivity().getAssets().openFd("«ap.fileUri»").getFileDescriptor());
 «ELSE-»
-«ap.id».setDataSource(getActivity().getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
+this.«ap.id».setDataSource(getActivity().getAssets().openFd("filename...").getFileDescriptor()); //TODO insert file name with extension
 «ENDIF-»
 «ELSEIF ap.sourceType.toString().matches("remoteFile")-»
 «IF !ap.fileUri.matches("")-»
-«ap.id».setDataSource("«ap.fileUri»");
+this.«ap.id».setDataSource("«ap.fileUri»");
 «ELSE-»
-«ap.id».setDataSource("http://..."); //TODO insert remote file uri
+this.«ap.id».setDataSource("http://..."); //TODO insert remote file uri
 «ENDIF-»
 «ENDIF-»
-«ap.id».prepare();
-}
-catch (Exception e) {
+this.«ap.id».prepare();
+} catch (Exception e) {
 	// TODO Auto-generated catch block
 	e.printStackTrace();
 }
 
 this.«ap.id»PlayButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_playButton);
 this.«ap.id»PlayButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».start();
+    	this.«ap.id».start();
     }
 });
 
 this.«ap.id»PauseButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_pauseButton);
 this.«ap.id»PauseButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».pause();
+    	this.«ap.id».pause();
     }
 });
 
 this.«ap.id»StopButton = (FloatingActionButton) rootView.findViewById(R.id.«ap.id»_stopButton);
 this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
+    @Override
     public void onClick(View v) {
-    	«ap.id».pause();
-    	«ap.id».seekTo(0);
+    	this.«ap.id».pause();
+    	this.«ap.id».seekTo(0);
     }
 });
 «ENDIF-»
@@ -385,24 +397,23 @@ this.«ap.id»StopButton.setOnClickListener(new View.OnClickListener() {
 
 «DEFINE onPause FOR ViewController-»
 «IF audioRecorder!=null-»
-if(audioRecorder!=null) {
-    audioRecorder.release();
-    audioRecorder=null;
+if(this.audioRecorder != null) {
+    this.audioRecorder.release();
+    this.audioRecorder = null;
 }
 «IF !audioRecorder.audioPlayerId.matches("")-»
-if(«audioRecorder.audioPlayerId»!=null) {
-	«audioRecorder.audioPlayerId».release();
-	«audioRecorder.audioPlayerId»=null;
+if(this.«audioRecorder.audioPlayerId» != null) {
+	this.«audioRecorder.audioPlayerId».release();
+	this.«audioRecorder.audioPlayerId»=null;
 }
 «ENDIF-»
 «ENDIF-»
 «FOREACH audioPlayers AS ap-»
 «IF !ap.sourceType.toString().matches("hardwareFile")-»
-if(«ap.id»!=null) {
-	«ap.id».release();
-	«ap.id»=null;
+if(this.«ap.id» != null) {
+	this.«ap.id».release();
+	this.«ap.id»=null;
 }
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
-

@@ -25,6 +25,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «copyDefaultAndroidFiles()»
 «copyUserFiles()»
 
+
+«REM»--------------------------- build.gradle ---------------------------«ENDREM»
 «FILE name+"/mobile/"+"build.gradle"-»
 apply plugin: 'com.android.application'
 
@@ -70,9 +72,10 @@ dependencies {
 }
 «ENDFILE-»
 
-«IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
 
-«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "ListenerServiceFromWear.java"-»
+«REM»--------------------------- MyWearableListenerService ---------------------------«ENDREM»
+«IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
+«FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyWearableListenerService.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -80,7 +83,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListenerServiceFromWear extends WearableListenerService {
+public class MyWearableListenerService extends WearableListenerService {
 
     public static Map<String, String> messages = new HashMap<>();
 
@@ -103,7 +106,7 @@ public class ListenerServiceFromWear extends WearableListenerService {
         messages.put(tmpPath, messageContent);
 
         //You can reference to the messages from any activity like this
-        //Map<String, String> messages = ListenerServiceFromWear.messages;
+        //Map<String, String> messages = MyWearableListenerService.messages;
         //int numMessages = messages.size();
 		//String lastMessage = (String) messages.values().toArray()[0];
 
@@ -111,15 +114,16 @@ public class ListenerServiceFromWear extends WearableListenerService {
 
 }
 «ENDFILE-»
-
 «ENDIF-»
 
+«REM»----------------------------------- Utils -----------------------------------«ENDREM»
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "Utils.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 	
 import java.io.*;
 	
 public final class Utils {
+
 	/**
 	 * Returns the text (string) contained in the Input Stream passed as parameter
 	 * @param inputStream
@@ -144,7 +148,8 @@ public final class Utils {
 }
 «ENDFILE-»
 
-«REM» If there's at least one ImageView with remote source, create ImageDownloadingTask.java «ENDREM»
+
+«REM»--------------------------- ImageDownloadingTask ---------------------------«ENDREM»
 «IF viewControllers.imageViews.sourceType.toString().contains("remoteFile")-»
 «FILE this.name+"/mobile/src/main/java/"+this.companyIdentifier.replaceAll("\\.","/") +"/"+this.name.toLowerCase() +"/"+"ImageDownloadingTask.java"-»
 package «this.companyIdentifier».«this.name.toLowerCase()»;
@@ -222,8 +227,8 @@ public class ImageDownloadingTask extends AsyncTask<ImageView, Void, Bitmap>{
 «ENDFILE-»
 «ENDIF-»
 
-«REM» MyListAdapter.java «ENDREM»
-«IF viewControllers.listViews.size!=0-»
+«REM»-------------------------------- MyListAdapter --------------------------------«ENDREM»
+«IF viewControllers.listViews.size != 0-»
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyListAdapter.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
@@ -313,8 +318,9 @@ public final class MyListAdapter extends ArrayAdapter<String> {
 «ENDFILE-»
 «ENDIF-»
 
-«REM» If there's at least one GridView, create MyGridAdapter.java and GridImageView.java«ENDREM»
-«IF viewControllers.gridViews.size!=0-»
+
+«REM»-------------------------------- MyGridAdapter --------------------------------«ENDREM»
+«IF viewControllers.gridViews.size != 0-»
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "MyGridAdapter.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
@@ -364,13 +370,11 @@ public final class MyGridAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -401,6 +405,8 @@ public final class MyGridAdapter extends BaseAdapter {
 }
 «ENDFILE-»
 
+
+«REM»-------------------------------- GridImageView --------------------------------«ENDREM»
 «FILE name+"/mobile/src/main/java/"+companyIdentifier.replaceAll("\\.","/") +"/"+ name.toLowerCase() +"/"+ "GridImageView.java"-»
 package «companyIdentifier».«name.toLowerCase()»;
 
@@ -424,7 +430,7 @@ public class GridImageView extends ImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //Snap to width
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
     }
 
 }

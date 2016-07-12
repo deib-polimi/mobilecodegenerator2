@@ -47,7 +47,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:windowSoftInputMode="stateVisible"
         android:theme="@style/AppTheme">
         «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
-        <service android:name=".ListenerServiceFromWear">
+        <service android:name=".MyWearableListenerService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED"/>
                 <data android:scheme="wear" android:host="*" android:path="/wear-app-message" />

@@ -34,7 +34,7 @@ private String[] «lv.id»Contents;
 «FOREACH listViews AS lv-»
 «IF lv.listType.matches("detailed") || lv.listType.matches("image")»
 //Change this to set a specific image id for each row
-«lv.id»Images = new Integer[]{
+this.«lv.id»Images = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		R.drawable.ic_stars_white,
 	«ENDFOREACH-»
@@ -42,35 +42,35 @@ private String[] «lv.id»Contents;
 «ENDIF-»
 «IF lv.listType.matches("detailed")»
 //Change this to set a specific icon id for each row
-«lv.id»Icons = new Integer[]{
+this.«lv.id»Icons = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		R.drawable.ic_chevron_right_black_36dp,
 	«ENDFOREACH-»
 };
-«lv.id»Subcontents = new String[]{
+this.«lv.id»Subcontents = new String[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		"«lvc.subtitle»",
 	«ENDFOREACH-»
 };
 «ENDIF-»
-«lv.id»Contents = new String[]{
+this.«lv.id»Contents = new String[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		"«lvc.title»",
 	«ENDFOREACH-»
 };
 «IF lv.listType.matches("detailed")»
-«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Subcontents, «lv.id»Images, «lv.id»Icons);
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_detailed_layout, this.«lv.id»Contents, this.«lv.id»Subcontents, this.«lv.id»Images, this.«lv.id»Icons);
 «ENDIF-»
 «IF lv.listType.matches("image")»
-«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_image_layout, «lv.id»Contents, «lv.id»Images);
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_image_layout, this.«lv.id»Contents, this.«lv.id»Images);
 «ENDIF-»
 «IF lv.listType.matches("simple")»
-«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_simple_layout, «lv.id»Contents);
+this.«lv.id»Adapter = new MyListAdapter(this, R.layout.«lv.id.toLowerCase()»_simple_layout, this.«lv.id»Contents);
 «ENDIF-»
-«lv.id» = (ListView) findViewById(R.id.«lv.id»);
-«lv.id».setAdapter(«lv.id»Adapter);
+this.«lv.id» = (ListView) this.findViewById(R.id.«lv.id»);
+this.«lv.id».setAdapter(this.«lv.id»Adapter);
 «IF lv.clickListener!=null-»
-«lv.id».setOnItemClickListener(this);
+this.«lv.id».setOnItemClickListener(this);
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
@@ -79,7 +79,7 @@ private String[] «lv.id»Contents;
 «FOREACH listViews AS lv-»
 «IF lv.listType.matches("detailed") || lv.listType.matches("image")»
 //Change this to set a specific image id for each row
-«lv.id»Images = new Integer[]{
+this.«lv.id»Images = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		R.drawable.ic_stars_white,
 	«ENDFOREACH-»
@@ -87,46 +87,46 @@ private String[] «lv.id»Contents;
 «ENDIF-»
 «IF lv.listType.matches("detailed")»
 //Change this to set a specific icon id for each row
-«lv.id»Icons = new Integer[]{
+this.«lv.id»Icons = new Integer[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		R.drawable.ic_chevron_right_black_36dp,
 	«ENDFOREACH-»
 };
-«lv.id»Subcontents = new String[]{
+this.«lv.id»Subcontents = new String[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		"«lvc.subtitle»",
 	«ENDFOREACH-»
 };
 «ENDIF-»
-«lv.id»Contents = new String[]{
+this.«lv.id»Contents = new String[]{
 	«FOREACH lv.listViewCells AS lvc-»
 		"«lvc.title»",
 	«ENDFOREACH-»
 };
 «IF lv.listType.matches("detailed")»
-«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_detailed_layout, «lv.id»Contents, «lv.id»Subcontents, «lv.id»Images, «lv.id»Icons);
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_detailed_layout, this.«lv.id»Contents, this.«lv.id»Subcontents, this.«lv.id»Images, this.«lv.id»Icons);
 «ENDIF-»
 «IF lv.listType.matches("image")»
-«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_image_layout, «lv.id»Contents, «lv.id»Images);
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_image_layout, this.«lv.id»Contents, this.«lv.id»Images);
 «ENDIF-»
 «IF lv.listType.matches("simple")»
-«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_simple_layout, «lv.id»Contents);
+this.«lv.id»Adapter = new MyListAdapter(getActivity(), R.layout.«lv.id.toLowerCase()»_simple_layout, this.«lv.id»Contents);
 «ENDIF-»
-«lv.id» = (ListView) rootView.findViewById(R.id.«lv.id»);
-«lv.id».setAdapter(«lv.id»Adapter);
+this.«lv.id» = (ListView) rootView.findViewById(R.id.«lv.id»);
+this.«lv.id».setAdapter(this.«lv.id»Adapter);
 «IF lv.clickListener!=null-»
-«lv.id».setOnItemClickListener(this);
+this.«lv.id».setOnItemClickListener(this);
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onItemClick FOR ViewController-»
 «FOREACH listViews AS lv-»
-«IF lv.clickListener!=null-»
+«IF lv.clickListener != null-»
 if(l.getId() == R.id.«lv.id»){
-	String clickedItem = «lv.id»Contents[position];
-	«IF lv.clickListener.navigation!=null-»
-	Intent intent = new Intent(«this.name»Activity.this, «lv.clickListener.navigation.destination»Activity.class);
+	String clickedItem = this.«lv.id»Contents[position];
+	«IF lv.clickListener.navigation != null-»
+	Intent intent = new Intent(«name»Activity.this, «lv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
 	startActivity(intent);
 	«ELSE-»
@@ -141,7 +141,7 @@ if(l.getId() == R.id.«lv.id»){
 «FOREACH listViews AS lv-»
 «IF lv.clickListener!=null-»
 if(l.getId() == R.id.«lv.id»){
-	String clickedItem = «lv.id»Contents[position];
+	String clickedItem = this.«lv.id»Contents[position];
 	«IF lv.clickListener.navigation!=null-»
 	Intent intent = new Intent(getActivity(), «lv.clickListener.navigation.destination»Activity.class);
 	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
@@ -153,7 +153,3 @@ if(l.getId() == R.id.«lv.id»){
 «ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
-
-
-
-

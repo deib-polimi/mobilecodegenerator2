@@ -23,8 +23,8 @@ private SwitchCompat «s.id»Button;
 
 «DEFINE onCreate FOR ViewController-»
 «FOREACH switches AS s-»
-«s.id»Button = (SwitchCompat) this.findViewById(R.id.«s.id»Button);
-«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+this.«s.id»Button = (SwitchCompat) this.findViewById(R.id.«s.id»Button);
+this.«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Log.i("Checked", isChecked+"");
@@ -35,8 +35,8 @@ private SwitchCompat «s.id»Button;
 
 «DEFINE onCreateView FOR ViewController-»
 «FOREACH switches AS s-»
-«s.id»Button = (SwitchCompat) rootView.findViewById(R.id.«s.id»Button);
-«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+this.«s.id»Button = (SwitchCompat) rootView.findViewById(R.id.«s.id»Button);
+this.«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Log.i("Checked", isChecked+"");
