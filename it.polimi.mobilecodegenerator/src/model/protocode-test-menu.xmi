@@ -17,9 +17,6 @@
     <viewControllers name="B" backgroundColor="" backgroundImage="" launcher="false">
         <progressDialogs id="peciProgressDialog" title="title" message="message" spinner="false"/>
         <listViews id="cfsrListView" posX="0" posY="0" width="270" height="125" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='B']" backgroundColor="" listType="simple">
-            <clickListener>
-                <navigation destination="A"/>
-            </clickListener>
             <listViewCells title="newListItem" subtitle="Content"/>
             <listViewCells title="newListItem" subtitle="Content"/>
         </listViews>
@@ -35,9 +32,6 @@
     <viewControllers name="C" backgroundColor="" backgroundImage="" launcher="false">
         <asyncTasks name="skvsfAsyncTask"/>
         <gridViews id="jcmGridView" posX="0" posY="0.0000152587890625" width="204" height="205" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='C']" gridType="simple">
-            <clickListener>
-                <navigation destination="A"/>
-            </clickListener>
             <gridViewCells title="newGridCell"/>
             <gridViewCells title="newGridCell"/>
         </gridViews>
