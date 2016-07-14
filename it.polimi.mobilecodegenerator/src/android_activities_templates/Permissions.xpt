@@ -39,8 +39,6 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
 «DEFINE onCreateView FOR ViewController-»
 «IF videocameraController != null -»
-this.rootView = rootView;
-
 //Request permissions to save the video at runtime ONLY for API >= 23
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 	requestPermissions(
@@ -51,8 +49,6 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 }
 «ENDIF-»
 «IF audioRecorder != null -»
-this.rootView = rootView;
-
 //Request permissions to record audio at runtime ONLY for API >= 23
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 	requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},

@@ -27,7 +27,7 @@ private Switch «s.id»Button;
 «s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.i("Checked", isChecked+"");
+        Log.i("onCheckedChanged","«s.id»Button is checked : " + isChecked);
     }
 });
 «ENDFOREACH-»

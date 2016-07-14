@@ -22,14 +22,14 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FILE name+"/wear/src/main/AndroidManifest.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="«this.companyIdentifier».«this.name.toLowerCase()»" >
+    package="«companyIdentifier».«name.toLowerCase()»" >
 
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="«this.name.toLowerCase()»"
+        android:label="«name»"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         «IF existsAtLeastOne(watchControllers.watchVoiceMessage)-»
@@ -42,8 +42,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«ENDIF-»
 		«FOREACH watchControllers AS wc-»
 		<activity
-            android:name="«wc.application.companyIdentifier».«this.name.toLowerCase()».«wc.name»Activity"
-            android:label="«this.name.toLowerCase()»">
+            android:name="«wc.application.companyIdentifier».«name.toLowerCase()».«wc.name.toFirstUpper()»Activity"
+            android:label="«name»">
             «IF wc.launcher-»
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -126,8 +126,8 @@ this.«lv.id».setOnItemClickListener(this);
 if(l.getId() == R.id.«lv.id»){
 	String clickedItem = this.«lv.id»Contents[position];
 	«IF lv.clickListener.navigation != null-»
-	Intent intent = new Intent(«name»Activity.this, «lv.clickListener.navigation.destination»Activity.class);
-	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
+	Intent intent = new Intent(«name.toFirstUpper()»Activity.this, «lv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination.toFirstUpper()»Activity
 	startActivity(intent);
 	«ELSE-»
 	//TODO implement the action
@@ -143,8 +143,8 @@ if(l.getId() == R.id.«lv.id»){
 if(l.getId() == R.id.«lv.id»){
 	String clickedItem = this.«lv.id»Contents[position];
 	«IF lv.clickListener.navigation!=null-»
-	Intent intent = new Intent(getActivity(), «lv.clickListener.navigation.destination»Activity.class);
-	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination»Activity
+	Intent intent = new Intent(getActivity(), «lv.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+	//use putExtra method of Intent here for passing additional information to «lv.clickListener.navigation.destination.toFirstUpper()»Activity
 	startActivity(intent);
 	«ELSE-»
 	//TODO implement the action

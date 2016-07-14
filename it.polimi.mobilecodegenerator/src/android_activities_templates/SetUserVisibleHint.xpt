@@ -22,6 +22,10 @@ if (isVisibleToUser) {
 
 	«EXPAND android_activities_templates::ProgressDialogs::setUserVisibleHint-»
 	
+	«EXPAND android_activities_templates::Datepickers::setUserVisibleHint-»
+	
+	«EXPAND android_activities_templates::Timepickers::setUserVisibleHint-»
+	
 } else {
 
 	«EXPAND android_activities_templates::Audio::setUserVisibleHint-»

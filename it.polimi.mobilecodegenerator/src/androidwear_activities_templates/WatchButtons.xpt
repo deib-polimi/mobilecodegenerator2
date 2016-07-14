@@ -29,8 +29,8 @@ private Button «b.id»;
 	@Override
 	public void onClick(View v) {
 		«IF b.watchClickListener.watchNavigation != null-»
-		Intent intent = new Intent(«this.name»Activity.this, «b.watchClickListener.watchNavigation.destination»Activity.class);
-		//use putExtra method of Intent here for passing additional information to «b.watchClickListener.watchNavigation.destination»Activity
+		Intent intent = new Intent(«name.toFirstUpper()»Activity.this, «b.watchClickListener.watchNavigation.destination.toFirstUpper()»Activity.class);
+		//use putExtra method of Intent here for passing additional information to «b.watchClickListener.watchNavigation.destination.toFirstUpper()»Activity
 		startActivity(intent);
 		«ELSE-»
 		//TODO implement the action

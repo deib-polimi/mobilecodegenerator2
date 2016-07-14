@@ -29,8 +29,8 @@ this.«b.id».setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		«IF b.clickListener.navigation != null-»
-		Intent intent = new Intent(«this.name»Activity.this, «b.clickListener.navigation.destination»Activity.class);
-		//use putExtra method of Intent here for passing additional information to «b.clickListener.navigation.destination»Activity
+		Intent intent = new Intent(«name.toFirstUpper()»Activity.this, «b.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+		//use putExtra method of Intent here for passing additional information to «b.clickListener.navigation.destination.toFirstUpper()»Activity
 		startActivity(intent);
 		«ELSE-»
 		//TODO implement the action
@@ -49,8 +49,8 @@ this.«b.id».setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
 		«IF b.clickListener.navigation != null-»
-		Intent intent = new Intent(getActivity(), «b.clickListener.navigation.destination»Activity.class);
-		//use putExtra method of Intent here for passing additional information to «b.clickListener.navigation.destination»Activity
+		Intent intent = new Intent(getActivity(), «b.clickListener.navigation.destination.toFirstUpper()»Activity.class);
+		//use putExtra method of Intent here for passing additional information to «b.clickListener.navigation.destination.toFirstUpper()»Activity
 		startActivity(intent);
 		«ELSE-»
 		//TODO implement the action

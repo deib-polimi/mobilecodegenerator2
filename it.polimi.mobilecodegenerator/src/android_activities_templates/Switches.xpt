@@ -27,7 +27,7 @@ this.«s.id»Button = (SwitchCompat) this.findViewById(R.id.«s.id»Button);
 this.«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.i("Checked", isChecked+"");
+        Log.i("onCheckedChanged","«s.id»Button is checked : " + isChecked);
     }
 });
 «ENDFOREACH-»
@@ -39,7 +39,7 @@ this.«s.id»Button = (SwitchCompat) rootView.findViewById(R.id.«s.id»Button);
 this.«s.id»Button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.i("Checked", isChecked+"");
+        Log.i("onCheckedChanged","«s.id»Button is checked : " + isChecked);
     }
 });
 «ENDFOREACH-»

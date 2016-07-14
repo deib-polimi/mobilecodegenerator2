@@ -368,7 +368,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity">
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -420,7 +420,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «ELSEIF !backgroundColor.matches("")-»
     android:background="«backgroundColor»"
     «ENDIF-»
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Fragment">
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Fragment">
     
 	«FOREACH imageViews AS iv-»
 	<ImageView
@@ -567,7 +567,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
 			android:id="@+id/«d.id»Picker"
 			android:layout_width="348dp"
-			android:layout_height="358dp"
+			android:layout_height="365dp"
 			app:mcv_showOtherDates="all"
 			app:mcv_firstDayOfWeek="monday"
 			app:mcv_selectionColor="@color/colorAccent" />
@@ -602,9 +602,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         android:text="Rec"/>
 	«ENDIF-»
 	«IF map != null-»
-	<fragment
+	<com.google.android.gms.maps.MapView
 		«EXPAND uiPhoneControl FOR map»
-		android:name="com.google.android.gms.maps.SupportMapFragment"/>
+	/>
     «ENDIF-»
 	«FOREACH audioPlayers AS ap-»
 	<RelativeLayout
@@ -693,7 +693,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity">
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -731,7 +731,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:background="«backgroundColor»"
     «ENDIF-»
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
     tools:showIn="@layout/activity_«name.toLowerCase()»">
     
 	«FOREACH imageViews AS iv-»
@@ -879,7 +879,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
 			android:id="@+id/«d.id»Picker"
 			android:layout_width="348dp"
-			android:layout_height="358dp"
+			android:layout_height="365dp"
 			app:mcv_showOtherDates="all"
 			app:mcv_firstDayOfWeek="monday"
 			app:mcv_selectionColor="@color/colorAccent" />

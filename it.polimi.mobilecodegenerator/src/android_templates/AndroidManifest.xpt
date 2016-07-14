@@ -22,9 +22,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «FILE name+"/mobile/src/main/AndroidManifest.xml"-»
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="«this.companyIdentifier».«this.name.toLowerCase()»" >
+    package="«companyIdentifier».«name.toLowerCase()»" >
     
-    «IF viewControllers.map != null-»
+    «IF existsAtLeastOne(viewControllers.map)-»
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     «ENDIF-»
 	«IF viewControllers.videoViews.sourceType.toString().contains("remoteFile") ||
@@ -42,7 +42,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="«this.name.toLowerCase()»"
+        android:label="«name»"
         android:supportsRtl="true"
         android:windowSoftInputMode="stateVisible"
         android:theme="@style/AppTheme">
@@ -68,8 +68,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         «FOREACH viewControllers AS vc-»
         «IF vc.launcher-»
         <activity
-            android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
-            android:label="«this.name»" 
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
             android:theme="@style/AppTheme.NoActionBar">
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,16 +78,16 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
         </activity>
         «ELSEIF !vc.launcher && !isAMenuDestination(vc.name, vc.application.menu.menuItems.navigation.destination)-»
         <activity
-            android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
-            android:label="«this.name»" 
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
             android:theme="@style/AppTheme.NoActionBar"/>
         «ENDIF-»
 		«ENDFOREACH-»
         «ELSE-»
         «FOREACH viewControllers AS vc-»
 		<activity
-            android:name="«vc.application.companyIdentifier».«this.name.toLowerCase()».«vc.name»Activity"
-            android:label="«this.name»" 
+            android:name="«vc.application.companyIdentifier».«name.toLowerCase()».«vc.name.toFirstUpper()»Activity"
+            android:label="«name»" 
             android:theme="@style/AppTheme.NoActionBar">
             «IF vc.launcher-»
 			<intent-filter>

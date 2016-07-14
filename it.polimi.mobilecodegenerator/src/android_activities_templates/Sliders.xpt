@@ -27,17 +27,17 @@ this.«s.id» = (AppCompatSeekBar) this.findViewById(R.id.«s.id»Bar);
 this.«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        Log.i("Progress", progress+"");
+        Log.i("onProgressChanged","«s.id» progress : " + progress);
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-		//TODO
+		//TODO implement the action
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-		//TODO
+		//TODO implement the action
     }
 });
 «ENDFOREACH-»
@@ -49,17 +49,17 @@ this.«s.id» = (AppCompatSeekBar) rootView.findViewById(R.id.«s.id»Bar);
 this.«s.id».setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        Log.i("Progress", progress+"");
+        Log.i("onProgressChanged","«s.id» progress : " + progress);
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-		//TODO
+		//TODO implement the action
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-		//TODO
+		//TODO implement the action
     }
 });
 «ENDFOREACH-»

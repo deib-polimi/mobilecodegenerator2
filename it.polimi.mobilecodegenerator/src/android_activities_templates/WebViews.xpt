@@ -31,7 +31,8 @@ String «wv.id»HTMLContent = Utils.fromInputStreamToString(this.getResources().op
 this.«wv.id».loadDataWithBaseURL("file:///android_asset/", «wv.id»HTMLContent, "text/html", "utf-8", null);
 «ELSE-»
 /*
-String «wv.id»HTMLContent = Utils.fromInputStreamToString(this.getResources().openRawResource(R.raw.filename...)); //TODO insert local html file name
+//TODO insert local html file name
+String «wv.id»HTMLContent = Utils.fromInputStreamToString(this.getResources().openRawResource(R.raw.filename...));
 this.«wv.id».loadDataWithBaseURL("file:///android_asset/", «wv.id»HTMLContent, "text/html", "utf-8", null);
 */
 «ENDIF-»
@@ -48,7 +49,8 @@ String «wv.id»HTMLContent = Utils.fromInputStreamToString(getResources().openRaw
 this.«wv.id».loadDataWithBaseURL("file:///android_asset/", «wv.id»HTMLContent, "text/html", "utf-8", null);
 «ELSE-»
 /*
-String «wv.id»HTMLContent = Utils.fromInputStreamToString(getResources().openRawResource(R.raw.filename...)); //TODO insert local html file name
+//TODO insert local html file name
+String «wv.id»HTMLContent = Utils.fromInputStreamToString(getResources().openRawResource(R.raw.filename...));
 this.«wv.id».loadDataWithBaseURL("file:///android_asset/", «wv.id»HTMLContent, "text/html", "utf-8", null);
 */
 «ENDIF-»

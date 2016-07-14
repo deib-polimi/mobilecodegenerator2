@@ -18,3 +18,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE onPause FOR ViewController-»
 «EXPAND android_activities_templates::Audio::onPause-»
 «ENDDEFINE-»
+
+«DEFINE onPauseFrag FOR ViewController-»
+«EXPAND android_activities_templates::Map::onPauseFrag-»
+«EXPAND android_activities_templates::Audio::onPauseFrag-»
+«ENDDEFINE-»

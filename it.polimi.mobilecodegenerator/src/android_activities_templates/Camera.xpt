@@ -134,7 +134,6 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 			this.videoFileUri = data.getData();
 			String localVideoFileUri = this.copyVideoInVideosFolder(this.videoFileUri);
 			«IF !videocameraController.videoViewId.matches("")-»
-			this.«videocameraController.videoViewId».setBackgroundColor(Color.TRANSPARENT);
         	this.«videocameraController.videoViewId».setVideoURI(this.videoFileUri);
             this.«videocameraController.videoViewId».setMediaController(new MediaController(this));
             this.«videocameraController.videoViewId».requestFocus();
@@ -239,6 +238,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 			this.videoFileUri = data.getData();
 			String localVideoFileUri = this.copyVideoInVideosFolder(this.videoFileUri);
 			«IF !videocameraController.videoViewId.matches("")-»
+			this.«videocameraController.videoViewId».setBackgroundColor(Color.TRANSPARENT);
         	this.«videocameraController.videoViewId».setVideoURI(this.videoFileUri);
             this.«videocameraController.videoViewId».setMediaController(new MediaController(getActivity()));
             this.«videocameraController.videoViewId».requestFocus();

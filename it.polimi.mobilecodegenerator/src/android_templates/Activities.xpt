@@ -27,8 +27,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «DEFINE fragmentsAndActivity FOR ViewController-»
 «REM»Launcher ViewController is translated into an Activity containing the SectionPagerAdapter«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) && launcher-»
-«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
-package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +39,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
-public class «this.name»Activity extends AppCompatActivity {
+public class «name.toFirstUpper()»Activity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -47,15 +47,15 @@ public class «this.name»Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_«this.name.toLowerCase()»);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+        setContentView(R.layout.activity_«name.toLowerCase()»);
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.«name.toLowerCase()»_toolbar);
         setSupportActionBar(toolbar);
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.«name.toLowerCase()»_container);
+        mViewPager = (ViewPager) this.findViewById(R.id.«name.toLowerCase()»_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.«name.toLowerCase()»_tabs);
+        TabLayout tabLayout = (TabLayout) this.findViewById(R.id.«name.toLowerCase()»_tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -71,7 +71,7 @@ public class «this.name»Activity extends AppCompatActivity {
             switch (position) {
             	«FOREACH 0.upTo(application.menu.menuItems.size - 1) AS i-»
                 case «i»:
-                    return new «application.menu.menuItems.get(i).navigation.destination»Fragment();
+                    return new «application.menu.menuItems.get(i).navigation.destination.toFirstUpper()»Fragment();
                 «ENDFOREACH-»
             }
             return null;
@@ -87,7 +87,7 @@ public class «this.name»Activity extends AppCompatActivity {
             switch (position) {
             	«FOREACH 0.upTo(application.menu.menuItems.size - 1) AS i-»
                 case «i»:
-                    return "«application.menu.menuItems.get(i).navigation.destination.toUpperCase()»";
+                    return "«application.menu.menuItems.get(i).title.toUpperCase()»";
                 «ENDFOREACH-»
             }
             return null;
@@ -100,22 +100,22 @@ public class «this.name»Activity extends AppCompatActivity {
 
 «REM»Menu items are translated into Fragments of the Launcher ViewController«ENDREM»
 «IF isAMenuDestination(name, application.menu.menuItems.navigation.destination) -»
-«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Fragment.java"-»
-package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Fragment.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
 
 «EXPAND android_activities_templates::Imports::importsFrag-»
 
-public class «this.name»Fragment extends Fragment «EXPAND android_activities_templates::Implements::implements-» {
+public class «name.toFirstUpper()»Fragment extends Fragment «EXPAND android_activities_templates::Implements::implements-» {
 
 	private View rootView;
 	«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»	
 
-	public «this.name»Fragment() {}
+	public «name.toFirstUpper()»Fragment() {}
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     
-    	View rootView = inflater.inflate(R.layout.fragment_«this.name.toLowerCase()», container, false);
+    	View rootView = inflater.inflate(R.layout.fragment_«name.toLowerCase()», container, false);
     	this.rootView = rootView;
     	
     	«EXPAND android_activities_templates::OnCreateView::onCreateView-»
@@ -164,7 +164,7 @@ public class «this.name»Fragment extends Fragment «EXPAND android_activities_tem
 	@Override
 	public void onPause() {
 		super.onPause();
-		«EXPAND android_activities_templates::OnPause::onPause-»
+		«EXPAND android_activities_templates::OnPause::onPauseFrag-»
 	}
 
 }
@@ -172,12 +172,12 @@ public class «this.name»Fragment extends Fragment «EXPAND android_activities_tem
 
 «REM»All the other ViewControllers«ENDREM»
 «ELSE-»
-«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
-package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
 	
 «EXPAND android_activities_templates::Imports::imports-»
 
-public class «this.name»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
+public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
 	
 	«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»
 	
@@ -185,7 +185,7 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_«name.toLowerCase()»);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+		Toolbar toolbar = (Toolbar) this.findViewById(R.id.«name.toLowerCase()»_toolbar);
 		setSupportActionBar(toolbar);
 		
 		«EXPAND android_activities_templates::OnCreate::onCreate-»
@@ -250,12 +250,12 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 
 
 «DEFINE activity FOR ViewController-»
-«FILE this.application.name+"/mobile/src/main/java/"+this.application.companyIdentifier.replaceAll("\\.","/") +"/"+this.application.name.toLowerCase() +"/"+name + "Activity.java"-»
-package «this.application.companyIdentifier».«this.application.name.toLowerCase()»;
+«FILE application.name+"/mobile/src/main/java/"+application.companyIdentifier.replaceAll("\\.","/") +"/"+application.name.toLowerCase() +"/"+name.toFirstUpper()+"Activity.java"-»
+package «application.companyIdentifier».«application.name.toLowerCase()»;
 	
 «EXPAND android_activities_templates::Imports::imports-»
 
-public class «this.name»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
+public class «name.toFirstUpper()»Activity extends AppCompatActivity «EXPAND android_activities_templates::Implements::implements-» {
 	
 	«EXPAND android_activities_templates::AttributesDeclarations::attributesDeclarations-»
 	
@@ -263,7 +263,7 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_«name.toLowerCase()»);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.«name.toLowerCase()»_toolbar);
+		Toolbar toolbar = (Toolbar) this.findViewById(R.id.«name.toLowerCase()»_toolbar);
 		setSupportActionBar(toolbar);
 		
 		«EXPAND android_activities_templates::OnCreate::onCreate-»
@@ -296,27 +296,23 @@ public class «this.name»Activity extends AppCompatActivity «EXPAND android_activ
 	
 	@Override
 	protected void onStart() {
-		//TODO Auto-generated method stub
 		super.onStart();
 	}
 	
 	@Override
 	protected void onResume() {
-		//TODO Auto-generated method stub
 		super.onResume();
 		«EXPAND android_activities_templates::OnResume::onResume-»
 	}
 	
 	@Override
 	protected void onPause() {
-		//TODO Auto-generated method stub
 		super.onPause();
 		«EXPAND android_activities_templates::OnPause::onPause-»
 	}
 	
 	@Override
 	protected void onStop() {
-		//TODO Auto-generated method stub
 		super.onStop();
 	}
 }

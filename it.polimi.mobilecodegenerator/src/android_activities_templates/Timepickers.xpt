@@ -22,11 +22,13 @@ private Picker «t.id»Picker;
 «ENDDEFINE-»
 
 «DEFINE onCreate FOR ViewController-»
-«FOREACH timepickers AS t-»
-this.«t.id»Picker = (Picker) this.findViewById(R.id.«t.id»Picker);
+«IF timepickers.size > 0-»
 Calendar calendar = Calendar.getInstance();
 int hours = calendar.get(Calendar.HOUR);
 int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+this.«t.id»Picker = (Picker) this.findViewById(R.id.«t.id»Picker);
 this.«t.id»Picker.setTime(hours, minutes);
 this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 	@Override
@@ -36,18 +38,20 @@ this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 		int hours = calendar.get(Calendar.HOUR);
 		int minutes = calendar.get(Calendar.MINUTE);
 		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
-		Log.i("Time", hours + ":" + minutes + " " + ampm);
+		Log.i("«t.id» time", hours + ":" + minutes + " " + ampm);
 	}
 });
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreateView FOR ViewController-»
-«FOREACH timepickers AS t-»
-this.«t.id»Picker = (Picker) rootView.findViewById(R.id.«t.id»Picker);
+«IF timepickers.size > 0-»
 Calendar calendar = Calendar.getInstance();
 int hours = calendar.get(Calendar.HOUR);
 int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+this.«t.id»Picker = (Picker) rootView.findViewById(R.id.«t.id»Picker);
 this.«t.id»Picker.setTime(hours, minutes);
 this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 	@Override
@@ -57,9 +61,24 @@ this.«t.id»Picker.setTimeChangedListener(new TimeChangedListener() {
 		int hours = calendar.get(Calendar.HOUR);
 		int minutes = calendar.get(Calendar.MINUTE);
 		String ampm = calendar.get(Calendar.AM_PM) == 0 ? "AM" : "PM";
-		Log.i("Time", hours + ":" + minutes + " " + ampm);
+		Log.i("«t.id» time", hours + ":" + minutes + " " + ampm);
 	}
 });
 «ENDFOREACH-»
 «ENDDEFINE-»
 
+«DEFINE setUserVisibleHint FOR ViewController-»
+«IF timepickers.size > 0-»
+Calendar calendar = Calendar.getInstance();
+int hours = calendar.get(Calendar.HOUR);
+int minutes = calendar.get(Calendar.MINUTE);
+«ENDIF-»
+«FOREACH timepickers AS t-»
+//Restore current hour eventually
+try {
+	this.«t.id»Picker.setTime(hours, minutes);
+} catch(Exception e) {
+	e.printStackTrace();
+}
+«ENDFOREACH-»
+«ENDDEFINE-»

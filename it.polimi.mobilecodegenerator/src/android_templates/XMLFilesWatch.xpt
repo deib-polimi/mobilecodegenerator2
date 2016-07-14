@@ -31,7 +31,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «FILE application.name+"/wear/src/main/res/layout/activity_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.wearable.view.WatchViewStub xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.wearable.view.WatchViewStub
+	xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/watch_view_stub"
@@ -39,19 +40,19 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     android:layout_height="match_parent"
     app:rectLayout="@layout/rect_activity_«name.toLowerCase()»"
     app:roundLayout="@layout/round_activity_«name.toLowerCase()»"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
     tools:deviceIds="wear"></android.support.wearable.view.WatchViewStub>
 «ENDFILE-»
 
 «FILE application.name+"/wear/src/main/res/layout/rect_activity_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
     tools:deviceIds="wear_square">
 
 	«EXPAND widgets FOR this»
@@ -60,8 +61,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	<Button
         «EXPAND uiWatchControl FOR watchVoiceMessage»
         android:textAllCaps="false"
-        android:text="«watchVoiceMessage.title»"
-	/>
+        android:text="«watchVoiceMessage.title»"/>
 
     <RelativeLayout
         android:id="@+id/delayed_confirm_container"
@@ -96,7 +96,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             android:layout_above="@+id/delayed_confirm"
             android:text="I made a reservation at 7:30 pm"
 			android:textSize="16dp"
-            android:textColor="#333" />
+            android:textColor="#333"/>
 
         <android.support.wearable.view.DelayedConfirmationView
             android:id="@+id/delayed_confirm"
@@ -120,23 +120,23 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             android:gravity="center_vertical"
             android:text="Sending..."
             android:textColor="#999"
-            android:textSize="16dp" />
+            android:textSize="16dp"/>
 
     </RelativeLayout>        
 	«ENDIF-»
 	
-
 </RelativeLayout>
 «ENDFILE-»
 
 «FILE application.name+"/wear/src/main/res/layout/round_activity_"+name.toLowerCase()+".xml"-»
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toLowerCase().toFirstUpper()»Activity"
+    tools:context="«application.companyIdentifier».«application.name.toLowerCase()».«name.toFirstUpper()»Activity"
     tools:deviceIds="wear_round">
     
 	«EXPAND widgets FOR this»
@@ -240,7 +240,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	«FOREACH watchSwitches AS s-»
 	<RelativeLayout
-        «EXPAND uiWatchControl FOR s» >
+        «EXPAND uiWatchControl FOR s»
+	>
     
         <Switch
             android:id="@+id/«s.id»Button"
@@ -249,7 +250,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
             android:layout_height="match_parent"
             android:checked="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp" />
+            android:layout_marginRight="8dp"/>
 
     </RelativeLayout> 
 	«ENDFOREACH-»

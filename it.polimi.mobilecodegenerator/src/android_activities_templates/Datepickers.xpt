@@ -28,7 +28,7 @@ this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
 this.«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
 	@Override
 	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-		Log.i("Date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
+		Log.i("«d.id» date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
 	}
 });
 «ENDFOREACH-»
@@ -41,8 +41,19 @@ this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
 this.«d.id»Picker.setOnDateChangedListener(new OnDateSelectedListener() {
 	@Override
 	public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-		Log.i("Date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
+		Log.i("«d.id» date", date.getDay() + "/" + (date.getMonth()+1) + "/" + date.getYear());
 	}
 });
+«ENDFOREACH-»
+«ENDDEFINE-»
+
+«DEFINE setUserVisibleHint FOR ViewController-»
+«FOREACH datepickers AS d-»
+//Restore current date eventually
+try {
+	this.«d.id»Picker.setSelectedDate(Calendar.getInstance());
+} catch(Exception e) {
+	e.printStackTrace();
+}
 «ENDFOREACH-»
 «ENDDEFINE-»

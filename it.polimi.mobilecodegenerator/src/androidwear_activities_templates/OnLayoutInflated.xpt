@@ -16,10 +16,8 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «IMPORT metamodel»
 
 «DEFINE onLayoutInflated FOR WatchController-»
- 
 «EXPAND androidwear_activities_templates::WatchButtons::onLayoutInflated-»
 «EXPAND androidwear_activities_templates::WatchSliders::onLayoutInflated-»
 «EXPAND androidwear_activities_templates::WatchSwitches::onLayoutInflated-»
 «EXPAND androidwear_activities_templates::WatchVoiceMessage::onLayoutInflated-»
-
 «ENDDEFINE-»
