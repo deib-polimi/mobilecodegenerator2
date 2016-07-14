@@ -31,7 +31,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getPackageName()+"/"+R
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(this));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 «ELSE-»
 /*
 //TODO insert local file name
@@ -39,7 +39,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPacka
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(this));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 */
 «ENDIF-»
 «ELSEIF vv.sourceType.toString().matches("remoteFile")-»
@@ -48,7 +48,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("«vv.fileUri»");
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(this));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 «ELSE-»
 /*
 //TODO insert the remote file uri
@@ -56,7 +56,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("http://...");
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(this));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 */
 «ENDIF-»
 «ENDIF-»
@@ -88,14 +88,14 @@ Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPacka
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(getActivity()));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 «ELSE-»
 /*
 //TODO insert local file name
 Uri «vv.id»VideoFileUri = Uri.parse("android.resource://"+getActivity().getPackageName()+"/"+R.raw.filename);
 this.«vv.id».setMediaController(new MediaController(getActivity()));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 */
 «ENDIF-»
 «ELSEIF vv.sourceType.toString().matches("remoteFile")-»
@@ -104,7 +104,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("«vv.fileUri»");
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(getActivity()));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 «ELSE-»
 /*
 //TODO insert the remote file uri
@@ -112,7 +112,7 @@ Uri «vv.id»VideoFileUri = Uri.parse("http://...");
 this.«vv.id».setVideoURI(«vv.id»VideoFileUri);
 this.«vv.id».setMediaController(new MediaController(getActivity()));
 this.«vv.id».requestFocus();
-this.«vv.id».start();
+//this.«vv.id».start();
 */
 «ENDIF-»
 «ENDIF-»
