@@ -2,8 +2,9 @@
 <metamodel:Application xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newAppMenu" companyIdentifier="it.polimi">
+    xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newApp" companyIdentifier="it.polimi">
     <viewControllers name="A" backgroundColor="" backgroundImage="snapchat.jpg" launcher="true">
+        <alertDialogs id="qrduAlertDialog" title="title" message="message"/>
         <textViews id="klsmLabel" posX="0" posY="96" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="left" textColor="#ff0000" textSize="16" textDecoration="none"/>
         <textViews id="ontvLabel" posX="114" posY="96" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="center" textColor="#000000" textSize="16" textDecoration="bold"/>
         <textViews id="jhennLabel" posX="233" posY="95" width="88" height="36" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="false" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" content="Label" textAlign="right" textColor="#000000" textSize="16" textDecoration="italic"/>
@@ -14,7 +15,11 @@
         <webViews id="ghvWebView" posX="0" posY="544.0000305175781" width="240" height="128" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="false" alignParentBottom="true" alignParentStart="false" alignParentEnd="false" viewController="//@viewControllers[name='A']" HTMLFileName="utils_folder_page.html"/>
     </viewControllers>
     <viewControllers name="B" backgroundColor="" backgroundImage="" launcher="false">
+        <progressDialogs id="peciProgressDialog" title="title" message="message" spinner="false"/>
         <listViews id="cfsrListView" posX="0" posY="0" width="270" height="125" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='B']" backgroundColor="" listType="simple">
+            <clickListener>
+                <navigation destination="A"/>
+            </clickListener>
             <listViewCells title="newListItem" subtitle="Content"/>
             <listViewCells title="newListItem" subtitle="Content"/>
         </listViews>
@@ -28,7 +33,11 @@
         </listViews>
     </viewControllers>
     <viewControllers name="C" backgroundColor="" backgroundImage="" launcher="false">
+        <asyncTasks name="skvsfAsyncTask"/>
         <gridViews id="jcmGridView" posX="0" posY="0.0000152587890625" width="204" height="205" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='C']" gridType="simple">
+            <clickListener>
+                <navigation destination="A"/>
+            </clickListener>
             <gridViewCells title="newGridCell"/>
             <gridViewCells title="newGridCell"/>
         </gridViews>

@@ -4,6 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:metamodel="http://metamodel/1.0" xsi:schemaLocation="http://metamodel/1.0 ../metamodel/metamodel.ecore" name="newAppNoMenu" companyIdentifier="it.polimi">
     <viewControllers name="A" backgroundColor="" backgroundImage="snapchat.jpg" launcher="true">
+        <alertDialogs id="qrduAlertDialog" title="title" message="message"/>
         <buttons id="dmtckButton" posX="10" posY="8" width="64" height="40" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="false" viewController="//@viewControllers[name='A']" title="B" textColor="" backgroundColor="" borderRadius="2" clickColor="">
             <clickListener>
                 <navigation destination="B"/>
@@ -59,6 +60,7 @@
         </buttons>
     </viewControllers>
     <viewControllers name="B" backgroundColor="" backgroundImage="" launcher="false">
+        <progressDialogs id="peciProgressDialog" title="title" message="message" spinner="false"/>
         <listViews id="cfsrListView" posX="0" posY="0" width="270" height="125" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='B']" backgroundColor="" listType="simple">
             <clickListener>
                 <navigation destination="A"/>
@@ -76,6 +78,7 @@
         </listViews>
     </viewControllers>
     <viewControllers name="C" backgroundColor="" backgroundImage="" launcher="false">
+        <asyncTasks name="skvsfAsyncTask"/>
         <gridViews id="jcmGridView" posX="0" posY="0.0000152587890625" width="204" height="205" paddingTop="0" paddingBottom="0" paddingStart="0" paddingEnd="0" marginTop="0" marginBottom="0" marginStart="0" marginEnd="0" alignParentTop="true" alignParentBottom="false" alignParentStart="true" alignParentEnd="true" viewController="//@viewControllers[name='C']" gridType="simple">
             <clickListener>
                 <navigation destination="A"/>
