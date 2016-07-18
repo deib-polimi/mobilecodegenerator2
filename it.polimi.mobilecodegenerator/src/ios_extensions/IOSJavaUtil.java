@@ -25,7 +25,7 @@ public class IOSJavaUtil {
 	
 	private static HashMap<String, String[]> hexadecimalIdsMap = new HashMap<String, String[]>();
 	private static int count = 1000000;
-	private HashMap<String, String> storyboardImages = new HashMap<String, String>();
+	private static HashMap<String, String> storyboardImages = new HashMap<String, String>();
 	
 	/**
 	 * Returns the first hex id
@@ -193,16 +193,20 @@ public class IOSJavaUtil {
 		return watchControls.length-1;
 	}
 	
-	public void addStoryboardImage(String s) {
-		this.storyboardImages.put(s, "");
+	public static void addStoryboardImage(String imageName) {
+		storyboardImages.put(imageName, "");
+		System.out.println("Adding storyboard image ...");
+		for(int i = 0; i < storyboardImages.size(); i++) {
+			System.out.println("["+i+"] = "+storyboardImages.keySet().toArray()[i]);
+		}
 	}
 	
-	public int numStoryboardImages() {
-		return this.storyboardImages.size()-1;
+	public static int numStoryboardImages() {
+		return storyboardImages.size()-1;
 	}
 	
-	public String getStoryboardImage(Integer index) {
-		return (String) this.storyboardImages.keySet().toArray()[index];
+	public static String getStoryboardImage(Integer index) {
+		return (String) storyboardImages.keySet().toArray()[index];
 	}
 	
 }

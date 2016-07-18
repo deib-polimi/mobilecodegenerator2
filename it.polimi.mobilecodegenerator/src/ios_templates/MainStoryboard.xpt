@@ -15,7 +15,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «IMPORT metamodel»
 «EXTENSION ios_extensions::Java»
+«EXTENSION app_extensions::Java»
 «DEFINE main FOR Application-»
+
 
 «REM»initialViewController exists only in case viewController.size>0 and is the TabBarController if menu exists and menu.menuItems>0 (HP: one of the items references the launcher VC), otherwise is the NavigatorController of the launcher VC.«ENDREM»
 «FILE name+"/"+name+"/Base.lproj/Main.storyboard"-»
@@ -40,7 +42,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	<!--«vc.name»ViewController-->
 	<scene sceneID="«vc.name»ViewControllerSceneID">
 		<objects>
-	        <viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+			«IF isAMenuDestination(vc.name, vc.application.menu.menuItems.navigation.destination)-»
+			<viewController id="«vc.name»ViewControllerID" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+			«ELSE-»
+			<viewController id="«vc.name»ViewControllerID" hidesBottomBarWhenPushed="YES" customClass="«vc.name»ViewController" customModule="«name»" customModuleProvider="target" sceneMemberID="viewController" automaticallyAdjustsScrollViewInsets="NO">
+			«ENDIF-»
 		        <layoutGuides>
 	                <viewControllerLayoutGuide type="top" id="«vc.name»-guide-top"/>
 	            	<viewControllerLayoutGuide type="bottom" id="«vc.name»-guide-bottom"/>

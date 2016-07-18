@@ -21,18 +21,21 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 
 «FILE name+"/"+name+" WatchKit App/Base.lproj/Interface.storyboard"-»
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+«IF watchControllers.size <= 0-»
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES"> 
+«ENDIF-»
 «FOREACH watchControllers AS wc-»
 «IF wc.launcher-» 
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="«wc.name»InterfaceControllerID">
 «ENDIF-»
-«ENDFOREACH-»    
+«ENDFOREACH-»
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
     <scenes>
     	«FOREACH watchControllers AS wc-»
-		<!--«wc.name»ViewController-->
+		<!--«wc.name»WatchController-->
 		<scene sceneID="«wc.name»InterfaceControllerSceneID">
             <objects>
         		«IF wc.launcher-»    	
