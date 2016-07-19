@@ -59,6 +59,8 @@ class «name»ViewController: «EXPAND ios_viewcontrollers_templates::Protocols::pu
 	
 	«EXPAND ios_viewcontrollers_templates::Sliders::sliders-»
 	
+	«EXPAND ios_viewcontrollers_templates::Spinners::spinners-»
+	
 	«EXPAND ios_viewcontrollers_templates::Switches::switches-»
 	
 	«EXPAND ios_viewcontrollers_templates::Timepickers::timepickers-»

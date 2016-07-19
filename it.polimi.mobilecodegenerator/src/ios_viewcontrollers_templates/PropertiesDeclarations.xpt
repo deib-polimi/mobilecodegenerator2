@@ -27,6 +27,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXPAND ios_viewcontrollers_templates::ListViews::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Map::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Sliders::propertiesDeclarations-»
+«EXPAND ios_viewcontrollers_templates::Spinners::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Switches::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::Timepickers::propertiesDeclarations-»
 «EXPAND ios_viewcontrollers_templates::VideoView::propertiesDeclarations-»

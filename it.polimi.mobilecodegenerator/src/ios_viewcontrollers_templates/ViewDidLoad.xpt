@@ -23,5 +23,6 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	«EXPAND ios_viewcontrollers_templates::ImageViews::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::ListViews::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::Map::viewDidLoad-»
+	«EXPAND ios_viewcontrollers_templates::Spinners::viewDidLoad-»
 	«EXPAND ios_viewcontrollers_templates::WebViews::viewDidLoad-»
 «ENDDEFINE-»

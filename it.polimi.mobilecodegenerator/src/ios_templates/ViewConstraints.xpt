@@ -28,6 +28,10 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
     «EXPAND siblingConstraints FOR s»
     «EXPAND parentContraints FOR s»
 «ENDFOREACH-»
+«FOREACH spinners AS s-»
+    «EXPAND siblingConstraints FOR s»
+    «EXPAND parentContraints FOR s»
+«ENDFOREACH-»
 «FOREACH switches AS s-»
     «EXPAND siblingConstraints FOR s»
     «EXPAND parentContraints FOR s»
@@ -144,7 +148,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 							<constraint firstItem="«id»" firstAttribute="top" secondItem="«viewController.name»-guide-top" secondAttribute="bottom" constant="«(marginTop + paddingTop).toInteger()»" id="«id»-alignParentTop"/>
 							«ENDIF-»
 							«IF alignParentBottom-»
-							<constraint firstItem="«viewController.name»-guide-bottom" firstAttribute="top" secondItem="«id»" secondAttribute="bottom" constant="«-(marginBottom + paddingBottom).toInteger()»" id="«id»-alignParentBottom"/>
+							<constraint firstItem="«viewController.name»-guide-bottom" firstAttribute="top" secondItem="«id»" secondAttribute="bottom" constant="«(marginBottom + paddingBottom).toInteger()»" id="«id»-alignParentBottom"/>
 							«ENDIF-»
 							«IF alignParentStart-»
 							<constraint firstItem="«id»" firstAttribute="leading" secondItem="«viewController.name»ViewID" secondAttribute="leading" constant="«(marginStart + paddingStart).toInteger()»" id="«id»-alignParentStart"/>

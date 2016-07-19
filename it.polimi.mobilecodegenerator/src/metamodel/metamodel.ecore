@@ -38,6 +38,8 @@
         upperBound="-1" eType="#//Timepicker" containment="true" eOpposite="#//Timepicker/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sliders" ordered="false"
         upperBound="-1" eType="#//Slider" containment="true" eOpposite="#//Slider/viewController"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="spinners" ordered="false"
+        upperBound="-1" eType="#//Spinner" containment="true" eOpposite="#//Spinner/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="textViews" ordered="false"
         upperBound="-1" eType="#//TextView" containment="true" eOpposite="#//TextView/viewController"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="webViews" ordered="false"
@@ -271,6 +273,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Slider" eSuperTypes="#//UiPhoneControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
         eType="#//ViewController" changeable="false" eOpposite="#//ViewController/sliders"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Spinner" eSuperTypes="#//UiPhoneControl">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"
+        eType="#//ViewController" changeable="false" eOpposite="#//ViewController/spinners"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Switch" eSuperTypes="#//UiPhoneControl">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewController" lowerBound="1"

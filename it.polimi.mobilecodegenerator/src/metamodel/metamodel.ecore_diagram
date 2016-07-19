@@ -778,6 +778,23 @@
     <element xmi:type="ecore:EClass" href="metamodel.ecore#//UiControl"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_24SlEUUSEeajcO7Ms1IPAw" x="576" y="981"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_TquocE2UEea9KbM3syIrAQ" type="2001" fontName=".SF NS Text">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TqvPgE2UEea9KbM3syIrAQ" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Tqv2kE2UEea9KbM3syIrAQ" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Tqv2kU2UEea9KbM3syIrAQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Tqv2kk2UEea9KbM3syIrAQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Tqv2k02UEea9KbM3syIrAQ" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Tqv2lE2UEea9KbM3syIrAQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Tqv2lU2UEea9KbM3syIrAQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Tqv2lk2UEea9KbM3syIrAQ" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Tqv2l02UEea9KbM3syIrAQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Tqv2mE2UEea9KbM3syIrAQ"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="metamodel.ecore#//Spinner"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TquocU2UEea9KbM3syIrAQ" x="1620" y="243"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_-V4GccLuEeKL_aiCnWUpgg"/>
   <element xmi:type="ecore:EPackage" href="metamodel.ecore#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_Bt5hgO9EEeWOM7fVnmFKmQ" type="4003" source="_BsHY0O9EEeWOM7fVnmFKmQ" target="_BsHY3O9EEeWOM7fVnmFKmQ">
@@ -1391,5 +1408,231 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_gy3ckUHREeafs7dzQEamhg" fontName=".SF NS Text"/>
     <element xsi:nil="true"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gy3ckkHREeafs7dzQEamhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TrSCEE2UEea9KbM3syIrAQ" type="4003" source="_BsHY3O9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TrSCE02UEea9KbM3syIrAQ" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TrSCFE2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TrSpIE2UEea9KbM3syIrAQ" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TrSpIU2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TrSCEU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//ViewController/uiControls"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TrSCEk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TrXhoE2UEea9KbM3syIrAQ" type="4003" source="_BsHY3O9EEeWOM7fVnmFKmQ" target="_TquocE2UEea9KbM3syIrAQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TrYIsE2UEea9KbM3syIrAQ" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TrYIsU2UEea9KbM3syIrAQ" x="347" y="21"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TrYIsk2UEea9KbM3syIrAQ" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TrYIs02UEea9KbM3syIrAQ" x="76" y="15"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TrXhoU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//ViewController/spinners"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TrXhok2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TrbzEE2UEea9KbM3syIrAQ" type="4004" source="_BsHY6O9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TrbzEU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TrbzEk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tre2YE2UEea9KbM3syIrAQ" type="4004" source="_BsHY9O9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tre2YU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tre2Yk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Trh5sE2UEea9KbM3syIrAQ" type="4004" source="_BsHZDO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Trh5sU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Trh5sk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TrkV8E2UEea9KbM3syIrAQ" type="4004" source="_BsHZGO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TrkV8U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TrkV8k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TrnZQE2UEea9KbM3syIrAQ" type="4004" source="_BsHZJO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TrnZQU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TrnZQk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Trp1gE2UEea9KbM3syIrAQ" type="4004" source="_BsHZPO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Trp1gU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Trp1gk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Trs40E2UEea9KbM3syIrAQ" type="4004" source="_BsHZVO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Trs40U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Trs40k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Trv8IE2UEea9KbM3syIrAQ" type="4004" source="_BsHZnO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Trv8IU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Trv8Ik2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TryYYE2UEea9KbM3syIrAQ" type="4004" source="_BsHZqO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TryYYU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TryYYk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tr00oE2UEea9KbM3syIrAQ" type="4004" source="_BsHZtO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tr1bsE2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tr1bsU2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tr338E2UEea9KbM3syIrAQ" type="4004" source="_BsHZwO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tr338U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tr338k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tr67QE2UEea9KbM3syIrAQ" type="4004" source="_BsHZzO9EEeWOM7fVnmFKmQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tr67QU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tr67Qk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tr9XgE2UEea9KbM3syIrAQ" type="4004" source="_LmxiQPpUEeWxSPnGdsVTDw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tr9XgU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tr9Xgk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tr_zwE2UEea9KbM3syIrAQ" type="4004" source="_XTwwwBXSEeaFateWPFMrfg" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tr_zwU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tr_zwk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsCQAE2UEea9KbM3syIrAQ" type="4004" source="_Dd4gkBXUEeaUIMcqoW6vhQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsCQAU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsCQAk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsEsQE2UEea9KbM3syIrAQ" type="4004" source="_EJT7MD08EeacZpLwX0_kfg" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsEsQU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsEsQk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsHIgE2UEea9KbM3syIrAQ" type="4004" source="_EJT7PD08EeacZpLwX0_kfg" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsHIgU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsHIgk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsJkwE2UEea9KbM3syIrAQ" type="4004" source="_EJT7SD08EeacZpLwX0_kfg" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsJkwU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsJkwk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsLZ8E2UEea9KbM3syIrAQ" type="4004" source="_e2ViAD09EeacZpLwX0_kfg" target="_24SlEEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsLZ8U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsLZ8k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsPrYE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_BsHY3O9EEeWOM7fVnmFKmQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsQScE2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsQScU2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsQSck2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsQ5gE2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsPrYU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/viewController"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsPrYk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsVK8E2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsVK802UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsVK9E2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsVyAE2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsVyAU2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsVK8U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/below"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsVK8k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsY1UE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsZcYE2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsZcYU2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsZcYk2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsZcY02UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsY1UU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/above"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsY1Uk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TscfsE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsdGwk2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsdGw02UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsdGxE2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsdGxU2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsdGwE2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/toStartOf"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsdGwU2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsgKEE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsgxIE2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsgxIU2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsgxIk2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsgxI02UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsgKEU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/toEndOf"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsgKEk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tsj0cE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Tsj0c02UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Tsj0dE2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Tsj0dU2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TskbgE2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tsj0cU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/alignTop"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tsj0ck2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tsm3wE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Tsne0E2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Tsne0U2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Tsne0k2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Tsne002UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tsm3wU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/alignBottom"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tsm3wk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsrJME2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsrJM02UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsrwQE2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsrwQU2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsrwQk2UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsrJMU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/alignStart"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TsrJMk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_TsuzkE2UEea9KbM3syIrAQ" type="4002" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TsvaoE2UEea9KbM3syIrAQ" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TsvaoU2UEea9KbM3syIrAQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Tsvaok2UEea9KbM3syIrAQ" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Tsvao02UEea9KbM3syIrAQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TsuzkU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xmi:type="ecore:EReference" href="metamodel.ecore#//UiPhoneControl/alignEnd"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tsuzkk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Tsyd8E2UEea9KbM3syIrAQ" type="4004" source="_AnmYcEUSEeajcO7Ms1IPAw" target="_24SlEEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Tsyd8U2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Tsyd8k2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Ts2IUE2UEea9KbM3syIrAQ" type="4004" source="_TquocE2UEea9KbM3syIrAQ" target="_AnmYcEUSEeajcO7Ms1IPAw">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ts2IUU2UEea9KbM3syIrAQ" fontName=".SF NS Text"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ts2IUk2UEea9KbM3syIrAQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
   </edges>
 </notation:Diagram>

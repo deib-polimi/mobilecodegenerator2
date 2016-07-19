@@ -27,6 +27,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 «EXPAND android_activities_templates::ListViews::attributesDeclarations-»
 «EXPAND android_activities_templates::Map::attributesDeclarations-»
 «EXPAND android_activities_templates::Sliders::attributesDeclarations-»
+«EXPAND android_activities_templates::Spinners::attributesDeclarations-»
 «EXPAND android_activities_templates::Switches::attributesDeclarations-»
 «EXPAND android_activities_templates::Timepickers::attributesDeclarations-»
 «EXPAND android_activities_templates::VideoViews::attributesDeclarations-»

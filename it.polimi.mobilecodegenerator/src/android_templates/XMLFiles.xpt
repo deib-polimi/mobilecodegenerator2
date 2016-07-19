@@ -542,6 +542,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	
 	</RelativeLayout>        
 	«ENDFOREACH-»
+	«FOREACH spinners AS s-»
+	<android.support.v7.widget.AppCompatSpinner
+		«EXPAND uiPhoneControl FOR s»
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:spinnerMode="dropdown"/> 
+	«ENDFOREACH-»
 	«FOREACH timepickers AS t-»
 	<RelativeLayout
 		«EXPAND uiPhoneControl FOR t»
@@ -853,6 +859,12 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 			android:layout_height="wrap_content"/>
 	
 	</RelativeLayout>        
+	«ENDFOREACH-»
+	«FOREACH spinners AS s-»
+	<android.support.v7.widget.AppCompatSpinner
+		«EXPAND uiPhoneControl FOR s»
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+        android:spinnerMode="dropdown"/> 
 	«ENDFOREACH-»
 	«FOREACH timepickers AS t-»
 	<RelativeLayout

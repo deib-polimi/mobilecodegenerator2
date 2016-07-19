@@ -89,7 +89,7 @@ import android.support.v7.widget.CardView;
 «IF audioPlayers.size > 0-»
 import android.support.design.widget.FloatingActionButton;
 «ENDIF-»
-«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0-»
+«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0 || spinners.size > 0-»
 import android.util.Log;
 «ENDIF-»
 
@@ -158,6 +158,11 @@ import android.widget.Toast;
 «ENDIF-»
 «IF videoViews.size > 0-»
 import android.widget.VideoView;
+«ENDIF-»
+«IF spinners.size > 0-»
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 «ENDIF-»
 «IF map != null-»
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -247,7 +252,7 @@ import android.support.v7.widget.CardView;
 «IF audioPlayers.size > 0-»
 import android.support.design.widget.FloatingActionButton;
 «ENDIF-»
-«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0-»
+«IF datepickers.size > 0 || sliders.size > 0 || switches.size > 0 || timepickers.size > 0 || cards.size > 0 || spinners.size > 0-»
 import android.util.Log;
 «ENDIF-»
 
@@ -318,6 +323,11 @@ import android.widget.Toast;
 «ENDIF-»
 «IF videoViews.size > 0-»
 import android.widget.VideoView;
+«ENDIF-»
+«IF spinners.size > 0-»
+import android.support.v7.widget.AppCompatSpinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 «ENDIF-»
 «IF map != null-»
 import com.google.android.gms.maps.CameraUpdateFactory;

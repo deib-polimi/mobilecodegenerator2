@@ -183,6 +183,11 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
                             </connections>
                         </slider>
 	                    «ENDFOREACH-»
+	                    «FOREACH vc.spinners AS s-»
+	                    <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="«s.id»">
+                            «EXPAND uiPhoneControl FOR s»
+                        </pickerView>
+	                    «ENDFOREACH-»
 	                    «IF vc.photocameraController!=null-»
 	                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="«vc.photocameraController.id»" >
 	                        «EXPAND uiPhoneControl FOR vc.photocameraController»
@@ -645,6 +650,9 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 	                <outlet property="«et.id»" destination="«et.id»" id="«et.id»OutletID"/>
 	                «ENDFOREACH-»
 	                «FOREACH vc.sliders AS s-»
+	                <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
+	                «ENDFOREACH-»
+	                «FOREACH vc.spinners AS s-»
 	                <outlet property="«s.id»" destination="«s.id»" id="«s.id»OutletID"/>
 	                «ENDFOREACH-»
 	                «FOREACH vc.switches AS s-»
