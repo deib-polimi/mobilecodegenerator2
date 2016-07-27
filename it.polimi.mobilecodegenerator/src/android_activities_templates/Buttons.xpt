@@ -24,7 +24,6 @@ private Button «b.id»;
 «DEFINE onCreate FOR ViewController-»
 «FOREACH buttons AS b-»
 this.«b.id» = (Button) this.findViewById(R.id.«b.id»);
-«IF b.clickListener != null-»
 this.«b.id».setOnClickListener(new View.OnClickListener() {	
 	@Override
 	public void onClick(View v) {
@@ -37,14 +36,12 @@ this.«b.id».setOnClickListener(new View.OnClickListener() {
 		«ENDIF-»
 	}
 });
-«ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»
 
 «DEFINE onCreateView FOR ViewController-»
 «FOREACH buttons AS b-»
 this.«b.id» = (Button) rootView.findViewById(R.id.«b.id»);
-«IF b.clickListener != null-»
 this.«b.id».setOnClickListener(new View.OnClickListener() {
 	@Override
 	public void onClick(View v) {
@@ -57,6 +54,5 @@ this.«b.id».setOnClickListener(new View.OnClickListener() {
 		«ENDIF-»
 	}
 });
-«ENDIF-»
 «ENDFOREACH-»
 «ENDDEFINE-»

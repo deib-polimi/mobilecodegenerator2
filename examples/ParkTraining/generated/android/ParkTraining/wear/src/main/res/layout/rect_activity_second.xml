@@ -74,6 +74,8 @@
 		android:paddingTop="0dp"
 	    android:layout_below="@+id/secondTitleLabel"
 
+        
+        android:textStyle="italic"
         android:text="Num of sets"
         android:gravity="left|center_vertical"/>        
 	

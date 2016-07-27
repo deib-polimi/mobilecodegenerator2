@@ -37,6 +37,15 @@ public class VideosFragment extends Fragment implements OnItemClickListener {
 		this.rootView = rootView;
 
 		this.videoButton = (Button) rootView.findViewById(R.id.videoButton);
+		this.videoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(),
+						VideoNewActivity.class);
+				//use putExtra method of Intent here for passing additional information to VideoNewActivity
+				startActivity(intent);
+			}
+		});
 
 		//Change this to set a specific image id for each row
 		this.videosGridImages = new Integer[]{R.drawable.grid_image,
