@@ -47,6 +47,12 @@ public class VideoNewActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 
 		this.saveVideoButton = (Button) this.findViewById(R.id.saveVideoButton);
+		this.saveVideoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		//Request permissions to save the video at runtime ONLY for API >= 23
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

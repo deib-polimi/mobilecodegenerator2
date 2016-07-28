@@ -41,6 +41,13 @@ public class LocationEditActivity extends AppCompatActivity
 
 		this.deleteLocationButton = (Button) this
 				.findViewById(R.id.deleteLocationButton);
+		this.deleteLocationButton
+				.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						//TODO implement the action
+					}
+				});
 
 		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.mMap);

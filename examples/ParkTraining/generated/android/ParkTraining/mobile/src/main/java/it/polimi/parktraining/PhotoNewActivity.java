@@ -41,6 +41,12 @@ public class PhotoNewActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 
 		this.savePhotoButton = (Button) this.findViewById(R.id.savePhotoButton);
+		this.savePhotoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		this.photocameraButton = (ImageButton) this
 				.findViewById(R.id.photocameraController);

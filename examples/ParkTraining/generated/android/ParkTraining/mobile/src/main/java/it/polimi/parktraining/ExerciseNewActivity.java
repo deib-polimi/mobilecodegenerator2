@@ -33,6 +33,12 @@ public class ExerciseNewActivity extends AppCompatActivity {
 		setSupportActionBar(toolbar);
 
 		this.newSaveButton = (Button) this.findViewById(R.id.newSaveButton);
+		this.newSaveButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		this.newNameEditText = (AppCompatEditText) this
 				.findViewById(R.id.newNameEditText);

@@ -18,10 +18,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="newExerciseButton">
-<rect key="frame" x="332" y="655" width="64" height="64"/>
+<rect key="frame" x="332" y="655" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="newExerciseButton-height"/>
-<constraint firstAttribute="width" constant="64" id="newExerciseButton-width"/>
+<constraint firstAttribute="height" constant="72" id="newExerciseButton-height"/>
+<constraint firstAttribute="width" constant="72" id="newExerciseButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.24705882" green="0.31764707" blue="0.70980394" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,7 +44,7 @@
 <constraints>
 </constraints>
 
-			                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                        <prototypes>
 	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="exercisesListTableViewCell" rowHeight="57" id="exercisesListCellID" customClass="DetailedTableViewCell" customModule="ParkTraining" customModuleProvider="target">
 	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
@@ -93,7 +93,7 @@
 										    <constraint firstItem="exercisesListCellContentID" firstAttribute="leading" secondItem="exercisesListCellImageID" secondAttribute="trailing" constant="16" id="exercisesListConstL"/>
                                         </constraints>
                                    	</tableViewCellContentView>
-					                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 	<connections>
                                         <outlet property="content" destination="exercisesListCellContentID" id="exercisesListContentOutlet"/>
                                         <outlet property="icon" destination="exercisesListCellIconID" id="exercisesListIconOutlet"/>
@@ -112,7 +112,7 @@
 	                    </tableView>
 	                    
 	                </subviews>
-	                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -155,10 +155,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="photoButton">
-<rect key="frame" x="331" y="567" width="64" height="64"/>
+<rect key="frame" x="331" y="567" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="photoButton-height"/>
-<constraint firstAttribute="width" constant="64" id="photoButton-width"/>
+<constraint firstAttribute="height" constant="72" id="photoButton-height"/>
+<constraint firstAttribute="width" constant="72" id="photoButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.24705882" green="0.31764707" blue="0.70980394" alpha="1" colorSpace="calibratedRGB"/>
@@ -201,7 +201,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="202" height="202"/>
                                             </imageView>
                                         </subviews>
-						                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+						                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                                </view>
 	                                <constraints>
                                     	<constraint firstAttribute="trailing" secondItem="photosGridCellImageID" secondAttribute="trailing" id="photosGridConstA"/>
@@ -223,7 +223,7 @@
 	                        </connections>
 	                    </collectionView>
 	                </subviews>
-	                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -266,10 +266,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="videoButton">
-<rect key="frame" x="331" y="567" width="64" height="64"/>
+<rect key="frame" x="331" y="567" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="videoButton-height"/>
-<constraint firstAttribute="width" constant="64" id="videoButton-width"/>
+<constraint firstAttribute="height" constant="72" id="videoButton-height"/>
+<constraint firstAttribute="width" constant="72" id="videoButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.24705882" green="0.31764707" blue="0.70980394" alpha="1" colorSpace="calibratedRGB"/>
@@ -280,6 +280,8 @@
 	                        	<color key="titleColor" red="1.0" green="1.0" blue="1.0" alpha="1" colorSpace="calibratedRGB"/>
 	                    	</state>
 	                    	<connections>
+	                    		
+	                    		<segue destination="VideoNewViewControllerID" kind="show" id="SegueIDFromvideoButtonToVideoNewViewControllerID"/>
 	                    		
 	                    		<action selector="videoButtonTouchUpInside:" destination="VideosViewControllerID" eventType="touchUpInside" id="videoButtonTouchUpInsideActionID"/>
 	                    		<action selector="videoButtonTouchDown:" destination="VideosViewControllerID" eventType="touchDown" id="videoButtonTouchDownActionID"/>
@@ -329,7 +331,7 @@
                                                 </constraints>
                                             </view>
 	                                    </subviews>
-						                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+						                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                                </view>
 	                                <constraints>
                                         <constraint firstAttribute="trailing" secondItem="videosGridCellViewID" secondAttribute="trailing" id="videosGridConstA"/>
@@ -355,7 +357,7 @@
 	                        </connections>
 	                    </collectionView>
 	                </subviews>
-	                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -398,10 +400,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="locationButton">
-<rect key="frame" x="324" y="606" width="64" height="64"/>
+<rect key="frame" x="324" y="606" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="locationButton-height"/>
-<constraint firstAttribute="width" constant="64" id="locationButton-width"/>
+<constraint firstAttribute="height" constant="72" id="locationButton-height"/>
+<constraint firstAttribute="width" constant="72" id="locationButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.24705882" green="0.31764707" blue="0.70980394" alpha="1" colorSpace="calibratedRGB"/>
@@ -422,7 +424,7 @@
 <constraints>
 </constraints>
 
-			                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+			                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                        <prototypes>
 	                        	<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="locationsListTableViewCell" rowHeight="57" id="locationsListCellID" customClass="ImageTableViewCell" customModule="ParkTraining" customModuleProvider="target">
 	                                <rect key="frame" x="0.0" y="64" width="414" height="57"/>
@@ -454,7 +456,7 @@
                                             <constraint firstAttribute="bottom" secondItem="locationsListCellImageID" secondAttribute="bottom" constant="8" id="locationsListConstG"/>
                                         </constraints>
                                    	</tableViewCellContentView>
-					                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+					                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 	<connections>
                                         <outlet property="img" destination="locationsListCellImageID" id="locationsListImageOutlet"/>
                                         <outlet property="label" destination="locationsListCellLabelID" id="locationsListLabelOutlet"/>
@@ -471,7 +473,7 @@
 	                    </tableView>
 	                    
 	                </subviews>
-	                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -514,10 +516,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="newSaveButton">
-<rect key="frame" x="280" y="499" width="64" height="64"/>
+<rect key="frame" x="280" y="499" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="newSaveButton-height"/>
-<constraint firstAttribute="width" constant="64" id="newSaveButton-width"/>
+<constraint firstAttribute="height" constant="72" id="newSaveButton-height"/>
+<constraint firstAttribute="width" constant="72" id="newSaveButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.03529412" green="0.9411765" blue="0.23529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -581,7 +583,7 @@
 	                    </textField>
 	                    
 	                </subviews>
-	                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -651,10 +653,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="editSaveButton">
-<rect key="frame" x="294" y="514" width="64" height="64"/>
+<rect key="frame" x="294" y="514" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="editSaveButton-height"/>
-<constraint firstAttribute="width" constant="64" id="editSaveButton-width"/>
+<constraint firstAttribute="height" constant="72" id="editSaveButton-height"/>
+<constraint firstAttribute="width" constant="72" id="editSaveButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.03529412" green="0.9411765" blue="0.23529412" alpha="1" colorSpace="calibratedRGB"/>
@@ -671,10 +673,10 @@
 	                        </connections>
 	                    </button>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="editDeleteButton">
-<rect key="frame" x="145" y="513" width="64" height="64"/>
+<rect key="frame" x="145" y="513" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="editDeleteButton-height"/>
-<constraint firstAttribute="width" constant="64" id="editDeleteButton-width"/>
+<constraint firstAttribute="height" constant="72" id="editDeleteButton-height"/>
+<constraint firstAttribute="width" constant="72" id="editDeleteButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.8" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -738,7 +740,7 @@
 	                    </textField>
 	                    
 	                </subviews>
-	                <color key="backgroundColor" red="0.92156863" green="1.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 	                <constraints>
 
 
@@ -913,10 +915,10 @@
 
 	                    </imageView>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deletePhotoButton">
-<rect key="frame" x="0" y="160" width="64" height="64"/>
+<rect key="frame" x="0" y="160" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="deletePhotoButton-height"/>
-<constraint firstAttribute="width" constant="64" id="deletePhotoButton-width"/>
+<constraint firstAttribute="height" constant="72" id="deletePhotoButton-height"/>
+<constraint firstAttribute="width" constant="72" id="deletePhotoButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.8" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1069,10 +1071,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deleteVideoButton">
-<rect key="frame" x="243" y="490" width="64" height="64"/>
+<rect key="frame" x="243" y="490" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="deleteVideoButton-height"/>
-<constraint firstAttribute="width" constant="64" id="deleteVideoButton-width"/>
+<constraint firstAttribute="height" constant="72" id="deleteVideoButton-height"/>
+<constraint firstAttribute="width" constant="72" id="deleteVideoButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.8" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1140,10 +1142,10 @@
 	                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
 	                <subviews>
 	                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deleteLocationButton">
-<rect key="frame" x="18" y="233" width="64" height="64"/>
+<rect key="frame" x="18" y="233" width="72" height="72"/>
 <constraints>
-<constraint firstAttribute="height" constant="64" id="deleteLocationButton-height"/>
-<constraint firstAttribute="width" constant="64" id="deleteLocationButton-width"/>
+<constraint firstAttribute="height" constant="72" id="deleteLocationButton-height"/>
+<constraint firstAttribute="width" constant="72" id="deleteLocationButton-width"/>
 </constraints>
 
 	                    	<color key="backgroundColor" red="0.8" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

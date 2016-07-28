@@ -37,6 +37,12 @@ public class LocationsFragment extends Fragment implements OnItemClickListener {
 
 		this.locationButton = (Button) rootView
 				.findViewById(R.id.locationButton);
+		this.locationButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		//Change this to set a specific image id for each row
 		this.locationsListImages = new Integer[]{R.drawable.ic_stars_white,

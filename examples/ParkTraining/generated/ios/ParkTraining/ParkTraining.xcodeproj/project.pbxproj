@@ -29,18 +29,12 @@
 		36181A10000395260094950D /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000405260094950D /* ImageTableViewCell.swift */; };
 		36181A10000415260094950D /* DetailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000425260094950D /* DetailedCollectionViewCell.swift */; };
 		36181A10000435260094950D /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000445260094950D /* ImageCollectionViewCell.swift */; };
-		36181A10000455260094950D /* snapchat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000465260094950D /* snapchat.jpg */; };
-		36181A10000475260094950D /* utils_folder_audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000485260094950D /* utils_folder_audio.mp3 */; };
-		36181A10000495260094950D /* utils_folder_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000505260094950D /* utils_folder_image.jpg */; };
-		36181A10000515260094950D /* utils_folder_page.html in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000525260094950D /* utils_folder_page.html */; };
-		36181A10000535260094950D /* utils_folder_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000545260094950D /* utils_folder_video.mp4 */; };
 		36181A10000555260094950D /* ParkTraining WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 36181A10000565260094950D /* ParkTraining WatchKit App.app */; };
 		36181A10000575260094950D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000585260094950D /* Interface.storyboard */; };
-		36181A10000595260094950D /* WatchKit App Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000605260094950D /* WatchKit App Assets.xcassets */; };
+		36181A10000595260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000605260094950D /* Assets.xcassets */; };
 		36181A10000615260094950D /* ParkTraining WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		36181A10000635260094950D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000645260094950D /* ExtensionDelegate.swift */; };		
-		36181A10000655260094950D /* WatchKit Extension Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000665260094950D /* WatchKit Extension Assets.xcassets */; };	
-			
+		36181A10000635260094950D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000645260094950D /* ExtensionDelegate.swift */; };
+		36181A10000655260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000665260094950D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,12 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		36181A10000775260094950D /* ParkTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36181A10000025260094950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36181A10000795260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		36181A10000065260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000815260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		36181A10000835260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36181A10000105260094950D /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		36181A10000125260094950D /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		36181A10000145260094950D /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
@@ -110,19 +100,18 @@
 		36181A10000405260094950D /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		36181A10000425260094950D /* DetailedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCollectionViewCell.swift; sourceTree = "<group>"; };
 		36181A10000445260094950D /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		36181A10000465260094950D /* snapchat.jpg */ = {isa = PBXFileReference; lastKnownFileType = snapchat.jpg; name = snapchat.jpg; path = snapchat.jpg; sourceTree = "<group>"; };
-		36181A10000485260094950D /* utils_folder_audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = utils_folder_audio.mp3; name = utils_folder_audio.mp3; path = utils_folder_audio.mp3; sourceTree = "<group>"; };
-		36181A10000505260094950D /* utils_folder_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = utils_folder_image.jpg; name = utils_folder_image.jpg; path = utils_folder_image.jpg; sourceTree = "<group>"; };
-		36181A10000525260094950D /* utils_folder_page.html */ = {isa = PBXFileReference; lastKnownFileType = utils_folder_page.html; name = utils_folder_page.html; path = utils_folder_page.html; sourceTree = "<group>"; };
-		36181A10000545260094950D /* utils_folder_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = utils_folder_video.mp4; name = utils_folder_video.mp4; path = utils_folder_video.mp4; sourceTree = "<group>"; };
 		36181A10000565260094950D /* ParkTraining WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ParkTraining WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36181A10000855260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		36181A10000605260094950D /* WatchKit App Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000875260094950D /* WatchKit App Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000605260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ParkTraining WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36181A10000645260094950D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		36181A10000665260094950D /* WatchKit Extension Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		36181A10000895260094950D /* WatchKit Extension Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000665260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36181A10000775260094950D /* ParkTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36181A10000795260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		36181A10000815260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36181A10000835260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000855260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		36181A10000875260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36181A10000895260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,16 +142,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		36181A10001015260094950D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				36181A10000775260094950D /* ParkTraining.app */,
-				36181A10000565260094950D /* ParkTraining WatchKit App.app */,
-				36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		36181A10000955260094950D /* ParkTraining */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,11 +165,6 @@
 				36181A10000405260094950D /* ImageTableViewCell.swift */,
 				36181A10000425260094950D /* DetailedCollectionViewCell.swift */,
 				36181A10000445260094950D /* ImageCollectionViewCell.swift */,
-				36181A10000465260094950D /* snapchat.jpg */,
-				36181A10000485260094950D /* utils_folder_audio.mp3 */,
-				36181A10000505260094950D /* utils_folder_image.jpg */,
-				36181A10000525260094950D /* utils_folder_page.html */,
-				36181A10000545260094950D /* utils_folder_video.mp4 */,
 			);
 			path = ParkTraining;
 			sourceTree = "<group>";
@@ -218,28 +192,19 @@
 			path = "ParkTraining WatchKit Extension";
 			sourceTree = "<group>";
 		};
+		36181A10001015260094950D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36181A10000775260094950D /* ParkTraining.app */,
+				36181A10000565260094950D /* ParkTraining WatchKit App.app */,
+				36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		36181A10000965260094950D /* ParkTraining */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 36181A10001035260094950D /* Build configuration list for PBXNativeTarget "ParkTraining" */;
-			buildPhases = (
-				36181A10001055260094950D /* Sources */,
-				36181A10000915260094950D /* Frameworks */,
-				36181A10001075260094950D /* Resources */,
-				36181A10000755260094950D /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				36181A10001095260094950D /* PBXTargetDependency */,
-			);
-			name = ParkTraining;
-			productName = ParkTraining;
-			productReference = 36181A10000775260094950D /* ParkTraining.app */;
-			productType = "com.apple.product-type.application";
-		};
 		36181A10000715260094950D /* ParkTraining WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36181A10001115260094950D /* Build configuration list for PBXNativeTarget "ParkTraining WatchKit App" */;
@@ -274,6 +239,25 @@
 			productReference = 36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		36181A10000965260094950D /* ParkTraining */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36181A10001035260094950D /* Build configuration list for PBXNativeTarget "ParkTraining" */;
+			buildPhases = (
+				36181A10001055260094950D /* Sources */,
+				36181A10000915260094950D /* Frameworks */,
+				36181A10001075260094950D /* Resources */,
+				36181A10000755260094950D /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36181A10001095260094950D /* PBXTargetDependency */,
+			);
+			name = ParkTraining;
+			productName = ParkTraining;
+			productReference = 36181A10000775260094950D /* ParkTraining.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -284,13 +268,13 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = polimi;
 				TargetAttributes = {
-					36181A10000965260094950D = {
-						CreatedOnToolsVersion = 7.3.1;
-					};
 					36181A10000715260094950D = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 					36181A10000725260094950D = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					36181A10000965260094950D = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -323,11 +307,6 @@
 				36181A10000075260094950D /* LaunchScreen.storyboard in Resources */,
 				36181A10000055260094950D /* Assets.xcassets in Resources */,
 				36181A10000035260094950D /* Main.storyboard in Resources */,
-				36181A10000455260094950D /* snapchat.jpg in Resources */,
-				36181A10000475260094950D /* utils_folder_audio.mp3 in Resources */,
-				36181A10000495260094950D /* utils_folder_image.jpg in Resources */,
-				36181A10000515260094950D /* utils_folder_page.html in Resources */,
-				36181A10000535260094950D /* utils_folder_video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,21 +335,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				36181A10000015260094950D /* AppDelegate.swift in Sources */,
-				36181A10000095260094950D /* ExercisesViewController.swift in Sources*/,
-				36181A10000115260094950D /* PhotosViewController.swift in Sources*/,
-				36181A10000135260094950D /* VideosViewController.swift in Sources*/,
-				36181A10000155260094950D /* LocationsViewController.swift in Sources*/,
-				36181A10000175260094950D /* ExerciseNewViewController.swift in Sources*/,
-				36181A10000195260094950D /* ExerciseEditViewController.swift in Sources*/,
-				36181A10000215260094950D /* PhotoNewViewController.swift in Sources*/,
-				36181A10000235260094950D /* PhotoEditViewController.swift in Sources*/,
-				36181A10000255260094950D /* VideoNewViewController.swift in Sources*/,
-				36181A10000275260094950D /* VideoEditViewController.swift in Sources*/,
-				36181A10000295260094950D /* LocationEditViewController.swift in Sources*/,
-				36181A10000375260094950D /* DetailedTableViewCell.swift in Sources*/,
-				36181A10000395260094950D /* ImageTableViewCell.swift in Sources*/,
-				36181A10000415260094950D /* DetailedCollectionViewCell.swift in Sources*/,
-				36181A10000435260094950D /* ImageCollectionViewCell.swift in Sources*/,
+				36181A10000095260094950D /* ExercisesViewController.swift in Sources */,
+				36181A10000115260094950D /* PhotosViewController.swift in Sources */,
+				36181A10000135260094950D /* VideosViewController.swift in Sources */,
+				36181A10000155260094950D /* LocationsViewController.swift in Sources */,
+				36181A10000175260094950D /* ExerciseNewViewController.swift in Sources */,
+				36181A10000195260094950D /* ExerciseEditViewController.swift in Sources */,
+				36181A10000215260094950D /* PhotoNewViewController.swift in Sources */,
+				36181A10000235260094950D /* PhotoEditViewController.swift in Sources */,
+				36181A10000255260094950D /* VideoNewViewController.swift in Sources */,
+				36181A10000275260094950D /* VideoEditViewController.swift in Sources */,
+				36181A10000295260094950D /* LocationEditViewController.swift in Sources */,
+				36181A10000375260094950D /* DetailedTableViewCell.swift in Sources */,
+				36181A10000395260094950D /* ImageTableViewCell.swift in Sources */,
+				36181A10000415260094950D /* DetailedCollectionViewCell.swift in Sources */,
+				36181A10000435260094950D /* ImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,9 +358,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				36181A10000635260094950D /* ExtensionDelegate.swift in Sources */,
-				36181A10000315260094950D /* FirstInterfaceController.swift in Sources*/,
-				36181A10000335260094950D /* SecondInterfaceController.swift in Sources*/,
-				36181A10000355260094950D /* ThirdInterfaceController.swift in Sources*/,
+				36181A10000315260094950D /* FirstInterfaceController.swift in Sources */,
+				36181A10000335260094950D /* SecondInterfaceController.swift in Sources */,
+				36181A10000355260094950D /* ThirdInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,11 +577,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		36181A10001215260094950D /* Build configuration list for PBXProject "ParkTraining" */ = {
+		36181A10001035260094950D /* Build configuration list for PBXNativeTarget "ParkTraining" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36181A10001235260094950D /* Debug */,
-				36181A10001255260094950D /* Release */,
+				36181A10001355260094950D /* Debug */,
+				36181A10001375260094950D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36181A10001115260094950D /* Build configuration list for PBXNativeTarget "ParkTraining WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36181A10001315260094950D /* Debug */,
+				36181A10001335260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -614,22 +602,16 @@
 				36181A10001295260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		36181A10001115260094950D /* Build configuration list for PBXNativeTarget "ParkTraining WatchKit App" */ = {
+		36181A10001215260094950D /* Build configuration list for PBXProject "ParkTraining" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36181A10001315260094950D /* Debug */,
-				36181A10001335260094950D /* Release */,
+				36181A10001235260094950D /* Debug */,
+				36181A10001255260094950D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		36181A10001035260094950D /* Build configuration list for PBXNativeTarget "ParkTraining" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				36181A10001355260094950D /* Debug */,
-				36181A10001375260094950D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,12 +9,12 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 
 	var videosGridContents: [String] = [
 		// Change the text for each cell here
-		"Some text",
-		"Some text",
-		"Some text",
-		"Some text",
-		"Some text",
-		"Some text",
+		"00:00",
+		"00:00",
+		"00:00",
+		"00:00",
+		"00:00",
+		"00:00",
 	]
 
 	var videosGridImages: [UIImage] = [

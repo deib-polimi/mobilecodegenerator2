@@ -33,6 +33,12 @@ public class VideoEditActivity extends AppCompatActivity {
 
 		this.deleteVideoButton = (Button) this
 				.findViewById(R.id.deleteVideoButton);
+		this.deleteVideoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		this.mVideoView = (VideoView) this.findViewById(R.id.mVideoView);
 		/*

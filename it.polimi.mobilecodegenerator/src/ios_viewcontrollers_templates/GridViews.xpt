@@ -24,7 +24,7 @@ along with it.polimi.mobilecodegenerator. If not, see <http://www.gnu.org/licens
 		«IF gv.gridViewCells.size!=0-»
 		// Change the text for each cell here
 		«FOREACH gv.gridViewCells AS gvc-»
-		"Some text",
+		"«gvc.title»",
 		«ENDFOREACH-»
 		«ENDIF-»
 	]

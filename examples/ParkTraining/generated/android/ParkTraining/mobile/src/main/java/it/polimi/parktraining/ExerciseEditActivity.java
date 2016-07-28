@@ -39,8 +39,20 @@ public class ExerciseEditActivity extends AppCompatActivity {
 		this.showdeleteExerciseDialog();
 
 		this.editSaveButton = (Button) this.findViewById(R.id.editSaveButton);
+		this.editSaveButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 		this.editDeleteButton = (Button) this
 				.findViewById(R.id.editDeleteButton);
+		this.editDeleteButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		this.editNameEditText = (AppCompatEditText) this
 				.findViewById(R.id.editNameEditText);

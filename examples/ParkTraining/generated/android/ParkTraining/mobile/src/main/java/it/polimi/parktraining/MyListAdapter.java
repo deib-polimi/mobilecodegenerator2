@@ -54,6 +54,13 @@ public final class MyListAdapter extends ArrayAdapter<String> {
 		View rowView = inflater.inflate(this.layoutId, null, true);
 
 		try {
+			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv);
+			tv.setText(itemNames[position]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
 			TextView tv = (TextView) rowView.findViewById(R.id.listview_tv_1);
 			tv.setText(itemNames[position]);
 		} catch (Exception e) {

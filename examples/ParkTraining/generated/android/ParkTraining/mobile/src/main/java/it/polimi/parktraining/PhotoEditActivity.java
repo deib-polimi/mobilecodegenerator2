@@ -31,6 +31,12 @@ public class PhotoEditActivity extends AppCompatActivity {
 
 		this.deletePhotoButton = (Button) this
 				.findViewById(R.id.deletePhotoButton);
+		this.deletePhotoButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//TODO implement the action
+			}
+		});
 
 		this.mImageView = (ImageView) this.findViewById(R.id.mImageView);
 
