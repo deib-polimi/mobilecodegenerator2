@@ -2,6 +2,8 @@
 import UIKit
 import AVKit
 import MobileCoreServices
+import CoreData
+import AssetsLibrary
 
 class VideoNewViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
  {
@@ -29,7 +31,27 @@ class VideoNewViewController: UIViewController, UINavigationControllerDelegate, 
 	}
 	
 
-
+    func createVideo(duration: String, path: NSURL) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity = NSEntityDescription.entityForName("Video", inManagedObjectContext: managedContext)
+        
+        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        item.setValue(duration, forKey: "duration")
+        item.setValue(path.relativePath!, forKey: "path")
+        
+        print(duration)
+        print(path.absoluteString)
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Error")
+        }
+        
+    }
 
 	
 	@IBAction func saveVideoButtonTouchDown(sender: UIButton) {
@@ -38,7 +60,17 @@ class VideoNewViewController: UIViewController, UINavigationControllerDelegate, 
     
 	@IBAction func saveVideoButtonTouchUpInside(sender: UIButton) {
         //TODO Implement the action
-    }  
+        //Questo e fatto solo perche il simulatore non accede alla videocamera
+        let path = NSURL(fileURLWithPath: "assets-library://asset/asset.MOV?id=AAAA1463-7DA1-4DC1-BC42-DA3C6B2E5D49&ext=MOV")
+        UISaveVideoAtPathToSavedPhotosAlbum(
+            path.relativePath!,
+            self,
+            #selector(VideoNewViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)),
+            nil
+        )
+        self.createVideo("mm:ss", path: path)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 	
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 	        
@@ -51,7 +83,6 @@ class VideoNewViewController: UIViewController, UINavigationControllerDelegate, 
 	        if let videoURL:NSURL = info[UIImagePickerControllerMediaURL] as? NSURL {
                 if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoURL.relativePath!)) {
                     self.iframeSrc = videoURL
-                    UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath!, self, #selector(VideoNewViewController.completionSelector(wasSavedSuccessfully:didFinishSavingWithError:contextInfo:)), nil)
                 }
             }
 	    }
@@ -73,8 +104,8 @@ class VideoNewViewController: UIViewController, UINavigationControllerDelegate, 
         } 
         else {
             // Setup iFrame
-            let iframe = "<body style=\"margin:0\"><iframe width=\"\(self.takenVideo.frame.width)\" height=\"\(self.takenVideo.frame.height)\" src=\"\(self.iframeSrc)\" frameborder=\"0\"></iframe></body>"
-            self.takenVideo.loadHTMLString(iframe, baseURL: nil)
+            //let iframe = "<body style=\"margin:0\"><iframe width=\"\(self.takenVideo.frame.width)\" height=\"\(self.takenVideo.frame.height)\" src=\"\(self.iframeSrc)\" frameborder=\"0\"></iframe></body>"
+            //self.takenVideo.loadHTMLString(iframe, baseURL: nil)
         }
     }
 

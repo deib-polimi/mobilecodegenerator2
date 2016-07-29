@@ -1,44 +1,27 @@
 
 import UIKit
+import CoreData
+import MapKit
+import CoreLocation
 
-class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
- {
+class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
 	@IBOutlet weak var locationButton: UIButton!
 	@IBOutlet weak var locationsList: UITableView!
-	
-	var locationsListContents: [String] = [
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-		"newListItem",
-	]
-
-	var locationsListImages: [UIImage] = [
-		// Change the images for each row here
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-		UIImage(named: "list_image")!,
-	]
-
-
+    var locations = [NSManagedObject]()
+    let locationManager = CLLocationManager()
+    var lon : CLLocationDegrees = CLLocationDegrees()
+    var lat : CLLocationDegrees = CLLocationDegrees()
 
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
 		locationButton.layer.cornerRadius = 36
 
 		self.locationsList.delegate = self
@@ -55,7 +38,11 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 	}
 	
 
-
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+        self.lat = locValue.latitude
+        self.lon = locValue.longitude
+    }
 
 	
 	@IBAction func locationButtonTouchDown(sender: UIButton) {
@@ -68,6 +55,37 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         // Restore original background color of button after click
 		sender.backgroundColor = UIColor(red: 0.24705882, green: 0.31764707, blue: 0.70980394, alpha: 1)
         //TODO Implement the action
+        
+        //save cl in DB
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedContext)
+        
+        let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        let name = "\(self.lat) : \(self.lon)"
+        item.setValue(name, forKey: "name")
+        item.setValue(lat, forKey: "lat")
+        item.setValue(lon, forKey: "lon")
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Error")
+        }
+        
+        //reload data
+        let fetchRequest = NSFetchRequest(entityName: "Location")
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            self.locations = results as! [NSManagedObject]
+        } catch {
+            print("Error")
+        }
+        
+        self.locationsList.reloadData()
+        
     }  
 	
 	
@@ -79,11 +97,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 	}
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	    // Return the number of rows
-	    if tableView == self.locationsList {
-	        return self.locationsListContents.count;
-	    }
-	    return 0 
+	    return self.locations.count;
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -91,9 +105,13 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 	    if tableView == self.locationsList {
 	    
 	    	let locationsListCell = tableView.dequeueReusableCellWithIdentifier("locationsListTableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
-	        locationsListCell.img.image = self.locationsListImages[indexPath.row]
-	        locationsListCell.label.text = self.locationsListContents[indexPath.row]
-	        return locationsListCell
+            
+            let location = locations[indexPath.row]
+            
+	        locationsListCell.img.image = UIImage(named: "list_image")
+	        locationsListCell.label.text = (location.valueForKey("name") as! String)
+	        
+            return locationsListCell
 	        
 	    }
 	
@@ -113,6 +131,19 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        
+        //Legge tutti gli location e li assegna a locations
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Location")
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            self.locations = results as! [NSManagedObject]
+        } catch {
+            print("Error")
+        }
+        
+        self.locationsList.reloadData()
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -130,6 +161,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
  	        let index = self.locationsList.indexPathForSelectedRow!
 			let destination = segue.destinationViewController as! LocationEditViewController
             // Pass the selected cell content to destination ...
+            destination.locationIndex = index.row
 		}
 	}
 	

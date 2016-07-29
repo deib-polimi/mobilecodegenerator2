@@ -15,8 +15,8 @@ class ExerciseEditViewController: UIViewController, UIPickerViewDataSource, UIPi
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-		editSaveButton.layer.cornerRadius = 40
-		editDeleteButton.layer.cornerRadius = 40
+		editSaveButton.layer.cornerRadius = 36
+		editDeleteButton.layer.cornerRadius = 36
 
 
 		self.editRepsSpinner.dataSource = self

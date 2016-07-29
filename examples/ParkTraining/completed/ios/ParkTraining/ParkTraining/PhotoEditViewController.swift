@@ -31,7 +31,8 @@ class PhotoEditViewController: UIViewController
         super.viewDidAppear(animated)
         //aggiorna ui
         let path = self.photo.valueForKey("path") as! String
-        self.mImageView.image = UIImage(contentsOfFile: path)
+        print(path)
+        //self.mImageView.image = UIImage(contentsOfFile: path)
     }
 
 	override func viewDidLoad() {

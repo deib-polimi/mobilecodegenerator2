@@ -19,24 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             //get message content
             let messageContent = value as! String
             
-            //check if key exists and eventually update it
-            var tmpKey = key
-            var keyExists = receivedMessages[tmpKey] != nil
-            var i = 1
-            while(keyExists) {
-                tmpKey = key.stringByAppendingString("_\(i)")
-                keyExists = receivedMessages[tmpKey] != nil
-                i += 1
+            let parts = messageContent.characters.split{$0 == ","}.map(String.init)
+            let name:String = parts[0]
+            let sets:Double = Double(parts[1])!
+            let reps:Double = Double(parts[2])!
+            
+            let managedContext = self.managedObjectContext
+            let entity = NSEntityDescription.entityForName("Exercise", inManagedObjectContext: managedContext)
+            let item = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+            
+            item.setValue(name, forKey: "name")
+            item.setValue(sets, forKey: "sets")
+            item.setValue(reps, forKey: "reps")
+            
+            do {
+                try managedContext.save()
+            } catch {
+                print("Error")
             }
-            
-            //store the pair [tmpKey:messageContent]
-            receivedMessages[tmpKey] = messageContent
-            
-            //you can reference to this messages from any viewcontroller like this
-            //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            //let receivedMessages = appDelegate.receivedMessages
-            //let numMessages = receivedMessages.count
-            //if let lastMessage = receivedMessages.values.first {}
             
         }
         

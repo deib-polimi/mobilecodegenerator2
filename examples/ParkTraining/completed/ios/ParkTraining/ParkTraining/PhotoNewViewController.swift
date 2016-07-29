@@ -53,10 +53,9 @@ class PhotoNewViewController: UIViewController, UINavigationControllerDelegate, 
 	@IBAction func savePhotoButtonTouchUpInside(sender: UIButton) {
         //TODO Implement the action
         //Questo e fatto solo perche il simulatore non accede alla fotocamera
-        let size = CGSize(width: 100,height: 100)
-        let color = UIColor.redColor()
-        let rect = CGRectMake(0, 0, size.width, size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let rect: CGRect = CGRectMake(0, 0, 100, 100)
+        let color: UIColor = UIColor.redColor()
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(1, 1), false, 0)
         color.setFill()
         UIRectFill(rect)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()

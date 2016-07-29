@@ -22,7 +22,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-		photoButton.layer.cornerRadius = 34
+		photoButton.layer.cornerRadius = 36
 		self.photosGrid.delegate = self
 		self.photosGrid.dataSource = self
 

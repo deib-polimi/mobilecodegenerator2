@@ -31,7 +31,7 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-		videoButton.layer.cornerRadius = 40
+		videoButton.layer.cornerRadius = 36
 		self.videosGrid.delegate = self
 		self.videosGrid.dataSource = self
 

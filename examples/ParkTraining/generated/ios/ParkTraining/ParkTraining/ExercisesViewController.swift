@@ -77,7 +77,7 @@ class ExercisesViewController: UIViewController, UITableViewDelegate, UITableVie
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-		newExerciseButton.layer.cornerRadius = 40
+		newExerciseButton.layer.cornerRadius = 36
 
 		self.exercisesList.delegate = self
 		self.exercisesList.dataSource = self

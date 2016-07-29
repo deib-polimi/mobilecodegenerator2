@@ -1,5 +1,6 @@
 
 import UIKit
+import CoreData
 
 class VideosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
  {
@@ -7,27 +8,7 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 	@IBOutlet weak var videoButton: UIButton!
 	@IBOutlet weak var videosGrid: UICollectionView!
 
-	var videosGridContents: [String] = [
-		// Change the text for each cell here
-		"00:00",
-		"00:00",
-		"00:00",
-		"00:00",
-		"00:00",
-		"00:00",
-	]
-
-	var videosGridImages: [UIImage] = [
-		// Change the images for each cell here
-		UIImage(named: "grid_image")!,
-		UIImage(named: "grid_image")!,
-		UIImage(named: "grid_image")!,
-		UIImage(named: "grid_image")!,
-		UIImage(named: "grid_image")!,
-		UIImage(named: "grid_image")!,
-	]
-
-
+	var videos = [NSManagedObject]()
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
@@ -71,7 +52,7 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 	    if collectionView == self.videosGrid {
-	        return self.videosGridContents.count
+	        return self.videos.count
 	    }
 	    
 	    return 0
@@ -81,12 +62,22 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 		// Configure the cell...
 	    if collectionView == self.videosGrid {
 	        let videosGridCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("videosGridCollectionViewCell", forIndexPath: indexPath) as! DetailedCollectionViewCell
-	        videosGridCollectionViewCell.label.text = videosGridContents[indexPath.row]
-	        videosGridCollectionViewCell.img.image = videosGridImages[indexPath.row]
-	        return videosGridCollectionViewCell
+            
+            let video = videos[indexPath.row]
+            let duration = (video.valueForKey("duration") as! String)
+            let path = (video.valueForKey("path") as! String)
+            
+            print(duration)
+            print(path)
+            
+            videosGridCollectionViewCell.label.text = duration
+            videosGridCollectionViewCell.img.image = UIImage(contentsOfFile: path)
+            
+            return videosGridCollectionViewCell
 	    }
 	    
 		return UICollectionViewCell()
+        
 	}
 
 	//Force the dimensions of the cells to half screen width
@@ -113,6 +104,19 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        
+        //Legge tutti gli video e li assegna a videos
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Video")
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            self.videos = results as! [NSManagedObject]
+        } catch {
+            print("Error")
+        }
+        
+        self.videosGrid.reloadData()
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -130,7 +134,7 @@ class VideosViewController: UIViewController, UICollectionViewDelegate, UICollec
  	        let index = self.videosGrid.indexPathForCell(sender as! DetailedCollectionViewCell)
 			let destination = segue.destinationViewController as! VideoEditViewController
             // Pass the selected cell content to destination ...
-            print((index?.row)!)
+            destination.videoIndex = index!.row
 		}
 	}
 	

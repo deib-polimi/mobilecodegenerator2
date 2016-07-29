@@ -7,10 +7,16 @@ class ThirdInterfaceController: WKInterfaceController, WCSessionDelegate
  {
 
 	var session : WCSession!
+    var numReps = Float(0)
+    var numSets = Float(0)
 
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        if let val: [Float] = context as? [Float] {
+            self.numReps = val[0]
+            self.numSets = val[1]
+        }
     }
 
     override func willActivate() {
@@ -42,9 +48,12 @@ class ThirdInterfaceController: WKInterfaceController, WCSessionDelegate
             allowedInputMode: .Plain,
             completion: { (result) -> Void in
                 
-                let messageContent = String(result)
+                var messageContent = String(result)
                     .stringByReplacingOccurrencesOfString("Optional([", withString: "")
                     .stringByReplacingOccurrencesOfString("])", withString: "")
+                
+                messageContent = "\(messageContent),\(self.numSets),\(self.numReps)"
+                print(messageContent)
                 
                 let applicationData = [messageId: messageContent]
                 

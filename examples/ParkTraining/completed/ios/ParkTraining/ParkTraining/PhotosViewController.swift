@@ -16,6 +16,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
 		self.photosGrid.delegate = self
 		self.photosGrid.dataSource = self
 
+        
 
 	}
 	
@@ -60,8 +61,11 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
 	        let photosGridCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("photosGridCollectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
             
             let photo = photos[indexPath.row]
+            let path = (photo.valueForKey("path") as! String)
             
-	        photosGridCollectionViewCell.img.image = UIImage(contentsOfFile: (photo.valueForKey("path") as? String)!)
+            print(path)
+            
+	        photosGridCollectionViewCell.img.image = UIImage(contentsOfFile: path)
 	        
             return photosGridCollectionViewCell
 	    }
@@ -93,7 +97,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
         
-        //Legge tutti gli esercizi e li assegna a exercises
+        //Legge tutti gli photo e li assegna a photos
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Photo")
@@ -122,7 +126,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate, UICollec
  	        let index = self.photosGrid.indexPathForCell(sender as! ImageCollectionViewCell)
 			let destination = segue.destinationViewController as! PhotoEditViewController
             // Pass the selected cell content to destination ...
-            destination.photoIndex = (index?.row)!
+            destination.photoIndex = index!.row
 		}
 	}
 	

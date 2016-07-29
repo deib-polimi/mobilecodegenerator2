@@ -7,10 +7,15 @@ class SecondInterfaceController: WKInterfaceController
 
 	@IBOutlet weak var secondNextButton: WKInterfaceButton!
 	@IBOutlet weak var setsSlider: WKInterfaceSlider!
+    var numReps = Float(0)
+    var numSets = Float(0)
 
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        if let val: Float = context as? Float {
+            self.numReps = val
+        }
     }
 
     override func willActivate() {
@@ -27,9 +32,11 @@ class SecondInterfaceController: WKInterfaceController
     
 	@IBAction func setsSliderAction(value: Float) {
         // You can reference to the progress value of the slider
-        let progressValue: Float = value
+        self.numSets = value
     }
     
-    
+    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+        return [self.numReps, self.numSets]
+    }
 
 }

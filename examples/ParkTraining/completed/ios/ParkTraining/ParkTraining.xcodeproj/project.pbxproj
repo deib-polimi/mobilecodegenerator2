@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		36181A10000015260094950D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000025260094950D /* AppDelegate.swift */; };
 		36181A10000035260094950D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000045260094950D /* Main.storyboard */; };
-		36181A10000055260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000065260094950D /* Assets.xcassets */; };
 		36181A10000075260094950D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000085260094950D /* LaunchScreen.storyboard */; };
 		36181A10000095260094950D /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000105260094950D /* ExercisesViewController.swift */; };
 		36181A10000115260094950D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000125260094950D /* PhotosViewController.swift */; };
@@ -35,6 +34,9 @@
 		36181A10000615260094950D /* ParkTraining WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 36181A10000625260094950D /* ParkTraining WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		36181A10000635260094950D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36181A10000645260094950D /* ExtensionDelegate.swift */; };
 		36181A10000655260094950D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36181A10000665260094950D /* Assets.xcassets */; };
+		365120431D4B80F70031566F /* ic_add_white_36pt_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365120401D4B80F70031566F /* ic_add_white_36pt_2x.png */; };
+		365120441D4B80F70031566F /* ic_add_white_36pt_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365120411D4B80F70031566F /* ic_add_white_36pt_3x.png */; };
+		365120451D4B80F70031566F /* ic_add_white_36pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 365120421D4B80F70031566F /* ic_add_white_36pt.png */; };
 		36E752981D4A38C800EB1CC6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 36E752961D4A38C800EB1CC6 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +84,6 @@
 
 /* Begin PBXFileReference section */
 		36181A10000025260094950D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		36181A10000065260094950D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36181A10000105260094950D /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		36181A10000125260094950D /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		36181A10000145260094950D /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +114,9 @@
 		36181A10000855260094950D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		36181A10000875260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36181A10000895260094950D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		365120401D4B80F70031566F /* ic_add_white_36pt_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_add_white_36pt_2x.png; path = ../../../../../../../../ic_add_white_36dp/ios/ic_add_white_36pt.imageset/ic_add_white_36pt_2x.png; sourceTree = "<group>"; };
+		365120411D4B80F70031566F /* ic_add_white_36pt_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_add_white_36pt_3x.png; path = ../../../../../../../../ic_add_white_36dp/ios/ic_add_white_36pt.imageset/ic_add_white_36pt_3x.png; sourceTree = "<group>"; };
+		365120421D4B80F70031566F /* ic_add_white_36pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_add_white_36pt.png; path = ../../../../../../../../ic_add_white_36dp/ios/ic_add_white_36pt.imageset/ic_add_white_36pt.png; sourceTree = "<group>"; };
 		36E752971D4A38C800EB1CC6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,13 +153,15 @@
 			children = (
 				36181A10000025260094950D /* AppDelegate.swift */,
 				36181A10000045260094950D /* Main.storyboard */,
-				36181A10000065260094950D /* Assets.xcassets */,
 				36181A10000085260094950D /* LaunchScreen.storyboard */,
 				36181A10000835260094950D /* Info.plist */,
 				36181A10000105260094950D /* ExercisesViewController.swift */,
 				36181A10000125260094950D /* PhotosViewController.swift */,
 				36181A10000145260094950D /* VideosViewController.swift */,
 				36181A10000165260094950D /* LocationsViewController.swift */,
+				365120401D4B80F70031566F /* ic_add_white_36pt_2x.png */,
+				365120411D4B80F70031566F /* ic_add_white_36pt_3x.png */,
+				365120421D4B80F70031566F /* ic_add_white_36pt.png */,
 				36181A10000185260094950D /* ExerciseNewViewController.swift */,
 				36181A10000205260094950D /* ExerciseEditViewController.swift */,
 				36181A10000225260094950D /* PhotoNewViewController.swift */,
@@ -307,8 +313,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				365120431D4B80F70031566F /* ic_add_white_36pt_2x.png in Resources */,
+				365120441D4B80F70031566F /* ic_add_white_36pt_3x.png in Resources */,
 				36181A10000075260094950D /* LaunchScreen.storyboard in Resources */,
-				36181A10000055260094950D /* Assets.xcassets in Resources */,
+				365120451D4B80F70031566F /* ic_add_white_36pt.png in Resources */,
 				36181A10000035260094950D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

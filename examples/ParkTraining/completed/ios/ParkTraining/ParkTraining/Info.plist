@@ -24,9 +24,8 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-		</dict>
+		<key>NSExceptionDomains</key>
+		<dict/>
 	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -49,5 +48,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Because I can</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Because I can</string>
 </dict>
 </plist>

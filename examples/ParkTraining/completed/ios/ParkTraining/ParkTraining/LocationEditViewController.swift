@@ -1,6 +1,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class LocationEditViewController: UIViewController, MKMapViewDelegate
  {
@@ -8,19 +9,37 @@ class LocationEditViewController: UIViewController, MKMapViewDelegate
 	@IBOutlet weak var deleteLocationButton: UIButton!
 	@IBOutlet weak var mMap: MKMapView!
 
-
+    var locationIndex: Int = 0
+    var location: NSManagedObject!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
 	override func viewDidLoad() {
 	    super.viewDidLoad()
 		deleteLocationButton.layer.cornerRadius = 36
 
 
 		self.mMap.delegate = self
-	        
-	    let lat = 45.478
-	    let lon = 9.227
-	    let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        
+        //Legge la loc
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Location")
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            self.location = results[self.locationIndex] as! NSManagedObject
+        } catch {
+            print("Error")
+        }
+        
+	    let lat = self.location.valueForKey("lat") as? Double
+	    let lon = self.location.valueForKey("lon") as? Double
+        
+	    let coordinates = CLLocationCoordinate2D(latitude: lat!, longitude: lon!)
 	    
-	    let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, lon), MKCoordinateSpanMake(0.005, 0.005))
+	    let region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat!, lon!), MKCoordinateSpanMake(0.005, 0.005))
 	    
 	    let annotation = MKPointAnnotation()
 	    annotation.coordinate = coordinates
@@ -38,8 +57,6 @@ class LocationEditViewController: UIViewController, MKMapViewDelegate
 		super.viewDidDisappear(animated)
 	}
 	
-
-
 
 	
 	@IBAction func deleteLocationButtonTouchDown(sender: UIButton) {
@@ -62,7 +79,17 @@ class LocationEditViewController: UIViewController, MKMapViewDelegate
         
         //Create and add the Ok action
         let deleteLocationDialogOkAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
-            //Do some stuff here
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            managedContext.deleteObject(self.location)
+            
+            do {
+                try managedContext.save()
+            } catch {
+                print("error")
+            }
+            
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
         deleteLocationDialog.addAction(deleteLocationDialogCancelAction)
@@ -70,20 +97,8 @@ class LocationEditViewController: UIViewController, MKMapViewDelegate
         
         //Present the AlertController
         self.presentViewController(deleteLocationDialog, animated: true, completion: nil)
-    }  
+    }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-	}
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)

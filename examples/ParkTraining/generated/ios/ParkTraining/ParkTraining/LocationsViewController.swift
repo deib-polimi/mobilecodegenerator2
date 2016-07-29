@@ -39,7 +39,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
-		locationButton.layer.cornerRadius = 40
+		locationButton.layer.cornerRadius = 36
 
 		self.locationsList.delegate = self
 		self.locationsList.dataSource = self

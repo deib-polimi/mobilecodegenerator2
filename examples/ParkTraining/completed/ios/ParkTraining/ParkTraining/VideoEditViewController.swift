@@ -1,13 +1,32 @@
 
 import UIKit
 import AVKit
+import CoreData
 
 class VideoEditViewController: UIViewController
  {
 
 	@IBOutlet weak var deleteVideoButton: UIButton!
 	@IBOutlet weak var mVideoView: UIWebView!
+    
+    var videoIndex: Int = 0
+    var video: NSManagedObject!
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //Legge la foto
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Video")
+        do {
+            let results = try managedContext.executeFetchRequest(fetchRequest)
+            self.video = results[self.videoIndex] as! NSManagedObject
+        } catch {
+            print("Error")
+        }
+        
+    }
 
 	override func viewDidLoad() {
 	    super.viewDidLoad()
@@ -18,6 +37,9 @@ class VideoEditViewController: UIViewController
 	
 	override func viewDidAppear(animated: Bool) {
 	    super.viewDidAppear(animated)
+        
+        let path = self.video.valueForKey("path") as! String
+        print(path)
 		
 		/*
 		if let mVideoViewString = NSBundle.mainBundle().pathForResource("URI", ofType:"mp4") {
@@ -60,7 +82,19 @@ class VideoEditViewController: UIViewController
         
         //Create and add the Ok action
         let deleteVideoDialogOkAction: UIAlertAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
-            //Do some stuff here
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext
+            managedContext.deleteObject(self.video)
+            
+            do {
+                try managedContext.save()
+            } catch {
+                print("error")
+            }
+            
+            self.navigationController?.popViewControllerAnimated(true)
+            
         }
         
         deleteVideoDialog.addAction(deleteVideoDialogCancelAction)
@@ -68,20 +102,7 @@ class VideoEditViewController: UIViewController
         
         //Present the AlertController
         self.presentViewController(deleteVideoDialog, animated: true, completion: nil)
-    }  
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-	}
+    }
 	
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
